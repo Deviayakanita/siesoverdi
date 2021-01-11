@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::post('/postlogin', 'App\Http\Controllers\AuthController@postlogin') -> middleware('CekLevel');
+Route::post('/postlogin', 'App\Http\Controllers\AuthController@postlogin');
 
 Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 
@@ -31,7 +31,9 @@ Route::resource('pesertadidik', 'App\Http\Controllers\PesertadidikController');
 Route::get('index', 'App\Http\Controllers\PesertadidikController@index');	
 Route::get('listpesertadidik', 'App\Http\Controllers\PesertadidikController@list');	
 Route::get('/editpesertadidik/edit/{id}', 'App\Http\Controllers\PesertadidikController@edit');	
-Route::patch('/pesertadidikedit/{id}', 'App\Http\Controllers\PesertadidikController@editpesertadidik');	
+Route::patch('/pesertadidikedit/{id}', 'App\Http\Controllers\PesertadidikController@editpesertadidik');
+Route::get('/detailpesertadidik/detail/{id}','App\Http\Controllers\PesertadidikController@detailpesertadidik');	
+
 //route orang tua crud user admin
 Route::resource('orangtua', 'App\Http\Controllers\OrangtuaController');
 Route::get('listortu', 'App\Http\Controllers\OrangtuaController@list');	

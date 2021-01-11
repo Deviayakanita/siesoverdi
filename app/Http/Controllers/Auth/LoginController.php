@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use Auth;
 class LoginController extends Controller
 {
     /*
@@ -21,18 +22,15 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/admin';
+    public function postlogin(Request $request)
+    {
+        if (Auth::attempt($request->only('username', 'password'))) {
+            return redirect('/dashboard_admin');
+        }
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+        return redirect('/login');
+    }
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -40,5 +38,22 @@ class LoginController extends Controller
 
     public function username() {
         return 'username';
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

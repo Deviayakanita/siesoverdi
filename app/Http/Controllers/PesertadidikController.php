@@ -46,11 +46,11 @@ class PesertadidikController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(Request $request)
     {
         Pesertadidik::create([
             'nm_siswa' => request('nm_siswa'),
-            'id_user' => ceklevel()->id(),
+            'id_user' => Auth::user()->id,
             'jns_kelamin' => request('jns_kelamin'),
             'nis' => request('nis'),
             'tmp_lahir' => request('tmp_lahir'),
@@ -98,7 +98,7 @@ class PesertadidikController extends Controller
          DB::table('peserta_didik')->where('id_siswa', $id)
             -> update([
             'nm_siswa' => request('nm_siswa'),
-            'id_user' => ceklevel()->id(),
+            'id_user' => Auth::user()->id,
             'jns_kelamin' => request('jns_kelamin'),
             'nis' => request('nis'),
             'tmp_lahir' => request('tmp_lahir'),
@@ -128,6 +128,12 @@ class PesertadidikController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function detailpesertadidik($id)
+    {
+        $detailpesertadidik = Pesertadidik::find($id);
+        return view ('peserta_didik/detailpesertadidik',['detailpesertadidik' => $detailpesertadidik]);
     }
 
     /**

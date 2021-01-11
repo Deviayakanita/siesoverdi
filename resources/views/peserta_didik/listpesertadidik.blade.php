@@ -79,7 +79,6 @@
   <div class="col-xs-12">
     <div class="box box-primary">
       <div class="box-header">
-          Daftar Peserta Didik
       </div>
         <div class="box-body pad table-responsive" style="width: 200px">
           <td>
@@ -129,7 +128,7 @@
                                 ?>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href="#" class="btn btn-primary">View</a>
+                                    <a href="/detailpesertadidik/detail/{{ $pesertadidik ->id_siswa }}" class="btn btn-primary">View</a>
                                     <a href="/editpesertadidik/edit/{{ $pesertadidik->id_siswa }}" class="btn btn-primary">Edit</a>
                                 </td>
                             </tr>

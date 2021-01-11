@@ -26,11 +26,11 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboar_kepsek')}}">
-            <i class="fa fa-home"></i><span> Dashboard</span>
+        <a href="{{url('/dashboard_admin')}}">
+            <i class="fa fa-home active"></i><span> Dashboard</span>
         </a>
     </li>
-    <li class="active treeview">
+    <li class=" active treeview">
       <a href="#">
       <i class="fa fa-edit"></i><span> Kelola Peserta Didik</span>
         <span class="pull-right-container">
@@ -38,7 +38,7 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="active"> <a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i>Data Peserta Didik</a></li>
+        <li class="active"><a href="{{url('listpesertadidik_kepsek')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
         <li><a href="{{url('listortu')}}"><i class="fa fa-circle-o"></i> Data Orang Tua</a></li>
       </ul>
     </li>
@@ -50,7 +50,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{url('listmtsmasuk')}}"><i class="fa fa-circle-o"></i> Data Mutasi Masuk</a></li>
+            <li><a href="{{url('listmtsmasuk')}}"><i class="fa fa-circle-o"></i><span> Data Mutasi Masuk</span> </a></li>
             <li><a href="{{url('listmtskeluar')}}"><i class="fa fa-circle-o"></i> Data Mutasi Keluar</a></li>     
         </ul>
     </li>
@@ -66,10 +66,10 @@
 </aside>
 @endsection
 
-@section('content-title' ,'Data Peserta Didik')
+@section('content-title', 'Data Peserta Didik')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="dashboard_kepsek"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
 @endsection
 
@@ -79,9 +79,11 @@
   <div class="col-xs-12">
     <div class="box box-primary">
       <div class="box-header">
-          Daftar Peserta Didik
-      </div>    
-        <div class="box-body">
+      </div>
+        <div class="box-body pad table-responsive" style="width: 200px">
+          </div>
+
+            <div class="box-body">
                 <table id='listusers' class="table table-bordered table-striped">
                     <thead>
                         <th>No</th>
@@ -107,10 +109,23 @@
                                 <td>{{ $pesertadidik->tgl_lahir }}</td>
                                 <td>{{ $pesertadidik->no_tlpn }}</td>
                                 <td>{{ $pesertadidik->alamat_siswa }}</td>
-                                <td>{{ $pesertadidik->sts_siswa }}</td>
+                                <td>
+                                <?php if($pesertadidik->sts_siswa == 0)
+                                {
+                                  echo "Non Aktif";
+                                }
+                                  elseif($pesertadidik->sts_siswa == 1)
+                                {
+                                  echo "Aktif";
+                                }
+                                else
+                                {
+                                  echo "Non Aktif";
+                                }
+                                ?>
+                                </td>
                                 <td style="text-align: center;">
-                                    <a href="#" class="btn btn-primary">View</a>
-                                    <a href="/editpesertadidik/edit/{{ $pesertadidik->id_siswa }}" class="btn btn-primary">Edit</a>
+                                    <a href="/detailpesertadidik/detail/{{ $pesertadidik ->id_siswa }}" class="btn btn-primary">View</a>
                                 </td>
                             </tr>
                             @php
