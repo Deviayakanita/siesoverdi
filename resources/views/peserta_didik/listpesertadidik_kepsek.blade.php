@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('/dashboard_admin')}}">
+        <a href="{{url('/dashboard2')}}">
             <i class="fa fa-home active"></i><span> Dashboard</span>
         </a>
     </li>
@@ -38,7 +38,7 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="active"><a href="{{url('listpesertadidik_kepsek')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
+        <li class="active"><a href="{{url('listpesertadidik_kepsek')}}"><i class="fa fa-circle-o text-aqua"></i> Data Peserta Didik</a></li>
         <li><a href="{{url('listortu')}}"><i class="fa fa-circle-o"></i> Data Orang Tua</a></li>
       </ul>
     </li>
@@ -69,7 +69,7 @@
 @section('content-title', 'Data Peserta Didik')
 
 @section('breadcrumb')
-  <li><a href="dashboard_kepsek"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="/dashboard2"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
 @endsection
 

@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home active"></i><span> Dashboard</span>
         </a>
     </li>
@@ -70,20 +70,26 @@
 @section('content-title','Tambah Data Peserta Didik')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Menu</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
+  <li> Data Peserta Didik</li>
+  <li> Tambah Peserta Didik</li>
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
-	<form action="{{route('pesertadidik.store')}}" method="post" style="margin-left: 200px; margin-right: 200px">
+<section class="content" style="padding-top: 2;">
+	<form action="{{route('pesertadidik.store')}}" method="post">
 		{{csrf_field()}}
 
       <div class="box box-primary">
       <form role="form">
       <div class="box-body">
-    
 
+    <div>
+        <a href="/listpesertadidik" class="btn btn-primary" style="float: right;">KEMBALI</a>
+    </div>
+    <div style="clear: both;"></div>
+  
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputnama">Nama Lengkap Siswa</label>
       <input type="nama" class="form-control" id="inputnama" name="nm_siswa">
@@ -179,8 +185,11 @@
     </div>
     
   <div>
-  <button type="submit" class="btn btn-primary" style="margin-left: 15px padding: 0; padding-right: 10px">SIMPAN DATA</button>
+  <button type="submit" class="btn btn-primary">SIMPAN DATA</button>
   </div>
+  
+
+  
 
 </div>
 </form>

@@ -39,7 +39,7 @@
       </a>
       <ul class="treeview-menu">
         <li><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
-        <li class="active"><a href="{{url('listortu')}}"><i class="fa fa-circle-o"></i> Data Orang Tua</a></li>
+        <li class="active"><a href="{{url('listortu')}}"><i class="fa fa-circle-o text-aqua"></i> Data Orang Tua</a></li>
       </ul>
     </li>
     <li class="treeview">

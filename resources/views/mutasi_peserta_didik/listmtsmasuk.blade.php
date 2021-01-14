@@ -50,7 +50,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li class="active"><a href="{{url('listmtsmasuk')}}"><i class="fa fa-circle-o"></i><span> Data Mutasi Masuk</span> </a></li>
+            <li class="active"><a href="{{url('listmtsmasuk')}}"><i class="fa fa-circle-o text-aqua"></i><span> Data Mutasi Masuk</span> </a></li>
             <li><a href="{{url('listmtskeluar')}}"><i class="fa fa-circle-o"></i> Data Mutasi Keluar</a></li>     
         </ul>
     </li>

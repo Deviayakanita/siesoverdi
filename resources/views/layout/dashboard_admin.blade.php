@@ -8,7 +8,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li class="active">
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -51,7 +51,7 @@
 @section('content-title', 'Selamat Datang,')
 
 @section('breadcrumb')
-	<li><a href="master"><i class="fa fa-home"></i> Home</a></li>
+	<li><i class="fa fa-home"></i> Home</li>
 	<li class="active">Dashboard</li>
 @endsection
 

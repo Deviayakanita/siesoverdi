@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -70,12 +70,14 @@
 @section('content-title','Detail Peserta Didik')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Menu</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
+  <li> Data Peserta Didik</li>
+  <li> Detail Peserta Didik</li>
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
+<section class="content" style="padding-top: 2px;" style="width: 200px">
 	<div class="box box-primary">
         <div class="box-header with-border">
           <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Peserta Didik
@@ -178,7 +180,7 @@
 
         <!-- /.box-body -->
         <div class="box-footer">
-          <a href="/listpesertadidik" class="btn btn-default">Kembali</a>
+          <a href="/listpesertadidik" class="btn btn-primary">KEMBALI</a>
         </div>
       </div>
 				

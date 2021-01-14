@@ -81,7 +81,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Log out</a>
+                  <a href="#" class="btn btn-primary">Log out</a>
                 </div>
               </li>
             </ul>

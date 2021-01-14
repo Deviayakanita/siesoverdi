@@ -36,7 +36,8 @@ class OrangtuaController extends Controller
      */
     public function create()
     {
-        //
+        $pesertadidiks = Pesertadidik::all();
+        return view('orang_tua/orangtua', compact('pesertadidiks'));
     }
 
     /**

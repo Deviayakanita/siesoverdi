@@ -34,7 +34,7 @@ Route::get('/editpesertadidik/edit/{id}', 'App\Http\Controllers\PesertadidikCont
 Route::patch('/pesertadidikedit/{id}', 'App\Http\Controllers\PesertadidikController@editpesertadidik');
 Route::get('/detailpesertadidik/detail/{id}','App\Http\Controllers\PesertadidikController@detailpesertadidik');	
 
-//route orang tua crud user admin
+//route orang tua  crud user admin
 Route::resource('orangtua', 'App\Http\Controllers\OrangtuaController');
 Route::get('listortu', 'App\Http\Controllers\OrangtuaController@list');	
 Route::get('editortu/edit/{id}', 'App\Http\Controllers\OrangtuaController@edit');	
@@ -62,6 +62,10 @@ Route::get('master', function () {
 
 Route::get('dashboard', function () {
     return view('layout/dashboard_admin');
+});
+
+Route::get('dashboard2', function () {
+    return view('layout/dashboard_kepsek');
 });
 
 Route::get('admin', function () {

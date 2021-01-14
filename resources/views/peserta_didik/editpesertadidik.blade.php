@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="/dashboard">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -70,19 +70,26 @@
 @section('content-title','Edit Peserta Didik')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Menu</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Menu</a></li>
   <li> Kelola Peserta Didik</li>
+  <li> Data Peserta Didik</li>
+  <li> Edit Peserta Didik</li>
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
-	<form action="{{url('/pesertadidikedit/' .$pesertadidik->id_siswa)}}" method="post" style="margin-left: 200px; margin-right: 200px">
+<section class="content" style="padding-top: 2px;">
+	<form action="{{url('/pesertadidikedit/' .$pesertadidik->id_siswa)}}" method="post" >
 		@method('patch')
 		{{csrf_field()}}
 
 		<div class="box box-primary">
 			<form role="form">
 			<div class="box-body">
+
+    <div>
+        <a href="/listpesertadidik" class="btn btn-primary" style="float: right;">KEMBALI</a>
+    </div>
+    <div style="clear: both;"></div>
 				
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputnama">Nama Lengkap Siswa</label>
@@ -100,7 +107,7 @@
 
   <div class="form-row"> 
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-      <label for="inputnisn">NIS</label>
+      <label for="inputnisn">No Induk Siswa</label>
       <input type="nisn" class="form-control" id="inputnisn" name="nis" value="{{$pesertadidik->nis}}">
     </div>
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
@@ -178,7 +185,7 @@
       <textarea class="form-control" id="keterangan" rows="3" name="keterangan" value="{{$pesertadidik->keterangan}}">
       </textarea>
     </div>
-    
+
     <div>
 		<button type="submit" class="btn btn-primary" style= "margin-left: 1px" "padding: 0; padding-right: 10px">SIMPAN</button>
 	 </div>

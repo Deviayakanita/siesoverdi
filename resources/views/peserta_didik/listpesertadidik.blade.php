@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home active"></i><span> Dashboard</span>
         </a>
     </li>
@@ -38,7 +38,7 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="active"><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
+        <li class="active"><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o text-aqua"></i> Data Peserta Didik</a></li>
         <li><a href="{{url('listortu')}}"><i class="fa fa-circle-o"></i> Data Orang Tua</a></li>
       </ul>
     </li>
@@ -69,25 +69,35 @@
 @section('content-title', 'Data Peserta Didik')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
+  <li> Data Peserta Didik</li>
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
+<section class="content" style="padding-top:0 ;">
 <div class="row">
   <div class="col-xs-12">
     <div class="box box-primary">
       <div class="box-header">
-      </div>
         <div class="box-body pad table-responsive" style="width: 200px">
           <td>
-            <a href="index"><button type="button" class="btn btn-block btn-primary">Tambah Peserta Didik</button></a>
+            <a href="index"><button  type="button" class="btn btn-block btn-primary" style="float: left;">Tambah Peserta Didik</button></a>
           </td>
           </div>
-
+        </div>
+            <div class="row">
+                <form action="/listpesertadidik" class="form-inline" method="GET">
+                <div class="input-group input-group-sm" style="width: 200px; padding-left: 25px">
+                  <input type="text" name="cari" class="form-control pull-right" placeholder="Search">
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+                </form>
+              </div>
             <div class="box-body">
-                <table id='listusers' class="table table-bordered table-striped">
+                <table id='listusers' class="table table-bordered table-striped table-hover">
                     <thead>
                         <th>No</th>
                         <th>NIS</th>

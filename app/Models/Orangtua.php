@@ -24,4 +24,9 @@ class Orangtua extends Model
         'sts_orang_tua',
 
     ];
+
+    public function pesertadidik()
+    {
+        return $this -> belongsTo(Pesertadidik::class);
+    }
 }

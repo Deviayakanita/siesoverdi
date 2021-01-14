@@ -24,11 +24,15 @@ class PesertadidikController extends Controller
     }
 
 
-    public function list()
+    public function list(Request $request)
     {
-        $pesertadidiks = Pesertadidik::all();
+        if ($request->has('cari')){
+            $pesertadidiks = Pesertadidik::where('nm_siswa','LIKE','%'.$request->cari.'%')->get(); 
+        }else{
+            $pesertadidiks = Pesertadidik::all();
+        }
         return view('peserta_didik/listpesertadidik', compact('pesertadidiks'));
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.

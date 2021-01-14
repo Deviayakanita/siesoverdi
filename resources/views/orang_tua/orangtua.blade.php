@@ -83,10 +83,14 @@
       <form role="form">
         <div class="box-body">
 
-   <!--  <div class="form-group col-md-6">
-      <label for="inputnisn">NIS</label>
-      <input type="nisn" class="form-control" id="inputnisn" name="nis">
-    </div> -->
+    <div class="form-group">
+      <label for="inputState">NIS</label>
+      <select id="inputState" class="form-control" name="nis">
+        <option value="">pilih</option>
+        @foreach ($pesertadidik as $item)
+        <option value="{{$item->inputpendidikan_siswa}}">{{$item->nis}}</option>
+        @endforeach
+    </div>
 
     <div class="form-group">
       <label for="inputnama">Nama Ayah</label>

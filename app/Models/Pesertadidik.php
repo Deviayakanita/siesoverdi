@@ -28,4 +28,10 @@ class Pesertadidik extends Model
         'sts_siswa',
         'keterangan',
     ];
+
+    
+    public function orangtua()
+    {
+        return $this -> hasMany(Orangtua::class);
+    }
 }
