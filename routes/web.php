@@ -39,6 +39,8 @@ Route::resource('orangtua', 'App\Http\Controllers\OrangtuaController');
 Route::get('listortu', 'App\Http\Controllers\OrangtuaController@list');	
 Route::get('editortu/edit/{id}', 'App\Http\Controllers\OrangtuaController@edit');	
 Route::patch('ortuedit/{id}', 'App\Http\Controllers\OrangtuaController@editortu');
+Route::get('/detailorangtua/detail/{id}','App\Http\Controllers\OrangtuaController@detailorangtua');	
+
 //route mutasi masuk crud user admin
 Route::resource('mutasimasuk', 'App\Http\Controllers\MutasimasukController');
 Route::get('listmtsmasuk', 'App\Http\Controllers\MutasimasukController@list');	

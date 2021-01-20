@@ -11,7 +11,7 @@ class Orangtua extends Model
     protected $primaryKey = 'id_orang_tua';
 
     public $fillable = [
-        // 'nis',
+        'nis',
     	'nm_ayah',
     	'id_siswa',
     	'job_ayah',

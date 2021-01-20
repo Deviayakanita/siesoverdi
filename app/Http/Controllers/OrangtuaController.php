@@ -36,8 +36,8 @@ class OrangtuaController extends Controller
      */
     public function create()
     {
-        $pesertadidiks = Pesertadidik::all();
-        return view('orang_tua/orangtua', compact('pesertadidiks'));
+        $pesertadidik = Pesertadidik::all();
+        return view('orang_tua/orangtua', compact('pesertadidik'));
     }
 
     /**
@@ -61,6 +61,7 @@ class OrangtuaController extends Controller
             'penghasilan_ibu' => request('penghasilan_ibu'),
             'sts_orang_tua' => request('sts_orang_tua'),
         ]);
+        return redirect('listpesertadidik');
     }
 
     /**
@@ -117,6 +118,13 @@ class OrangtuaController extends Controller
     {
         //
     }
+
+    public function detailorangtua($id)
+    {
+        $detailorangtua = Orangtua::find($id);
+        return view ('orang_tua/detailorangtua',['detailorangtua' => $detailorangtua]);
+    }
+
 
     /**
      * Remove the specified resource from storage.

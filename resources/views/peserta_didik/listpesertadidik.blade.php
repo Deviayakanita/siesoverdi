@@ -86,16 +86,11 @@
           </td>
           </div>
         </div>
-            <div class="row">
-                <form action="/listpesertadidik" class="form-inline" method="GET">
-                <div class="input-group input-group-sm" style="width: 200px; padding-left: 25px">
-                  <input type="text" name="cari" class="form-control pull-right" placeholder="Search">
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-                </form>
-              </div>
+        <form action="/listpesertadidik" method="GET">
+        <div class="input-group">
+          <input type="text" name="cari" class="form-control" placeholder="Search...">
+        </div>
+        </form>
             <div class="box-body">
                 <table id='listusers' class="table table-bordered table-striped table-hover">
                     <thead>
@@ -138,8 +133,9 @@
                                 ?>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href="/detailpesertadidik/detail/{{ $pesertadidik ->id_siswa }}" class="btn btn-primary">View</a>
-                                    <a href="/editpesertadidik/edit/{{ $pesertadidik->id_siswa }}" class="btn btn-primary">Edit</a>
+                                    <a href="/detailpesertadidik/detail/{{ $pesertadidik ->id_siswa }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                    <a href="/editpesertadidik/edit/{{ $pesertadidik->id_siswa }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
+                                    <a href="/editpesertadidik/edit/{{ $pesertadidik->id_siswa }}"><i class="fa fa-print btn-primary btn-sm"></i></a>
                                 </td>
                             </tr>
                             @php
@@ -148,6 +144,15 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
             </div>
     <!-- /.box-body -->
    </div>

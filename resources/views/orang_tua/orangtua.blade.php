@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -70,13 +70,15 @@
 @section('content-title','Tambah Data Orang Tua')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
+  <li> Data Orang Tua</li>
+  <li> Tambah Orang Tua</li>
 @endsection
 
 @section('content')
 <section class="content" style="padding-top: 5;">
-	<form action="{{route('orangtua.store')}}" method="post" style="margin-left: 200px; margin-right: 200px">
+	<form action="{{url('orangtua.store')}}" method="post" style="margin-left: 200px; margin-right: 200px">
 		{{csrf_field()}}
     
     <div class="box box-primary">
@@ -88,7 +90,7 @@
       <select id="inputState" class="form-control" name="nis">
         <option value="">pilih</option>
         @foreach ($pesertadidik as $item)
-        <option value="{{$item->inputpendidikan_siswa}}">{{$item->nis}}</option>
+        <option value="{{ $item->id_siswa }}">{{ $item ->nis }}</option>
         @endforeach
     </div>
 

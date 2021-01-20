@@ -1,5 +1,5 @@
 @extends('layout.blank')
-@section('title', 'Data Peserta Didik | Admin')
+@section('title', 'Data Orang Tua | Admin')
 @section('topbaraccount')
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -67,20 +67,20 @@
 </aside>
 @endsection
 
-@section('content-title','Detail Peserta Didik')
+@section('content-title','Detail Orang Tua')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
-  <li> Data Peserta Didik</li>
-  <li> Detail Peserta Didik</li>
+  <li> Data Orang Tua</li>
+  <li> Detail Orang Tua</li>
 @endsection
 
 @section('content')
 <section class="content" style="padding-top: 2px;" style="width: 200px">
 	<div class="box box-primary">
         <div class="box-header with-border">
-          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Peserta Didik
+          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Orang Tua
           </div>
         </div>
         <div class="box-body">
@@ -88,77 +88,67 @@
             <tr>
               <td width="200px">Nama Lengkap Siswa</td>
               <td width="5px">:</td>
-              <td>{{$detailpesertadidik->nm_siswa}}</td>
+              <td>{{$detailorangtua->nm_siswa}}</td>
             </tr>
             <tr> 
               <td>Jenis Kelamin</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->jns_kelamin}}</td>
+              <td>{{$detailorangtua->jns_kelamin}}</td>
             </tr>
             <tr>
               <td>No Induk Siswa</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->nis}}</td>
+              <td>{{$detailorangtua->nis}}</td>
             </tr>
             <tr>
-              <td>Tempat lahir</td>
+              <td>Nama Ayah</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->tmp_lahir}}</td>
+              <td>{{$detailorangtua->nm_ayah}}</td>
             </tr>
             <tr>
-              <td>Tanggal lahir</td>
+              <td>Pendidikan Ayah</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->tgl_lahir}}</td>
+              <td>{{$detailorangtua->pddk_ayah}}</td>
             </tr>
             <tr>
-              <td>Agama</td>
+              <td>Pekerjaan Ayah</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->agama}}</td>
+              <td>{{$detailorangtua->job_ayah}}</td>
             </tr>
             <tr>
-              <td>Alamat Siswa</td>
+              <td>Penghasilan Ayah</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->alamat_siswa}}</td>
+              <td>{{$detailorangtua->penghasilan_ayah}}</td>
             </tr>
             <tr>
-              <td>Provinsi</td>
+              <td>Nama Ibu</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->provinsi}}</td>
+              <td>{{$detailorangtua->nm_ibu}}</td>
             </tr>
             <tr>
-              <td>Kabupaten</td>
+              <td>Pendidikan Ibu</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->kabupaten}}</td>
+              <td>{{$detailorangtua->pddk_ibu}}</td>
             </tr>
             <tr>
-              <td>No Telpon</td>
+              <td>Pekerjaan Ibu</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->no_tlpn}}</td>
+              <td>{{$detailorangtua->job_ibu}}</td>
             </tr>
             <tr>
-              <td>Email</td>
+              <td>Penghasilan Ibu</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->email}}</td>
+              <td>{{$detailorangtua->penghasilan_ibu}}</td>
             </tr>
             <tr>
-              <td>Tahun Ajaran</td>
-              <td>:</td>
-              <td>{{$detailpesertadidik->tahun_ajaran}}</td>
-            </tr>
-            <tr>
-              <td>Jurusan</td>
-              <td>:</td>
-              <td>{{$detailpesertadidik->jurusan}}</td>
-            </tr>
-            <tr>
-              <td>Status Siswa</td>
+              <td>Status Orang Tua</td>
               <td>:</td>
               <td>
-                <?php if($detailpesertadidik->sts_siswa == 0)
+                <?php if($detailorangtua->sts_orang_tua == 0)
                      {
                         echo "Non Aktif";
                      }
-                      elseif($detailpesertadidik->sts_siswa == 1)
+                      elseif($detailorangtua->sts_orang_tua == 1)
                     {
                         echo "Aktif";
                     }
@@ -170,27 +160,21 @@
               </td>    
             </tr>
             <tr>
-              <td>Keterangan</td>
-              <td>:</td> 
-              <td>{{$detailpesertadidik->keterangan}}</td>
-            </tr>
-            <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
-              <td>{{$detailpesertadidik->created_at}}</td>
+              <td>{{$detailorangtua->created_at}}</td>
             </tr>
             <tr>
               <td>Tanggal Diupdate</td>
               <td>:</td> 
-              <td>{{$detailpesertadidik->updated_at}}</td>
+              <td>{{$detailorangtua->updated_at}}</td>
             </tr>
-           </table> 
-           
+           </table>   
         </div>
 
         <!-- /.box-body -->
         <div class="box-footer">
-          <a href="/listpesertadidik" class="btn btn-primary">KEMBALI</a>
+          <a href="/listortu" class="btn btn-primary">KEMBALI</a>
         </div>
       </div>
 				

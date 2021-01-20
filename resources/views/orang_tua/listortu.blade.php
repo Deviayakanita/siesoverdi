@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -69,8 +69,9 @@
 @section('content-title','Data Orang Tua')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
+  <li> Data Orang Tua</li>
 @endsection
 
 @section('content')
@@ -91,6 +92,7 @@
                 <table id='listusers' class="table table-bordered table-striped table-hover">
                     <thead>
                         <th>No</th>
+                        <th>NIS</th>
                         <th>Nama Ayah</th>
                         <th>Pekerjaan Ayah</th>
                         <th>Penghasilan Ayah</th>
@@ -107,6 +109,7 @@
                         @foreach ($ortus as $orangtua)
                             <tr>
                                 <td>{{ $i }}</td>
+                                <td>{{ $orangtua->nis }}</td>
                                 <td>{{ $orangtua->nm_ayah }}</td>
                                 <td>{{ $orangtua->job_ayah }}</td>
                                 <td>{{ $orangtua->penghasilan_ayah }}</td> 
