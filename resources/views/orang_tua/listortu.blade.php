@@ -75,16 +75,13 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
+<section class="content" style="padding-top: 0;">
 	<div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
-            <div class="box-header">
-                Daftar Orang Tua Peserta Didik
-            </div>
             <div class="box-body pad table-responsive" style="width: 200px">
           <td>
-            <a href="orangtua"><button type="button" class="btn btn-block btn-primary">Tambah Orang Tua</button></a>
+            <a href="orangtua"><button type="button" class="btn btn-primary">Tambah Orang Tua</button></a>
           </td>
           </div>
 

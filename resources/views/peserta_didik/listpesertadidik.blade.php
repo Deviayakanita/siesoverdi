@@ -82,11 +82,11 @@
       <div class="box-header">
         <div class="box-body pad table-responsive" style="width: 200px">
           <td>
-            <a href="index"><button  type="button" class="btn btn-block btn-primary" style="float: left;">Tambah Peserta Didik</button></a>
+            <a href="index"><button  type="button" class="btn btn-primary">Tambah Peserta Didik</button></a>
           </td>
           </div>
         </div>
-        <form action="/listpesertadidik" method="GET">
+        <form action="/listpesertadidik" method="GET" style="padding-left: 20px">
         <div class="input-group">
           <input type="text" name="cari" class="form-control" placeholder="Search...">
         </div>
