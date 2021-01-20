@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -69,13 +69,15 @@
 @section('content-title','Edit Data Mutasi Masuk')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Mutasi</li>
+  <li> Data Mutasi Masuk</li>
+  <li> Edit Mutasi Masuk</li>
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
-	<form action="{{url('mutasimasukedit/' .$mutasimasuk->mts_msk)}}" method="post" style="margin-left: 200px; margin-right: 200px">
+<section class="content" style="padding-top: 2;">
+	<form action="{{url('mutasimasukedit/' .$mutasimasuk->id_mut_msk)}}" method="post" style="margin-left: 200px; margin-right: 200px">
 		@method('patch')
     {{csrf_field()}}
 
@@ -83,59 +85,62 @@
       <form role="form">
       <div class="box-body">    
 
-    <div class="form-group">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputsurat">No Surat Pindah</label>
       <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" value="{{$mutasimasuk->no_srt_pindah}}">
     </div>
 
-   <!--  <div class="form-group col-md-6">
-      <label for="inputnisn">NIS</label>
-      <input type="nisn" class="form-control" id="inputnisn" name="nis" value="{{$mutasimasuk->nis}}">
-    </div> -->
-
-    <!-- <div class="form-group col-md-6">
-      <label for="inputnama">Nama Lengkap Siswa</label>
-      <input type="nama" class="form-control" id="inputnama" name="nm_siswa" value="{{$mutasimasuk->nm_siswa}}">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputState">No Induk Siswa</label>
+      <select id="inputNIS" class="form-control" name="nis">
+        <option selected="" disabled="" value="">-- No Induk Siswa --</option>
+        @foreach ($pesertadidik2 as $item)
+        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+        @endforeach
+      </select>
     </div>
 
-    <div class="form-group col-md-4">
-      <label for="inputState">Jenis Kelamin</label>
-      <select id="inputState" class="form-control" name="jns_kelamin" value="{{$mutasimasuk->jns_kelamin}}">
-        <option selected>pilih</option>
-        <option value="Laki - Laki">Laki - Laki</option>
-        <option value="Perempuan">Perempuan</option>
-      </select>
-    </div> -->
+    <div class="form-row">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputnama">Nama Lengkap Siswa</label>
+      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
+    </div>
+     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputnama">Tahun Ajaran</label>
+      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
+    </div>
+    </div>
 
-    <div class="form-group">
+    <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputasalsekolah">Asal Sekolah</label>
       <input type="text" class="form-control" id="inputasalsekolah" name="asal_sekolah" value="{{$mutasimasuk->asal_sekolah}}">
     </div>
 
-    <div class="form-group">
+    <div class="form-row">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputState">Tingkat Kelas</label>
       <select id="inputState" class="form-control" name="tingkat_kelas" value="{{$mutasimasuk->tingkat_kelas}}">
-        <option selected>pilih</option>
+        <option selected>-- Pilih Tingkat Kelas --</option>
         <option value="X">X</option>
         <option value="XI">XI</option>
         <option value="XII">XII</option>
       </select>
     </div>
-        
-    <div class="form-group">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="input_tglmasuk">Tanggal Masuk</label>
       <input type="date" class="form-control" id="input_tglmasuk" name="tgl_masuk" value="{{$mutasimasuk->tgl_masuk}}">
     </div>
-
-    <div class="form-group">
-      <label for="inputalasan">Alasan Pindah</label>
-      <input type="text" class="form-control" id="inputalasan" name="alasan_pindah" value="{{$mutasimasuk->alasan_pindah}}">
     </div>
 
-     <div class="form-group">
+    <div class="form-group" style="padding: 0; padding-right: 10px">
+      <label for="inputalasan">Alasan Pindah</label>
+      <textarea class="form-control" id="keterangan" rows="3" name="alasan_pindah" value="{{$mutasimasuk->alasan_pindah}}"></textarea>
+    </div>
+
+     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">Status Mutasi</label>
       <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasimasuk->status_mutasi}}">
-        <option selected>pilih</option>
+        <option selected>-- Pilih Status Mutasi --</option>
         <option value="1">AKTIF</option>
         <option value="0">NON AKTIF</option>
       </select>

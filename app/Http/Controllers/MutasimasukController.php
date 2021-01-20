@@ -19,7 +19,10 @@ class MutasimasukController extends Controller
      */
     public function index()
     {
-        return view('mutasi_peserta_didik.mutasimasuk');
+         $pesertadidik1 = Pesertadidik::all();
+        return view('mutasi_peserta_didik.mutasimasuk',[
+            'pesertadidik1' => $pesertadidik1,
+        ]);
     }
 
     public function list()
@@ -49,14 +52,15 @@ class MutasimasukController extends Controller
     {
         Mutasimasuk::create([
             'no_srt_pindah' => request('no_srt_pindah'),
-            // 'nis' => request('nis'),
-            'id_siswa' => auth()->id_siswa(),
+            'id_siswa' => request('nis'),
             'asal_sekolah' => request('asal_sekolah'),
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_masuk' => request('tgl_masuk'),
             'alasan_pindah' => request('alasan_pindah'),
             'status_mutasi' => request('status_mutasi'),
         ]);
+
+        return redirect('listmtsmasuk');
     }
 
     /**
@@ -78,18 +82,17 @@ class MutasimasukController extends Controller
      */
     public function edit($id)
     {
+        $pesertadidik2 = Pesertadidik::all();
         $mutasimasuk = Mutasimasuk::find($id);
-        return view('mutasi_peserta_didik/editmtsmasuk', compact('mutasimasuk'));
+        return view('mutasi_peserta_didik/editmtsmasuk', compact('mutasimasuk','pesertadidik2'));
     }
 
     public function editmutasimasuk (Request $request, $id)
     {
-
          DB::table('mutasi_masuk')->where('id_mts_msk', $id)
             -> update([
             'no_srt_pindah' => request('no_srt_pindah'),
-            // 'nis' => request('nis'),
-            'id_siswa' => auth()->id_siswa(),
+            'id_siswa' => request('nis'),
             'asal_sekolah' => request('asal_sekolah'),
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_masuk' => request('tgl_masuk'),

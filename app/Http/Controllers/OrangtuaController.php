@@ -26,9 +26,14 @@ class OrangtuaController extends Controller
         ]);
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $ortus = Orangtua::all();
+        if ($request->has('cari')){
+            $ortus = Orangtua::where('nm_ayah','LIKE','%'.$request->cari.'%')->get(); 
+        }else {
+            $ortus = Orangtua::all();
+        }
+        
         return view('orang_tua/listortu', compact('ortus'));
     }
 
@@ -53,7 +58,6 @@ class OrangtuaController extends Controller
     {
         // dd($request->all());
         Orangtua::create([
-            // 'id_siswa' => request('id_siswa'),
             'nm_ayah' => request('nm_ayah'),
             'id_siswa' => request('nis'),
             'job_ayah' => request('job_ayah'),
@@ -87,17 +91,17 @@ class OrangtuaController extends Controller
      */
     public function edit($id)
     {
+        $pesertadidikk = Pesertadidik::all();
         $orangtua = Orangtua::find($id);
-        return view('orang_tua/editortu', compact('orangtua'));
+        return view('orang_tua/editortu', compact('orangtua','pesertadidikk'));
     }
 
     public function editortu (Request $request, $id)
     {
         DB::table('orang_tua')->where('id_orang_tua', $id)
             -> update([
-            // 'id_siswa' => request('id_siswa'),
+            'id_siswa' => request('nis'),
             'nm_ayah' => request('nm_ayah'),
-            'id_siswa' => auth()->id_siswa(),
             'job_ayah' => request('job_ayah'),
             'pddk_ayah' => request('pddk_ayah'),
             'penghasilan_ayah' => request('penghasilan_ayah'),

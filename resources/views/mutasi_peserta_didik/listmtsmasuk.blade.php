@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -69,32 +69,30 @@
 @section('content-title','Data Mutasi Masuk')
 
 @section('breadcrumb')
-  <li><a href="dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Mutasi</li>
+  <li> Data Mutasi Masuk</li>
+
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
+<section class="content" style="padding-top: 2;">
   <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
-            <div class="box-header">
-                Daftar Mutasi Masuk Peserta Didik
-            </div>
              <div class="box-body pad table-responsive" style="width: 200px">
           <td>
-            <a href="mutasimasuk"><button type="button" class="btn btn-block btn-primary">Tambah Mutasi Masuk</button></a>
+            <a href="mutasimasuk"><button type="button" class="btn btn-primary">Tambah Mutasi Masuk</button></a>
           </td>
         </div>
 
             <div class="box-body">
-                <table id='listusers' class="table table-bordered table-striped">
+                <table id='listusers' class="table table-bordered table-striped table-hover">
                     <thead>
                         <th>No</th>
                         <th>No Surat Pindah</th>
-                        <th>NIS</th>
-                        <th>Nama Lengkap</th>
-                        <th>Jenis Kelamin</th>
+                        <th>No Induk Siswa</th>
+                        <th>Nama Lengkap Siswa</th>
                         <th>Tanggal Masuk</th>
                         <th>Asal Sekolah</th>
                         <th>Status</th>
@@ -108,15 +106,29 @@
                             <tr>
                                 <td>{{ $i }}</td>
                                 <td>{{ $mutasimasuk->no_srt_pindah }}</td>
-                                <td>{{ $mutasimasuk->nis }}</td>
-                                <td>{{ $mutasimasuk->nm_siswa }}</td>
-                                <td>{{ $mutasimasuk->jns_kelamin }}</td>
+                                <td>{{ $mutasimasuk->pesertadidik->nis }}</td>
+                                <td>{{ $mutasimasuk->pesertadidik->nm_siswa }}</td>
                                 <td>{{ $mutasimasuk->tgl_masuk }}</td>
                                 <td>{{ $mutasimasuk->asal_sekolah }}</td>
-                                <td>{{ $mutasimasuk->status_mutasi }}</td>
+                                <td>
+                                <?php if($mutasimasuk->status_mutasi == 0)
+                                {
+                                  echo "Non Aktif";
+                                }
+                                  elseif($mutasimasuk->status_mutasi == 1)
+                                {
+                                  echo "Aktif";
+                                }
+                                else
+                                {
+                                  echo "Non Aktif";
+                                }
+                                ?>
+                                </td>
                                 <td style="text-align: center;">
-                                  <a href="#" class="btn btn-primary">View</a>
-                                  <a href="editmutasimasuk/edit/{{ $mutasimasuk->id_mut_msk }}" class="btn btn-primary">Edit</a>
+                                 <a href="/detailmutasimsk/detail/{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                 <a href="editmtsmasuk/edit/{id}{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-edit btn-warning btn-sm""></i></a>
+                                 <a href=""><i class="fa fa-print btn-primary btn-sm""></i></a>
                                 </td>
                             </tr>
                             @php

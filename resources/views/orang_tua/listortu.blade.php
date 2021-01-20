@@ -75,7 +75,7 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 0;">
+<section class="content" style="padding-top: 2;">
 	<div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
@@ -84,18 +84,21 @@
             <a href="orangtua"><button type="button" class="btn btn-primary">Tambah Orang Tua</button></a>
           </td>
           </div>
-
+        <form action="/listortu" method="GET" style="padding-left: 12px">
+        <div class="input-group">
+          <input type="text" name="cari" class="form-control" placeholder="Search...">
+        </div>
+        </form>
             <div class="box-body">
                 <table id='listusers' class="table table-bordered table-striped table-hover">
                     <thead>
                         <th>No</th>
                         <th>NIS</th>
+                        <th>Nama Lengkap Siswa</th>
                         <th>Nama Ayah</th>
-                        <th>Pekerjaan Ayah</th>
                         <th>Penghasilan Ayah</th>
                         <th>Nama Ibu</th>
-                        <th>Pekerjaan Ibu</th>
-                        <th>Penghasilan</th>
+                        <th>Penghasilan Ibu</th>
                         <th>Status</th>
                         <th style="text-align: center">Aksi</th>
                     </thead>
@@ -107,16 +110,30 @@
                             <tr>
                                 <td>{{ $i }}</td>
                                 <td>{{ $orangtua->pesertadidik->nis }}</td>
+                                <td>{{ $orangtua->pesertadidik->nm_siswa }}</td>
                                 <td>{{ $orangtua->nm_ayah }}</td>
-                                <td>{{ $orangtua->job_ayah }}</td>
                                 <td>{{ $orangtua->penghasilan_ayah }}</td> 
                                 <td>{{ $orangtua->nm_ibu }}</td>
-                                <td>{{ $orangtua->job_ibu }}</td>
                                 <td>{{ $orangtua->penghasilan_ibu }}</td>
-                                <td>{{ $orangtua->sts_orang_tua }}</td>
+                                <td>
+                                <?php if($orangtua->sts_orang_tua == 0)
+                                {
+                                  echo "Non Aktif";
+                                }
+                                  elseif($orangtua->sts_orang_tua == 1)
+                                {
+                                  echo "Aktif";
+                                }
+                                else
+                                {
+                                  echo "Non Aktif";
+                                }
+                                ?>
+                                </td>
                                 <td style="text-align: center;">
-                                    <a href="/detailorangtua/detail/{{ $orangtua ->id_orang_tua }}" class="btn btn-primary">View</a>
-                                    <a href="editortu/edit/{{ $orangtua->id_orang_tua }}" class="btn btn-primary">Edit</a>
+                                    <a href="/detailorangtua/detail/{{ $orangtua->id_orang_tua }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                    <a href="editortu/edit/{{ $orangtua->id_orang_tua }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
+                                    <a href=""><i class="fa fa-print btn-primary btn-sm"></i></a>
                                 </td>
                             </tr>
                             @php
@@ -125,6 +142,15 @@
                         @endforeach
                    </tbody>
                 </table>
+            </div>
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
             </div>
     <!-- /.box-body -->
    </div>

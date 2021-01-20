@@ -104,21 +104,6 @@
       </select>
     </div>
 
-  <div class="form-row"> 
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-      <label for="inputnisn">NIS</label>
-      <input type="nisn" class="form-control" id="inputnisn" name="nis">
-    </div>
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-      <label for="inputState">Jurusan</label>
-      <select id="inputState" class="form-control" name="jurusan">
-        <option selected>-- Pilih Jurusan --</option>
-        <option value="IPA">IPA</option>
-        <option value="IPS">IPS</option>
-      </select>
-    </div>
-  </div>
-
   <div class="form-row">
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="input_tmplahir">Tempat Lahir</label>
