@@ -11,7 +11,7 @@ class Orangtua extends Model
     protected $primaryKey = 'id_orang_tua';
 
     public $fillable = [
-        'nis',
+        'id_siswa',
     	'nm_ayah',
     	'id_siswa',
     	'job_ayah',
@@ -27,6 +27,6 @@ class Orangtua extends Model
 
     public function pesertadidik()
     {
-        return $this -> belongsTo(Pesertadidik::class);
+        return $this -> belongsTo(Pesertadidik::class, 'id_siswa', 'id_siswa');
     }
 }

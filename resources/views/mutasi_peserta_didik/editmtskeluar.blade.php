@@ -88,25 +88,6 @@
       <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" value="{{$mutasikeluar->no_srt_pindah}}">
     </div>
 
-    <!--  <div class="form-group col-md-6">
-      <label for="inputnisn">NIS</label>
-      <input type="nisn" class="form-control" id="inputnisn" name="nis" value="{{$mutasikeluar->nis}}">
-    </div> -->
-
-    <!-- <div class="form-group col-md-6">
-      <label for="inputnama">Nama Lengkap Siswa</label>
-      <input type="nama" class="form-control" id="inputnama" name="nm_siswa" value="{{$mutasikeluar->nm_siswa}}">
-    </div>
-
-    <div class="form-group col-md-4">
-      <label for="inputState">Jenis Kelamin</label>
-      <select id="inputState" class="form-control" name="jns_kelamin" value="{{$mutasikeluar->jns_kelamin}}">
-        <option selected>pilih</option>
-        <option value="Laki - Laki">Laki - Laki</option>
-        <option value="Perempuan">Perempuan</option>
-      </select>
-    </div> -->
-
     <div class="form-group">
       <label for="inputasalsekolah">Sekolah Tujuan</label>
       <input type="text" class="form-control" id="inputasalsekolah" name="sekolah_tujuan" value="{{$mutasimasuk->sekolah_tujuan}}">
@@ -124,17 +105,17 @@
         
     <div class="form-group">
       <label for="input_tglmasuk">Tanggal pindah</label>
-      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah" value="{{$mutasimasuk->tgl_pindah}}">
+      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah" value="{{$mutasikeluar->tgl_pindah}}">
     </div>
 
     <div class="form-group">
       <label for="inputalasan">Alasan Pindah</label>
-      <input type="text" class="form-control" id="inputalasan" name="alasan_pindah" value="{{$mutasimasuk->alasan_pindah}}">
+      <input type="text" class="form-control" id="inputalasan" name="alasan_pindah" value="{{$mutasikeluar->alasan_pindah}}">
     </div>
 
      <div class="form-group">
       <label for="inputState">Status Mutasi</label>
-      <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasimasuk->status_mutasi}}">
+      <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasikeluar->status_mutasi}}">
         <option selected>pilih</option>
         <option value="1">AKTIF</option>
         <option value="0">NON AKTIF</option>

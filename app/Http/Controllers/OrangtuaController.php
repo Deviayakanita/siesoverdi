@@ -20,7 +20,10 @@ class OrangtuaController extends Controller
      */
     public function index()
     {
-        return view('orang_tua.orangtua');
+        $pesertadidik = Pesertadidik::all();
+        return view('orang_tua.orangtua', [
+            'pesertadidik' => $pesertadidik,
+        ]);
     }
 
     public function list()
@@ -48,10 +51,11 @@ class OrangtuaController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         Orangtua::create([
-            // 'nis' => request('nis'),
+            // 'id_siswa' => request('id_siswa'),
             'nm_ayah' => request('nm_ayah'),
-            'id_siswa' => auth()->id_siswa(),
+            'id_siswa' => request('nis'),
             'job_ayah' => request('job_ayah'),
             'pddk_ayah' => request('pddk_ayah'),
             'penghasilan_ayah' => request('penghasilan_ayah'),
@@ -61,7 +65,7 @@ class OrangtuaController extends Controller
             'penghasilan_ibu' => request('penghasilan_ibu'),
             'sts_orang_tua' => request('sts_orang_tua'),
         ]);
-        return redirect('listpesertadidik');
+        return redirect('listortu');
     }
 
     /**
@@ -91,7 +95,7 @@ class OrangtuaController extends Controller
     {
         DB::table('orang_tua')->where('id_orang_tua', $id)
             -> update([
-            // 'nis' => request('nis'),
+            // 'id_siswa' => request('id_siswa'),
             'nm_ayah' => request('nm_ayah'),
             'id_siswa' => auth()->id_siswa(),
             'job_ayah' => request('job_ayah'),

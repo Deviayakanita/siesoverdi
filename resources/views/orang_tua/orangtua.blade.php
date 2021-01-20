@@ -78,7 +78,7 @@
 
 @section('content')
 <section class="content" style="padding-top: 5;">
-	<form action="{{url('orangtua.store')}}" method="post" style="margin-left: 200px; margin-right: 200px">
+	<form action="{{route('orangtua.store')}}" method="post" style="margin-left: 200px; margin-right: 200px">
 		{{csrf_field()}}
     
     <div class="box box-primary">
@@ -86,12 +86,23 @@
         <div class="box-body">
 
     <div class="form-group">
-      <label for="inputState">NIS</label>
-      <select id="inputState" class="form-control" name="nis">
-        <option value="">pilih</option>
+      <label for="inputnama">Nama Lengkap Siswa</label>
+      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="inputnama">Tahun Ajaran Siswa</label>
+      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="inputState">No Induk Siswa</label>
+      <select id="inputNIS" class="form-control" name="nis">
+        <option selected="" disabled="" value="">pilih</option>
         @foreach ($pesertadidik as $item)
-        <option value="{{ $item->id_siswa }}">{{ $item ->nis }}</option>
+        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
+      </select>
     </div>
 
     <div class="form-group">
@@ -168,6 +179,18 @@
 </form>
 </div>
 </section>  
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).data('nama');
+    var tahun_ajaran = $('option:selected', this).data('tahun');
+
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahun').val(tahun_ajaran);
+  });
+</script>
 @endsection
 
 @section('content-footer')

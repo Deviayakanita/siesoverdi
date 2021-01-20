@@ -12,7 +12,6 @@ class Mutasikeluar extends Model
 
     public $fillable = [
     	'no_srt_pindah',
-        // 'nis',
     	'id_siswa',
     	'sekolah_tujuan',
         'tingkat_kelas',
@@ -20,4 +19,9 @@ class Mutasikeluar extends Model
         'alasan_pindah',
         'status_mutasi',
     ];
+
+    public function pesertadidik()
+    {
+        return $this -> belongsTo(Pesertadidik::class, 'id_siswa', 'id_siswa');
+    }
 }

@@ -1,5 +1,5 @@
 @extends('layout.blank')
-@section('title', 'Data Orang Tua | Admin')
+@section('title', 'Data Mutasi | Admin')
 @section('topbaraccount')
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -67,88 +67,78 @@
 </aside>
 @endsection
 
-@section('content-title','Detail Orang Tua')
+@section('content-title','Detail Mutasi Keluar')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
-  <li> Kelola Peserta Didik</li>
-  <li> Data Orang Tua</li>
-  <li> Detail Orang Tua</li>
+  <li> Kelola Mutasi</li>
+  <li> Data Mutasi Keluar</li>
+  <li> Detail Mutasi Keluar</li>
 @endsection
 
 @section('content')
 <section class="content" style="padding-top: 2px;" style="width: 200px">
 	<div class="box box-primary">
         <div class="box-header with-border">
-          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Orang Tua
+          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Mutasi Masuk
           </div>
         </div>
         <div class="box-body">
           <table class="table">
             <tr>
-              <td width="200px">Nama Lengkap Siswa</td>
+              <td width="200px">No Surat Pindah</td>
               <td width="5px">:</td>
-              <td>{{$detailorangtua->pesertadidik->nm_siswa}}</td>
+              <td>{{$detailmutasikeluar->no_srt_pindah}}</td>
             </tr>
             <tr> 
-              <td>Tahun Ajaran Siswa</td>
+              <td>Nama Lengkap Siswa</td>
               <td>:</td>
-              <td>{{$detailorangtua->pesertadidik->tahun_ajaran}}</td>
+              <td>{{$detailmutasikeluar->nm_siswa}}</td>
             </tr>
-            <tr>
+            <tr> 
               <td>No Induk Siswa</td>
               <td>:</td>
-              <td>{{$detailorangtua->pesertadidik->nis}}</td>
+              <td>{{$detailmutasikeluar->nis}}</td>
             </tr>
-            <tr>
-              <td>Nama Ayah</td>
+            <tr> 
+              <td>Provinsi</td>
               <td>:</td>
-              <td>{{$detailorangtua->nm_ayah}}</td>
+              <td>{{$detailmutasikeluar->provinsi}}</td>
             </tr>
             <tr>
-              <td>Pendidikan Ayah</td>
+              <td>Kabupaten</td>
               <td>:</td>
-              <td>{{$detailorangtua->pddk_ayah}}</td>
+              <td>{{$detailmutasikeluar->kabupaten}}</td>
             </tr>
             <tr>
-              <td>Pekerjaan Ayah</td>
+              <td>Sekolah Tujuan</td>
               <td>:</td>
-              <td>{{$detailorangtua->job_ayah}}</td>
+              <td>{{$detailmutasikeluar->sekolah_tujuan}}</td>
             </tr>
             <tr>
-              <td>Penghasilan Ayah</td>
+              <td>Tingkat Kelas</td>
               <td>:</td>
-              <td>{{$detailorangtua->penghasilan_ayah}}</td>
+              <td>{{$detailmutasikeluar->tingkat_kelas}}</td>
             </tr>
             <tr>
-              <td>Nama Ibu</td>
+              <td>Tanggal Pindah</td>
               <td>:</td>
-              <td>{{$detailorangtua->nm_ibu}}</td>
+              <td>{{$detailmutasikeluar->tgl_pindah}}</td>
             </tr>
             <tr>
-              <td>Pendidikan Ibu</td>
+              <td>Alasan Pindah</td>
               <td>:</td>
-              <td>{{$detailorangtua->pddk_ibu}}</td>
+              <td>{{$detailmutasikeluar->alasan_pindah}}</td>
             </tr>
             <tr>
-              <td>Pekerjaan Ibu</td>
-              <td>:</td>
-              <td>{{$detailorangtua->job_ibu}}</td>
-            </tr>
-            <tr>
-              <td>Penghasilan Ibu</td>
-              <td>:</td>
-              <td>{{$detailorangtua->penghasilan_ibu}}</td>
-            </tr>
-            <tr>
-              <td>Status Orang Tua</td>
+              <td>Status Mutasi</td>
               <td>:</td>
               <td>
-                <?php if($detailorangtua->sts_orang_tua == 0)
+                <?php if($detailmutasikeluar->status_mutasi == 0)
                      {
                         echo "Non Aktif";
                      }
-                      elseif($detailorangtua->sts_orang_tua == 1)
+                      elseif($detailmutasikeluar->status_mutasi == 1)
                     {
                         echo "Aktif";
                     }

@@ -67,38 +67,43 @@
 </aside>
 @endsection
 
-@section('content-title','Detail Orang Tua')
+@section('content-title','Detail Mutasi Masuk')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
-  <li> Kelola Peserta Didik</li>
-  <li> Data Orang Tua</li>
-  <li> Detail Orang Tua</li>
+  <li> Kelola Mutasi</li>
+  <li> Data Mutasi Masuk</li>
+  <li> Detail Mutasi Masuk</li>
 @endsection
 
 @section('content')
 <section class="content" style="padding-top: 2px;" style="width: 200px">
 	<div class="box box-primary">
         <div class="box-header with-border">
-          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Orang Tua
+          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Mutasi Masuk
           </div>
         </div>
         <div class="box-body">
           <table class="table">
             <tr>
-              <td width="200px">Nama Lengkap Siswa</td>
+              <td width="200px">No Surat Pindah</td>
               <td width="5px">:</td>
-              <td>{{$detailorangtua->pesertadidik->nm_siswa}}</td>
+              <td>{{$detailmutasimasuk->no_srt_pindah}}</td>
             </tr>
             <tr> 
-              <td>Tahun Ajaran Siswa</td>
+              <td>Nama Lengkap Siswa</td>
               <td>:</td>
-              <td>{{$detailorangtua->pesertadidik->tahun_ajaran}}</td>
+              <td>{{$detailmutasimasuk->nm_siswa}}</td>
+            </tr>
+            <tr> 
+              <td>No Induk Siswa</td>
+              <td>:</td>
+              <td>{{$detailmutasimasuk->nis}}</td>
             </tr>
             <tr>
               <td>No Induk Siswa</td>
               <td>:</td>
-              <td>{{$detailorangtua->pesertadidik->nis}}</td>
+              <td>{{$detailorangtua->nis}}</td>
             </tr>
             <tr>
               <td>Nama Ayah</td>

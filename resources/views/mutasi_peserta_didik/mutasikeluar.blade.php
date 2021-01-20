@@ -87,10 +87,20 @@
       <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah">
     </div>
 
-    <!-- <div class="form-group col-md-6">
-      <label for="inputnisn">NIS</label>
-      <input type="nisn" class="form-control" id="inputnisn" name="nis">
-    </div> -->
+    <div class="form-group">
+      <label for="inputnama">Nama Lengkap Siswa</label>
+      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="inputState">No Induk Siswa</label>
+      <select id="inputNIS" class="form-control" name="nis">
+        <option selected="" disabled="" value="">pilih</option>
+        @foreach ($pesertadidik as $item)
+        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+        @endforeach
+      </select>
+    </div>
 
     <div class="form-group">
       <label for="inputasalsekolah">Sekolah Tujuan</label>
@@ -133,6 +143,17 @@
 </form>
 </div>
 </section>  
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).data('nama');
+  
+    $('#inputnamasiswa').val(nm_siswa);
+
+  });
+</script>
 @endsection
 
 @section('content-footer')

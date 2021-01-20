@@ -91,8 +91,7 @@
                         <th>No</th>
                         <th>No Surat Pindah</th>
                         <th>NIS</th>
-                        <th>Nama Lengkap</th>
-                        <th>Jenis Kelamin</th>
+                        <th>Nama Lengkap Siswa</th>
                         <th>Tanggal Pindah</th>
                         <th>Sekolah Tujuan</th>
                         <th>Status</th>
@@ -105,15 +104,14 @@
                         @foreach ($mutasikeluars as $mutasikeluar)
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td>{{ $mutasimasuk->no_srt_pindah }}</td>
-                                <td>{{ $mutasimasuk->nis }}</td>
-                                <td>{{ $mutasimasuk->nm_siswa }}</td>
-                                <td>{{ $mutasimasuk->jns_kelamin }}</td>
-                                <td>{{ $mutasimasuk->tgl_pindah }}</td>
-                                <td>{{ $mutasimasuk->sekolah_tujuan }}</td>
-                                <td>{{ $mutasimasuk->status_mutasi }}</td>
+                                <td>{{ $mutasikeluar->no_srt_pindah }}</td>
+                                <td>{{ $mutasikeluar->pesertadidik->nis }}</td>
+                                <td>{{ $mutasikeluar->pesertadidik->nm_siswa }}</td>
+                                <td>{{ $mutasikeluar->tgl_pindah }}</td>
+                                <td>{{ $mutasikeluar->sekolah_tujuan }}</td>
+                                <td>{{ $mutasikeluar->status_mutasi }}</td>
                                 <td style="text-align: center;">
-                                  <a href="#" class="btn btn-primary">View</a>
+                                  <a href="/detailmutasikeluar/detail/{{ $mutasikeluar ->id_mutasi_klr }}" class="btn btn-primary">View</a>
                                   <a href="editmutasikeluar/edit/{{ $mutasikeluar->id_mut_klr }}" class="btn btn-primary">Edit</a>
                                 </td>
                             </tr>

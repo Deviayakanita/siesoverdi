@@ -34,4 +34,9 @@ class Pesertadidik extends Model
     {
         return $this -> hasMany(Orangtua::class);
     }
+
+    public function mutasikeluar()
+    {
+        return $this -> hasOne(MutasiKeluar::class);
+    }
 }

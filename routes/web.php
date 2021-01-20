@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::post('/postlogin', 'App\Http\Controllers\AuthController@postlogin');
-
+Route::post('/logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
 Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 
 
@@ -51,6 +51,7 @@ Route::resource('mutasikeluar', 'App\Http\Controllers\MutasikeluarController');
 Route::get('listmtskeluar', 'App\Http\Controllers\MutasikeluarController@list');	
 Route::get('editmtskeluar/edit/{id}', 'App\Http\Controllers\MutasikeluarController@edit');	
 Route::patch('mutasikeluaredit/{id}', 'App\Http\Controllers\MutasikeluarController@editmutasikeluar');
+Route::get('/detailmutasikeluar/detail/{id}','App\Http\Controllers\MutasikeluarController@detailmutasikeluar');	
 
 //route alumni crud user admin
 Route::resource('alumni', 'App\Http\Controllers\AlumniController');

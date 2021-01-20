@@ -106,7 +106,7 @@
                         @foreach ($ortus as $orangtua)
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td>{{ $orangtua->nis }}</td>
+                                <td>{{ $orangtua->pesertadidik->nis }}</td>
                                 <td>{{ $orangtua->nm_ayah }}</td>
                                 <td>{{ $orangtua->job_ayah }}</td>
                                 <td>{{ $orangtua->penghasilan_ayah }}</td> 
@@ -115,7 +115,7 @@
                                 <td>{{ $orangtua->penghasilan_ibu }}</td>
                                 <td>{{ $orangtua->sts_orang_tua }}</td>
                                 <td style="text-align: center;">
-                                    <a href="#" class="btn btn-primary">View</a>
+                                    <a href="/detailorangtua/detail/{{ $orangtua ->id_orang_tua }}" class="btn btn-primary">View</a>
                                     <a href="editortu/edit/{{ $orangtua->id_orang_tua }}" class="btn btn-primary">Edit</a>
                                 </td>
                             </tr>

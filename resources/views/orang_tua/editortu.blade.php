@@ -85,10 +85,16 @@
     <form role="form">
     <div class="box-body">
 
-   <!--  <div class="form-group col-md-6">
-      <label for="inputnisn">NIS</label>
-      <input type="nisn" class="form-control" id="inputnisn" name="nis">
-    </div> -->
+    <div class="form-group">
+      <label for="inputnama">Nama Lengkap Siswa</label>
+      <input type="text" class="form-control" id="inputnama" name="nm_siswa">
+    </div>
+
+     <div class="form-group">
+      <label for="inputnama">No Induk Siswa</label>
+      <input type="text" class="form-control" id="inputnama" name="nis">
+    </div>
+
 
     <div class="form-group">
       <label for="inputnama">Nama Ayah</label>

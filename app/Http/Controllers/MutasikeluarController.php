@@ -19,7 +19,10 @@ class MutasikeluarController extends Controller
      */
     public function index()
     {
-        return view('mutasi_peserta_didik.mutasikeluar');
+        $pesertadidik = Pesertadidik::all();
+        return view('mutasi_peserta_didik.mutasikeluar', [
+            'pesertadidik' => $pesertadidik,
+        ]);
     }
 
     public function list()
@@ -46,16 +49,25 @@ class MutasikeluarController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         Mutasikeluar::create([
             'no_srt_pindah' => request('no_srt_pindah'),
-            // 'nis' => request('nis'),
-            'id_siswa' => auth()->id_siswa(),
+            'id_siswa' => request('nis'),
             'sekolah_tujuan' => request('sekolah_tujuan'),
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_pindah' => request('tgl_pindah'),
             'alasan_pindah' => request('alasan_pindah'),
             'status_mutasi' => request('status_mutasi'),
         ]);
+
+        $pesertadidik = Pesertadidik::find($request->nis);
+        // dd($pesertadidik);
+        if($request->status_mutasi == 1){
+            $pesertadidik->sts_siswa = 0;
+            $pesertadidik->save();
+        }
+
+        return redirect('listmtskeluar');
     }
 
     /**
@@ -87,7 +99,7 @@ class MutasikeluarController extends Controller
          DB::table('mutasi_keluar')->where('id_mts_klr', $id)
             -> update([
             'no_srt_pindah' => request('no_srt_pindah'),
-            // 'nis' => request('nis'),
+            // 'id_siswa' => request('id_siswa'),
             'id_siswa' => auth()->id_siswa(),
             'sekolah_tujuan' => request('sekolah_tujuan'),
             'tingkat_kelas' => request('tingkat_kelas'),
@@ -111,6 +123,11 @@ class MutasikeluarController extends Controller
         //
     }
 
+    public function detailmutasikeluar($id)
+    {
+        $detailmutasikeluar = Mutasikeluar::find($id);
+        return view ('mutasi_peserta_didik/detailmutasikeluar',['detailmutasikeluar' => $detailmutasikeluar]);
+    }
     /**
      * Remove the specified resource from storage.
      *
