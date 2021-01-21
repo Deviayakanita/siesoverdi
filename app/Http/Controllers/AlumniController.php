@@ -16,7 +16,10 @@ class AlumniController extends Controller
      */
     public function index()
     {
-        return view('alumni.alumni');
+        $pesertadidik = Pesertadidik::all();
+        return view('alumni.alumni', [
+            'pesertadidik' => $pesertadidik,
+        ]);
     }
 
     public function list()
@@ -44,15 +47,23 @@ class AlumniController extends Controller
     public function store(Request $request)
     {
          Alumni::create([
-            // 'nis' => request('nis'),
             'nm_pt' => request('nm_pt'),
-            'id_siswa' => auth()->id_siswa(),
+            'id_siswa' => request('nis'),
             'jns_pt' => request('jns_pt'),
             'nm_fak' => request('nm_fak'),
             'nm_jurusan' => request('nm_jurusan'),
             'melanjutkan' => request('melanjutkan'),
             'status_alumni' => request('status_alumni'),
         ]);
+
+        $pesertadidik = Pesertadidik::find($request->nis);
+        // dd($pesertadidik);
+        if($request->status_alumni == 1){
+            $pesertadidik->sts_siswa = 0;
+            $pesertadidik->save();
+        }
+
+        return redirect('listalumni');
     }
 
     /**
@@ -74,8 +85,9 @@ class AlumniController extends Controller
      */
     public function edit($id)
     {
+        $pesertadidik4 = Pesertadidik::all();
         $alumni = Alumni::find($id);
-        return view('alumni/editalumni', compact('alumni'));
+        return view('alumni/editalumni', compact('alumni','pesertadidik4'));
     }
 
     public function editmutasimasuk (Request $request, $id)
@@ -83,15 +95,21 @@ class AlumniController extends Controller
 
          DB::table('alumni_siswa')->where('id_alumni', $id)
             -> update([
-            // 'nis' => request('nis'),
             'nm_pt' => request('nm_pt'),
-            'id_siswa' => auth()->id_siswa(),
+            'id_siswa' => request('nis'),
             'jns_pt' => request('jns_pt'),
             'nm_fak' => request('nm_fak'),
             'nm_jurusan' => request('nm_jurusan'),
             'melanjutkan' => request('melanjutkan'),
             'status_alumni' => request('status_alumni'),
             ]);
+
+        $pesertadidik = Pesertadidik::find($request->nis);
+        // dd($pesertadidik);
+        if($request->status_alumni == 1){
+            $pesertadidik->sts_siswa = 0;
+            $pesertadidik->save();
+        }
 
         return redirect('listalumni');
     }
@@ -106,6 +124,12 @@ class AlumniController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function detailalumni($id)
+    {
+        $detailalumni = Alumni::find($id);
+        return view ('alumni/detailalumni',['detailalumni' => $detailalumni]);
     }
 
     /**

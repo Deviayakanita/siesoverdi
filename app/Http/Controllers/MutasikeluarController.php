@@ -89,18 +89,18 @@ class MutasikeluarController extends Controller
      */
     public function edit($id)
     {
+        $pesertadidik3 = Pesertadidik::all();
         $mutasikeluar = Mutasikeluar::find($id);
-        return view('mutasi_peserta_didik/editmtskeluar', compact('mutasimasuk'));
+        return view('mutasi_peserta_didik/editmtskeluar', compact('mutasikeluar','pesertadidik3'));
     }
 
-    public function editmutasikeluae (Request $request, $id)
+    public function editmutasikeluar (Request $request, $id)
     {
 
-         DB::table('mutasi_keluar')->where('id_mts_klr', $id)
+         DB::table('mutasi_keluar')->where('id_mut_klr', $id)
             -> update([
             'no_srt_pindah' => request('no_srt_pindah'),
-            // 'id_siswa' => request('id_siswa'),
-            'id_siswa' => auth()->id_siswa(),
+            'id_siswa' => request('nis'),
             'sekolah_tujuan' => request('sekolah_tujuan'),
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_pindah' => request('tgl_pindah'),
@@ -108,7 +108,14 @@ class MutasikeluarController extends Controller
             'status_mutasi' => request('status_mutasi'),
             ]);
 
-        return redirect('listmtskeluar');
+        $pesertadidik = Pesertadidik::find($request->nis);
+        // dd($pesertadidik);
+        if($request->status_mutasi == 1){
+            $pesertadidik->sts_siswa = 0;
+            $pesertadidik->save();
+        }
+
+         return redirect('listmtskeluar');
     }
 
     /**

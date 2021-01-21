@@ -77,25 +77,30 @@
 
 @section('content')
 <section class="content" style="padding-top: 2;">
-	<form action="{{url('mutasimasukedit/' .$mutasimasuk->id_mut_msk)}}" method="post" style="margin-left: 200px; margin-right: 200px">
+	<form action="{{url('mutasimasukedit/' .$mutasimasuk->id_mut_msk)}}" method="post">
 		@method('patch')
     {{csrf_field()}}
 
     <div class="box box-primary">
-      <form role="form">
-      <div class="box-body">    
+    <form role="form">
+    <div class="box-body">    
 
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+    <div>
+      <a href="/listmtsmasuk" class="btn btn-primary" style="float: right;">KEMBALI</a>
+    </div>
+    <div style="clear: both;"></div>
+
+    <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputsurat">No Surat Pindah</label>
       <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" value="{{$mutasimasuk->no_srt_pindah}}">
     </div>
 
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+    <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>
       <select id="inputNIS" class="form-control" name="nis">
         <option selected="" disabled="" value="">-- No Induk Siswa --</option>
         @foreach ($pesertadidik2 as $item)
-        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" data-provinsi="{{ $item->provinsi }}" data-kabupaten="{{ $item->kabupaten }}" data-alamat="{{ $item->alamat_siswa }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
       </select>
     </div>
@@ -105,11 +110,28 @@
       <label for="inputnama">Nama Lengkap Siswa</label>
       <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
     </div>
-     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-      <label for="inputnama">Tahun Ajaran</label>
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputnama">Tahun Ajaran Siswa</label>
       <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
     </div>
     </div>
+
+    <div class="form-group" style="padding: 0; padding-right: 10px">
+      <label for="inputalamat">Alamat Siswa</label>
+      <textarea class="form-control" id="inputalamat" rows="3" name="alamat_siswa"></textarea>
+    </div>
+
+    <div class="form-row">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputprovinsi">Provinsi</label>
+      <input type="text" class="form-control" id="inputprovinsi" name="provinsi" readonly>
+    </div>
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputkabupaten">Kabupaten</label>
+      <input type="text" class="form-control" id="inputkabupaten" name="kabupaten" readonly>
+    </div>
+    </div>
+
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputasalsekolah">Asal Sekolah</label>
@@ -134,7 +156,7 @@
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputalasan">Alasan Pindah</label>
-      <textarea class="form-control" id="keterangan" rows="3" name="alasan_pindah" value="{{$mutasimasuk->alasan_pindah}}"></textarea>
+      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" value="{{$mutasimasuk->alasan_pindah}}"></textarea>
     </div>
 
      <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -154,6 +176,23 @@
 </form>
 </div>
 </section>  
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).data('nama');
+    var tahun_ajaran = $('option:selected', this).data('tahun');
+    var provinsi = $('option:selected', this).data('provinsi');
+    var kabupaten = $('option:selected', this).data('kabupaten');
+    var alamat_siswa = $('option:selected', this).data('alamat');
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahun').val(tahun_ajaran);
+    $('#inputprovinsi').val(provinsi);
+    $('#inputkabupaten').val(kabupaten);
+    $('#inputalamat').val(alamat_siswa);
+  });
+</script>
 @endsection
 
 @section('content-footer')

@@ -91,24 +91,19 @@
               <td>{{$detailmutasikeluar->no_srt_pindah}}</td>
             </tr>
             <tr> 
-              <td>Nama Lengkap Siswa</td>
-              <td>:</td>
-              <td>{{$detailmutasikeluar->nm_siswa}}</td>
-            </tr>
-            <tr> 
               <td>No Induk Siswa</td>
               <td>:</td>
-              <td>{{$detailmutasikeluar->nis}}</td>
+              <td>{{$detailmutasikeluar->pesertadidik->nis}}</td>
             </tr>
             <tr> 
-              <td>Provinsi</td>
+              <td>Nama Legkap Siswa</td>
               <td>:</td>
-              <td>{{$detailmutasikeluar->provinsi}}</td>
+              <td>{{$detailmutasikeluar->pesertadidik->nm_siswa}}</td>
             </tr>
-            <tr>
-              <td>Kabupaten</td>
+            <tr> 
+              <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$detailmutasikeluar->kabupaten}}</td>
+              <td>{{$detailmutasikeluar->pesertadidik->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Sekolah Tujuan</td>
@@ -129,6 +124,25 @@
               <td>Alasan Pindah</td>
               <td>:</td>
               <td>{{$detailmutasikeluar->alasan_pindah}}</td>
+            </tr>
+            <tr>
+              <td>Status Siswa</td>
+              <td>:</td>
+              <td>
+                <?php if($detailmutasikeluar->pesertadidik->sts_siswa == 0)
+                     {
+                        echo "Non Aktif";
+                     }
+                      elseif($detailmutasikeluar->pesertadidik->sts_siswa == 1)
+                    {
+                        echo "Aktif";
+                    }
+                      else
+                    {
+                        echo "Non Aktif";
+                    }                          
+                    ?>            
+              </td>    
             </tr>
             <tr>
               <td>Status Mutasi</td>
@@ -152,19 +166,19 @@
             <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
-              <td>{{$detailorangtua->created_at}}</td>
+              <td>{{$detailmutasikeluar->created_at}}</td>
             </tr>
             <tr>
               <td>Tanggal Diupdate</td>
               <td>:</td> 
-              <td>{{$detailorangtua->updated_at}}</td>
+              <td>{{$detailmutasikeluar->updated_at}}</td>
             </tr>
            </table>   
         </div>
 
         <!-- /.box-body -->
         <div class="box-footer">
-          <a href="/listortu" class="btn btn-primary">KEMBALI</a>
+          <a href="/listmtskeluar" class="btn btn-primary">KEMBALI</a>
         </div>
       </div>
 				

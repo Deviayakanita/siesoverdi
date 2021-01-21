@@ -75,29 +75,29 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
-  <div class="row">
+<section class="content" style="padding-top: 2;">
+    <div class="row">
     <div class="col-xs-12">
-        <div class="box box-primary">
-            <div class="box-header">
-                Daftar Alumni Peserta Didik
-            </div>
-           <div class="box-body pad table-responsive" style="width: 200px">
+    <div class="box box-primary">
+         <div class="box-body pad table-responsive" style="width: 200px">
           <td>
-            <a href="alumni"><button type="button" class="btn btn-block btn-primary">Tambah Alumni</button></a>
+            <a href="alumni"><button type="button" class="btn btn-primary">Tambah Alumni</button></a>
           </td>
           </div>
+        <form action="/listalumni" method="GET" style="padding-left: 12px">
+        <div class="input-group">
+          <input type="text" name="cari" class="form-control" placeholder="Search...">
+        </div>
+        </form>
 
             <div class="box-body">
                 <table id='listusers' class="table table-bordered table-striped">
                     <thead>
                         <th>No</th>
-                        <th>NIS</th>
-                        <th>Nama Lengkap</th>
-                        <th>Jenis Kelamin</th>
+                        <th>No Induk Siswa</th>
+                        <th>Nama Lengkap Siswa</th>
                         <th>Jenis Perguruan Tinggi</th>
                         <th>Nama Perguruan Tinggi</th>
-                        <th>Melanjutkan</th>
                         <th>Status</th>
                         <th style="text-align: center">Aksi</th>
                     </thead>
@@ -108,16 +108,29 @@
                         @foreach ($alumnis as $alumni)
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td>{{ $alumni->nis }}</td>
-                                <td>{{ $alumni->nm_siswa }}</td>
-                                <td>{{ $alumni->jns_kelamin }}</td>
+                                <td>{{ $alumni->pesertadidik->nis }}</td>
+                                <td>{{ $alumni->pesertadidik->nm_siswa }}</td>
                                 <td>{{ $alumni->jns_pt }}</td>
                                 <td>{{ $alumni->nm_pt }}</td>
-                                <td>{{ $alumni->melanjutkan }}</td>
-                                <td>{{ $alumni->status_alumni}}</td>
+                               <td>
+                                <?php if($alumni->status_alumni == 0)
+                                {
+                                  echo "Non Aktif";
+                                }
+                                  elseif($alumni->status_alumni == 1)
+                                {
+                                  echo "Aktif";
+                                }
+                                else
+                                {
+                                  echo "Non Aktif";
+                                }
+                                ?>
+                                </td>
                                 <td style="text-align: center;">
-                                  <a href="#" class="btn btn-primary">View</a>
-                                  <a href="editalumni/edit/{{ $alumni->id_alumni }}" class="btn btn-primary">Edit</a>
+                                  <a href="/detailalumni/detail/{{ $alumni->id_alumni }}" ><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                  <a href="editalumni/edit/{{ $alumni->id_alumni }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
+                                  <a href="#" ><i class="fa fa-print btn-primary btn-sm"></i></a>
                                 </td>
                             </tr>
                             @php
@@ -126,6 +139,15 @@
                         @endforeach
                      </tbody>
                 </table>
+            </div>
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
             </div>
     <!-- /.box-body -->
    </div>

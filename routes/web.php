@@ -46,6 +46,7 @@ Route::resource('mutasimasuk', 'App\Http\Controllers\MutasimasukController');
 Route::get('listmtsmasuk', 'App\Http\Controllers\MutasimasukController@list');	
 Route::get('editmtsmasuk/edit/{id}', 'App\Http\Controllers\MutasimasukController@edit');	
 Route::patch('mutasimasukedit/{id}', 'App\Http\Controllers\MutasimasukController@editmutasimasuk');
+Route::get('/detailmutasimasuk/detail/{id}','App\Http\Controllers\MutasimasukController@detailmutasimasuk');	
 //route mutasi keluar crud user admin
 Route::resource('mutasikeluar', 'App\Http\Controllers\MutasikeluarController');
 Route::get('listmtskeluar', 'App\Http\Controllers\MutasikeluarController@list');	
@@ -58,6 +59,7 @@ Route::resource('alumni', 'App\Http\Controllers\AlumniController');
 Route::get('listalumni', 'App\Http\Controllers\AlumniController@list');	
 Route::get('editalumni/edit/{id}', 'App\Http\Controllers\AlumniController@edit');	
 Route::patch('alumniedit/{id}', 'App\Http\Controllers\AlumniController@editalumni');
+Route::get('/detailalumni/detail/{id}','App\Http\Controllers\AlumniController@detailalumni');	
 
 Route::get('master', function () {
     return view('layout/master');

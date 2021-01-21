@@ -11,7 +11,7 @@ class Alumni extends Model
     protected $primaryKey = 'id_alumni';
 
     public $fillable = [
-        // 'nis',
+        'id_siswa',
     	'nm_pt',
     	'id_siswa',
     	'jns_pt',
@@ -20,4 +20,9 @@ class Alumni extends Model
         'melanjutkan',
         'status_alumni',
     ];
+
+    public function pesertadidik()
+    {
+        return $this -> belongsTo(Pesertadidik::class, 'id_siswa', 'id_siswa');
+    }
 }

@@ -86,19 +86,19 @@
         <div class="box-body">
           <table class="table">
             <tr>
-              <td width="200px">Nama Lengkap Siswa</td>
+              <td width="200px">No Induk Siswa</td>
               <td width="5px">:</td>
-              <td>{{$detailpesertadidik->nm_siswa}}</td>
+              <td>{{$detailpesertadidik->nis}}</td>
             </tr>
             <tr> 
+              <td>Nama Lengkap Siswa</td>
+              <td>:</td>
+              <td>{{$detailpesertadidik->nm_siswa}}</td>
+            </tr>
+            <tr>
               <td>Jenis Kelamin</td>
               <td>:</td>
               <td>{{$detailpesertadidik->jns_kelamin}}</td>
-            </tr>
-            <tr>
-              <td>No Induk Siswa</td>
-              <td>:</td>
-              <td>{{$detailpesertadidik->nis}}</td>
             </tr>
             <tr>
               <td>Tempat lahir</td>

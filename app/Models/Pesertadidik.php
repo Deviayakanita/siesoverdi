@@ -44,4 +44,9 @@ class Pesertadidik extends Model
     {
         return $this -> hasOne(MutasiKeluar::class);
     }
+
+      public function alumni()
+    {
+        return $this -> hasOne(Alumni::class);
+    }
 }

@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -69,77 +69,86 @@
 @section('content-title','Edit Data Alumni')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="\dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Alumni</li>
+  <li> Data Alumni</li>
+  <li> Edit Data Alumni</li>
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 5;">
-	<form action="{{url('alumniedit/' .$alumni->alumni)}}" method="post" style="margin-left: 200px; margin-right: 200px">
+<section class="content" style="padding-top: 2;">
+	<form action="{{url('alumniedit/' .$alumni->alumni)}}" method="post">
     @method('patch')
     {{csrf_field()}}
 
     <div class="box box-primary">
-      <form role="form">
-      <div class="box-body">
-        
+    <form role="form">
+    <div class="box-body">
 
-     <!--  <div class="form-group col-md-6">
-      <label for="inputnisn">NIS</label>
-      <input type="nisn" class="form-control" id="inputnisn" name="nis" value="{{$alumni->nis}}">
-    </div> -->
-
-    <!-- <div class="form-group col-md-6">
-      <label for="inputnama">Nama Lengkap Siswa</label>
-      <input type="nama" class="form-control" id="inputnama" name="nm_siswa" value="{{$alumni->nm_siswa}}">
-    </div>
-
-    <div class="form-group col-md-4">
-      <label for="inputState">Jenis Kelamin</label>
-      <select id="inputState" class="form-control" name="jns_kelamin" value="{{$alumni->jns_kelamin}}">
-        <option selected>pilih</option>
-        <option value="Laki - Laki">Laki - Laki</option>
-        <option value="Perempuan">Perempuan</option>
+      <div>
+      <a href="/listalumni" class="btn btn-primary" style="float: right;">KEMBALI</a>
+      </div>
+      <div style="clear: both;"></div>
+    
+    <div class="form-group" style="padding: 0; padding-right: 10px">
+      <label for="inputState">No Induk Siswa</label>
+      <select id="inputNIS" class="form-control" name="nis">
+        <option selected="" disabled="" value="">-- No Induk Siswa --</option>
+        @foreach ($pesertadidik4 as $item)
+        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+        @endforeach
       </select>
-    </div> -->
-
-    <div class="form-group">
-      <label for="inputnama">Nama Perguruan Tinggi</label>
-      <input type="text" class="form-control" id="inputnama" name="nm_pt" value="{{$alumni->nm_pt}}">
     </div>
 
-     <div class="form-group">
+    <div class="form-row">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputnama">Nama Lengkap Siswa</label>
+      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
+    </div>
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputtahun">Tahun Ajaran</label>
+      <input type="text" class="form-control" id="inputtahunajaran" name="tahun_ajaran" readonly>
+    </div>
+
+    <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">Jenis Perguruan Tinggi</label>
       <select id="inputState" class="form-control" name="jns_pt" value="{{$alumni->jns_pt}}">
-        <option selected>pilih</option>
+        <option selected>-- Pilih Perguruan Tinggi --</option>
         <option value="Negri">Negri</option>
         <option value="Swasta">Swasta</option>
       </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-row">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputnama">Nama Perguruan Tinggi</label>
+      <input type="text" class="form-control" id="inputnama" name="nm_pt" value="{{$alumni->nm_pt}}">
+    </div>
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputnamafk">Nama Fakultas</label>
       <input type="text" class="form-control" id="inputnamafk" name="nm_fak" value="{{$alumni->nm_fak}}">
     </div>
+    </div>
 
-    <div class="form-group">
+    <div class="form-row">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputnamajurus">Nama Jurusan</label>
       <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" value="{{$alumni->nm_jurusan}}">
     </div>
-
-    <div class="form-group">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputState">Melanjutkan</label>
       <select id="inputState" class="form-control" name="melanjutkan" value="{{$alumni->melanjutkan}}">
-        <option selected>pilih</option>
+        <option selected>-- Pilih Melanjutkan --</option>
         <option value="Bekerja">Bekerja</option>
         <option value="Belum Bekerja">Kuliah</option>
       </select>
     </div>
+    </div>
 
-     <div class="form-group">
+     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">Status Alumni</label>
       <select id="inputState" class="form-control" name="status_alumni" value="{{$alumni->status_alumni}}">
-        <option selected>pilih</option>
+        <option selected>-- Status Alumni --</option>
         <option value="1">AKTIF</option>
         <option value="0">NON AKTIF</option>
       </select>
@@ -153,6 +162,19 @@
 </form>
 </div>
 </section>  
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).data('nama');
+    var tahun_ajaran = $('option:selected', this).data('tahun');
+  
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahunajaran').val(tahun_ajaran);
+
+  });
+</script>
 @endsection
 
 @section('content-footer')

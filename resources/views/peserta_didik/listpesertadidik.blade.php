@@ -93,7 +93,7 @@
                 <table id='listusers' class="table table-bordered table-striped table-hover">
                     <thead>
                         <th>No</th>
-                        <th>NIS</th>
+                        <th>No Induk Siswa</th>
                         <th>Nama Lengkap</th>
                         <th>Jenis Kelamin</th>
                         <th>Tanggal Lahir</th>

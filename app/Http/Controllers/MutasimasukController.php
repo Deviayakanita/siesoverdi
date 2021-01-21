@@ -19,15 +19,20 @@ class MutasimasukController extends Controller
      */
     public function index()
     {
-         $pesertadidik1 = Pesertadidik::all();
+        $pesertadidik1 = Pesertadidik::all();
         return view('mutasi_peserta_didik.mutasimasuk',[
             'pesertadidik1' => $pesertadidik1,
         ]);
     }
 
-    public function list()
+    public function list( Request $request)
     {
-        $mutasimasuks = Mutasimasuk::all();
+        if ($request->has('cari')){
+            $mutasimasuks = Mutasimasuk::where('nm_siswa','LIKE','%'.$request->cari.'%')->get(); 
+        }else {
+            $mutasimasuks = Mutasimasuk::all();
+        }
+
         return view('mutasi_peserta_didik/listmtsmasuk', compact('mutasimasuks'));
     }
 
@@ -89,7 +94,7 @@ class MutasimasukController extends Controller
 
     public function editmutasimasuk (Request $request, $id)
     {
-         DB::table('mutasi_masuk')->where('id_mts_msk', $id)
+         DB::table('mutasi_masuk')->where('id_mut_msk', $id)
             -> update([
             'no_srt_pindah' => request('no_srt_pindah'),
             'id_siswa' => request('nis'),
@@ -117,6 +122,12 @@ class MutasimasukController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function detailmutasimasuk($id)
+    {
+        $detailmutasimasuk = Mutasimasuk::find($id);
+        return view ('mutasi_peserta_didik/detailmutasimasuk',['detailmutasimasuk' => $detailmutasimasuk]);
     }
 
     /**

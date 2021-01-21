@@ -1,5 +1,5 @@
 @extends('layout.blank')
-@section('title', 'Data Orang Tua | Admin')
+@section('title', 'Data Alumni | Admin')
 @section('topbaraccount')
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -67,88 +67,82 @@
 </aside>
 @endsection
 
-@section('content-title','Detail Mutasi Masuk')
+@section('content-title','Detail Mutasi Keluar')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
-  <li> Kelola Mutasi</li>
-  <li> Data Mutasi Masuk</li>
-  <li> Detail Mutasi Masuk</li>
+  <li> Kelola Alumni</li>
+  <li> Data Alumni</li>
+  <li> Detail Alumni</li>
 @endsection
 
 @section('content')
 <section class="content" style="padding-top: 2px;" style="width: 200px">
 	<div class="box box-primary">
         <div class="box-header with-border">
-          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Mutasi Masuk
+          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Alumni
           </div>
         </div>
         <div class="box-body">
           <table class="table">
             <tr>
-              <td width="200px">No Surat Pindah</td>
+              <td width="200px">No Induk Siswa</td>
               <td width="5px">:</td>
-              <td>{{$detailmutasimasuk->no_srt_pindah}}</td>
-            </tr>
-            <tr> 
-              <td>No Induk Siswa</td>
-              <td>:</td>
-              <td>{{$detailmutasimasuk->pesertadidik->nis}}</td>
+              <td>{{$detailalumni->pesertadidik->nis}}</td>
             </tr>
             <tr> 
               <td>Nama Lengkap Siswa</td>
               <td>:</td>
-              <td>{{$detailmutasimasuk->pesertadidik->nm_siswa}}</td>
+              <td>{{$detailalumni->pesertadidik->nm_siswa}}</td>
             </tr>
-            <tr>
-              <td>Tahun Ajaran</td>
+            <tr> 
+              <td>Jenis Perguruan Tinggi</td>
               <td>:</td>
-              <td>{{$detailmutasimasuk->pesertadidik->tahun_ajaran}}</td>
+              <td>{{$detailalumni->jns_pt}}</td>
             </tr>
-            <tr>
-              <td>Alamat Siswa</td>
+            <tr> 
+              <td>Nama Perguruan Tinggi</td>
               <td>:</td>
-              <td>{{$detailmutasimasuk->pesertadidik->alamat_siswa}}</td>
+              <td>{{$detailalumni->nm_pt}}</td>
             </tr>
             <tr>
-              <td>Provinsi</td>
+              <td>Nama Fakultas</td>
               <td>:</td>
-              <td>{{$detailmutasimasuk->pesertadidik->provinsi}}</td>
+              <td>{{$detailalumni->nm_fak}}</td>
             </tr>
             <tr>
-              <td>Kabupaten</td>
+              <td>Nama Jurusan</td>
               <td>:</td>
-              <td>{{$detailmutasimasuk->pesertadidik->kabupaten}}</td>
+              <td>{{$detailalumni->nm_jurusan}}</td>
             </tr>
             <tr>
-              <td>Asal Sekolah</td>
-              <td>:</td>
-              <td>{{$detailmutasimasuk->asal_sekolah}}</td>
-            </tr>
-            <tr>
-              <td>Tingkat Kelas</td>
-              <td>:</td>
-              <td>{{$detailmutasimasuk->tingkat_kelas}}</td>
-            </tr>
-            <tr>
-              <td>Tanggal Masuk</td>
-              <td>:</td>
-              <td>{{$detailmutasimasuk->tgl_masuk}}</td>
-            </tr>
-            <tr>
-              <td>Alasan Pindah</td>
-              <td>:</td>
-              <td>{{$detailmutasimasuk->alasan_pindah}}</td>
-            </tr>
-            <tr>
-              <td>Status Mutasi</td>
+              <td>Status Siswa</td>
               <td>:</td>
               <td>
-                <?php if($detailmutasimasuk->status_mutasi == 0)
+                <?php if($detailalumni->pesertadidik->sts_siswa == 0)
                      {
                         echo "Non Aktif";
                      }
-                      elseif($detailmutasimasuk->status_mutasi == 1)
+                      elseif($detailalumni->pesertadidik->sts_siswa == 1)
+                    {
+                        echo "Aktif";
+                    }
+                      else
+                    {
+                        echo "Non Aktif";
+                    }                          
+                    ?>            
+              </td>    
+            </tr>
+            <tr>
+              <td>Status Alumni</td>
+              <td>:</td>
+              <td>
+                <?php if($detailalumni->status_alumni == 0)
+                     {
+                        echo "Non Aktif";
+                     }
+                      elseif($detailalumni->status_alumni == 1)
                     {
                         echo "Aktif";
                     }
@@ -162,19 +156,19 @@
             <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
-              <td>{{$detailmutasimasuk->created_at}}</td>
+              <td>{{$detailalumni->created_at}}</td>
             </tr>
             <tr>
               <td>Tanggal Diupdate</td>
               <td>:</td> 
-              <td>{{$detailmutasimasuk->updated_at}}</td>
+              <td>{{$detailalumni->updated_at}}</td>
             </tr>
            </table>   
         </div>
 
         <!-- /.box-body -->
         <div class="box-footer">
-          <a href="/listmtsmasuk" class="btn btn-primary">KEMBALI</a>
+          <a href="/listalumni" class="btn btn-primary">KEMBALI</a>
         </div>
       </div>
 				

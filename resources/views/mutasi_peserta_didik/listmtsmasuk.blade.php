@@ -79,13 +79,17 @@
 <section class="content" style="padding-top: 2;">
   <div class="row">
     <div class="col-xs-12">
-        <div class="box box-primary">
-             <div class="box-body pad table-responsive" style="width: 200px">
+    <div class="box box-primary">
+        <div class="box-body pad table-responsive" style="width: 200px">
           <td>
             <a href="mutasimasuk"><button type="button" class="btn btn-primary">Tambah Mutasi Masuk</button></a>
           </td>
         </div>
-
+        <form action="/listmtsmasuk" method="GET" style="padding-left: 12px">
+        <div class="input-group">
+          <input type="text" name="cari" class="form-control" placeholder="Search...">
+        </div>
+        </form>
             <div class="box-body">
                 <table id='listusers' class="table table-bordered table-striped table-hover">
                     <thead>
@@ -126,8 +130,8 @@
                                 ?>
                                 </td>
                                 <td style="text-align: center;">
-                                 <a href="/detailmutasimsk/detail/{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
-                                 <a href="editmtsmasuk/edit/{id}{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-edit btn-warning btn-sm""></i></a>
+                                 <a href="/detailmutasimasuk/detail/{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                 <a href="editmtsmasuk/edit/{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-edit btn-warning btn-sm""></i></a>
                                  <a href=""><i class="fa fa-print btn-primary btn-sm""></i></a>
                                 </td>
                             </tr>
@@ -137,6 +141,15 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
             </div>
     <!-- /.box-body -->
    </div>

@@ -91,11 +91,17 @@
     <div style="clear: both;"></div>
   
     <div class="form-group" style="padding: 0; padding-right: 10px">
-      <label for="inputnama">Nama Lengkap Siswa</label>
-      <input type="nama" class="form-control" id="inputnama" name="nm_siswa">
+      <label for="inputnis">No Induk Siswa</label>
+      <input type="nama" class="form-control" id="inputnis" name="nis">
     </div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
+      <label for="inputnama">Nama Lengkap Siswa</label>
+      <input type="nama" class="form-control" id="inputnama" name="nm_siswa">
+    </div>
+  
+    <div class="form-row">
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputState">Jenis Kelamin</label>
       <select id="inputState" class="form-control" name="jns_kelamin">
         <option selected>-- Pilih Jenis Kelamin --</option>
@@ -103,6 +109,15 @@
         <option value="Perempuan">Perempuan</option>
       </select>
     </div>
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputState">Jurusan</label>
+      <select id="inputState" class="form-control" name="jurusan">
+        <option selected>-- Pilih Jurusan --</option>
+        <option value="IPA">IPA</option>
+        <option value="IPS">IPS</option>
+      </select>
+    </div>
+  </div>
 
   <div class="form-row">
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
