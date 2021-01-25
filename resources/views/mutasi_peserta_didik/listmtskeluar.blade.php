@@ -95,7 +95,7 @@
                     <thead>
                         <th>No</th>
                         <th>No Surat Pindah</th>
-                        <th>No Induk Siswa</th>
+                        <th>NIS</th>
                         <th>Nama Lengkap Siswa</th>
                         <th>Tanggal Pindah</th>
                         <th>Sekolah Tujuan</th>

@@ -7,11 +7,13 @@
 
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
+    <li class="header" style="font-size: 12px">DASHBOARD</li>
     <li class="active">
         <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
+    <li class="header" style="font-size: 12px" >DATA PESERTA DIDIK</li>
     <li class="treeview">
     	<a href="#">
    		<i class="fa fa-edit"></i><span> Kelola Peserta Didik</span>
@@ -118,5 +120,139 @@
             <a href="/listalumni" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-    </section>
+      </div>
+
+      <div>
+  <ul class="timeline">
+
+           <li class="time-label">
+                  <span class="bg-aqua">
+                    Data Peserta Didik Terakhir
+                  </span>
+            </li>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <li>
+              <i class="fa fa-bell bg-blue"></i>
+
+              <div class="timeline-item">
+               
+                <div class="timeline-body">
+                  <table id="#" class="table table-hover table-striped dataTable" role="grid" aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                  <th>No</th>
+                        <th>No Surat Pindah</th>
+                        <th>No Induk Siswa</th>
+                        <th>Nama Lengkap Siswa</th>
+                        <th>Tanggal Masuk</th>
+                        <th>Asal Sekolah</th>
+                        <th>Status</th>
+                </tr>
+                </tbody>
+            </table>
+                </div>
+                              
+              </div>
+            </li>
+            <!-- timeline time label -->
+            <li class="time-label">
+                  <span class="bg-green">
+                    Data Mutasi Masuk Terakhir
+                  </span>
+            </li>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <li>
+              <i class="fa fa-bell bg-blue"></i>
+
+              <div class="timeline-item">
+               
+                <div class="timeline-body">
+                  <table id="#" class="table table-hover table-striped dataTable" role="grid" aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                  <th>No</th>
+                        <th>No Surat Pindah</th>
+                        <th>No Induk Siswa</th>
+                        <th>Nama Lengkap Siswa</th>
+                        <th>Tanggal Masuk</th>
+                        <th>Asal Sekolah</th>
+                        <th>Status</th>
+                </tr>
+                </tbody>
+            </table>
+                </div>
+                              
+              </div>
+            </li>
+          
+            <!-- timeline time label -->
+            <li class="time-label">
+                  <span class="bg-yellow">
+                    Data Mutasi keluar Terakhir
+                  </span>
+            </li>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <li>
+              <i class="fa fa-bell bg-blue"></i>
+
+              <div class="timeline-item">
+               
+                <div class="timeline-body">
+                  <table id="#" class="table table-hover table-striped dataTable" role="grid" aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                  <th>No</th>
+                        <th>No Surat Pindah</th>
+                        <th>No Induk Siswa</th>
+                        <th>Nama Lengkap Siswa</th>
+                        <th>Tanggal Masuk</th>
+                        <th>Asal Sekolah</th>
+                        <th>Status</th>
+                </tr>
+                </tbody>
+            </table>
+                </div>
+                              
+              </div>
+            </li>
+
+
+            <!-- timeline time label -->
+            <li class="time-label">
+                  <span class="bg-red">
+                    Data Alumni Terakhir
+                  </span>
+            </li>
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <li>
+              <i class="fa fa-bell bg-blue"></i>
+
+              <div class="timeline-item">
+               
+                <div class="timeline-body">
+                  <table id="#" class="table table-hover table-striped dataTable" role="grid" aria-describedby="example1_info">
+                <thead>
+                <tr role="row">
+                  <th>No</th>
+                        <th>No Surat Pindah</th>
+                        <th>No Induk Siswa</th>
+                        <th>Nama Lengkap Siswa</th>
+                        <th>Tanggal Masuk</th>
+                        <th>Asal Sekolah</th>
+                        <th>Status</th>
+                </tr>
+                </tbody>
+            </table>
+                </div>
+                              
+              </div>
+            </li>
+          </ul>
+      </div>
 @endsection
+
+ 

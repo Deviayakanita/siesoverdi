@@ -91,8 +91,8 @@
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>
-      <select id="inputNIS" class="form-control" name="nis">
-        <option selected="" disabled="" value="">-- No Induk Siswa --</option>
+      <select id="inputNIS" class="form-control select2" name="nis">
+        <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
         @foreach ($pesertadidik as $item)
         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
@@ -187,7 +187,6 @@
 </div>
 </section>  
 @endsection
-
 @section('script')
 <script type="text/javascript">
   $('#inputNIS').change(function() {
@@ -197,6 +196,12 @@
     $('#inputtahun').val(tahun_ajaran);
   });
 </script>
+<script type="text/javascript">
+$(document).ready(function() {
+            $('.select2').select2(nis);
+        });
+</script>
 @endsection
+
 
 @section('content-footer')

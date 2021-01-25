@@ -94,7 +94,7 @@
                 <table id='listusers' class="table table-bordered table-striped">
                     <thead>
                         <th>No</th>
-                        <th>No Induk Siswa</th>
+                        <th>NIS</th>
                         <th>Nama Lengkap Siswa</th>
                         <th>Jenis Perguruan Tinggi</th>
                         <th>Nama Perguruan Tinggi</th>
