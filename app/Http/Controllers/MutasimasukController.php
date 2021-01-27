@@ -25,14 +25,9 @@ class MutasimasukController extends Controller
         ]);
     }
 
-    public function list( Request $request)
+    public function list()
     {
-        if ($request->has('cari')){
-            $mutasimasuks = Mutasimasuk::where('nm_siswa','LIKE','%'.$request->cari.'%')->get(); 
-        }else {
-            $mutasimasuks = Mutasimasuk::all();
-        }
-
+        $mutasimasuks = Mutasimasuk::all();
         return view('mutasi_peserta_didik/listmtsmasuk', compact('mutasimasuks'));
     }
 

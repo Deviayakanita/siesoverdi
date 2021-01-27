@@ -26,14 +26,9 @@ class OrangtuaController extends Controller
         ]);
     }
 
-    public function list(Request $request)
+    public function list()
     {
-        if ($request->has('cari')){
-            $ortus = Orangtua::where('nm_ayah','LIKE','%'.$request->cari.'%')->get(); 
-        }else {
-            $ortus = Orangtua::all();
-        }
-        
+        $ortus = Orangtua::all();
         return view('orang_tua/listortu', compact('ortus'));
     }
 

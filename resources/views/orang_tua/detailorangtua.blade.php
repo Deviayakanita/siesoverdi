@@ -77,7 +77,7 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2px;" style="width: 200px">
+<section class="content" style="padding-top: 0;" style="width: 200px">
 	<div class="box box-primary">
         <div class="box-header with-border">
           <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Orang Tua

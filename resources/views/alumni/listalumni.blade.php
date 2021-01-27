@@ -77,29 +77,33 @@
 @section('content')
 <section class="content" style="padding-top: 2;">
     <div class="row">
-    <div class="col-xs-12">
+  <div class="col-xs-12">
     <div class="box box-primary">
-         <div class="box-body pad table-responsive" style="width: 200px">
-          <td>
-            <a href="alumni"><button type="button" class="btn btn-primary">Tambah Alumni</button></a>
-          </td>
+        <div class="box-header">
+        <div class="box-body pad table-responsive" style="width: 200px">
+          <div>
+            <a href="/alumni"><button type="button" class="btn btn-primary" align="right">Tambah Alumni</button></a>
           </div>
-        <form action="/listalumni" method="GET" style="padding-left: 12px">
-        <div class="input-group">
-          <input type="text" name="cari" class="form-control" placeholder="Search...">
+          </div>
+          <div class="box-body">
+              <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+             </div>
+         </div>
         </div>
-        </form>
-
-            <div class="box-body">
-                <table id='listusers' class="table table-bordered table-striped">
+            <div class="row">
+                <div class="col-sm-12">
+                <table id='example1' class="table table-hover table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
-                        <th>No</th>
-                        <th>NIS</th>
-                        <th>Nama Lengkap Siswa</th>
-                        <th>Jenis Perguruan Tinggi</th>
-                        <th>Nama Perguruan Tinggi</th>
-                        <th>Status Data</th>
-                        <th style="text-align: center">Aksi</th>
+                    <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NIS</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Perguruan Tinggi</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Perguruan Tinggi</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Data</th>
+                    <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
+                    </tr>
                     </thead>
                     <tbody>
                         @php
@@ -137,21 +141,14 @@
                                 $i++;
                             @endphp
                         @endforeach
-                     </tbody>
+                        </tbody>
                 </table>
             </div>
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div>
+        </div>
     <!-- /.box-body -->
    </div>
   </div>
+</div>
 </div>
 @endsection
 

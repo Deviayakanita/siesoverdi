@@ -76,7 +76,7 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2;">
+<section class="content" style="padding-top: 0;">
   <form action="{{route('mutasimasuk.store')}}" method="post">
     {{csrf_field()}}
 
@@ -96,8 +96,8 @@
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>
-      <select id="inputNIS" class="form-control" name="nis">
-        <option selected="" disabled="" value="">-- No Induk Siswa --</option>
+      <select id="inputNIS" class="form-control select2" name="nis">
+        <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
         @foreach ($pesertadidik1 as $item)
         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" data-provinsi="{{ $item->provinsi }}" data-kabupaten="{{ $item->kabupaten }}" data-alamat="{{ $item->alamat_siswa }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
@@ -117,7 +117,7 @@
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputalamat">Alamat Siswa</label>
-      <textarea class="form-control" id="inputalamat" rows="3" name="alamat_siswa"></textarea>
+      <textarea type ="text" class="form-control" id="inputalamat" rows="3" name="alamat_siswa" readonly></textarea>
     </div>
 
     <div class="form-row">
@@ -177,7 +177,9 @@
 @endsection
 
 @section('script')
+<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
+  $('.select2').select2();
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).data('nama');
     var tahun_ajaran = $('option:selected', this).data('tahun');

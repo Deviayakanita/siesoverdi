@@ -76,7 +76,7 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2;">
+<section class="content" style="padding-top: 0;">
 	<form action="{{url('ortuedit/' .$orangtua->id_orang_tua)}}" method="post">
 		@method('patch')
 		{{csrf_field()}}
@@ -90,21 +90,26 @@
     </div>
     <div style="clear: both;"></div>
 
-    <div class="form-row">
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+    <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>
-      <select id="inputNIS" class="form-control" name="nis">
-        <option selected="" disabled="" value="">-- No Induk Siswa --</option>
+      <select id="inputNIS" class="form-control select2" name="nis">
+        <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
         @foreach ($pesertadidikk as $item)
         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
       </select>
     </div>
+
+    <div class="form-row">
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputnama">Nama Lengkap Siswa</label>
       <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
     </div>
+    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+      <label for="inputnama">Tahun Ajaran Siswa</label>
+      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
     </div>
+  </div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputnama">Nama Ayah</label>
@@ -185,10 +190,14 @@
 @endsection
 
 @section('script')
+<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
+  $('.select2').select2();
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).data('nama');
-    $('#inputnamasiswa').val(nm_siswa);
+    var tahun_ajaran = $('option:selected', this).data('tahun');
+  $('#inputnamasiswa').val(nm_siswa);
+  $('#inputtahun').val(tahun_ajaran);
   });
 </script>
 @endsection

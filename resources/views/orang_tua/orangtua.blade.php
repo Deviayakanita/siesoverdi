@@ -77,7 +77,7 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2;">
+<section class="content" style="padding-top: 0;">
 	<form action="{{route('orangtua.store')}}" method="post">
 		{{csrf_field()}}
     

@@ -76,31 +76,36 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2;">
+<section class="content" style="padding-top: 0;">
   <div class="row">
-    <div class="col-xs-12">
+  <div class="col-xs-12">
     <div class="box box-primary">
+        <div class="box-header">
         <div class="box-body pad table-responsive" style="width: 200px">
-          <td>
-            <a href="mutasimasuk"><button type="button" class="btn btn-primary">Tambah Mutasi Masuk</button></a>
-          </td>
+          <div>
+            <a href="/mutasimasuk"><button type="button" class="btn btn-primary" align="right">Tambah Mutasi Masuk</button></a>
+          </div>
+          </div>
+          <div class="box-body">
+              <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+             </div>
+         </div>
         </div>
-        <form action="/listmtsmasuk" method="GET" style="padding-left: 12px">
-        <div class="input-group">
-          <input type="text" name="cari" class="form-control" placeholder="Search...">
-        </div>
-        </form>
-            <div class="box-body">
-                <table id='listusers' class="table table-bordered table-striped table-hover">
+            <div class="row">
+                <div class="col-sm-12">
+                <table id='example1' class="table table-hover table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
-                        <th>No</th>
-                        <th>No Surat Pindah</th>
-                        <th>NIS</th>
-                        <th>Nama Lengkap Siswa</th>
-                        <th>Tanggal Masuk</th>
-                        <th>Asal Sekolah</th>
-                        <th>Status Data</th>
-                        <th style="text-align: center">Aksi</th>
+                    <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">No Surat Pindah</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NIS</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tanggal Masuk</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Asal Sekolah</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Data</th>
+                    <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
+                    </tr>
                     </thead>
                     <tbody>
                         @php
@@ -139,21 +144,14 @@
                                 $i++;
                             @endphp
                         @endforeach
-                    </tbody>
+                       </tbody>
                 </table>
             </div>
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div>
+        </div>
     <!-- /.box-body -->
    </div>
   </div>
+</div>
 </div>
 @endsection
 

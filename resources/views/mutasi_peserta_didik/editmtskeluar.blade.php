@@ -75,7 +75,7 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2;">
+<section class="content" style="padding-top: 0;">
 	<form action="{{url('mutasikeluaredit/' .$mutasikeluar->id_mut_klr)}}" method="post">
 		@method('patch')
     {{csrf_field()}}
@@ -96,8 +96,8 @@
     </div>
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>
-      <select id="inputNIS" class="form-control" name="nis">
-        <option selected="" disabled="" value="">-- No Induk Siswa --</option>
+      <select id="inputNIS" class="form-control select2" name="nis">
+        <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
         @foreach ($pesertadidik3 as $item)
         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
@@ -159,11 +159,12 @@
 @endsection
 
 @section('script')
+<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
+  $('.select2').select2();
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).data('nama');
     var tahun_ajaran = $('option:selected', this).data('tahun');
-  
     $('#inputnamasiswa').val(nm_siswa);
     $('#inputtahunajaran').val(tahun_ajaran);
 
