@@ -160,9 +160,9 @@
     </div>
 
      <div class="form-group" style="padding: 0; padding-right: 10px">
-      <label for="inputState">Status Mutasi</label>
+      <label for="inputState">Status Data</label>
       <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasimasuk->status_mutasi}}">
-        <option selected>-- Pilih Status Mutasi --</option>
+        <option selected>-- Status Data Mutasi --</option>
         <option value="1">AKTIF</option>
         <option value="0">NON AKTIF</option>
       </select>

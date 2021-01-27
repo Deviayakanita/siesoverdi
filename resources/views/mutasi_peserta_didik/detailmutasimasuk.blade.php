@@ -121,6 +121,25 @@
               <td>{{$detailmutasimasuk->pesertadidik->kabupaten}}</td>
             </tr>
             <tr>
+              <td>Status Peserta Didik</td>
+              <td>:</td>
+              <td>
+                <?php if($detailmutasimasuk->pesertadidik->sts_siswa == 0)
+                     {
+                        echo "Non Aktif";
+                     }
+                      elseif($detailmutasimasuk->pesertadidik->sts_siswa == 1)
+                    {
+                        echo "Aktif";
+                    }
+                      else
+                    {
+                        echo "Non Aktif";
+                    }                          
+                    ?>            
+              </td>    
+            </tr>
+            <tr>
               <td>Asal Sekolah</td>
               <td>:</td>
               <td>{{$detailmutasimasuk->asal_sekolah}}</td>
@@ -141,7 +160,7 @@
               <td>{{$detailmutasimasuk->alasan_pindah}}</td>
             </tr>
             <tr>
-              <td>Status Mutasi</td>
+              <td>Status Data Mutasi</td>
               <td>:</td>
               <td>
                 <?php if($detailmutasimasuk->status_mutasi == 0)

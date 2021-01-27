@@ -77,10 +77,16 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2px;" style="width: 200px">
+<section class="content" style="padding-top:0;">
 	<div class="box box-primary">
         <div class="box-header with-border">
           <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Peserta Didik
+          </div>
+          <div class="col-md-9 col-sm-4" align="right">
+              <a href="#" class="btn-sm btn-primary">
+                  <i class="fa fa-print"></i>Cetak
+              </a>
+              </button>
           </div>
         </div>
         <div class="box-body">
@@ -151,7 +157,7 @@
               <td>{{$detailpesertadidik->jurusan}}</td>
             </tr>
             <tr>
-              <td>Status Siswa</td>
+              <td>Status Peserta Didik</td>
               <td>:</td>
               <td>
                 <?php if($detailpesertadidik->sts_siswa == 0)

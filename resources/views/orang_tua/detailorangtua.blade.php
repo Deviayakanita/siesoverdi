@@ -101,6 +101,25 @@
               <td>{{$detailorangtua->pesertadidik->tahun_ajaran}}</td>
             </tr>
             <tr>
+              <td>Status Peserta Didik</td>
+              <td>:</td>
+              <td>
+                <?php if($detailorangtua->pesertadidik->sts_siswa == 0)
+                     {
+                        echo "Non Aktif";
+                     }
+                      elseif($detailorangtua->pesertadidik->sts_siswa == 1)
+                    {
+                        echo "Aktif";
+                    }
+                      else
+                    {
+                        echo "Non Aktif";
+                    }                          
+                    ?>            
+              </td>    
+            </tr>
+            <tr>
               <td>Nama Ayah</td>
               <td>:</td>
               <td>{{$detailorangtua->nm_ayah}}</td>
@@ -141,7 +160,7 @@
               <td>{{$detailorangtua->penghasilan_ibu}}</td>
             </tr>
             <tr>
-              <td>Status Orang Tua</td>
+              <td>Status Data Orang Tua</td>
               <td>:</td>
               <td>
                 <?php if($detailorangtua->sts_orang_tua == 0)

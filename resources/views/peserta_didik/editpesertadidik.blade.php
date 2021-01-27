@@ -77,7 +77,7 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2px;">
+<section class="content" style="padding-top: 0;">
 	<form action="{{url('/pesertadidikedit/' .$pesertadidik->id_siswa)}}" method="post" >
 		@method('patch')
 		{{csrf_field()}}

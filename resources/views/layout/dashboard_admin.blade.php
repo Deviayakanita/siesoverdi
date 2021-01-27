@@ -70,7 +70,7 @@
               <p>Peserta Didik</p>
             </div>
             <div class="icon">
-              <i class="fa fa-edit"></i>
+              <i class="fa fa-user"></i>
             </div>
             <a href="/listpesertadidik" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -82,10 +82,10 @@
             <div class="inner">
               <h3>Data<sup style="font-size: 20px"></sup></h3>
 
-              <p>Mutasi Masuk Peserta Didik</p>
+              <p>Mutasi Masuk</p>
             </div>
             <div class="icon">
-              <i class="fa fa-edit"></i>
+              <i class="fa fa-sign-in"></i>
             </div>
             <a href="/listmtsmasuk" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
@@ -97,14 +97,15 @@
             <div class="inner">
               <h3>Data</h3>
 
-              <p>Mutasi Keluar Peserta Didik</p>
+              <p>Mutasi Keluar</p>
             </div>
             <div class="icon">
-              <i class="fa fa-edit"></i>
+              <i class="fa fa-sign-out"></i>
             </div>
             <a href="/listmtskeluar" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -112,10 +113,10 @@
             <div class="inner">
               <h3>Data</h3>
 
-              <p>Alumni Peserta Didik</p>
+              <p>Alumni</p>
             </div>
             <div class="icon">
-              <i class="fa fa-edit"></i>
+              <i class="fa fa-files-o"></i>
             </div>
             <a href="/listalumni" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>

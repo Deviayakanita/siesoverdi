@@ -99,7 +99,7 @@
                         <th>Nama Lengkap Siswa</th>
                         <th>Tanggal Pindah</th>
                         <th>Sekolah Tujuan</th>
-                        <th>Status</th>
+                        <th>Status Data</th>
                         <th style="text-align: center">Aksi</th>
                     </thead>
                     <tbody>

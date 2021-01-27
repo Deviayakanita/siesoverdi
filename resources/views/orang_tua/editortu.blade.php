@@ -167,9 +167,9 @@
     </div>
     
     <div class="form-group" style="padding: 0; padding-right: 10px">
-      <label for="inputState">Status Orang Tua</label>
+      <label for="inputState">Status Data</label>
       <select id="inputState" class="form-control" name="sts_orang_tua" value="{{$orangtua->sts_orang_tua}}">
-        <option selected>-- Statut Orang Tua --</option>
+        <option selected>-- Statut Data Orang Tua --</option>
         <option value="1">AKTIF</option>
         <option value="0">NON AKTIF</option>
       </select>

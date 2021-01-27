@@ -171,9 +171,9 @@
     </div>
     
     <div class="form-group"style="padding: 0; padding-right: 10px">
-      <label for="inputState">Status Orang Tua</label>
+      <label for="inputState">Status Data</label>
       <select id="inputState" class="form-control" name="sts_orang_tua">
-        <option selected>-- Status Orang Tua --</option>
+        <option selected>-- Status Data Orang Tua --</option>
         <option value="1">AKTIF</option>
         <option value="0">NON AKTIF</option>
       </select>
@@ -187,19 +187,17 @@
 </div>
 </section>  
 @endsection
+
 @section('script')
+<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
+  $('.select2').select2();
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).data('nama');
     var tahun_ajaran = $('option:selected', this).data('tahun');
     $('#inputnamasiswa').val(nm_siswa);
     $('#inputtahun').val(tahun_ajaran);
   });
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-            $('.select2').select2(nis);
-        });
 </script>
 @endsection
 

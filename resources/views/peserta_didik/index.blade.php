@@ -77,7 +77,7 @@
 @endsection
 
 @section('content')
-<section class="content" style="padding-top: 2;">
+<section class="content" style="padding-top:0;">
 	<form action="{{route('pesertadidik.store')}}" method="post">
 		{{csrf_field()}}
 
@@ -86,7 +86,7 @@
       <div class="box-body">
 
     <div>
-        <a href="/listpesertadidik" class="btn btn-primary" style="float: right;">KEMBALI</a>
+        <a href="/listpesertadidik"><i class=" fa fa-arrow-circle-left btn-primary btn-lg"></i></a>
     </div>
     <div style="clear: both;"></div>
   

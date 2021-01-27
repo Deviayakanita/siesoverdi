@@ -95,6 +95,25 @@
               <td>:</td>
               <td>{{$detailalumni->pesertadidik->nm_siswa}}</td>
             </tr>
+            <tr>
+              <td>Status Peserta Didik</td>
+              <td>:</td>
+              <td>
+                <?php if($detailalumni->pesertadidik->sts_siswa == 0)
+                     {
+                        echo "Non Aktif";
+                     }
+                      elseif($detailalumni->pesertadidik->sts_siswa == 1)
+                    {
+                        echo "Aktif";
+                    }
+                      else
+                    {
+                        echo "Non Aktif";
+                    }                          
+                    ?>            
+              </td>    
+            </tr>
             <tr> 
               <td>Jenis Perguruan Tinggi</td>
               <td>:</td>
@@ -116,26 +135,7 @@
               <td>{{$detailalumni->nm_jurusan}}</td>
             </tr>
             <tr>
-              <td>Status Siswa</td>
-              <td>:</td>
-              <td>
-                <?php if($detailalumni->pesertadidik->sts_siswa == 0)
-                     {
-                        echo "Non Aktif";
-                     }
-                      elseif($detailalumni->pesertadidik->sts_siswa == 1)
-                    {
-                        echo "Aktif";
-                    }
-                      else
-                    {
-                        echo "Non Aktif";
-                    }                          
-                    ?>            
-              </td>    
-            </tr>
-            <tr>
-              <td>Status Alumni</td>
+              <td>Status Data Alumni</td>
               <td>:</td>
               <td>
                 <?php if($detailalumni->status_alumni == 0)

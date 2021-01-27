@@ -99,7 +99,7 @@
                         <th>Penghasilan Ayah</th>
                         <th>Nama Ibu</th>
                         <th>Penghasilan Ibu</th>
-                        <th>Status</th>
+                        <th>Status Data</th>
                         <th style="text-align: center">Aksi</th>
                     </thead>
                     <tbody>
