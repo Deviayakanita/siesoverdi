@@ -81,9 +81,14 @@
   <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
-        <div class="box-body pad table-responsive" style="width: 200px">
+        <div align= "right" class="box-body pad table-responsive" style="padding-right: 0px;">
+             <!--  <div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
+                  <i class="fa fa-pencil"></i> Tambah Mutasi Keluar
+                </button> 
+              </div> -->
           <div>
-            <a href="/mutasimasuk"><button type="button" class="btn btn-primary" align="right">Tambah Mutasi Masuk</button></a>
+            <a href="/mutasikeluar"><button type="button" class="btn btn-primary" align="right"><i class="fa fa-pencil">Tambah Mutasi Masuk</button></i></a>
           </div>
           </div>
           <div class="box-body">
