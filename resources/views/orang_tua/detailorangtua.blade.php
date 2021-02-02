@@ -38,8 +38,8 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="active"><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
-        <li><a href="{{url('listortu')}}"><i class="fa fa-circle-o"></i> Data Orang Tua</a></li>
+        <li><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
+        <li class="active"><a href="{{url('listortu')}}"><i class="fa fa-circle-o"></i> Data Orang Tua</a></li>
       </ul>
     </li>
     <li class="treeview">
@@ -67,12 +67,12 @@
 </aside>
 @endsection
 
-@section('content-title','Detail Orang Tua')
+@section('content-title','Data Orang Tua')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
-  <li> Data Orang Tua</li>
+  <li> Daftar Orang Tua</li>
   <li> Detail Orang Tua</li>
 @endsection
 
@@ -80,7 +80,10 @@
 <section class="content" style="padding-top: 0;" style="width: 200px">
 	<div class="box box-primary">
         <div class="box-header with-border">
-          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Orang Tua
+          <div class="col-md-3 col-sm-4"><h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> Detail Orang Tua </h4>
+          </div>
+          <div align="right">
+            <a href="/listortu" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
           </div>
         </div>
         <div class="box-body">
@@ -193,8 +196,10 @@
 
         <!-- /.box-body -->
         <div class="box-footer">
-          <a href="/listortu" class="btn btn-primary">KEMBALI</a>
-        </div>
+              <a href="#" class="btn btn-info btn-primary">
+                  <i class="fa fa-print"></i> Cetak
+              </a>
+          </div>
       </div>
 				
  

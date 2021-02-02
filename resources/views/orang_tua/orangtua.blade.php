@@ -67,12 +67,12 @@
 </aside>
 @endsection
 
-@section('content-title','Tambah Data Orang Tua')
+@section('content-title',' Data Orang Tua')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
-  <li> Data Orang Tua</li>
+  <li> Daftar Orang Tua</li>
   <li> Tambah Orang Tua</li>
 @endsection
 
@@ -84,10 +84,9 @@
     <div class="box box-primary">
       <form role="form">
         <div class="box-body">
-    <div>
-      <a href="/listortu" class="btn btn-primary" style="float: right;">KEMBALI</a>
+    <div align="right">
+        <a href="/listortu" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
     </div>
-    <div style="clear: both;"></div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>

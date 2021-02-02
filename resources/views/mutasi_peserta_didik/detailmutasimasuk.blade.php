@@ -38,7 +38,7 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li class="active"><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
+        <li><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
         <li><a href="{{url('listortu')}}"><i class="fa fa-circle-o"></i> Data Orang Tua</a></li>
       </ul>
     </li>
@@ -50,7 +50,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="{{url('listmtsmasuk')}}"><i class="fa fa-circle-o"></i><span> Data Mutasi Masuk</span> </a></li>
+            <li class="active"><a href="{{url('listmtsmasuk')}}"><i class="fa fa-circle-o"></i><span> Data Mutasi Masuk</span> </a></li>
             <li><a href="{{url('listmtskeluar')}}"><i class="fa fa-circle-o"></i> Data Mutasi Keluar</a></li>     
         </ul>
     </li>
@@ -67,12 +67,12 @@
 </aside>
 @endsection
 
-@section('content-title','Detail Mutasi Masuk')
+@section('content-title','Data Mutasi Masuk')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Mutasi</li>
-  <li> Data Mutasi Masuk</li>
+  <li> Daftar Mutasi Masuk</li>
   <li> Detail Mutasi Masuk</li>
 @endsection
 
@@ -80,7 +80,10 @@
 <section class="content" style="padding-top: 0;" style="width: 200px">
 	<div class="box box-primary">
         <div class="box-header with-border">
-          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Mutasi Masuk
+          <div class="col-md-3 col-sm-4"><h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-sign-in"></i> Detail Mutasi Masuk </h4>
+          </div>
+          <div align="right">
+            <a href="/listmtsmasuk" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
           </div>
         </div>
         <div class="box-body">
@@ -193,8 +196,10 @@
 
         <!-- /.box-body -->
         <div class="box-footer">
-          <a href="/listmtsmasuk" class="btn btn-primary">KEMBALI</a>
-        </div>
+              <a href="#" class="btn btn-info btn-primary">
+                  <i class="fa fa-print"></i> Cetak
+              </a>
+          </div>
       </div>
 				
  

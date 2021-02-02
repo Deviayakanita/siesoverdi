@@ -25,7 +25,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 Auth::routes(); 
 
 Route::get('/admin', 'App\Http\Controllers\AdminController@index') -> middleware('auth');
-Route::get('/dashboard','App\Http\Controllers\DashboardController@index');
+Route::get('/dashboard_admin','App\Http\Controllers\DashboardController@index');
 
 
 //route peserta didik crud user admin

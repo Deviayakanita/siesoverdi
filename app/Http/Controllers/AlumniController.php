@@ -52,7 +52,6 @@ class AlumniController extends Controller
             'jns_pt' => request('jns_pt'),
             'nm_fak' => request('nm_fak'),
             'nm_jurusan' => request('nm_jurusan'),
-            'melanjutkan' => request('melanjutkan'),
             'status_alumni' => request('status_alumni'),
         ]);
 
@@ -100,7 +99,6 @@ class AlumniController extends Controller
             'jns_pt' => request('jns_pt'),
             'nm_fak' => request('nm_fak'),
             'nm_jurusan' => request('nm_jurusan'),
-            'melanjutkan' => request('melanjutkan'),
             'status_alumni' => request('status_alumni'),
             ]);
 

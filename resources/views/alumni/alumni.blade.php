@@ -67,12 +67,12 @@
 </aside>
 @endsection
 
-@section('content-title','Tambah Data Alumni')
+@section('content-title','Data Alumni')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
-  <li> Kelola Alumni</li>
-  <li> Data Alumni Siswa</li>
+  <li> Daftar Alumni</li>
+  <li> Tambah Alumni</li>
 @endsection
 
 @section('content')
@@ -83,11 +83,9 @@
     <div class="box box-primary">
     <form role="form">
     <div class="box-body">
-
-    <div>
-      <a href="/listalumni" class="btn btn-primary" style="float: right;">KEMBALI</a>
-    </div>
-    <div style="clear: both;"></div>
+      <div align="right">
+        <a href="/listalumni" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+      </div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>
@@ -135,16 +133,7 @@
     </div>
     </div>
 
-    <div class="form-row">
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-      <label for="inputState">Melanjutkan</label>
-      <select id="inputState" class="form-control" name="melanjutkan">
-        <option selected>-- Pilih Melanjutkan --</option>
-        <option value="Bekerja">Bekerja</option>
-        <option value="Belum Bekerja">Kuliah</option>
-      </select>
-    </div>
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+    <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">Status Alumni</label>
       <select id="inputState" class="form-control" name="status_alumni">
         <option selected>-- Status Alumni --</option>
@@ -155,7 +144,7 @@
     </div>
 
     <div>
-  <button type="submit" class="btn btn-primary" style="margin-left: 15px">SIMPAN DATA</button>
+  <button type="submit" class="btn btn-primary">SIMPAN DATA</button>
   </div>
 
 </div>

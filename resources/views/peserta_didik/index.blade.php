@@ -67,12 +67,12 @@
 </aside>
 @endsection
 
-@section('content-title','Tambah Data Peserta Didik')
+@section('content-title','Data Peserta Didik')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
-  <li> Data Peserta Didik</li>
+  <li> Daftar Peserta Didik</li>
   <li> Tambah Peserta Didik</li>
 @endsection
 
@@ -84,12 +84,10 @@
       <div class="box box-primary">
       <form role="form">
       <div class="box-body">
+           <div align="right">
+             <a href="/listpesertadidik" class="btn btn-default"><i class="fa fa-long-arrow-left"><</a>
+           </div>  
 
-    <div>
-        <a href="/listpesertadidik"><i class=" fa fa-arrow-circle-left btn-primary btn-lg"></i></a>
-    </div>
-    <div style="clear: both;"></div>
-  
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputnis">No Induk Siswa</label>
       <input type="nama" class="form-control" id="inputnis" name="nis">

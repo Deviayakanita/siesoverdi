@@ -66,13 +66,13 @@
 </aside>
 @endsection
 
-@section('content-title','Tambah Data Mutasi Keluar')
+@section('content-title','Data Mutasi Keluar')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Mutasi</li>
-  <li> Data Mutasi Keluar</li>
-  <li> Tambah Data Mutasi Keluar</li>
+  <li> Daftar Mutasi Keluar</li>
+  <li> Tambah Mutasi Keluar</li>
 @endsection
 
 @section('content')
@@ -83,11 +83,9 @@
     <div class="box box-primary">
     <form role="form">
     <div class="box-body">
-
-    <div>
-      <a href="/listmtskeluar" class="btn btn-primary" style="float: right;">KEMBALI</a>
-    </div>
-    <div style="clear: both;"></div>
+      <div align="right">
+        <a href="/listortu" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+      </div>
 
     <div class="form-row">
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">

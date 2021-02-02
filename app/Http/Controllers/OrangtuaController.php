@@ -86,9 +86,9 @@ class OrangtuaController extends Controller
      */
     public function edit($id)
     {
-        $pesertadidikk = Pesertadidik::all();
+        $pesertadidik = Pesertadidik::all();
         $orangtua = Orangtua::find($id);
-        return view('orang_tua/editortu', compact('orangtua','pesertadidikk'));
+        return view('orang_tua/editortu', compact('orangtua','pesertadidik'));
     }
 
     public function editortu (Request $request, $id)

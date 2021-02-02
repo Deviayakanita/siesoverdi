@@ -18,5 +18,7 @@ class DashboardController extends Controller
     	$mutasikeluar = Mutasikeluar::count();
     	$alumni = Alumni::count();
 
-    	return view('layout/dashboard', compact('pesertadidik','mutasimasuk','mutasikeluar','alumni'));
+    	
+
+    	return view('dashboard.index', compact('pesertadidik','mutasimasuk','mutasikeluar','alumni'));
 }

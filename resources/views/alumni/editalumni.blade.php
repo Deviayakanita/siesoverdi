@@ -66,13 +66,13 @@
 </aside>
 @endsection
 
-@section('content-title','Edit Data Alumni')
+@section('content-title','Data Alumni')
 
 @section('breadcrumb')
   <li><a href="\dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Alumni</li>
-  <li> Data Alumni</li>
-  <li> Edit Data Alumni</li>
+  <li> Dafatar Alumni</li>
+  <li> Edit Alumni</li>
 @endsection
 
 @section('content')
@@ -83,12 +83,14 @@
 
     <div class="box box-primary">
     <form role="form">
-    <div class="box-body">
-
-      <div>
-      <a href="/listalumni" class="btn btn-primary" style="float: right;">KEMBALI</a>
+      <div class="box-header">
+         <div class="col-md-3 col-sm-4"><h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-files-o"></i> Edit Alumni</h4>
+          </div>
+          <div align="right">
+            <a href="/listalumni" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+          </div>
       </div>
-      <div style="clear: both;"></div>
+    <div class="box-body">
     
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>
@@ -114,8 +116,8 @@
       <label for="inputState">Jenis Perguruan Tinggi</label>
       <select id="inputState" class="form-control" name="jns_pt" value="{{$alumni->jns_pt}}">
         <option selected>-- Pilih Perguruan Tinggi --</option>
-        <option value="Negri">Negri</option>
-        <option value="Swasta">Swasta</option>
+        <option value="Negri" @if($alumni->jns_pt=='Negri') selected @endif>Negri</option>
+        <option value="Swasta" @if($alumni->jns_pt=='Swasta') selected @endif>Swasta</option>
       </select>
     </div>
 
@@ -130,32 +132,23 @@
     </div>
     </div>
 
-    <div class="form-row">
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+   
+    <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputnamajurus">Nama Jurusan</label>
       <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" value="{{$alumni->nm_jurusan}}">
-    </div>
-    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-      <label for="inputState">Melanjutkan</label>
-      <select id="inputState" class="form-control" name="melanjutkan" value="{{$alumni->melanjutkan}}">
-        <option selected>-- Pilih Melanjutkan --</option>
-        <option value="Bekerja">Bekerja</option>
-        <option value="Belum Bekerja">Kuliah</option>
-      </select>
-    </div>
     </div>
 
      <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">Status Data</label>
       <select id="inputState" class="form-control" name="status_alumni" value="{{$alumni->status_alumni}}">
         <option selected>-- Status Data Alumni --</option>
-        <option value="1">AKTIF</option>
-        <option value="0">NON AKTIF</option>
+        <option value="1" @if($alumni->status_alumni=='1') selected @endif>Aktif</option>
+        <option value="0" @if($alumni->status_alumni=='0') selected @endif>Non Aktif</option>
       </select>
     </div>
 
   <div>
-    <button type="submit" class="btn btn-primary">SIMPAN</button>
+    <button type="submit" class="btn btn-warning btn-primary">SIMPAN</button>
   </div>
 
 </div>

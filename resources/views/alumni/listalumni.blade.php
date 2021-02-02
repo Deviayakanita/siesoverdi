@@ -26,7 +26,7 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li>
-        <a href="{{url('layout/dashboard_admin')}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>
@@ -67,11 +67,12 @@
 </aside>
 @endsection
 
-@section('content-title','Data Alumni')
+@section('content-title','Alumni')
 
 @section('breadcrumb')
-  <li><a href="dashboard_admin"><i class="fa fa-home"></i> Dashboard</a></li>
+  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Alumni</li>
+  <li> Daftar Alumni</li>
 @endsection
 
 @section('content')
@@ -80,15 +81,22 @@
   <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
+          <div class="col-md-7 col-sm-8"><h4><i class="fa fa-files-o"></i> Daftar Alumni</h4>
+          </div>
          <div align= "right" class="box-body pad table-responsive" style="padding-right: 0px;">
+            <div>
+              <a href="/alumni" class="btn btn-primary" type="button">
+                  <i class="fa fa-pencil"></i> Tambah Data
+              </a>
+              <a href="/orangtua" class="btn btn-success" type="button">
+                  <i class="fa fa-print"></i> Cetak
+              </a>
+          </div> 
              <!--  <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
                   <i class="fa fa-pencil"></i> Tambah Mutasi Keluar
                 </button> 
               </div> -->
-          <div>
-            <a href="/mutasikeluar"><button type="button" class="btn btn-primary" align="right"><i class="fa fa-pencil">Tambah Alumni</button></i></a>
-          </div>
           </div>
           <div class="box-body">
               <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -137,9 +145,8 @@
                                 ?>
                                 </td>
                                 <td style="text-align: center;">
-                                  <a href="/detailalumni/detail/{{ $alumni->id_alumni }}" ><i class="fa fa-eye btn-info btn-sm"></i></a>
                                   <a href="editalumni/edit/{{ $alumni->id_alumni }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
-                                  <a href="#" ><i class="fa fa-print btn-primary btn-sm"></i></a>
+                                  <a href="/detailalumni/detail/{{ $alumni->id_alumni }}" ><i class="fa fa-eye btn-info btn-sm"></i></a>
                                 </td>
                             </tr>
                             @php

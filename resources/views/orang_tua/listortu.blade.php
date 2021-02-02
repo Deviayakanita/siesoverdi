@@ -39,7 +39,7 @@
       </a>
       <ul class="treeview-menu">
         <li><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
-        <li class="active"><a href="{{url('listortu')}}"><i class="fa fa-circle-o text-aqua"></i> Data Orang Tua</a></li>
+        <li class="active"><a href="{{url('listortu')}}"><i class="fa fa-dot-circle-o text-aqua"></i> Data Orang Tua</a></li>
       </ul>
     </li>
     <li class="treeview">
@@ -71,7 +71,7 @@
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
-  <li> Data Orang Tua</li>
+  <li> Daftar Orang Tua</li>
 @endsection
 
 @section('content')
@@ -80,15 +80,22 @@
   <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
+          <div class="col-md-7 col-sm-8"><h4><i class="fa fa-users"></i> Daftar Orang Tua</h4>
+          </div>
          <div align= "right" class="box-body pad table-responsive" style="padding-right: 0px;">
+            <div>
+              <a href="/orangtua" class="btn btn-primary" type="button">
+                  <i class="fa fa-pencil"></i> Tambah Data
+              </a>
+              <a href="/orangtua" class="btn btn-success" type="button">
+                  <i class="fa fa-print"></i> Cetak
+              </a>
+            </div> 
              <!--  <div>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
                   <i class="fa fa-pencil"></i> Tambah Mutasi Keluar
                 </button> 
               </div> -->
-          <div>
-            <a href="/mutasikeluar"><button type="button" class="btn btn-primary" align="right"><i class="fa fa-pencil">Tambah Orang Tua</button></i></a>
-          </div>
           </div>
           <div class="box-body">
               <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -141,9 +148,8 @@
                                 ?>
                                 </td>
                                 <td style="text-align: center;">
-                                    <a href="/detailorangtua/detail/{{ $orangtua->id_orang_tua }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
                                     <a href="editortu/edit/{{ $orangtua->id_orang_tua }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
-                                    <a href=""><i class="fa fa-print btn-primary btn-sm"></i></a>
+                                    <a href="/detailorangtua/detail/{{ $orangtua->id_orang_tua }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
                                 </td>
                             </tr>
                             @php

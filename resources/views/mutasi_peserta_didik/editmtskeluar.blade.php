@@ -65,12 +65,12 @@
 </aside>
 @endsection
 
-@section('content-title','Edit Data Mutasi Keluar')
+@section('content-title','Data Mutasi Keluar')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Mutasi</li>
-  <li> Data Mutasi Keluar</li>
+  <li> Daftar Mutasi Keluar</li>
   <li> Edit Mutasi Keluar</li>
 @endsection
 
@@ -82,12 +82,14 @@
 
     <div class="box box-primary">
     <form role="form">
+      <div class="box-header">
+      <div class="col-md-3 col-sm-4"><h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-sign-out"></i> Edit Mutasi Keluar</h4>
+          </div>
+          <div align="right">
+            <a href="/listmtskeluar" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+          </div>
+      </div>
     <div class="box-body">
-
-    <div>
-      <a href="/listmtskeluar" class="btn btn-primary" style="float: right;">KEMBALI</a>
-    </div>
-    <div style="clear: both;"></div>
 
     <div class="form-row">
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
@@ -123,9 +125,9 @@
       <label for="inputState">Tingkat Kelas</label>
       <select id="inputState" class="form-control" name="tingkat_kelas" value="{{$mutasikeluar->tingkat_kelas}}">
         <option selected>-- Pilih Tingkat Kelas --</option>
-        <option value="X">X</option>
-        <option value="XI">XI</option>
-        <option value="XII">XII</option>
+        <option value="X" @if($mutasikeluar->tingkat_kelas=='X') selected @endif>X</option>
+        <option value="XI" @if($mutasikeluar->tingkat_kelas=='XI') selected @endif>XI</option>
+        <option value="XII" @if($mutasikeluar->tingkat_kelas=='XII') selected @endif>XII</option>
       </select>
     </div>
         
@@ -136,20 +138,20 @@
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputalasan">Alasan Pindah</label>
-      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" value="{{$mutasikeluar->alasan_pindah}}"></textarea> 
+      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah">{{$mutasikeluar->alasan_pindah}}</textarea> 
     </div>
 
      <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">Status Data</label>
       <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasikeluar->status_mutasi}}">
         <option selected>-- Status Data Mutasi --</option>
-        <option value="1">AKTIF</option>
-        <option value="0">NON AKTIF</option>
+        <option value="1" @if($mutasikeluar->status_mutasi=='1') selected @endif>Aktif</option>
+        <option value="0" @if($mutasikeluar->status_mutasi=='0') selected @endif>Non Aktif</option>
       </select>
     </div>
 
    <div>
-    <button type="submit" class="btn btn-primary">SIMPAN</button>
+    <button type="submit" class="btn btn-warning btn-primary">SIMPAN</button>
    </div>
 
 </div>

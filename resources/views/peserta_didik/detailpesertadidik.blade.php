@@ -67,12 +67,12 @@
 </aside>
 @endsection
 
-@section('content-title','Detail Peserta Didik')
+@section('content-title','Data Peserta Didik')
 
 @section('breadcrumb')
   <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
   <li> Kelola Peserta Didik</li>
-  <li> Data Peserta Didik</li>
+  <li> Daftar Peserta Didik</li>
   <li> Detail Peserta Didik</li>
 @endsection
 
@@ -80,14 +80,11 @@
 <section class="content" style="padding-top:0;">
 	<div class="box box-primary">
         <div class="box-header with-border">
-          <div class="col-md-3 col-sm-4"><i class="fa fa-calendar"></i> Detail Peserta Didik
+          <div class="col-md-3 col-sm-4"><h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> Detail Peserta Didik </h4>
           </div>
-          <div class="col-md-9 col-sm-4" align="right">
-              <a href="#" class="btn-sm btn-primary">
-                  <i class="fa fa-print"></i>Cetak
-              </a>
-              </button>
-          </div>
+          <div align="right">
+                <a href="/listpesertadidik" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+          </div>  
         </div>
         <div class="box-body">
           <table class="table">
@@ -176,11 +173,6 @@
               </td>    
             </tr>
             <tr>
-              <td>Keterangan</td>
-              <td>:</td> 
-              <td>{{$detailpesertadidik->keterangan}}</td>
-            </tr>
-            <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
               <td>{{$detailpesertadidik->created_at}}</td>
@@ -196,8 +188,10 @@
 
         <!-- /.box-body -->
         <div class="box-footer">
-          <a href="/listpesertadidik" class="btn btn-primary">KEMBALI</a>
-        </div>
+              <a href="#" class="btn btn-info btn-primary">
+                  <i class="fa fa-print"></i> Cetak
+              </a>
+          </div>
       </div>
 				
  

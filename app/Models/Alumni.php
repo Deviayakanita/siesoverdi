@@ -17,7 +17,6 @@ class Alumni extends Model
     	'jns_pt',
         'nm_fak',
         'nm_jurusan',
-        'melanjutkan',
         'status_alumni',
     ];
 
