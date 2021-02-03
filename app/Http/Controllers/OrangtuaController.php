@@ -20,29 +20,14 @@ class OrangtuaController extends Controller
      */
     public function index()
     {
+        $orangtuas = Orangtua::all();
+        return view('orang_tua/index', compact('orangtuas'));
+
         $pesertadidik = Pesertadidik::all();
-        return view('orang_tua.orangtua', [
+        return view('orang_tua./ndex', [
             'pesertadidik' => $pesertadidik,
         ]);
     }
-
-    public function list()
-    {
-        $ortus = Orangtua::all();
-        return view('orang_tua/listortu', compact('ortus'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $pesertadidik = Pesertadidik::all();
-        return view('orang_tua/orangtua', compact('pesertadidik'));
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -51,7 +36,6 @@ class OrangtuaController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         Orangtua::create([
             'nm_ayah' => request('nm_ayah'),
             'id_siswa' => request('nis'),
@@ -64,7 +48,7 @@ class OrangtuaController extends Controller
             'penghasilan_ibu' => request('penghasilan_ibu'),
             'sts_orang_tua' => request('sts_orang_tua'),
         ]);
-        return redirect('listortu');
+        return redirect('/orangtua');
     }
 
     /**
@@ -75,7 +59,8 @@ class OrangtuaController extends Controller
      */
     public function show($id)
     {
-        //
+        $orangtuas = Orangtua::find($id);
+        return view ('orang_tua/detailorangtua', compact('orangtuas'));
     }
 
     /**
@@ -87,47 +72,27 @@ class OrangtuaController extends Controller
     public function edit($id)
     {
         $pesertadidik = Pesertadidik::all();
-        $orangtua = Orangtua::find($id);
-        return view('orang_tua/editortu', compact('orangtua','pesertadidik'));
+        $orangtuas = Orangtua::find($id);
+        return view('orang_tua/editortu', compact('orangtuas','pesertadidik'));
     }
 
-    public function editortu (Request $request, $id)
-    {
-        DB::table('orang_tua')->where('id_orang_tua', $id)
-            -> update([
-            'id_siswa' => request('nis'),
-            'nm_ayah' => request('nm_ayah'),
-            'job_ayah' => request('job_ayah'),
-            'pddk_ayah' => request('pddk_ayah'),
-            'penghasilan_ayah' => request('penghasilan_ayah'),
-            'nm_ibu' => request('nm_ibu'),
-            'job_ibu' => request('job_ibu'),
-            'pddk_ibu' => request('pddk_ibu'),
-            'penghasilan_ibu' => request('penghasilan_ibu'),
-            'sts_orang_tua' => request('sts_orang_tua'),
-            ]);
-
-        return redirect('listortu');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $orangtuas = Orangtua::find($id);
+        $orangtuas->id_siswa = $request->nis;
+        $orangtuas->nm_ayah = $request->nm_ayah;
+        $orangtuas->job_ayah = $request->job_ayah;
+        $orangtuas->pddk_ayah = $request->pddk_ayah;
+        $orangtuas->penghasilan_ayah = $request->penghasilan_ayah;
+        $orangtuas->nm_ibu = $request->nm_ibu;
+        $orangtuas->job_ibu = $request->job_ibu;
+        $orangtuas->pddk_ibu = $request->pddk_ibu;
+        $orangtuas->penghasilan_ibu = $request->penghasilan_ibu;
+        $orangtuas->sts_orang_tua = $request->sts_orang_tua;
+        $orangtuas->save(); 
 
-    public function detailorangtua($id)
-    {
-        $detailorangtua = Orangtua::find($id);
-        return view ('orang_tua/detailorangtua',['detailorangtua' => $detailorangtua]);
+        return redirect('/orangtua');
     }
-
 
     /**
      * Remove the specified resource from storage.

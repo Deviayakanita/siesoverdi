@@ -1,167 +1,107 @@
-@extends('layout.blank')
-@section('title', 'Data Peserta Didik | Admin')
-@section('topbaraccount')
-<li class="dropdown user user-menu">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <img src="{{url('adminLTE/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-        <span class="hidden-xs">Alexander Pierce</span>
-    </a>
-
-    <ul class="dropdown-menu">
-    <!-- User image -->
-    <li class="user-header">
-        <img src="{{url('adminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
-        <p>
-        Alexander Pierce - Web Developer
-        <small>Member since Nov. 2012</small>
-        </p>
-    </li>
-    </ul>
-</li>
-@endsection
-
-@section('sidemenu')
-<aside class="main-sidebar">
-
-<section class="sidebar">
-<ul class="sidebar-menu" data-widget="tree">
-    <li>
-        <a href="{{url('/dashboard')}}">
-            <i class="fa fa-home"></i><span> Dashboard</span>
-        </a>
-    </li>
-    <li class=" active treeview">
-      <a href="#">
-      <i class="fa fa-edit"></i><span> Kelola Peserta Didik</span>
-        <span class="pull-right-container">
-        <i class="fa fa-angle-left pull-right"></i>
-        </span>
-      </a>
-      <ul class="treeview-menu">
-        <li class="active"><a href="{{url('listpesertadidik')}}"><i class="fa fa-circle-o"></i> Data Peserta Didik</a></li>
-        <li><a href="{{url('listortu')}}"><i class="fa fa-circle-o"></i> Data Orang Tua</a></li>
-      </ul>
-    </li>
-    <li class="treeview">
-        <a href="#">
-        <i class="fa fa-edit"></i><span> Kelola Mutasi</span>
-            <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="{{url('listmtsmasuk')}}"><i class="fa fa-circle-o"></i><span> Data Mutasi Masuk</span> </a></li>
-            <li><a href="{{url('listmtskeluar')}}"><i class="fa fa-circle-o"></i> Data Mutasi Keluar</a></li>     
-        </ul>
-    </li>
-    <li>
-        <a href="{{url('listalumni')}}">
-        <i class="fa fa-edit"></i><span> Kelola Alumni</span>
-        </a>
-    </li>
-</ul>
-</section>
-
-
-<!-- sidebar: style can be found in sidebar.less -->
-</aside>
-@endsection
-
-@section('content-title','Data Peserta Didik')
-
-@section('breadcrumb')
-  <li><a href="/dashboard"><i class="fa fa-home"></i> Dashboard</a></li>
-  <li> Kelola Peserta Didik</li>
-  <li> Daftar Peserta Didik</li>
-  <li> Detail Peserta Didik</li>
-@endsection
+@extends('layouts.master')
 
 @section('content')
+
+  <section class="content-header">
+    <h1>
+      Data Peserta Didik
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li class="active"><a href="/pesertadidik"></i>Daftar Peserta Didik</a></li>
+      <li> Detail Data Peserta Didik</li>
+    </ol>
+  </section>
+
+
 <section class="content" style="padding-top:0;">
 	<div class="box box-primary">
-        <div class="box-header with-border">
-          <div class="col-md-3 col-sm-4"><h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> Detail Peserta Didik </h4>
-          </div>
-          <div align="right">
-                <a href="/listpesertadidik" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
-          </div>  
-        </div>
+      <div class="box-header with-border">
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Detail Data Peserta Didik</h3> 
+      <div style="float: right;">
+      <div style="clear: both;"></div>
+      <div align="right">
+        <a href="/pesertadidik" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+      </div>
+      </div>
+    </div>
+
         <div class="box-body">
           <table class="table">
             <tr>
               <td width="200px">No Induk Siswa</td>
               <td width="5px">:</td>
-              <td>{{$detailpesertadidik->nis}}</td>
+              <td>{{$pesertadidiks->nis}}</td>
             </tr>
             <tr> 
               <td>Nama Lengkap Siswa</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->nm_siswa}}</td>
+              <td>{{$pesertadidiks->nm_siswa}}</td>
             </tr>
             <tr>
               <td>Jenis Kelamin</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->jns_kelamin}}</td>
+              <td>{{$pesertadidiks->jns_kelamin}}</td>
             </tr>
             <tr>
               <td>Tempat lahir</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->tmp_lahir}}</td>
+              <td>{{$pesertadidiks->tmp_lahir}}</td>
             </tr>
             <tr>
               <td>Tanggal lahir</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->tgl_lahir}}</td>
+              <td>{{$pesertadidiks->tgl_lahir}}</td>
             </tr>
             <tr>
               <td>Agama</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->agama}}</td>
+              <td>{{$pesertadidiks->agama}}</td>
             </tr>
             <tr>
               <td>Alamat Siswa</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->alamat_siswa}}</td>
+              <td>{{$pesertadidiks->alamat_siswa}}</td>
             </tr>
             <tr>
               <td>Provinsi</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->provinsi}}</td>
+              <td>{{$pesertadidiks->provinsi}}</td>
             </tr>
             <tr>
               <td>Kabupaten</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->kabupaten}}</td>
+              <td>{{$pesertadidiks->kabupaten}}</td>
             </tr>
             <tr>
               <td>No Telpon</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->no_tlpn}}</td>
+              <td>{{$pesertadidiks->no_tlpn}}</td>
             </tr>
             <tr>
               <td>Email</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->email}}</td>
+              <td>{{$pesertadidiks->email}}</td>
             </tr>
             <tr>
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->tahun_ajaran}}</td>
+              <td>{{$pesertadidiks->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Jurusan</td>
               <td>:</td>
-              <td>{{$detailpesertadidik->jurusan}}</td>
+              <td>{{$pesertadidiks->jurusan}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>
               <td>:</td>
               <td>
-                <?php if($detailpesertadidik->sts_siswa == 0)
+                <?php if($pesertadidiks->sts_siswa == 0)
                      {
                         echo "Non Aktif";
                      }
-                      elseif($detailpesertadidik->sts_siswa == 1)
+                      elseif($pesertadidiks->sts_siswa == 1)
                     {
                         echo "Aktif";
                     }
@@ -175,12 +115,12 @@
             <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
-              <td>{{$detailpesertadidik->created_at}}</td>
+              <td>{{$pesertadidiks->created_at}}</td>
             </tr>
             <tr>
               <td>Tanggal Diupdate</td>
               <td>:</td> 
-              <td>{{$detailpesertadidik->updated_at}}</td>
+              <td>{{$pesertadidiks->updated_at}}</td>
             </tr>
            </table> 
            
@@ -193,9 +133,6 @@
               </a>
           </div>
       </div>
-				
- 
+</div>
 </section>	
 @endsection
-
-@section('content-footer')

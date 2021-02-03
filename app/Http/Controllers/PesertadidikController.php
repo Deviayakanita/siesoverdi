@@ -20,25 +20,10 @@ class PesertadidikController extends Controller
      */
     public function index()
     {
-        return view('peserta_didik.index');
-    }
-
-
-    public function list()
-    {
         $pesertadidiks = Pesertadidik::all();
-        return view('peserta_didik/listpesertadidik', compact('pesertadidiks'));
-    } 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('peserta_didik/index', compact('pesertadidiks'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +32,7 @@ class PesertadidikController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         Pesertadidik::create([
             'nm_siswa' => request('nm_siswa'),
             'id_user' => Auth::user()->id,
@@ -66,7 +51,7 @@ class PesertadidikController extends Controller
             'sts_siswa' => request('sts_siswa'),
             'keterangan' => request('keterangan'),
         ]);
-        return redirect('listpesertadidik');
+        return redirect('/pesertadidik');
     }
 
     /**
@@ -77,7 +62,8 @@ class PesertadidikController extends Controller
      */
     public function show($id)
     {
-        //
+        $pesertadidiks = Pesertadidik::find($id);
+        return view ('peserta_didik/detailpesertadidik', compact('pesertadidiks'));
     }
 
     /**
@@ -88,34 +74,8 @@ class PesertadidikController extends Controller
      */
     public function edit($id)
     {
-        $pesertadidik = Pesertadidik::find($id);
-        return view('peserta_didik/editpesertadidik', compact('pesertadidik'));
-    }
-
-    public function editpesertadidik (Request $request, $id)
-    {
-
-         DB::table('peserta_didik')->where('id_siswa', $id)
-            -> update([
-            'nm_siswa' => request('nm_siswa'),
-            'id_user' => Auth::user()->id,
-            'jns_kelamin' => request('jns_kelamin'),
-            'nis' => request('nis'),
-            'tmp_lahir' => request('tmp_lahir'),
-            'tgl_lahir' => request('tgl_lahir'),
-            'agama' => request('agama'),
-            'alamat_siswa' => request('alamat_siswa'),
-            'provinsi' => request('provinsi'),
-            'kabupaten' => request('kabupaten'),
-            'no_tlpn' => request('no_tlpn'),
-            'email' => request('email'),
-            'tahun_ajaran' => request('tahun_ajaran'),
-            'jurusan' => request('jurusan'),
-            'sts_siswa' => request('sts_siswa'),
-            'keterangan' => request('keterangan'),
-            ]);
-
-        return redirect('listpesertadidik');
+        $pesertadidiks = Pesertadidik::find($id);
+        return view('peserta_didik/editpesertadidik', compact('pesertadidiks'));
     }
 
     /**
@@ -125,16 +85,30 @@ class PesertadidikController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
-        //
+        $pesertadidiks = Pesertadidik::find($id);
+        $pesertadidiks->nm_siswa = $request->nm_siswa;
+        $pesertadidiks->id_user = Auth::user()->id;
+        $pesertadidiks->nis = $request->nis;
+        $pesertadidiks->tmp_lahir = $request->tmp_lahir;
+        $pesertadidiks->tgl_lahir = $request->tgl_lahir;
+        $pesertadidiks->agama = $request->agama;
+        $pesertadidiks->alamat_siswa = $request->alamat_siswa;
+        $pesertadidiks->provinsi = $request->provinsi;
+        $pesertadidiks->kabupaten = $request->kabupaten;
+        $pesertadidiks->no_tlpn = $request->no_tlpn;
+        $pesertadidiks->email = $request->email;
+        $pesertadidiks->tahun_ajaran = $request->tahun_ajaran;
+        $pesertadidiks->jurusan = $request->jurusan;
+        $pesertadidiks->sts_siswa = $request->sts_siswa;
+        $pesertadidiks->keterangan = $request->keterangan;
+        $pesertadidiks->save();
+
+        return redirect('/pesertadidik');
     }
 
-    public function detailpesertadidik($id)
-    {
-        $detailpesertadidik = Pesertadidik::find($id);
-        return view ('peserta_didik/detailpesertadidik',['detailpesertadidik' => $detailpesertadidik]);
-    }
 
     /**
      * Remove the specified resource from storage.
