@@ -19,26 +19,11 @@ class MutasimasukController extends Controller
      */
     public function index()
     {
-        $pesertadidik1 = Pesertadidik::all();
-        return view('mutasi_peserta_didik.mutasimasuk',[
-            'pesertadidik1' => $pesertadidik1,
-        ]);
-    }
-
-    public function list()
-    {
         $mutasimasuks = Mutasimasuk::all();
-        return view('mutasi_peserta_didik/listmtsmasuk', compact('mutasimasuks'));
-    }
+        $pesertadidik = Pesertadidik::all();
+       
+        return view('mutasi_peserta_didik/index_mutasimasuk', compact('mutasimasuks','pesertadidik'));
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -60,7 +45,7 @@ class MutasimasukController extends Controller
             'status_mutasi' => request('status_mutasi'),
         ]);
 
-        return redirect('listmtsmasuk');
+        return redirect('/mutasimasuk');
     }
 
     /**
@@ -71,7 +56,8 @@ class MutasimasukController extends Controller
      */
     public function show($id)
     {
-        //
+        $mutasimasuks = Mutasimasuk::find($id);
+        return view ('mutasi_peserta_didik/detailmutasimasuk', compact('mutasimasuks'));
     }
 
     /**
@@ -82,30 +68,10 @@ class MutasimasukController extends Controller
      */
     public function edit($id)
     {
-        $pesertadidik2 = Pesertadidik::all();
-        $mutasimasuk = Mutasimasuk::find($id);
-        return view('mutasi_peserta_didik/editmtsmasuk', compact('mutasimasuk','pesertadidik2'));
+        $pesertadidik = Pesertadidik::all();
+        $mutasimasuks = Mutasimasuk::find($id);
+        return view('mutasi_peserta_didik/editmtsmasuk', compact('mutasimasuks','pesertadidik'));
     }
-
-    public function editmutasimasuk (Request $request, $id)
-    {
-         DB::table('mutasi_masuk')->where('id_mut_msk', $id)
-            -> update([
-            'no_srt_pindah' => request('no_srt_pindah'),
-            'id_siswa' => request('nis'),
-            'asal_sekolah' => request('asal_sekolah'),
-            'tingkat_kelas' => request('tingkat_kelas'),
-            'tgl_masuk' => request('tgl_masuk'),
-            'alasan_pindah' => request('alasan_pindah'),
-            'status_mutasi' => request('status_mutasi'),
-            ]);
-
-        return redirect('listmtsmasuk');
-
-    }
-
-
-
 
     /**
      * Update the specified resource in storage.
@@ -116,14 +82,19 @@ class MutasimasukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $mutasimasuks = Mutasimasuk::find($id);
+        $mutasimasuks->no_srt_pindah = $request->no_srt_pindah;
+        $mutasimasuks->id_siswa = $request->nis;
+        $mutasimasuks->asal_sekolah = $request->asal_sekolah;
+        $mutasimasuks->tingkat_kelas = $request->tingkat_kelas;
+        $mutasimasuks->tgl_masuk = $request->tgl_masuk;
+        $mutasimasuks->alasan_pindah = $request->alasan_pindah;
+        $mutasimasuks->status_mutasi = $request->status_mutasi;
+        $mutasimasuks->save(); 
+
+        return redirect('/mutasimasuk');
     }
 
-    public function detailmutasimasuk($id)
-    {
-        $detailmutasimasuk = Mutasimasuk::find($id);
-        return view ('mutasi_peserta_didik/detailmutasimasuk',['detailmutasimasuk' => $detailmutasimasuk]);
-    }
 
     /**
      * Remove the specified resource from storage.

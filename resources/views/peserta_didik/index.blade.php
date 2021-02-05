@@ -46,8 +46,8 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NIS</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Kelamin</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tanggal Lahir</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">No Telepon</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tempat Tanggal Lahir</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tahun Ajaran</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Peserta Didik</th>
                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                     </tr>
@@ -62,15 +62,15 @@
                                 <td>{{ $pesertadidik->nis }}</td>
                                 <td>{{ $pesertadidik->nm_siswa }}</td>
                                 <td>{{ $pesertadidik->jns_kelamin }}</td>
-                                <td>{{ $pesertadidik->tgl_lahir }}</td>
-                                <td>{{ $pesertadidik->no_tlpn }}</td>
+                                <td>{{ $pesertadidik->tmp_lahir }}, {{Carbon\Carbon::parse($pesertadidik->tgl_lahir)->format('d F Y')}}</td>
+                                <td>{{ $pesertadidik->tahun_ajaran }}</td>
                                 <td>
                                 <?php if($pesertadidik->sts_siswa == 0)
                                 {
                                   echo "Non Aktif";
                                 }
                                   elseif($pesertadidik->sts_siswa == 1)
-                                {
+                                {  
                                   echo "Aktif";
                                 }
                                 else
@@ -196,8 +196,8 @@
                            <label for="inputState">Status Siswa</label>
                            <select id="inputState" class="form-control" name="sts_siswa">
                              <option selected>-- Pilih Status --</option>
-                             <option value="1">AKTIF</option>
-                             <option value="0">NON AKTIF</option>
+                             <option value="1">Aktif</option>
+                             <option value="0">Non Aktif</option>
                            </select>
                          </div>
                       </div>

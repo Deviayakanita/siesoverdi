@@ -14,14 +14,14 @@
   </section>
 
 
-<section class="content" style="padding-top:0;">
+<section class="content">
 	<div class="box box-primary">
       <div class="box-header with-border">
         <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Detail Data Peserta Didik</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
-        <a href="/pesertadidik" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+        <a href="/pesertadidik" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
       </div>
       </div>
     </div>

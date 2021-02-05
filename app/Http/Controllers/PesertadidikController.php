@@ -33,6 +33,7 @@ class PesertadidikController extends Controller
      */
     public function store(Request $request)
     { 
+        
         Pesertadidik::create([
             'nm_siswa' => request('nm_siswa'),
             'id_user' => Auth::user()->id,

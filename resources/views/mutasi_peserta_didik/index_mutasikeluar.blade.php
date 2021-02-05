@@ -1,0 +1,205 @@
+@extends('layouts.master')
+
+@section('content')
+
+  <section class="content-header">
+    <h1>
+      Data Mutasi Keluar
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li> Daftar Mutasi Masuk</li>
+    </ol>
+  </section>
+
+<section class="content">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-out"></i> Daftar Mutasi Masuk</h3>  
+        <div style="float: right;">
+        <div style="clear: both;"></div>
+          @if(Auth::user() && Auth::user()->level == 0)
+          <div>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
+              <i class="fa fa-pencil"></i> Tambah Data
+              </button>
+          @endif 
+              <button type="button" class="btn btn-success" align="right">
+              <i class="fa fa-print"></i> Cetak
+              </button>
+          </div>
+        </div>
+        </div>
+
+              <div class="box-body">
+              <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                <div class="row">
+             </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                <table id='example1' class="table table-hover table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                    <thead>
+                    <tr role="row">
+                    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">No Surat Pindah</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NIS</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tanggal Pindah</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Sekolah Tujuan</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Data</th>
+                    <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $i=1;
+                        @endphp
+                        @foreach ($mutasikeluars as $mutasikeluar)
+                            <tr>
+                                <td>{{ $i }}</td>
+                                <td>{{ $mutasikeluar->no_srt_pindah }}</td>
+                                <td>{{ $mutasikeluar->pesertadidik->nis }}</td>
+                                <td>{{ $mutasikeluar->pesertadidik->nm_siswa }}</td>
+                                <td>{{ $mutasikeluar->tgl_pindah }}</td>
+                                <td>{{ $mutasikeluar->sekolah_tujuan }}</td>
+                                <td>
+                                <?php if($mutasikeluar->status_mutasi == 0)
+                                {
+                                  echo "Non Aktif";
+                                }
+                                  elseif($mutasikeluar->status_mutasi == 1)
+                                {
+                                  echo "Aktif";
+                                }
+                                else
+                                {
+                                  echo "Non Aktif";
+                                }
+                                ?>
+                                </td>
+                                <td style="text-align: center;">
+                                  @if(Auth::user() && Auth::user()->level == 0)
+                                  <a href="/mutasikeluar/edit/{{ $mutasikeluar->id_mut_klr }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
+                                  @endif
+                                  <a href="/mutasikeluar/show/{{ $mutasikeluar->id_mut_klr }}"><i class="fa fa-eye btn-info btn-sm"></i></a> 
+                                </td>
+                            </tr>
+                            @php
+                                $i++;
+                            @endphp
+                        @endforeach
+                      </tbody>
+                </table>
+            </div>
+        </div>
+    <!-- /.box-body -->
+   </div>
+  </div>
+</div>
+</div>
+
+<!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="5" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-sign-out"></i> Masukan Data Mutasi Keluar</h4>
+                  </div>
+                  <div class="box box-primary">
+                  <div class="modal-body">
+                    <form action="/mutasikeluar/store" method="post">{{csrf_field()}}
+
+                   
+                    <div class="form-group" style="padding: 0; padding-right: 10px">
+                      <label for="inputsurat">No Surat Pindah</label>
+                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah">
+                    </div>
+
+                    <div class="form-group" style="padding: 0; padding-right: 10px">
+                      <label for="inputState">No Induk Siswa</label>
+                      <select style="width: 100%;"id="inputNIS" class="form-control select2" name="nis">
+                        <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
+                        @foreach ($pesertadidik as $item)
+                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+
+                    <div class="form-row">
+                    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+                      <label for="inputnama">Nama Lengkap Siswa</label>
+                      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
+                    </div>
+                    <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+                      <label for="inputtahun">Tahun Ajaran</label>
+                      <input type="text" class="form-control" id="inputtahunajaran" name="tahun_ajaran" readonly>
+                    </div>
+
+                    <div class="form-group" style="padding: 0; padding-right: 10px">
+                      <label for="inputasalsekolah">Sekolah Tujuan</label>
+                      <input type="text" class="form-control" id="inputsekolahtujuan" name="sekolah_tujuan">
+                    </div>
+
+                    <div class="form-group" style="padding: 0; padding-right: 10px">
+                      <label for="inputState">Tingkat Kelas</label>
+                      <select id="inputState" class="form-control" name="tingkat_kelas">
+                        <option selected>-- Pilih Tingkat Kelas --</option>
+                        <option value="X">X</option>
+                        <option value="XI">XI</option>
+                        <option value="XII">XII</option>
+                      </select>
+                    </div>
+                        
+                    <div class="form-group" style="padding: 0; padding-right: 10px">
+                      <label for="input_tglmasuk">Tanggal pindah</label>
+                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah">
+                    </div>
+
+                    <div class="form-group" style="padding: 0; padding-right: 10px">
+                      <label for="inputalasan">Alasan Pindah</label>
+                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah"></textarea>
+                    </div>
+
+                     <div class="form-group" style="padding: 0; padding-right: 10px">
+                      <label for="inputState">Status Data</label>
+                      <select id="inputState" class="form-control" name="status_mutasi">
+                        <option selected>-- Status Data Mutasi --</option>
+                        <option value="1">Aktif</option>
+                        <option value="0">Non Aktif</option>
+                      </select>
+                    </div>
+                   <div>
+                      <button type="submit" class="btn btn-primary" style="margin-left: 2px">SIMPAN DATA</button>
+                    </div>
+
+                 </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+</section>    
+@endsection
+
+@section('script')
+<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
+<script type="text/javascript">
+  $('.select2').select2();
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).data('nama');
+    var tahun_ajaran = $('option:selected', this).data('tahun');
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahunajaran').val(tahun_ajaran);
+
+  });
+</script>
+@endsection

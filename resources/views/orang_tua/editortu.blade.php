@@ -24,7 +24,7 @@
                 <div style="float: right;">
                 <div style="clear: both;"></div>
                 <div align="right">
-                  <a href="/pesertadidik" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+                  <a href="/orangtua" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
                 </div>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                     <select id="inputNIS" class="form-control select2" name="nis">
                       <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                       @foreach ($pesertadidik as $item)
-                      <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                      <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                       @endforeach
                     </select>
                   </div>
@@ -43,11 +43,11 @@
                   <div class="form-row">
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                     <label for="inputnama">Nama Lengkap Siswa</label>
-                    <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
+                    <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" value="{{$orangtuas->pesertadidik->nm_siswa}}"readonly>
                   </div>
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                     <label for="inputnama">Tahun Ajaran Siswa</label>
-                    <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
+                    <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" value="{{$orangtuas->pesertadidik->tahun_ajaran}}" readonly>
                   </div>
                 </div>
 
@@ -99,7 +99,7 @@
 
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputState">Penghasilan Ibu</label>
-                    <select id="inputState" class="form-control" name="penghasilan_ibu" value="{{$orangtua->penghasilan_ibu}}">
+                    <select id="inputState" class="form-control" name="penghasilan_ibu" value="{{$orangtuas->penghasilan_ibu}}">
                       <option selected>-- Pilih Penghasilan --</option>
                       <option value="Kurang dari Rp.500,000" @if($orangtuas->penghasilan_ibu=='Kurang dari Rp.500,000')selected @endif>Kurang dari Rp.500,000</option>
                       <option value="Rp.500,000 - Rp.1,000,000" @if($orangtuas->penghasilan_ibu=='Rp.500,000 - Rp.1,000,000')selected @endif>Rp.500,000 - Rp.1,000,000</option>
@@ -127,6 +127,7 @@
               </div>
             </form>
           </div>
+        </div>
         </section>  
 @endsection
 

@@ -21,12 +21,9 @@ class OrangtuaController extends Controller
     public function index()
     {
         $orangtuas = Orangtua::all();
-        return view('orang_tua/index', compact('orangtuas'));
-
         $pesertadidik = Pesertadidik::all();
-        return view('orang_tua./ndex', [
-            'pesertadidik' => $pesertadidik,
-        ]);
+       
+        return view('orang_tua/index', compact('orangtuas','pesertadidik'));
     }
     /**
      * Store a newly created resource in storage.

@@ -25,7 +25,7 @@
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
-        <a href="/pesertadidik" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+        <a href="/pesertadidik" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
       </div>
       </div>
     </div>

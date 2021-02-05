@@ -8,23 +8,24 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-      <li class="active"><a href="/pesertadidik"></i>Daftar Orangtua</a></li>
+      <li class="active"><a href="/orangtua"></i>Daftar Orangtua</a></li>
       <li> Detail Data Orang Tua</li>
     </ol>
   </section>
 
 
-<section class="content" style="padding-top:0;">
+<section class="content">
   <div class="box box-primary">
       <div class="box-header with-border">
       <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Detail Data Orang Tua</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
-        <a href="/pesertadidik" class="btn btn-default"><i class="fa fa-long-arrow-left"></i></a>
+        <a href="/orangtua" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
       </div>
       </div>
     </div>
+
         <div class="box-body">
           <table class="table">
             <tr>
@@ -141,8 +142,6 @@
           </div>
       </div>
 				
- 
+ </div>
 </section>	
 @endsection
-
-@section('content-footer')
