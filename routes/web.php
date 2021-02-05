@@ -17,15 +17,18 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::post('/postlogin', 'App\Http\Controllers\AuthController@postlogin');
+
 Route::post('/logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
+Route::post('/postlogin', 'App\Http\Controllers\AuthController@postlogin');
+Route::get('/dashboard','App\Http\Controllers\DashboardController@index');
 Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
-Route::get('/dashboard3', function () {
-    return view('dashboard.coba');
-});
+// Route::get('/dashboard3', function () {
+//     return view('dashboard.coba');
+// });
 
 	// Route oleh Administrator
 	Route::group(['middleware' => 'IsAdmin'], function(){
+
 	// 	Route Peserta Didik
 		Route::get('/pesertadidik', 'App\Http\Controllers\PesertadidikController@index');
 		Route::post('/pesertadidik/store', 'App\Http\Controllers\PesertadidikController@store');
@@ -33,7 +36,7 @@ Route::get('/dashboard3', function () {
 		Route::patch('/pesertadidik/update/{id}','App\Http\Controllers\PesertadidikController@update');
 		Route::get('/pesertadidik/show/{id}','App\Http\Controllers\PesertadidikController@show');
 	
-	// 	Route Orangtua
+	// // 	Route Orangtua
 		Route::get('/orangtua', 'App\Http\Controllers\OrangtuaController@index');
 		Route::post('/orangtua/store', 'App\Http\Controllers\OrangtuaController@store');
 		Route::get('/orangtua/edit/{id}','App\Http\Controllers\OrangtuaController@edit');
@@ -60,6 +63,7 @@ Route::get('/dashboard3', function () {
 		Route::get('/alumni/edit/{id}','App\Http\Controllers\AlumniController@edit');
 		Route::patch('/alumni/update/{id}','App\Http\Controllers\AlumniController@update');
 		Route::get('/alumni/show/{id}','App\Http\Controllers\AlumniController@show');
+
 	});
 
 

@@ -3,8 +3,8 @@
 <section class="sidebar">
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header" style="font-size: 12px">DASHBOARD</li>
-    <li class="{{ (Request()->segment(1) == 'dashboard3') ? 'active' : ''}}">
-        <a href="{{url('/dashboard3')}}">
+    <li class="{{ (Request()->segment(1) == 'dashboard') ? 'active' : ''}}">
+        <a href="{{url('/dashboard')}}">
             <i class="fa fa-home"></i><span> Dashboard</span>
         </a>
     </li>

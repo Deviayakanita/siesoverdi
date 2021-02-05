@@ -19,16 +19,16 @@
         <div class="box-header">
         <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Daftar Peserta Didik</h3>  <div style="float: right;">
           <div style="clear: both;"></div>
-          @if(Auth::user() && Auth::user()->level == 0)
           <div>
+          @if(Auth::user() && Auth::user()->level == 0)
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
               <i class="fa fa-pencil"></i> Tambah Data
               </button>
-          @endif 
+          @endif
               <button type="button" class="btn btn-success" align="right">
               <i class="fa fa-print"></i> Cetak
-              </button>
-          </div>
+              </button>       
+        </div>
         </div>
         </div>
               

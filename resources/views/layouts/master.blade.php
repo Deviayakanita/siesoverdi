@@ -114,29 +114,7 @@
 <script src="{{url('adminLTE/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('adminLTE/dist/js/demo.js')}}"></script>
-<!-- js orangtua tambah -->
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahun').val(tahun_ajaran);
-  });
-</script>
-<!-- js orangtua update -->
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-  $('#inputnamasiswa').val(nm_siswa);
-  $('#inputtahun').val(tahun_ajaran);
-  });
-</script>
-<!-- js mutasimasuk tambah -->
+<!-- js data peserta didik -->
 <script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
   $('.select2').select2();
@@ -153,61 +131,7 @@
     $('#inputalamat').val(alamat_siswa);
   });
 </script>
-<!-- js mutasimasuk update -->
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    var provinsi = $('option:selected', this).data('provinsi');
-    var kabupaten = $('option:selected', this).data('kabupaten');
-    var alamat_siswa = $('option:selected', this).data('alamat');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahun').val(tahun_ajaran);
-    $('#inputprovinsi').val(provinsi);
-    $('#inputkabupaten').val(kabupaten);
-    $('#inputalamat').val(alamat_siswa);
-  });
-</script>
-<!-- js mutasikeluar tambah -->
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahunajaran').val(tahun_ajaran);
 
-  });
-</script>
-<!-- js mutasikeluar update -->
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahunajaran').val(tahun_ajaran);
-
-  });
-</script>
-<!-- js alumni tambah -->
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahunajaran').val(tahun_ajaran);
-
-  });
-</script>
-<!-- js alumni update -->
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
   $('.select2').select2();
   $('#inputNIS').change(function() {

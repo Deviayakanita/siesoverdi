@@ -17,19 +17,18 @@
   <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-out"></i> Daftar Mutasi Masuk</h3>  
-        <div style="float: right;">
-        <div style="clear: both;"></div>
-          @if(Auth::user() && Auth::user()->level == 0)
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-out"></i> Daftar Mutasi Keluar</h3>  <div style="float: right;">
+          <div style="clear: both;"></div>
           <div>
+          @if(Auth::user() && Auth::user()->level == 0)
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
               <i class="fa fa-pencil"></i> Tambah Data
               </button>
-          @endif 
+          @endif
               <button type="button" class="btn btn-success" align="right">
               <i class="fa fa-print"></i> Cetak
-              </button>
-          </div>
+              </button>       
+        </div>
         </div>
         </div>
 
@@ -188,18 +187,4 @@
   </div>
 </div>
 </section>    
-@endsection
-
-@section('script')
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahunajaran').val(tahun_ajaran);
-
-  });
-</script>
 @endsection
