@@ -46,7 +46,7 @@
     <li class="header" style="font-size: 12px" >DATA PESERTA DIDIK</li>
     <li class="treeview">
         <a href="#">
-        <i class="fa fa-user"></i><span> Kelola Peserta Didik</span>
+        <i class="fa fa-user"></i><span> Peserta Didik</span>
             <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -58,7 +58,7 @@
     </li>
     <li class="treeview">
         <a href="#">
-        <i class="fa fa-exchange"></i><span> Kelola Mutasi</span>
+        <i class="fa fa-exchange"></i><span> Mutasi</span>
             <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -70,7 +70,7 @@
     </li>
     <li class="{{ (Request()->segment(1) == 'alumni') ? 'active' : ''}}">
         <a href="{{url('alumni')}}">
-        <i class="fa fa-files-o"></i><span> Kelola Alumni</span>
+        <i class="fa fa-files-o"></i><span> Alumni</span>
         </a>
     </li>
     <li class="header" style="font-size: 12px" >STATISTIK</li>
@@ -83,9 +83,9 @@
         </a>
         <ul class="treeview-menu">
             <li class="{{ (Request()->segment(1) == 'statistikpesertadidik') ? 'active' : ''}}"><a href="statistipesertadiidk"><i class="fa fa-circle-o text-aqua"></i> Peserta Didik</a></li>
-            <li class="{{ (Request()->segment(1) == 'statistikorangtua') ? 'active' : ''}}"><a href="statistikorangtua"><i class="fa fa-circle-o text-aqua"></i> Orang Tua </a></li>
-            <li class="{{ (Request()->segment(1) == 'statistikmutasi') ? 'active' : ''}}"><a href="statistikmutasi"><i class="fa fa-circle-o text-aqua"></i> Mutasi Peserta Didik</a></li>
-            <li class="{{ (Request()->segment(1) == 'statistikalumni') ? 'active' : ''}}"><a href="statistikalumni"><i class="fa fa-circle-o text-aqua"></i> Alumni Peserta Didik</a></li>        
+            <li class="{{ (Request()->segment(1) == 'statistikorangtua') ? 'active' : ''}}"><a href="statistikorangtua"><i class="fa fa-circle-o text-aqua"></i> Mutasi Masuk </a></li>
+            <li class="{{ (Request()->segment(1) == 'statistikmutasi') ? 'active' : ''}}"><a href="statistikmutasi"><i class="fa fa-circle-o text-aqua"></i> Mutasi Keluar </a></li>
+            <li class="{{ (Request()->segment(1) == 'statistikalumni') ? 'active' : ''}}"><a href="statistikalumni"><i class="fa fa-circle-o text-aqua"></i> Alumni </a></li>        
         </ul>
     </li>
     @endif

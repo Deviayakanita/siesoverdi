@@ -27,8 +27,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 // });
 
 	// Route oleh Administrator
-	Route::group(['middleware' => 'IsAdmin'], function(){
-
+	Route::group(['middleware' => ['auth','checkRole:IsAdmin,IsKepalaSekolah']], function(){	
 	// 	Route Peserta Didik
 		Route::get('/pesertadidik', 'App\Http\Controllers\PesertadidikController@index');
 		Route::post('/pesertadidik/store', 'App\Http\Controllers\PesertadidikController@store');

@@ -62,7 +62,7 @@
                                 <td>{{ $mutasikeluar->no_srt_pindah }}</td>
                                 <td>{{ $mutasikeluar->pesertadidik->nis }}</td>
                                 <td>{{ $mutasikeluar->pesertadidik->nm_siswa }}</td>
-                                <td>{{ $mutasikeluar->tgl_pindah }}</td>
+                                <td>{{Carbon\Carbon::parse($mutasikeluar->tgl_pindah)->format('d F Y')}}</td>
                                 <td>{{ $mutasikeluar->sekolah_tujuan }}</td>
                                 <td>
                                 <?php if($mutasikeluar->status_mutasi == 0)
@@ -117,12 +117,12 @@
                    
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputsurat">No Surat Pindah</label>
-                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah">
+                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" required="required" autocomplete="off">
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">No Induk Siswa</label>
-                      <select style="width: 100%;"id="inputNIS" class="form-control select2" name="nis">
+                      <select style="width: 100%;"id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
                         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
@@ -142,12 +142,12 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputasalsekolah">Sekolah Tujuan</label>
-                      <input type="text" class="form-control" id="inputsekolahtujuan" name="sekolah_tujuan">
+                      <input type="text" class="form-control" id="inputsekolahtujuan" name="sekolah_tujuan" required="required" autocomplete="off">
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Tingkat Kelas</label>
-                      <select id="inputState" class="form-control" name="tingkat_kelas">
+                      <select id="inputState" class="form-control" name="tingkat_kelas" required="required" autocomplete="off">
                         <option selected>-- Pilih Tingkat Kelas --</option>
                         <option value="X">X</option>
                         <option value="XI">XI</option>
@@ -157,17 +157,17 @@
                         
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="input_tglmasuk">Tanggal pindah</label>
-                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah">
+                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah" required="required" autocomplete="off">
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputalasan">Alasan Pindah</label>
-                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah"></textarea>
+                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off"></textarea>
                     </div>
 
                      <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Status Data</label>
-                      <select id="inputState" class="form-control" name="status_mutasi">
+                      <select id="inputState" class="form-control" name="status_mutasi" required="required" autocomplete="off">
                         <option selected>-- Status Data Mutasi --</option>
                         <option value="1">Aktif</option>
                         <option value="0">Non Aktif</option>
@@ -186,5 +186,5 @@
     </div> 
   </div>
 </div>
-</section>    
+</section>  
 @endsection

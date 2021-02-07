@@ -18,9 +18,9 @@ class CekLevel
     {
         $user = \App\Models\User::where('username', $request->username)->first();
         if ($user->level == '0') {
-            return response()->view('layout/dashboard_admin');
+            return response()->view('dashboard/coba');
         } elseif ($user->level == '1') {
-            return response()->view('layout/dashboard_kepsek');
+            return response()->view('dashboard/coba');
         }
         else
         {

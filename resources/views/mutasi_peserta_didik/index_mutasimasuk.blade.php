@@ -116,12 +116,12 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputsurat">No Surat Pindah</label>
-                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah">
+                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" required="required" autocomplete="off">
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">No Induk Siswa</label>
-                      <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis">
+                      <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
                         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" data-provinsi="{{ $item->provinsi }}" data-kabupaten="{{ $item->kabupaten }}" data-alamat="{{ $item->alamat_siswa }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
@@ -158,13 +158,13 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputasalsekolah">Asal Sekolah</label>
-                      <input type="text" class="form-control" id="inputasalsekolah" name="asal_sekolah">
+                      <input type="text" class="form-control" id="inputasalsekolah" name="asal_sekolah" required="required" autocomplete="off">
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Tingkat Kelas</label>
-                      <select id="inputState" class="form-control" name="tingkat_kelas">
+                      <select id="inputState" class="form-control" name="tingkat_kelas" required="required" autocomplete="off">
                         <option selected>-- Pilih Tingkat Kelas --</option>
                         <option value="X">X</option>
                         <option value="XI">XI</option>
@@ -173,18 +173,18 @@
                     </div> 
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="input_tglmasuk">Tanggal Masuk</label>
-                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_masuk">
+                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_masuk" required="required" autocomplete="off">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputalasan">Alasan Pindah</label>
-                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah"></textarea>
+                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off"></textarea>
                     </div>
 
                      <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Status Data</label>
-                      <select id="inputState" class="form-control" name="status_mutasi">
+                      <select id="inputState" class="form-control" name="status_mutasi" required="required" autocomplete="off">
                         <option selected>-- Status Data Mutasi --</option>
                         <option value="1">Aktif</option>
                         <option value="0">Non Aktif</option>
@@ -202,5 +202,5 @@
       </div>
     </div> 
   </div>  
-</section>    
+</section> 
 @endsection

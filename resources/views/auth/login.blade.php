@@ -14,7 +14,7 @@
             <div class="wrap-login100">
                 <form action="/postlogin" method="POST" class="login100-form validate-form">
                     @csrf
-                    <span class="login100-form-logo" style="background-image: url('../asets/images/Logo Soverdi.jpg'); background-size: 104px; background-position: center;">
+                    <span class="login100-form-logo" style="background-image: url('../asets/images/Logo Soverdi.jpg'); background-size: 105px; background-position: center;">
                         <i class="zmdi zmdi-landscape"></i>
                     </span>
 

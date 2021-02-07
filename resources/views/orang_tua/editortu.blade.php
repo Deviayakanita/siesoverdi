@@ -32,7 +32,7 @@
                   <div class="box-body">  
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputState">No Induk Siswa</label>
-                    <select id="inputNIS" class="form-control select2" name="nis">
+                    <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                       <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                       @foreach ($pesertadidik as $item)
                       <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
@@ -53,23 +53,23 @@
 
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputnama">Nama Ayah</label>
-                    <input type="text" class="form-control" id="inputnama" name="nm_ayah" value="{{$orangtuas->nm_ayah}}">
+                    <input type="text" class="form-control" id="inputnama" name="nm_ayah" value="{{$orangtuas->nm_ayah}}" required="required" autocomplete="off">
                   </div>
 
                   <div class="form-row">
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                     <label for="inputpekerjaan">Pekerjaan Ayah</label>
-                    <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah" value="{{$orangtuas->job_ayah}}">
+                    <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah" value="{{$orangtuas->job_ayah}}" required="required" autocomplete="off">
                   </div>
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                     <label for="inputpendidikan">Pendidikan Terakhir</label>
-                    <input type="text" class="form-control" id="inputpendidikan" name="pddk_ayah" value="{{$orangtuas->pddk_ayah}}">
+                    <input type="text" class="form-control" id="inputpendidikan" name="pddk_ayah" value="{{$orangtuas->pddk_ayah}}" required="required" autocomplete="off">
                   </div>
                   </div>
 
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputState">Penghasilan Ayah</label>
-                    <select id="inputState" class="form-control" name="penghasilan_ayah" value="{{$orangtuas->penghasilan_ayah}}">
+                    <select id="inputState" class="form-control" name="penghasilan_ayah" value="{{$orangtuas->penghasilan_ayah}}" required="required" autocomplete="off">
                       <option selected>-- Pilih Penghasilan --</option>
                       <option value="Kurang dari Rp.500,000" @if($orangtuas->penghasilan_ayah=='Kurang dari Rp.500,000')selected @endif>Kurang dari Rp.500,000</option>
                       <option value="Rp.500,000 - Rp.1,000,000" @if($orangtuas->penghasilan_ayah=='Rp.500,000 - Rp.1,000,000')selected @endif>Rp.500,000 - Rp.1,000,000</option>
@@ -83,23 +83,23 @@
 
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputnama">Nama Ibu</label>
-                    <input type="text" class="form-control" id="inputnama" name="nm_ibu" value="{{$orangtuas->nm_ibu}}">
+                    <input type="text" class="form-control" id="inputnama" name="nm_ibu" value="{{$orangtuas->nm_ibu}}" required="required" autocomplete="off">
                   </div>
 
                   <div class="form-row">
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                     <label for="inputpekerjaan">Pekerjaan Ibu</label>
-                    <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu" value="{{$orangtuas->job_ibu}}">
+                    <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu" value="{{$orangtuas->job_ibu}}" required="required" autocomplete="off">
                   </div>
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                     <label for="inputpendidikan">Pendidikan Terakhir</label>
-                    <input type="text" class="form-control" id="inputpendidikan" name="pddk_ibu" value="{{$orangtuas->pddk_ibu}}">
+                    <input type="text" class="form-control" id="inputpendidikan" name="pddk_ibu" value="{{$orangtuas->pddk_ibu}}" required="required" autocomplete="off">
                   </div>
                   </div>
 
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputState">Penghasilan Ibu</label>
-                    <select id="inputState" class="form-control" name="penghasilan_ibu" value="{{$orangtuas->penghasilan_ibu}}">
+                    <select id="inputState" class="form-control" name="penghasilan_ibu" value="{{$orangtuas->penghasilan_ibu}}" required="required" autocomplete="off">
                       <option selected>-- Pilih Penghasilan --</option>
                       <option value="Kurang dari Rp.500,000" @if($orangtuas->penghasilan_ibu=='Kurang dari Rp.500,000')selected @endif>Kurang dari Rp.500,000</option>
                       <option value="Rp.500,000 - Rp.1,000,000" @if($orangtuas->penghasilan_ibu=='Rp.500,000 - Rp.1,000,000')selected @endif>Rp.500,000 - Rp.1,000,000</option>
@@ -113,7 +113,7 @@
                   
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputState">Status Data</label>
-                    <select id="inputState" class="form-control" name="sts_orang_tua" value="{{$orangtuas->sts_orang_tua}}">
+                    <select id="inputState" class="form-control" name="sts_orang_tua" value="{{$orangtuas->sts_orang_tua}}" required="required" autocomplete="off">
                       <option selected>-- Statut Data Orang Tua --</option>
                       <option value="1" @if($orangtuas->sts_orang_tua=='1') selected @endif>Aktif</option>
                       <option value="0" @if($orangtuas->sts_orang_tua=='0') selected @endif>Non Aktif</option>
@@ -129,17 +129,4 @@
           </div>
         </div>
         </section>  
-@endsection
-
-@section('script')
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-  $('#inputnamasiswa').val(nm_siswa);
-  $('#inputtahun').val(tahun_ajaran);
-  });
-</script>
 @endsection

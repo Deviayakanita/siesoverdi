@@ -34,7 +34,7 @@
     
         <div class="form-group" style="padding: 0; padding-right: 10px">
           <label for="inputState">No Induk Siswa</label>
-          <select id="inputNIS" class="form-control select2" name="nis">
+          <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
             <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
             @foreach ($pesertadidik as $item)
             <option @if ($item->id_siswa == $alumnis->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
@@ -54,7 +54,7 @@
 
         <div class="form-group" style="padding: 0; padding-right: 10px">
           <label for="inputState">Jenis Perguruan Tinggi</label>
-          <select id="inputState" class="form-control" name="jns_pt" value="{{$alumnis->jns_pt}}">
+          <select id="inputState" class="form-control" name="jns_pt" value="{{$alumnis->jns_pt}}" required="required" autocomplete="off">
             <option selected>-- Pilih Perguruan Tinggi --</option>
             <option value="Negri" @if($alumnis->jns_pt=='Negri') selected @endif>Negri</option>
             <option value="Swasta" @if($alumnis->jns_pt=='Swasta') selected @endif>Swasta</option>
@@ -64,23 +64,23 @@
         <div class="form-row">
         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
           <label for="inputnama">Nama Perguruan Tinggi</label>
-          <input type="text" class="form-control" id="inputnama" name="nm_pt" value="{{$alumnis->nm_pt}}">
+          <input type="text" class="form-control" id="inputnama" name="nm_pt" value="{{$alumnis->nm_pt}}" required="required" autocomplete="off">
         </div>
         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
           <label for="inputnamafk">Nama Fakultas</label>
-          <input type="text" class="form-control" id="inputnamafk" name="nm_fak" value="{{$alumnis->nm_fak}}">
+          <input type="text" class="form-control" id="inputnamafk" name="nm_fak" value="{{$alumnis->nm_fak}}" required="required" autocomplete="off">
         </div>
         </div>
 
        
         <div class="form-group" style="padding: 0; padding-right: 10px">
           <label for="inputnamajurus">Nama Jurusan</label>
-          <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" value="{{$alumnis->nm_jurusan}}">
+          <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" value="{{$alumnis->nm_jurusan}}" required="required" autocomplete="off">
         </div>
 
          <div class="form-group" style="padding: 0; padding-right: 10px">
           <label for="inputState">Status Data</label>
-          <select id="inputState" class="form-control" name="status_alumni" value="{{$alumnis->status_alumni}}">
+          <select id="inputState" class="form-control" name="status_alumni" value="{{$alumnis->status_alumni}}" required="required" autocomplete="off">
             <option selected>-- Status Data Alumni --</option>
             <option value="1" @if($alumnis->status_alumni=='1') selected @endif>Aktif</option>
             <option value="0" @if($alumnis->status_alumni=='0') selected @endif>Non Aktif</option>
@@ -98,17 +98,4 @@
 </div>
 </div>
 </section>  
-@endsection
-
-@section('script')
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahunajaran').val(tahun_ajaran);
-  });
-</script>
 @endsection

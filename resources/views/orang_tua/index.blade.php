@@ -119,7 +119,7 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="exampleFormControlselect2"> No Induk Siswa</label><br>
-                      <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis">
+                      <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
                         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
@@ -140,23 +140,23 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ayah</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_ayah">
+                      <input type="text" class="form-control" id="inputnama" name="nm_ayah" required="required" autocomplete="off">
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpekerjaan">Pekerjaan Ayah</label>
-                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah">
+                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah" required="required" autocomplete="off">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpendidikan">Pendidikan Terakhir</label>
-                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ayah">
+                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ayah" required="required" autocomplete="off">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Penghasilan Ayah</label>
-                      <select id="inputState" class="form-control" name="penghasilan_ayah">
+                      <select id="inputState" class="form-control" name="penghasilan_ayah" required="required" autocomplete="off">
                         <option selected>-- Pilih Penghasilan --</option>
                         <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
                         <option value="Rp.500,000 - Rp.1,000,000">Rp.500,000 - Rp.1,000,000</option>
@@ -170,23 +170,23 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ibu</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_ibu">
+                      <input type="text" class="form-control" id="inputnama" name="nm_ibu" required="required" autocomplete="off">
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpekerjaan">Pekerjaan Ibu</label>
-                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu">
+                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu" required="required" autocomplete="off">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpendidikan">Pendidikan Terakhir</label>
-                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ibu">
+                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ibu" required="required" autocomplete="off">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Penghasilan Ibu</label>
-                      <select id="inputState" class="form-control" name="penghasilan_ibu">
+                      <select id="inputState" class="form-control" name="penghasilan_ibu" required="required" autocomplete="off">
                         <option selected>-- Pilih Penghasilan --</option>
                         <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
                         <option value="Rp.500,000 - Rp.1,000,000">Rp.500,000 - Rp.1,000,000</option>
@@ -200,7 +200,7 @@
                     
                     <div class="form-group"style="padding: 0; padding-right: 10px">
                       <label for="inputState">Status Data</label>
-                      <select id="inputState" class="form-control" name="sts_orang_tua">
+                      <select id="inputState" class="form-control" name="sts_orang_tua" required="required" autocomplete="off">
                         <option selected>-- Status Data Orang Tua --</option>
                         <option value="1">Aktif</option>
                         <option value="0">Non Aktif</option>
@@ -217,5 +217,5 @@
       </div>
     </div> 
   </div>  
-</section>  
+</section>
 @endsection

@@ -115,7 +115,7 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">No Induk Siswa</label>
-                      <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis">
+                      <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
                         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
@@ -136,7 +136,7 @@
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Jenis Perguruan Tinggi</label>
-                      <select id="inputState" class="form-control" name="jns_pt">
+                      <select id="inputState" class="form-control" name="jns_pt" required="required" autocomplete="off">
                         <option selected>-- Pilih Jenis Perguruan Tinggi --</option>
                         <option value="Negri">Negri</option>
                         <option value="Swasta">Swasta</option>
@@ -144,24 +144,24 @@
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Perguruan Tinggi</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_pt">
+                      <input type="text" class="form-control" id="inputnama" name="nm_pt" required="required" autocomplete="off">
                     </div>
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnamafk">Nama Fakultas</label>
-                      <input type="text" class="form-control" id="inputnamafk" name="nm_fak">
+                      <input type="text" class="form-control" id="inputnamafk" name="nm_fak" required="required" autocomplete="off">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnamajurus">Nama Jurusan</label>
-                      <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan">
+                      <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" required="required" autocomplete="off">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Status Alumni</label>
-                      <select id="inputState" class="form-control" name="status_alumni">
+                      <select id="inputState" class="form-control" name="status_alumni" required="required" autocomplete="off">
                         <option selected>-- Status Alumni --</option>
                         <option value="1">Aktif</option>
                         <option value="0">Non Aktif</option>
@@ -180,5 +180,5 @@
       </div>
     </div> 
 </div>
-</section>    
+</section>  
 @endsection

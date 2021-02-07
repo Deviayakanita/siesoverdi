@@ -34,12 +34,12 @@
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputsurat">No Surat Pindah</label>
-      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" value="{{$mutasimasuks->no_srt_pindah}}">
+      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" value="{{$mutasimasuks->no_srt_pindah}}" required="required" autocomplete="off">
     </div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">No Induk Siswa</label>
-      <select id="inputNIS" class="form-control select2" name="nis">
+      <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
         @foreach ($pesertadidik as $item)
         <option @if ($item->id_siswa == $mutasimasuks->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
@@ -77,13 +77,13 @@
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputasalsekolah">Asal Sekolah</label>
-      <input type="text" class="form-control" id="inputasalsekolah" name="asal_sekolah" value="{{$mutasimasuks->asal_sekolah}}">
+      <input type="text" class="form-control" id="inputasalsekolah" name="asal_sekolah" value="{{$mutasimasuks->asal_sekolah}}" required="required" autocomplete="off">
     </div>
 
     <div class="form-row">
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="inputState">Tingkat Kelas</label>
-      <select id="inputState" class="form-control" name="tingkat_kelas" value="{{$mutasimasuks->tingkat_kelas}}">
+      <select id="inputState" class="form-control" name="tingkat_kelas" value="{{$mutasimasuks->tingkat_kelas}}" required="required" autocomplete="off">
         <option selected>-- Pilih Tingkat Kelas --</option>
         <option value="X" @if($mutasimasuks->tingkat_kelas=='X') selected @endif>X</option>
         <option value="XI" @if($mutasimasuks->tingkat_kelas=='XI') selected @endif>XI</option>
@@ -92,18 +92,18 @@
     </div>
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
       <label for="input_tglmasuk">Tanggal Masuk</label>
-      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_masuk" value="{{$mutasimasuks->tgl_masuk}}">
+      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_masuk" value="{{$mutasimasuks->tgl_masuk}}" required="required" autocomplete="off">
     </div>
     </div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputalasan">Alasan Pindah</label>
-      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah">{{$mutasimasuks->alasan_pindah}}</textarea>
+      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off">{{$mutasimasuks->alasan_pindah}}</textarea>
     </div>
 
      <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputState">Status Data</label>
-      <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasimasuks->status_mutasi}}">
+      <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasimasuks->status_mutasi}}" required="required" autocomplete="off">
         <option selected>-- Status Data Mutasi --</option>
         <option value="1" @if($mutasimasuks->status_mutasi=='1') selected @endif>Aktif</option>
         <option value="0" @if($mutasimasuks->status_mutasi=='0') selected @endif>Non Aktif</option>
@@ -118,23 +118,4 @@
 </form>
 </div>
 </section>  
-@endsection
-
-@section('script')
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    var provinsi = $('option:selected', this).data('provinsi');
-    var kabupaten = $('option:selected', this).data('kabupaten');
-    var alamat_siswa = $('option:selected', this).data('alamat');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahun').val(tahun_ajaran);
-    $('#inputprovinsi').val(provinsi);
-    $('#inputkabupaten').val(kabupaten);
-    $('#inputalamat').val(alamat_siswa);
-  });
-</script>
 @endsection
