@@ -38,7 +38,7 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="overflow-x: auto;">
                 <table id='example1' class="table table-hover table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
@@ -49,7 +49,6 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Penghasilan Ayah</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Ibu</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Penghasilan Ibu</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Data</th>
                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                     </tr>
                     </thead>
@@ -66,21 +65,6 @@
                                 <td>{{ $orangtua->penghasilan_ayah }}</td> 
                                 <td>{{ $orangtua->nm_ibu }}</td>
                                 <td>{{ $orangtua->penghasilan_ibu }}</td>
-                                <td>
-                                <?php if($orangtua->sts_orang_tua == 0)
-                                {
-                                  echo "Non Aktif";
-                                }
-                                  elseif($orangtua->sts_orang_tua == 1)
-                                {
-                                  echo "Aktif";
-                                }
-                                else
-                                {
-                                  echo "Non Aktif";
-                                }
-                                ?>
-                                </td>
                                 <td style="text-align: center;">
                                     @if(Auth::user() && Auth::user()->level == 0)
                                     <a href="/orangtua/edit/{{ $orangtua->id_orang_tua }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
@@ -103,7 +87,7 @@
 </div>
 
 <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="5" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -118,8 +102,8 @@
                     <form action="/orangtua/store" method="post">{{csrf_field()}}
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
-                      <label for="exampleFormControlselect2"> No Induk Siswa</label><br>
-                      <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
+                      <label for="inputState">No Induk Siswa</label>
+                      <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off" >
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
                         <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
@@ -140,24 +124,24 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ayah</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_ayah" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputnama" name="nm_ayah" required="required" autocomplete="off" placeholder="Masukan Nama">
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpekerjaan">Pekerjaan Ayah</label>
-                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah" required="required" autocomplete="off" placeholder="Masukan Pekerjaan">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpendidikan">Pendidikan Terakhir</label>
-                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ayah" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ayah" required="required" autocomplete="off" placeholder="Masukan Pendidikan Terakhir">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Penghasilan Ayah</label>
                       <select id="inputState" class="form-control" name="penghasilan_ayah" required="required" autocomplete="off">
-                        <option selected>-- Pilih Penghasilan --</option>
+                        <option selected disabled>-- Pilih Penghasilan --</option>
                         <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
                         <option value="Rp.500,000 - Rp.1,000,000">Rp.500,000 - Rp.1,000,000</option>
                         <option value="Rp.1,000,000 - Rp.2,000,000">Rp.1,000,000 - Rp.2,000,000</option>
@@ -170,24 +154,24 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ibu</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_ibu" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputnama" name="nm_ibu" required="required" autocomplete="off" placeholder="Masukan Nama">
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpekerjaan">Pekerjaan Ibu</label>
-                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu" required="required" autocomplete="off" placeholder="Masukan Pekerjaan">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpendidikan">Pendidikan Terakhir</label>
-                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ibu" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ibu" required="required" autocomplete="off" placeholder="Masukan Pendidikan Terakhir">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Penghasilan Ibu</label>
                       <select id="inputState" class="form-control" name="penghasilan_ibu" required="required" autocomplete="off">
-                        <option selected>-- Pilih Penghasilan --</option>
+                        <option selected disabled>-- Pilih Penghasilan --</option>
                         <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
                         <option value="Rp.500,000 - Rp.1,000,000">Rp.500,000 - Rp.1,000,000</option>
                         <option value="Rp.1,000,000 - Rp.2,000,000">Rp.1,000,000 - Rp.2,000,000</option>
@@ -198,15 +182,6 @@
                       </select>
                     </div>
                     
-                    <div class="form-group"style="padding: 0; padding-right: 10px">
-                      <label for="inputState">Status Data</label>
-                      <select id="inputState" class="form-control" name="sts_orang_tua" required="required" autocomplete="off">
-                        <option selected>-- Status Data Orang Tua --</option>
-                        <option value="1">Aktif</option>
-                        <option value="0">Non Aktif</option>
-                      </select>
-                    </div>
-
                     <div>
                       <button type="submit" class=" btn btn-primary">Simpan Data</button>
                     </div>

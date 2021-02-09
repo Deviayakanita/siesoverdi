@@ -42,6 +42,9 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<!-- Toast css -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -72,6 +75,8 @@
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{url('adminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <!-- Morris.js charts -->
 <script src="{{url('adminLTE/bower_components/raphael/raphael.min.js')}}"></script>
 <script src="{{url('adminLTE/bower_components/morris.js/morris.min.js')}}"></script>
@@ -114,8 +119,9 @@
 <script src="{{url('adminLTE/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('adminLTE/dist/js/demo.js')}}"></script>
+<!-- Toast js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
 <!-- js data peserta didik -->
-<script src="{{asset('adminLTE/bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">
   $('.select2').select2();
   $('#inputNIS').change(function() {
@@ -132,21 +138,17 @@
   });
 </script>
 
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahunajaran').val(tahun_ajaran);
-
-  });
-</script>
-
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()
   })
+
+  @if(session()->has('success'))
+    toastr.success('{{ session()->get('success') }}');
+  @endif
+  @if(session()->has('error'))
+    toastr.error('{{ session()->get('error') }}');
+  @endif
 </script>
 
 

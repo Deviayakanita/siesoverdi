@@ -38,7 +38,7 @@
              </div>
 
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="overflow-x: auto;">
                 <table id='example1' class="table table-hover table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
@@ -101,7 +101,7 @@
 </div>
 
 <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="5" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -117,7 +117,7 @@
                    
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputsurat">No Surat Pindah</label>
-                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" required="required" autocomplete="off" placeholder="Masukan No Surat">
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -136,19 +136,20 @@
                       <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                      <label for="inputtahun">Tahun Ajaran</label>
-                      <input type="text" class="form-control" id="inputtahunajaran" name="tahun_ajaran" readonly>
+                      <label for="inputnama">Tahun Ajaran Siswa</label>
+                      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
+                    </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputasalsekolah">Sekolah Tujuan</label>
-                      <input type="text" class="form-control" id="inputsekolahtujuan" name="sekolah_tujuan" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputsekolahtujuan" name="sekolah_tujuan" required="required" autocomplete="off" placeholder="Masukan Sekolah Tujuan">
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Tingkat Kelas</label>
                       <select id="inputState" class="form-control" name="tingkat_kelas" required="required" autocomplete="off">
-                        <option selected>-- Pilih Tingkat Kelas --</option>
+                        <option selected disabled>-- Pilih Tingkat Kelas --</option>
                         <option value="X">X</option>
                         <option value="XI">XI</option>
                         <option value="XII">XII</option>
@@ -157,18 +158,18 @@
                         
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="input_tglmasuk">Tanggal pindah</label>
-                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah" required="required" autocomplete="off">
+                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah" required="required" autocomplete="off" placeholder="Masukan Tanggal Pindah">
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputalasan">Alasan Pindah</label>
-                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off"></textarea>
+                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off" placeholder="Masukan Alasan"></textarea>
                     </div>
 
                      <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Status Data</label>
                       <select id="inputState" class="form-control" name="status_mutasi" required="required" autocomplete="off">
-                        <option selected>-- Status Data Mutasi --</option>
+                        <option selected disabled>-- Status Data Mutasi --</option>
                         <option value="1">Aktif</option>
                         <option value="0">Non Aktif</option>
                       </select>

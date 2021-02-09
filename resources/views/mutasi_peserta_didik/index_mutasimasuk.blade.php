@@ -38,7 +38,7 @@
               </div>
         
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="overflow-x: auto;">
                 <table id='example1' class="table table-hover table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
@@ -48,7 +48,6 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tanggal Masuk</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Asal Sekolah</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Data</th>
                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                     </tr>
                     </thead>
@@ -64,21 +63,6 @@
                                 <td>{{ $mutasimasuk->pesertadidik->nm_siswa }}</td>
                                 <td>{{ Carbon\Carbon::parse($mutasimasuk->tgl_masuk)->format('d F Y')}}</td>
                                 <td>{{ $mutasimasuk->asal_sekolah }}</td>
-                                <td>
-                                <?php if($mutasimasuk->status_mutasi == 0)
-                                {
-                                  echo "Non Aktif";
-                                }
-                                  elseif($mutasimasuk->status_mutasi == 1)
-                                {
-                                  echo "Aktif";
-                                }
-                                else
-                                {
-                                  echo "Non Aktif";
-                                }
-                                ?>
-                                </td>
                                 <td style="text-align: center;">
                                   @if(Auth::user() && Auth::user()->level == 0)
                                   <a href="mutasimasuk/edit/{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
@@ -101,7 +85,7 @@
 </div>
 
 <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="5" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -116,7 +100,7 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputsurat">No Surat Pindah</label>
-                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" required="required" autocomplete="off" placeholder="Masukan No Surat">
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -158,14 +142,14 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputasalsekolah">Asal Sekolah</label>
-                      <input type="text" class="form-control" id="inputasalsekolah" name="asal_sekolah" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputasalsekolah" name="asal_sekolah" required="required" autocomplete="off" placeholder="Masukan Asal Sekolah">
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Tingkat Kelas</label>
                       <select id="inputState" class="form-control" name="tingkat_kelas" required="required" autocomplete="off">
-                        <option selected>-- Pilih Tingkat Kelas --</option>
+                        <option selected disabled>-- Pilih Tingkat Kelas --</option>
                         <option value="X">X</option>
                         <option value="XI">XI</option>
                         <option value="XII">XII</option>
@@ -173,22 +157,13 @@
                     </div> 
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="input_tglmasuk">Tanggal Masuk</label>
-                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_masuk" required="required" autocomplete="off">
+                      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_masuk" required="required" autocomplete="off" placeholder="Masukan Tanggal Masuk">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputalasan">Alasan Pindah</label>
-                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off"></textarea>
-                    </div>
-
-                     <div class="form-group" style="padding: 0; padding-right: 10px">
-                      <label for="inputState">Status Data</label>
-                      <select id="inputState" class="form-control" name="status_mutasi" required="required" autocomplete="off">
-                        <option selected>-- Status Data Mutasi --</option>
-                        <option value="1">Aktif</option>
-                        <option value="0">Non Aktif</option>
-                      </select>
+                      <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off" placeholder="Masukan Alasan"></textarea>
                     </div>
 
                      <div>

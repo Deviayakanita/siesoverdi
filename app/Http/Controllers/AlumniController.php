@@ -45,7 +45,7 @@ class AlumniController extends Controller
             $pesertadidik->save();
         }
 
-        return redirect('/alumni');
+        return redirect('/alumni')->with('success', 'Data berhasil ditambahkan!');;
     }
 
     /**
@@ -68,7 +68,7 @@ class AlumniController extends Controller
      */
     public function edit($id)
     {
-        $pesertadidik= Pesertadidik::all();
+        $pesertadidik = Pesertadidik::all();
         $alumnis = Alumni::find($id);
         return view('alumni/editalumni', compact('alumnis','pesertadidik'));
     }
@@ -96,7 +96,7 @@ class AlumniController extends Controller
             $pesertadidik->sts_siswa = 0;
             $pesertadidik->save();
         }
-        return redirect('/alumni');
+        return redirect('/alumni')->with('success', 'Data berhasil diupdate!');
     }
 
 

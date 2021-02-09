@@ -74,7 +74,7 @@
               <td>{{$pesertadidiks->kabupaten}}</td>
             </tr>
             <tr>
-              <td>No Telpon</td>
+              <td>No Telepon</td>
               <td>:</td>
               <td>{{$pesertadidiks->no_tlpn}}</td>
             </tr>

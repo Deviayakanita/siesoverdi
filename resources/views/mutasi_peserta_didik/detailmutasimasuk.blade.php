@@ -102,25 +102,6 @@
               <td>{{$mutasimasuks->alasan_pindah}}</td>
             </tr>
             <tr>
-              <td>Status Data Mutasi</td>
-              <td>:</td>
-              <td>
-                <?php if($mutasimasuks->status_mutasi == 0)
-                     {
-                        echo "Non Aktif";
-                     }
-                      elseif($mutasimasuks->status_mutasi == 1)
-                    {
-                        echo "Aktif";
-                    }
-                      else
-                    {
-                        echo "Non Aktif";
-                    }                          
-                    ?>            
-              </td>    
-            </tr>
-            <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
               <td>{{$mutasimasuks->created_at}}</td>

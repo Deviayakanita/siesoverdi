@@ -21,7 +21,6 @@ class Orangtua extends Model
         'job_ibu',
         'pddk_ibu',
         'penghasilan_ibu',
-        'sts_orang_tua',
 
     ];
 

@@ -38,7 +38,7 @@
               </div>
             
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="overflow-x: auto;">
                 <table id='example1' class="table table-hover table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
@@ -117,19 +117,19 @@
 
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="inputnis">No Induk Siswa</label>
-                        <input type="nama" class="form-control" id="inputnis" name="nis" required="required" autocomplete="off">
+                        <input type="nama" class="form-control" id="inputnis" name="nis" required="required" autocomplete="off" placeholder="Masukan No Induk Siswa">
                       </div>
 
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="inputnama">Nama Lengkap Siswa</label>
-                        <input type="nama" class="form-control" id="inputnama" name="nm_siswa" required="required" autocomplete="off">
+                        <input type="nama" class="form-control" id="inputnama" name="nm_siswa" required="required" autocomplete="off" placeholder="Masukan Nama Lengkap">
                       </div>
   
                       <div class="form-row">
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputState">Jenis Kelamin</label>
                           <select id="inputState" class="form-control" name="jns_kelamin" required="required" autocomplete="off">
-                            <option selected>-- Pilih Jenis Kelamin --</option>
+                            <option disabled selected>-- Pilih Jenis Kelamin --</option>
                             <option value="Laki - Laki">Laki - Laki</option>
                             <option value="Perempuan">Perempuan</option>
                           </select>
@@ -137,7 +137,7 @@
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputState">Jurusan</label>
                           <select id="inputState" class="form-control" name="jurusan" required="required" autocomplete="off">
-                            <option selected>-- Pilih Jurusan --</option>
+                            <option disabled selected>-- Pilih Jurusan --</option>
                             <option value="IPA">IPA</option>
                             <option value="IPS">IPS</option>
                           </select>
@@ -147,55 +147,55 @@
                       <div class="form-row">
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="input_tmplahir">Tempat Lahir</label>
-                          <input type="text" class="form-control" id="input_tmplahir" name="tmp_lahir" required="required" autocomplete="off">
+                          <input type="text" class="form-control" id="input_tmplahir" name="tmp_lahir" required="required" autocomplete="off" placeholder="Masukan Tempat Lahir">
                         </div>
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="input_tgllahir">Tanggal Lahir</label>
-                          <input type="date" class="form-control" id="input_tgllahir" name="tgl_lahir" required="required" autocomplete="off">
+                          <input type="date" class="form-control" id="input_tgllahir" name="tgl_lahir" required="required" autocomplete="off" placeholder="Masukan Tanggal Lahir">
                         </div>
                       </div>
 
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="inputagama">Agama</label>
-                        <input type="agama" class="form-control" id="inputagama" name="agama" required="required" autocomplete="off">
+                        <input type="agama" class="form-control" id="inputagama" name="agama" required="required" autocomplete="off" placeholder="Masukan Agama">
                       </div>
 
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="alamatsiswa">Alamat Siswa</label>
-                        <textarea class="form-control" id="alamatsiswa" rows="3" name="alamat_siswa" required="required" autocomplete="off"></textarea>
+                        <textarea class="form-control" id="alamatsiswa" rows="3" name="alamat_siswa" required="required" autocomplete="off" placeholder="Masukan Alamat"></textarea>
                       </div>
 
                       <div class="form-row">
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputprovinsi">Provinsi</label>
-                          <input type="provinsi" class="form-control" id="inputprovinsi" name="provinsi"required="required" autocomplete="off">
+                          <input type="provinsi" class="form-control" id="inputprovinsi" name="provinsi"required="required" autocomplete="off" placeholder="Masukan Provinsi">
                         </div>
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputkabupaten">Kabupaten</label>
-                          <input type="kabupaten" class="form-control" id="inputkabupaten" name="kabupaten" required="required" autocomplete="off">
+                          <input type="kabupaten" class="form-control" id="inputkabupaten" name="kabupaten" required="required" autocomplete="off" placeholder="Masukan Kabupaten">
                         </div>
                       </div>
 
                       <div class="form-row">
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                          <label for="inputnotlpn">No Telpon</label>
-                          <input type="notelpon" class="form-control" id="inputnotlpn" name="no_tlpn" required="required" autocomplete="off">
+                          <label for="inputnotlpn">No Telepon</label>
+                          <input type="notelpon" class="form-control" id="inputnotlpn" name="no_tlpn" required="required" autocomplete="off" placeholder="Masukan No Telepon">
                         </div>
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputemail">Email</label>
-                          <input type="email" class="form-control" id="inputemail" name="email" required="required" autocomplete="off">
+                          <input type="email" class="form-control" id="inputemail" name="email" required="required" autocomplete="off" placeholder="Masukan Email">
                         </div>
                       </div>
 
                       <div class="form-row">
                          <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                            <label for="input_tahunajaran">Tahun Ajaran</label>
-                           <input type="text" class="form-control" id="input_tahunajaran" name="tahun_ajaran" required="required" autocomplete="off">
+                           <input type="text" class="form-control" id="input_tahunajaran" name="tahun_ajaran" required="required" autocomplete="off" placeholder="Masukan Tahun Ajaran">
                          </div>
                          <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                            <label for="inputState">Status Siswa</label>
                            <select id="inputState" class="form-control" name="sts_siswa" required="required" autocomplete="off">
-                             <option selected>-- Pilih Status --</option>
+                             <option disabled selected>-- Pilih Status --</option>
                              <option value="1">Aktif</option>
                              <option value="0">Non Aktif</option>
                            </select>
@@ -204,7 +204,7 @@
             
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="keterangan">Keterangan Siswa</label>
-                        <textarea class="form-control" id="keterangan" rows="3" name="keterangan" required="required" autocomplete="off"></textarea>
+                        <textarea class="form-control" id="keterangan" rows="3" name="keterangan" required="required" autocomplete="off" placeholder="Masukan Keterangan"></textarea>
                       </div>
                 
                       <div>

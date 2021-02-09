@@ -111,15 +111,6 @@
                     </select>
                   </div>
                   
-                  <div class="form-group" style="padding: 0; padding-right: 10px">
-                    <label for="inputState">Status Data</label>
-                    <select id="inputState" class="form-control" name="sts_orang_tua" value="{{$orangtuas->sts_orang_tua}}" required="required" autocomplete="off">
-                      <option selected>-- Statut Data Orang Tua --</option>
-                      <option value="1" @if($orangtuas->sts_orang_tua=='1') selected @endif>Aktif</option>
-                      <option value="0" @if($orangtuas->sts_orang_tua=='0') selected @endif>Non Aktif</option>
-                    </select>
-                  </div>
-
                   <div>
                     <button type="submit" class="btn btn-warning btn-primary">SIMPAN</button>
                   </div>

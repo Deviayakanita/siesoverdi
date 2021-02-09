@@ -17,7 +17,6 @@ class Mutasimasuk extends Model
         'tingkat_kelas',
         'tgl_masuk',
         'alasan_pindah',
-        'status_mutasi',
     ];
 
     public function pesertadidik()

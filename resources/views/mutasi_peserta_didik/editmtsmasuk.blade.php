@@ -101,15 +101,6 @@
       <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off">{{$mutasimasuks->alasan_pindah}}</textarea>
     </div>
 
-     <div class="form-group" style="padding: 0; padding-right: 10px">
-      <label for="inputState">Status Data</label>
-      <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasimasuks->status_mutasi}}" required="required" autocomplete="off">
-        <option selected>-- Status Data Mutasi --</option>
-        <option value="1" @if($mutasimasuks->status_mutasi=='1') selected @endif>Aktif</option>
-        <option value="0" @if($mutasimasuks->status_mutasi=='0') selected @endif>Non Aktif</option>
-      </select>
-    </div>
-
     <div>
     <button type="submit" class="btn btn-warning btn-primary">SIMPAN</button>
   </div>

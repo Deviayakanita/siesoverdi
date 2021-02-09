@@ -52,7 +52,7 @@ class PesertadidikController extends Controller
             'sts_siswa' => request('sts_siswa'),
             'keterangan' => request('keterangan'),
         ]);
-        return redirect('/pesertadidik');
+        return redirect('/pesertadidik')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -107,7 +107,7 @@ class PesertadidikController extends Controller
         $pesertadidiks->keterangan = $request->keterangan;
         $pesertadidiks->save();
 
-        return redirect('/pesertadidik');
+        return redirect('/pesertadidik')->with('success', 'Data berhasil diupdate!');
     }
 
 

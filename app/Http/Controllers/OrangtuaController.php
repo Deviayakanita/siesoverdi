@@ -22,7 +22,7 @@ class OrangtuaController extends Controller
     {
         $orangtuas = Orangtua::all();
         $pesertadidik = Pesertadidik::all();
-       
+
         return view('orang_tua/index', compact('orangtuas','pesertadidik'));
     }
     /**
@@ -43,9 +43,8 @@ class OrangtuaController extends Controller
             'job_ibu' => request('job_ibu'),
             'pddk_ibu' => request('pddk_ibu'),
             'penghasilan_ibu' => request('penghasilan_ibu'),
-            'sts_orang_tua' => request('sts_orang_tua'),
         ]);
-        return redirect('/orangtua');
+        return redirect('/orangtua')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -85,10 +84,9 @@ class OrangtuaController extends Controller
         $orangtuas->job_ibu = $request->job_ibu;
         $orangtuas->pddk_ibu = $request->pddk_ibu;
         $orangtuas->penghasilan_ibu = $request->penghasilan_ibu;
-        $orangtuas->sts_orang_tua = $request->sts_orang_tua;
         $orangtuas->save(); 
 
-        return redirect('/orangtua');
+        return redirect('/orangtua')->with('success', 'Data berhasil diupdate!');
     }
 
     /**

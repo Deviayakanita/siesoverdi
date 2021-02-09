@@ -42,10 +42,9 @@ class MutasimasukController extends Controller
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_masuk' => request('tgl_masuk'),
             'alasan_pindah' => request('alasan_pindah'),
-            'status_mutasi' => request('status_mutasi'),
         ]);
 
-        return redirect('/mutasimasuk');
+        return redirect('/mutasimasuk')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -89,10 +88,9 @@ class MutasimasukController extends Controller
         $mutasimasuks->tingkat_kelas = $request->tingkat_kelas;
         $mutasimasuks->tgl_masuk = $request->tgl_masuk;
         $mutasimasuks->alasan_pindah = $request->alasan_pindah;
-        $mutasimasuks->status_mutasi = $request->status_mutasi;
         $mutasimasuks->save(); 
 
-        return redirect('/mutasimasuk');
+        return redirect('/mutasimasuk')->with('success', 'Data berhasil diupdate!');
     }
 
 

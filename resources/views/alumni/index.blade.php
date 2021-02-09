@@ -39,7 +39,7 @@
              </div>
          
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style="overflow-x: auto;">
                 <table id='example1' class="table table-hover table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                     <thead>
                     <tr role="row">
@@ -100,7 +100,7 @@
 </div>
 
 <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="5" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -129,44 +129,44 @@
                       <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                      <label for="inputtahun">Tahun Ajaran</label>
-                      <input type="text" class="form-control" id="inputtahunajaran" name="tahun_ajaran" readonly>
+                      <label for="inputtahun">Tahun Ajaran Siswa</label>
+                      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
+                    </div>
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Jenis Perguruan Tinggi</label>
                       <select id="inputState" class="form-control" name="jns_pt" required="required" autocomplete="off">
-                        <option selected>-- Pilih Jenis Perguruan Tinggi --</option>
+                        <option selected disabled>-- Pilih Jenis Perguruan Tinggi --</option>
                         <option value="Negri">Negri</option>
                         <option value="Swasta">Swasta</option>
                       </select>
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Perguruan Tinggi</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_pt" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputnama" name="nm_pt" required="required" autocomplete="off" placeholder="Masukan Nama Perguruan Tinggi">
                     </div>
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnamafk">Nama Fakultas</label>
-                      <input type="text" class="form-control" id="inputnamafk" name="nm_fak" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputnamafk" name="nm_fak" required="required" autocomplete="off" placeholder="Masukan Nama Fakultas">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnamajurus">Nama Jurusan</label>
-                      <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" required="required" autocomplete="off">
+                      <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" required="required" autocomplete="off" placeholder="Masukan Nama Jurusan">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Status Alumni</label>
                       <select id="inputState" class="form-control" name="status_alumni" required="required" autocomplete="off">
-                        <option selected>-- Status Alumni --</option>
+                        <option selected>-- Status Data Alumni --</option>
                         <option value="1">Aktif</option>
                         <option value="0">Non Aktif</option>
                       </select>
-                    </div>
                     </div>
 
                     <div>

@@ -19,17 +19,13 @@ class AuthController extends Controller
         if (Auth::attempt($request->only('username', 'password'))) {
             $user = \App\Models\User::where('username', $request->username)->first();
             if ($user->level == '0') {
-                return response()->view('dashboard/coba');
+                return redirect('/dashboard')->with('success', 'Selamat datang Administrator!');
             } elseif ($user->level == '1') {
-                return response()->view('dashboard/coba');
+                return redirect('/dashboard')->with('success', 'Selamat datang Kepala Sekolah!');
             } 
-            else
-            {
-                return response()->view('auth.login');
-            }
         }
 
-        return redirect('/login');
+        return redirect('/')->with('error', 'BUNCH!');
     }
 
     public function logout()

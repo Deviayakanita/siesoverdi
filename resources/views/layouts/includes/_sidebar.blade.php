@@ -82,7 +82,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
-            <li class="{{ (Request()->segment(1) == 'statistikpesertadidik') ? 'active' : ''}}"><a href="statistipesertadiidk"><i class="fa fa-circle-o text-aqua"></i> Peserta Didik</a></li>
+            <li class="{{ (Request()->segment(1) == 'statistikpesertadidik') ? 'active' : ''}}"><a href="statistikpesertadiidk"><i class="fa fa-circle-o text-aqua"></i> Peserta Didik</a></li>
             <li class="{{ (Request()->segment(1) == 'statistikorangtua') ? 'active' : ''}}"><a href="statistikorangtua"><i class="fa fa-circle-o text-aqua"></i> Mutasi Masuk </a></li>
             <li class="{{ (Request()->segment(1) == 'statistikmutasi') ? 'active' : ''}}"><a href="statistikmutasi"><i class="fa fa-circle-o text-aqua"></i> Mutasi Keluar </a></li>
             <li class="{{ (Request()->segment(1) == 'statistikalumni') ? 'active' : ''}}"><a href="statistikalumni"><i class="fa fa-circle-o text-aqua"></i> Alumni </a></li>        

@@ -94,7 +94,7 @@
 
         <div class="form-row">
           <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-            <label for="inputnotlpn">No Telpon</label>
+            <label for="inputnotlpn">No Telepon</label>
             <input type="notelpon" class="form-control" id="inputnotlpn" name="no_tlpn" required="required" autocomplete="off" value="{{$pesertadidiks->no_tlpn}}">
           </div>
           <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">

@@ -103,25 +103,6 @@
               <td>{{$orangtuas->penghasilan_ibu}}</td>
             </tr>
             <tr>
-              <td>Status Data Orang Tua</td>
-              <td>:</td>
-              <td>
-                <?php if($orangtuas->sts_orang_tua == 0)
-                     {
-                        echo "Non Aktif";
-                     }
-                      elseif($orangtuas->sts_orang_tua == 1)
-                    {
-                        echo "Aktif";
-                    }
-                      else
-                    {
-                        echo "Non Aktif";
-                    }                          
-                    ?>            
-              </td>    
-            </tr>
-            <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
               <td>{{$orangtuas->created_at}}</td>

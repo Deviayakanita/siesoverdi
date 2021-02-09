@@ -24,7 +24,7 @@
 @endif
 
 @if(Auth::user() && Auth::user()->level == 0)
-    <section class="content">
+    <section class="content" style="overflow-x: auto;">
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
@@ -173,7 +173,6 @@
                       <th>Nama Lengkap Siswa</th>
                       <th>Tanggak Masuk</th>
                       <th>Asal Sekolah</th>
-                      <th>Status Data</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -188,22 +187,6 @@
                       <td>{{ $mtm->pesertadidik->nm_siswa }}</td>
                       <td>{{ Carbon\Carbon::parse($mtm->tgl_masuk)->format('d F Y')}}</td>
                       <td>{{ $mtm->asal_sekolah }}</td>
-                      <td>
-                      <?php
-                      if($mtm->status_mutasi == 0)
-                      {
-                        echo "Non Aktif";
-                      }
-                        elseif($mtm->status_mutasi == 1)
-                      {
-                        echo "Aktif";
-                      }
-                      else
-                      {
-                        echo "Non Aktif";
-                      }
-                      ?>
-                      </td>
                     </tr>
                   @endforeach
                   </tbody>

@@ -50,7 +50,7 @@ class MutasikeluarController extends Controller
             $pesertadidik->save();
         }
 
-        return redirect('/mutasikeluar');
+        return redirect('/mutasikeluar')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
@@ -88,6 +88,15 @@ class MutasikeluarController extends Controller
     public function update(Request $request, $id)
     {
         $mutasikeluars = Mutasikeluar::find($id);
+
+        $pesertadidik = Pesertadidik::find($mutasikeluars->id_siswa);
+        $pesertadidik_baru = Pesertadidik::find($request->nis);
+        if($request->nis != $pesertadidik){
+            $pesertadidik->sts_siswa = 1;
+            $pesertadidik->save();
+        }
+
+
         $mutasikeluars->no_srt_pindah = $request->no_srt_pindah;
         $mutasikeluars->id_siswa = $request->nis;
         $mutasikeluars->sekolah_tujuan = $request->sekolah_tujuan;
@@ -98,12 +107,12 @@ class MutasikeluarController extends Controller
         $mutasikeluars->save(); 
 
         $pesertadidik = Pesertadidik::find($request->nis);
-        if($request->status_mutasi == 1){
+        if($request->nis){
             $pesertadidik->sts_siswa = 0;
             $pesertadidik->save();
         }
 
-        return redirect('/mutasikeluar');
+        return redirect('/mutasikeluar')->with('success', 'Data berhasil diupdate!');
     }
 
     /**

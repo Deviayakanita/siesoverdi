@@ -22,7 +22,6 @@ class CreateMutasiMasukTable extends Migration
             $table->enum('tingkat_kelas', ["X", "XI", "XII"]);
             $table->date('tgl_masuk');
             $table->text('alasan_pindah');
-            $table->integer('status_mutasi')-> unsigned();
             $table->timestamps();
 
         });

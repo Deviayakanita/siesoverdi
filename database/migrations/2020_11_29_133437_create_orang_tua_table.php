@@ -27,7 +27,6 @@ class CreateOrangTuaTable extends Migration
             $table->string('pddk_ibu', 10);
             $table->enum('penghasilan_ibu',["Kurang dari Rp.500,000", "Rp.500,000 - Rp.1,000,000",
             "Rp.1,000,000 - Rp.2,000,000", "Rp.2,000,000 - Rp.5,000,000", "Rp.5,000,000 - Rp.20,000,000","Lebih dari Rp.20,000,000","Tidak Penghasilan"]);
-            $table->integer('sts_orang_tua')-> unsigned();
             $table->timestamps();
         });
     }
