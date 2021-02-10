@@ -218,7 +218,6 @@
                       <th>Nama Lengkap Siswa</th>
                       <th>Tanggal Pindah</th>
                       <th>Sekolah Tujuan</th>
-                      <th>Status Data</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -233,22 +232,6 @@
                       <td>{{ $mtk->pesertadidik->nm_siswa }}</td>
                       <td>{{ $mtk->tgl_pindah }}</td>
                       <td>{{ $mtk->sekolah_tujuan }}</td>
-                      <td>
-                      <?php
-                      if($mtk->status_mutasi == 0)
-                      {
-                        echo "Non Aktif";
-                      }
-                      elseif($mtk->status_mutasi == 1)
-                      {
-                        echo "Aktif";
-                      }
-                      else
-                      {
-                       echo "Non Aktif";
-                      }
-                      ?>
-                      </td>
                     </tr>
                   @endforeach
                   </tbody>
@@ -257,7 +240,6 @@
               </div>
             </li>
             <!-- END timeline item -->
-
 
             <!-- timeline time label -->
             <li class="time-label">
@@ -280,7 +262,7 @@
                       <th>Nama Lengkap Siswa</th>
                       <th>Jenis Perguruan Tinggi</th>
                       <th>Nama Perguruan Tinggi</th>
-                      <th>Status Data</th>
+                      <th>Nama Fakultas</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -294,22 +276,7 @@
                       <td>{{ $al->pesertadidik->nm_siswa }}</td>
                       <td>{{ $al->jns_pt }}</td>
                       <td>{{ $al->nm_pt }}</td>
-                      <td>
-                      <?php
-                      if($al->status_alumni == 0)
-                      {
-                        echo "Non Aktif";
-                      }
-                        elseif($al->status_alumni == 1)
-                      {
-                        echo "Aktif";
-                      }
-                      else
-                      {
-                        echo "Non Aktif";
-                      }
-                      ?>
-                      </td>
+                      <td>{{ $al->nm_fak }}</td>
                     </tr>
                   @endforeach
                   </tbody>
@@ -347,7 +314,7 @@
             <div class="inner">
               <h3>Statistik<sup style="font-size: 20px"></sup></h3>
 
-              <p>Orang Tua Peserta Didik</p>
+              <p>Mutasi Masuk Peserta Didik</p>
             </div>
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>
@@ -362,7 +329,7 @@
             <div class="inner">
               <h3>Statistik<sup style="font-size: 20px"></sup></h3>
 
-              <p>Mutasi Peserta Didik</p>
+              <p>Mutasi Keluar Peserta Didik</p>
             </div>
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>

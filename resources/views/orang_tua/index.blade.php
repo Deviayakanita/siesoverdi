@@ -140,8 +140,8 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Penghasilan Ayah</label>
-                      <select id="inputState" class="form-control" name="penghasilan_ayah" required="required" autocomplete="off">
-                        <option selected disabled>-- Pilih Penghasilan --</option>
+                      <select style="width: 100%;" id="inputState" class="form-control select2" name="penghasilan_ayah" required="required" autocomplete="off">
+                        <option selected="selected" disabled>-- Pilih Penghasilan --</option>
                         <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
                         <option value="Rp.500,000 - Rp.1,000,000">Rp.500,000 - Rp.1,000,000</option>
                         <option value="Rp.1,000,000 - Rp.2,000,000">Rp.1,000,000 - Rp.2,000,000</option>
@@ -170,8 +170,8 @@
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Penghasilan Ibu</label>
-                      <select id="inputState" class="form-control" name="penghasilan_ibu" required="required" autocomplete="off">
-                        <option selected disabled>-- Pilih Penghasilan --</option>
+                      <select style="width: 100%;" id="inputState" class="form-control select2" name="penghasilan_ibu" required="required" autocomplete="off">
+                        <option selected ="selected" disabled>-- Pilih Penghasilan --</option>
                         <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
                         <option value="Rp.500,000 - Rp.1,000,000">Rp.500,000 - Rp.1,000,000</option>
                         <option value="Rp.1,000,000 - Rp.2,000,000">Rp.1,000,000 - Rp.2,000,000</option>

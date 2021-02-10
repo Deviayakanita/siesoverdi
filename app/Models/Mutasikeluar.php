@@ -17,7 +17,6 @@ class Mutasikeluar extends Model
         'tingkat_kelas',
         'tgl_pindah',
         'alasan_pindah',
-        'status_mutasi',
     ];
 
     public function pesertadidik()

@@ -19,7 +19,7 @@ class MutasikeluarController extends Controller
      */
     public function index()
     {
-        $mutasikeluars = Mutasikeluar::all();
+        $mutasikeluars = Mutasikeluar::latest()->get();
         $pesertadidik = Pesertadidik::all();
        
         return view('mutasi_peserta_didik/index_mutasikeluar', compact('mutasikeluars','pesertadidik'));
@@ -41,11 +41,10 @@ class MutasikeluarController extends Controller
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_pindah' => request('tgl_pindah'),
             'alasan_pindah' => request('alasan_pindah'),
-            'status_mutasi' => request('status_mutasi'),
         ]);
 
         $pesertadidik = Pesertadidik::find($request->nis);
-        if($request->status_mutasi == 1){
+        if($request->nis){
             $pesertadidik->sts_siswa = 0;
             $pesertadidik->save();
         }
@@ -95,15 +94,12 @@ class MutasikeluarController extends Controller
             $pesertadidik->sts_siswa = 1;
             $pesertadidik->save();
         }
-
-
         $mutasikeluars->no_srt_pindah = $request->no_srt_pindah;
         $mutasikeluars->id_siswa = $request->nis;
         $mutasikeluars->sekolah_tujuan = $request->sekolah_tujuan;
         $mutasikeluars->tingkat_kelas = $request->tingkat_kelas;
         $mutasikeluars->tgl_pindah = $request->tgl_pindah;
         $mutasikeluars->alasan_pindah = $request->alasan_pindah;
-        $mutasikeluars->status_mutasi = $request->status_mutasi;
         $mutasikeluars->save(); 
 
         $pesertadidik = Pesertadidik::find($request->nis);

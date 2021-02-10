@@ -19,7 +19,7 @@ class MutasimasukController extends Controller
      */
     public function index()
     {
-        $mutasimasuks = Mutasimasuk::all();
+        $mutasimasuks = Mutasimasuk::latest()->get();
         $pesertadidik = Pesertadidik::all();
        
         return view('mutasi_peserta_didik/index_mutasimasuk', compact('mutasimasuks','pesertadidik'));

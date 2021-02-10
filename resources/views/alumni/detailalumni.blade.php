@@ -17,7 +17,7 @@
 <section class="content">
   <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-files-o"></i> Detail Alumni</h3> 
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Detail Alumni</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
@@ -75,25 +75,6 @@
               <td>Nama Jurusan</td>
               <td>:</td>
               <td>{{$alumnis->nm_jurusan}}</td>
-            </tr>
-            <tr>
-              <td>Status Data Alumni</td>
-              <td>:</td>
-              <td>
-                <?php if($alumnis->status_alumni == 0)
-                     {
-                        echo "Non Aktif";
-                     }
-                      elseif($alumnis->status_alumni == 1)
-                    {
-                        echo "Aktif";
-                    }
-                      else
-                    {
-                        echo "Non Aktif";
-                    }                          
-                    ?>            
-              </td>    
             </tr>
             <tr>
               <td>Tanggal Dibuat</td>

@@ -21,7 +21,6 @@ class CreateAlumniSiswaTable extends Migration
             $table->enum('jns_pt', ["Negri", "Swasta"]);
             $table->string('nm_fak', 50);
             $table->string('nm_jurusan', 50);
-            $table->integer('status_alumni')-> unsigned();
             $table->timestamps();
         });
     }

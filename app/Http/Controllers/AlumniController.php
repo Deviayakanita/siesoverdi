@@ -16,7 +16,7 @@ class AlumniController extends Controller
      */
     public function index()
     {
-        $alumnis = Alumni::all();
+        $alumnis = Alumni::latest()->get();
         $pesertadidik = Pesertadidik::all();
        
         return view('alumni/index', compact('alumnis','pesertadidik'));
@@ -36,11 +36,10 @@ class AlumniController extends Controller
             'jns_pt' => request('jns_pt'),
             'nm_fak' => request('nm_fak'),
             'nm_jurusan' => request('nm_jurusan'),
-            'status_alumni' => request('status_alumni'),
         ]);
 
         $pesertadidik = Pesertadidik::find($request->nis);
-        if($request->status_alumni == 1){
+        if($request->nis){
             $pesertadidik->sts_siswa = 0;
             $pesertadidik->save();
         }
@@ -83,16 +82,22 @@ class AlumniController extends Controller
     public function update(Request $request, $id)
     {
         $alumnis = Alumni::find($id);
+        $pesertadidik = Pesertadidik::find($alumnis->id_siswa);
+        $pesertadidik_baru = Pesertadidik::find($request->nis);
+        if($request->nis != $pesertadidik){
+            $pesertadidik->sts_siswa = 1;
+            $pesertadidik->save();
+        }
+
         $alumnis->nm_pt = $request->nm_pt;
         $alumnis->id_siswa = $request->nis;
         $alumnis->jns_pt = $request->jns_pt;
         $alumnis->nm_fak = $request->nm_fak;
         $alumnis->nm_jurusan = $request->nm_jurusan;
-        $alumnis->status_alumni = $request->status_alumni;
         $alumnis->save(); 
 
         $pesertadidik = Pesertadidik::find($request->nis);
-        if($request->status_alumni == 1){
+        if($request->nis){
             $pesertadidik->sts_siswa = 0;
             $pesertadidik->save();
         }

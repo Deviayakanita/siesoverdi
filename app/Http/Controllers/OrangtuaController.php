@@ -20,7 +20,7 @@ class OrangtuaController extends Controller
      */
     public function index()
     {
-        $orangtuas = Orangtua::all();
+        $orangtuas = Orangtua::latest()->get();
         $pesertadidik = Pesertadidik::all();
 
         return view('orang_tua/index', compact('orangtuas','pesertadidik'));

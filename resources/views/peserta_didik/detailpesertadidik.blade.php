@@ -17,7 +17,7 @@
 <section class="content">
 	<div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Detail Data Peserta Didik</h3> 
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Detail Data Peserta Didik</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
@@ -115,12 +115,12 @@
             <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
-              <td>{{$pesertadidiks->created_at}}</td>
+              <td>{{ Carbon\Carbon::parse($pesertadidiks->created_ad)->format('d F Y')}}</td>
             </tr>
             <tr>
               <td>Tanggal Diupdate</td>
               <td>:</td> 
-              <td>{{$pesertadidiks->updated_at}}</td>
+              <td>{{ Carbon\Carbon::parse($pesertadidiks->updated_at)->format('d F Y')}}</td>
             </tr>
            </table> 
            

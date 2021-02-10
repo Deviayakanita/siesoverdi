@@ -20,13 +20,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{url('adminLTE/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+              <img src="{{url('adminLTE/dist/img/userr.png')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">Gabriel</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{url('adminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                <img src="{{url('adminLTE/dist/img/userr.png')}}" class="img-circle" alt="User Image">
 
                 <p>
                   Administartor SMAK Soverdi  
@@ -47,13 +47,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{url('adminLTE/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+              <img src="{{url('adminLTE/dist/img/userr.png')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">Dra. Magdalena Tin</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{url('adminLTE/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                <img src="{{url('adminLTE/dist/img/userr.png')}}" class="img-circle" alt="User Image">
 
                 <p>
                   Kepala Sekolah SMAK Soverdi  

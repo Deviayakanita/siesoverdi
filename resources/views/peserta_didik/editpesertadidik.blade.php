@@ -21,7 +21,7 @@
 		<div class="box box-primary">
     <form role="form">
     <div class="box-header">
-    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Edit Data Peserta Didik</h3> 
+    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Edit Data Peserta Didik</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">

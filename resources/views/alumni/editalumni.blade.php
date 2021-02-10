@@ -21,7 +21,7 @@
     <div class="box box-primary">
     <form role="form">
       <div class="box-header">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-files-o"></i> Edit Data Alumni</h3> 
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Edit Data Alumni</h3> 
           <div style="float: right;">
           <div style="clear: both;"></div>
             <div align="right">
@@ -56,7 +56,7 @@
           <label for="inputState">Jenis Perguruan Tinggi</label>
           <select id="inputState" class="form-control" name="jns_pt" value="{{$alumnis->jns_pt}}" required="required" autocomplete="off">
             <option selected>-- Pilih Perguruan Tinggi --</option>
-            <option value="Negri" @if($alumnis->jns_pt=='Negri') selected @endif>Negri</option>
+            <option value="Negeri" @if($alumnis->jns_pt=='Negeri') selected @endif>Negeri</option>
             <option value="Swasta" @if($alumnis->jns_pt=='Swasta') selected @endif>Swasta</option>
           </select>
         </div>
@@ -78,14 +78,6 @@
           <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" value="{{$alumnis->nm_jurusan}}" required="required" autocomplete="off">
         </div>
 
-         <div class="form-group" style="padding: 0; padding-right: 10px">
-          <label for="inputState">Status Data</label>
-          <select id="inputState" class="form-control" name="status_alumni" value="{{$alumnis->status_alumni}}" required="required" autocomplete="off">
-            <option selected>-- Status Data Alumni --</option>
-            <option value="1" @if($alumnis->status_alumni=='1') selected @endif>Aktif</option>
-            <option value="0" @if($alumnis->status_alumni=='0') selected @endif>Non Aktif</option>
-          </select>
-        </div>
 
         <div>
           <button type="submit" class="btn btn-warning btn-primary">SIMPAN</button>

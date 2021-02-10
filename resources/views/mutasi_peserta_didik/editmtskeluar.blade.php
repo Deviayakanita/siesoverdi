@@ -4,7 +4,7 @@
 
   <section class="content-header">
     <h1>
-      Data Mutasi Masuk
+      Data Mutasi Keluar
     </h1>
     <ol class="breadcrumb">
       <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
@@ -21,7 +21,7 @@
     <div class="box box-primary">
     <form role="form">
     <div class="box-header">
-    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-in"></i> Edit Data Mutasi Masuk</h3> 
+    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-out"></i> Edit Data Mutasi Keluar</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
@@ -80,15 +80,6 @@
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputalasan">Alasan Pindah</label>
       <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off">{{$mutasikeluars->alasan_pindah}}</textarea> 
-    </div>
-
-     <div class="form-group" style="padding: 0; padding-right: 10px">
-      <label for="inputState">Status Data</label>
-      <select id="inputState" class="form-control" name="status_mutasi" value="{{$mutasikeluars->status_mutasi}}" required="required" autocomplete="off">
-        <option selected>-- Status Data Mutasi --</option>
-        <option value="1" @if($mutasikeluars->status_mutasi=='1') selected @endif>Aktif</option>
-        <option value="0" @if($mutasikeluars->status_mutasi=='0') selected @endif>Non Aktif</option>
-      </select>
     </div>
 
    <div>

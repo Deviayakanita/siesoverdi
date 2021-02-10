@@ -8,7 +8,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-      <li> Daftar Mutasi Masuk</li>
+      <li> Daftar Mutasi Keluar</li>
     </ol>
   </section>
 
@@ -48,7 +48,6 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tanggal Pindah</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Sekolah Tujuan</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Data</th>
                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                     </tr>
                     </thead>
@@ -64,21 +63,6 @@
                                 <td>{{ $mutasikeluar->pesertadidik->nm_siswa }}</td>
                                 <td>{{Carbon\Carbon::parse($mutasikeluar->tgl_pindah)->format('d F Y')}}</td>
                                 <td>{{ $mutasikeluar->sekolah_tujuan }}</td>
-                                <td>
-                                <?php if($mutasikeluar->status_mutasi == 0)
-                                {
-                                  echo "Non Aktif";
-                                }
-                                  elseif($mutasikeluar->status_mutasi == 1)
-                                {
-                                  echo "Aktif";
-                                }
-                                else
-                                {
-                                  echo "Non Aktif";
-                                }
-                                ?>
-                                </td>
                                 <td style="text-align: center;">
                                   @if(Auth::user() && Auth::user()->level == 0)
                                   <a href="/mutasikeluar/edit/{{ $mutasikeluar->id_mut_klr }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
@@ -166,14 +150,6 @@
                       <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off" placeholder="Masukan Alasan"></textarea>
                     </div>
 
-                     <div class="form-group" style="padding: 0; padding-right: 10px">
-                      <label for="inputState">Status Data</label>
-                      <select id="inputState" class="form-control" name="status_mutasi" required="required" autocomplete="off">
-                        <option selected disabled>-- Status Data Mutasi --</option>
-                        <option value="1">Aktif</option>
-                        <option value="0">Non Aktif</option>
-                      </select>
-                    </div>
                    <div>
                       <button type="submit" class="btn btn-primary" style="margin-left: 2px">SIMPAN DATA</button>
                     </div>

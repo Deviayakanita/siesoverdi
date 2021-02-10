@@ -17,7 +17,7 @@
   <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-files-o"></i> Daftar Alumni</h3>  
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Daftar Alumni</h3>  
         <div style="float: right;">
           <div style="clear: both;"></div>
           <div>
@@ -48,7 +48,7 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Perguruan Tinggi</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Perguruan Tinggi</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Data</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Fakultas</th>
                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                     </tr>
                     </thead>
@@ -63,21 +63,7 @@
                                 <td>{{ $alumni->pesertadidik->nm_siswa }}</td>
                                 <td>{{ $alumni->jns_pt }}</td>
                                 <td>{{ $alumni->nm_pt }}</td>
-                               <td>
-                                <?php if($alumni->status_alumni == 0)
-                                {
-                                  echo "Non Aktif";
-                                }
-                                  elseif($alumni->status_alumni == 1)
-                                {
-                                  echo "Aktif";
-                                }
-                                else
-                                {
-                                  echo "Non Aktif";
-                                }
-                                ?>
-                                </td>
+                                <td>{{ $alumni->nm_fak }}</td>
                                 <td style="text-align: center;">
                                   @if(Auth::user() && Auth::user()->level == 0)
                                   <a href="/alumni/edit/{{ $alumni->id_alumni }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
@@ -107,7 +93,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-files-o"></i> Masukan Data Alumni</h4>
+                  <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> Masukan Data Alumni</h4>
                 </div>
                   <div class="box box-primary">
                   <div class="modal-body">
@@ -139,7 +125,7 @@
                       <label for="inputState">Jenis Perguruan Tinggi</label>
                       <select id="inputState" class="form-control" name="jns_pt" required="required" autocomplete="off">
                         <option selected disabled>-- Pilih Jenis Perguruan Tinggi --</option>
-                        <option value="Negri">Negri</option>
+                        <option value="Negri">Negeri</option>
                         <option value="Swasta">Swasta</option>
                       </select>
                     </div>
@@ -158,15 +144,6 @@
                       <label for="inputnamajurus">Nama Jurusan</label>
                       <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" required="required" autocomplete="off" placeholder="Masukan Nama Jurusan">
                     </div>
-                    </div>
-
-                    <div class="form-group" style="padding: 0; padding-right: 10px">
-                      <label for="inputState">Status Alumni</label>
-                      <select id="inputState" class="form-control" name="status_alumni" required="required" autocomplete="off">
-                        <option selected>-- Status Data Alumni --</option>
-                        <option value="1">Aktif</option>
-                        <option value="0">Non Aktif</option>
-                      </select>
                     </div>
 
                     <div>

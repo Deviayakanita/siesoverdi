@@ -20,7 +20,7 @@ class PesertadidikController extends Controller
      */
     public function index()
     {
-        $pesertadidiks = Pesertadidik::all();
+        $pesertadidiks = Pesertadidik::orderBy('nm_siswa', 'ASC')->get();
         return view('peserta_didik/index', compact('pesertadidiks'));
     }
 

@@ -1,6 +1,27 @@
 <aside class="main-sidebar">
 
 <section class="sidebar">
+@if(Auth::user() && Auth::user()->level == 0)
+    <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{url('adminLTE/dist/img/userr.png')}}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Administrator</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+    </div>
+@elseif(Auth::user() && Auth::user()->level == 1)
+    <div class="user-panel">
+        <div class="pull-left image">
+          <img src="{{url('adminLTE/dist/img/userr.png')}}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>Kepala Sekolah</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+    </div>
+@endif
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header" style="font-size: 12px">DASHBOARD</li>
     <li class="{{ (Request()->segment(1) == 'dashboard') ? 'active' : ''}}">
@@ -37,7 +58,7 @@
     </li>
     <li class="{{ (Request()->segment(1) == 'alumni') ? 'active' : ''}}">
         <a href="{{url('alumni')}}">
-        <i class="fa fa-files-o"></i><span> Kelola Alumni</span>
+        <i class="fa fa-user"></i><span> Kelola Alumni</span>
         </a>
     </li>
     @endif
@@ -70,7 +91,7 @@
     </li>
     <li class="{{ (Request()->segment(1) == 'alumni') ? 'active' : ''}}">
         <a href="{{url('alumni')}}">
-        <i class="fa fa-files-o"></i><span> Alumni</span>
+        <i class="fa fa-user"></i><span> Alumni</span>
         </a>
     </li>
     <li class="header" style="font-size: 12px" >STATISTIK</li>
