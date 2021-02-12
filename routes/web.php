@@ -34,8 +34,11 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/pesertadidik/edit/{id}','App\Http\Controllers\PesertadidikController@edit');
 		Route::patch('/pesertadidik/update/{id}','App\Http\Controllers\PesertadidikController@update');
 		Route::get('/pesertadidik/show/{id}','App\Http\Controllers\PesertadidikController@show');
+		Route::get('/pesertadidik/showkepsek/{id}','App\Http\Controllers\PesertadidikController@detail');
 		Route::get('/ctk_pesertadidik','App\Http\Controllers\PesertadidikController@filter');
 		Route::get('/pesertadidik/pdf','App\Http\Controllers\PesertadidikController@pdf');
+		Route::get('/pesertadidik/export/{id}','App\Http\Controllers\PesertadidikController@export');
+		Route::get('/cetaksiswa/{tahun_ajaran}','App\Http\Controllers\PesertadidikController@cetakfilter');
 	
 	// // 	Route Orangtua
 		Route::get('/orangtua', 'App\Http\Controllers\OrangtuaController@index');

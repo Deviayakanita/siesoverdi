@@ -29,16 +29,17 @@ class AlumniController extends Controller
     public function filter(Request $request)
     {
         $alumnis = Alumni::latest()->get();
-        $tahun_ajaran = Alumni::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        $pesertadidik = Alumni::orderBy('id_siswa')->get();
+        $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
         if ($request->ajax()) {
-            if (!$request->tahun_ajaran) {
-                $role = Auth::user()->level;
-               $siswa = Alumni::orderBy('nm_siswa', 'ASC')->get();
-            }else {
-                $role = Auth::user()->level;
-                $siswa = Alumni::where('tahun_ajaran',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+            if (!$request->tahun_ajaran){
+                $alumnis = Alumni::with(['pesertadidik'])->latest()->get();   
+            } else {
+                $siswa = Pesertadidik::where('tahun_ajaran', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
+                $alumni = Alumni::with(['pesertadidik'])->whereIn('id_siswa', collect($siswa))->get();
             }
-            return response()->json(['siswa'=>$siswa,'level'=>$role]);
+            $role = Auth::user()->level;
+            return response()->json(['alumni'=>$alumni,'level'=>$role]);
         }
       
         return view('alumni/ctk_alumni', compact('alumnis','tahun_ajaran'));

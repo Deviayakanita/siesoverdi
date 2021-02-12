@@ -85,6 +85,12 @@ class PesertadidikController extends Controller
         return view ('peserta_didik/detailpesertadidik', compact('pesertadidiks'));
     }
 
+     public function detail($id)
+    {
+        $pesertadidiks = Pesertadidik::find($id);
+        return view ('peserta_didik/detailkepsek', compact('pesertadidiks'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -135,6 +141,22 @@ class PesertadidikController extends Controller
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
     }
+
+    public function export($id)
+    {
+        $pesertadidiks = Pesertadidik::find($id);
+        $pdf = PDF::loadview('peserta_didik.pdfpesertadidik', ['pesertadidiks'=>$pesertadidiks]);
+        return $pdf->stream();
+    }
+
+    public function cetakfilter($tahun_ajaran)
+    {   
+        $siswa = Pesertadidik::where('tahun_ajaran',$tahun_ajaran)->get();
+        $pdf = PDF::loadview('peserta_didik.export', ['siswa'=>$siswa]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    }
+
 
 
     /**

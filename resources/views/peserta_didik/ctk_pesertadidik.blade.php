@@ -78,9 +78,10 @@
                                         <td>{{ $pesertadidik->tahun_ajaran }}</td>
                                         <td><?php if($pesertadidik->sts_siswa == 0) { echo "Non Aktif"; } elseif($pesertadidik->sts_siswa == 1) { echo "Aktif"; } else { echo "Non Aktif"; } ?></td>
                                         <td style="text-align: center;">
-                                            <a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
-                                            @if(Auth::user() && Auth::user()->level == 1)
-                                            <a href="#"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                            @if(Auth::user() && Auth::user()->level == 0)
+                                            <a href="/pesertadidik/export/{{ $pesertadidik->id_siswa}}"  target="_blank"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
+                                            @elseif(Auth::user() && Auth::user()->level == 1)
+                                            <a href="/pesertadidik/showkepsek/{{ $pesertadidik->id_siswa}}"><i class="fa fa-eye btn-info btn-sm"></i></a>
                                             @endif
                                         </td>
                                     </tr>
@@ -108,7 +109,7 @@
         let data = {
             'tahun_ajaran': tahun_ajaran
         }
-        console.log(tahun_ajaran)
+        $('#cetak').attr('href','/cetaksiswa/'+ tahun_ajaran+'')
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -184,9 +185,10 @@
                    html += '<td>'+ data.siswa[i].tahun_ajaran+'</td>'
                    html += '<td>'+ status+'</td>'
                    html += '<td style="text-align: center;">'
-                   if (data.level==1) {
-                   html += '<a href="/pesertadidik/edit/'+data.siswa[i].id_siswa+'"><i class="fa fa-eye btn-info btn-sm"></i></a> <a href="/pesertadidik/edit/'+data.siswa[i].id_siswa+'"><i class="fa fa-file-pdf-o btn-info btn-sm"></i></a>' }
-
+                   if (data.level==0) {
+                   html += '<a href="/pesertadidik/export/'+data.siswa[i].id_siswa+'"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
+                   if (data.level==1){
+                   html += ' <a href="/pesertadidik/showkepsek/'+data.siswa[i].id_siswa+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
                    html += '</td>'
                     html += '</tr>'
                 }

@@ -81,10 +81,11 @@
                                                 <td>{{ $alumni->nm_pt }}</td>
                                                 <td>{{ $alumni->nm_fak }}</td>
                                                 <td style="text-align: center;">
+                                                @if(Auth::user() && Auth::user()->level == 0)
                                                 <a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
-                                                  @if(Auth::user() && Auth::user()->level == 1)
-                                                  <a href="#"><i class="fa fa-eye btn-info btn-sm"></i></a>
-                                                  @endif
+                                                @elseif(Auth::user() && Auth::user()->level == 1)
+                                                <a href="/pesertadidik/showkepsek/{{ $alumni->id_alumni}}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                                @endif
                                                 </td>
                                             </tr>
                                             @php
@@ -126,20 +127,21 @@
             success: function (data) {     
                 $('#tbody').html('')              
                 let html = ''
-
-                for (var i = 0; i < data.siswa.length; i++) {
+                for (var i = 0; i < data.alumni.length; i++) {
 
                    html += '<tr>'
                    html += '<td>'+ (i + 1) +'</td>'
-                   html += '<td>'+ data.siswa[i].nis+'</td>'
-                   html += '<td>'+ data.siswa[i].nm_siswa+'</td>'
-                   html += '<td>'+ data.siswa[i].tahun_ajaran+'</td>'
-                   html += '<td>'+ data.siswa[i].jns_pt+'</td>'
-                   html += '<td>'+ data.siswa[i].nm_pt+'</td>'
-                   html += '<td>'+ data.siswa[i].nm_fak+'</td>'
+                   html += '<td>'+ data.alumni[i].pesertadidik.nis+'</td>'
+                   html += '<td>'+ data.alumni[i].pesertadidik.nm_siswa+'</td>'
+                   html += '<td>'+ data.alumni[i].pesertadidik.tahun_ajaran+'</td>'
+                   html += '<td>'+ data.alumni[i].jns_pt+'</td>'
+                   html += '<td>'+ data.alumni[i].nm_pt+'</td>'
+                   html += '<td>'+ data.alumni[i].nm_fak+'</td>'
                    html += '<td style="text-align: center;">'
                    if (data.level==0) {
-                   html += '<a href="/pesertadidik/edit/'+data.siswa[i].id_siswa+'"><i class="fa fa-file-pdf-o btn-success btn-sm"></i>'}
+                   html += '<a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
+                   if (data.level==1){
+                   html += ' <a href="/pesertadidik/showkepsek/'+data.alumni[i].id_alumni+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
                    html += '</td>'
                     html += '</tr>'
                 }

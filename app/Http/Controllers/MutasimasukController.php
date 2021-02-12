@@ -33,14 +33,14 @@ class MutasimasukController extends Controller
         $pesertadidik = Mutasimasuk::orderBy('id_siswa')->get();
         $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
         if ($request->ajax()) {
-            if (!$request->tahun_ajaran->pesertadidik) {
-                $role = Auth::user()->level;
-                $siswa = Mutasimasuk::orderBy('nm_siswa', 'ASC')->get();
-            }else {
-                $role = Auth::user()->level;
-                $siswa = Mutasimasuk::where('tahun_ajaran',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+            if (!$request->tahun_ajaran){
+                $mutasimasuks = Mutasimasuk::with(['pesertadidik'])->latest()->get();   
+            } else {
+                $siswa = Pesertadidik::where('tahun_ajaran', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
+                $mtsmasuk = Mutasimasuk::with(['pesertadidik'])->whereIn('id_siswa', collect($siswa))->get();
             }
-            return response()->json(['siswa'=>$siswa,'level'=>$role]);
+            $role = Auth::user()->level;
+            return response()->json(['mtsmasuk'=>$mtsmasuk,'level'=>$role]);
         }
       
         return view('mutasi_peserta_didik/ctk_mutasimasuk', compact('mutasimasuks','tahun_ajaran'));

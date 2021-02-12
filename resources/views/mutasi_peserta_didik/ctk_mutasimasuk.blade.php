@@ -81,10 +81,11 @@
                                                 <td>{{ $mutasimasuk->tgl_masuk->isoFormat('D MMMM Y') }}</td>
                                                 <td>{{ $mutasimasuk->asal_sekolah }}</td>
                                                 <td style="text-align: center;">
-                                                <a href="mutasimasuk/edit/{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
-                                                  @if(Auth::user() && Auth::user()->level == 1)
-                                                  <a href="mutasimasuk/edit/{{ $mutasimasuk->id_mut_msk }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
-                                                  @endif
+                                                @if(Auth::user() && Auth::user()->level == 0)
+                                                <a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
+                                                @elseif(Auth::user() && Auth::user()->level == 1)
+                                                <a href="/pesertadidik/showkepsek/{{ $mutasimasuk ->id_mut_msk}}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                                @endif
                                                 </td>
                                             </tr>
                                             @php
@@ -127,10 +128,10 @@
                 $('#tbody').html('')              
                 let html = ''
 
-                for (var i = 0; i < data.siswa.length; i++) {
-                    let tanggal = new Date(data.siswa[i].tgl_masuk).getDate()
-                    let bulan = new Date(data.siswa[i].tgl_masuk).getMonth()
-                    let tahun = new Date(data.siswa[i].tgl_masuk).getFullYear()
+                for (var i = 0; i < data.mtsmasuk.length; i++) {
+                    let tanggal = new Date(data.mtsmasuk[i].tgl_masuk).getDate()
+                    let bulan = new Date(data.mtsmasuk[i].tgl_masuk).getMonth()
+                    let tahun = new Date(data.mtsmasuk[i].tgl_masuk).getFullYear()
 
                     let status = ''
                     switch (bulan) {
@@ -174,15 +175,17 @@
 
                    html += '<tr>'
                    html += '<td>'+ (i + 1) +'</td>'
-                   html += '<td>'+ data.siswa[i].no_srt_pindah+'</td>'
-                   html += '<td>'+ data.siswa[i].nis+'</td>'
-                   html += '<td>'+ data.siswa[i].nm_siswa+'</td>'
-                   html += '<td>'+ data.siswa[i].tahun_ajaran+'</td>'
-                   html += '<td>'+ data.siswa[i].tgl_masuk+', '+tanggal +' '+ bulan + ' ' + tahun+'</td>'
-                   html += '<td>'+ data.siswa[i].asal_sekolah+'</td>'
+                   html += '<td>'+ data.mtsmasuk[i].no_srt_pindah+'</td>'
+                   html += '<td>'+ data.mtsmasuk[i].pesertadidik.nis+'</td>'
+                   html += '<td>'+ data.mtsmasuk[i].pesertadidik.nm_siswa+'</td>'
+                   html += '<td>'+ data.mtsmasuk[i].pesertadidik.tahun_ajaran+'</td>'
+                   html += '<td>'+ tanggal +' '+ bulan + ' ' + tahun+'</td>'
+                   html += '<td>'+ data.mtsmasuk[i].asal_sekolah+'</td>'
                    html += '<td style="text-align: center;">'
                    if (data.level==0) {
-                   html += '<a href="/pesertadidik/edit/'+data.siswa[i].id_siswa+'"><i class="fa fa-file-pdf-o btn-success btn-sm"></i>'}
+                   html += '<a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
+                   if (data.level==1){
+                   html += ' <a href="/pesertadidik/showkepsek/'+data.mtsmasuk[i].id_mut_msk+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
                    html += '</td>'
                     html += '</tr>'
                 }

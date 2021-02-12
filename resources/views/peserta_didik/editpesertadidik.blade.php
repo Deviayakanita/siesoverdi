@@ -67,7 +67,7 @@
           </div>
           <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
             <label for="input_tgllahir">Tanggal Lahir</label>
-            <input type="date" class="form-control" id="input_tgllahir" name="tgl_lahir" required="required" autocomplete="off" value="{{$pesertadidiks->tgl_lahir}}">
+            <input type="date" class="form-control" id="input_tgllahir" name="tgl_lahir" required="required" autocomplete="off" value="{{$pesertadidiks->tgl_lahir->format('Y-m-d')}}">
           </div>
         </div>
 

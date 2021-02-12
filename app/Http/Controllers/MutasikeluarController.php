@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 use App\Models\Mutasikeluar;
 use App\Models\Pesertadidik;
@@ -32,14 +33,14 @@ class MutasikeluarController extends Controller
         $pesertadidik = Mutasikeluar::orderBy('id_siswa')->get();
         $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
         if ($request->ajax()) {
-            if (!$request->tahun_ajaran->pesertadidik) {
-                $role = Auth::user()->level;
-                $siswa = Mutasikeluar::orderBy('nm_siswa', 'ASC')->get();
-            }else {
-                $role = Auth::user()->level;
-                $siswa = Mutasikeluar::where('tahun_ajaran',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+            if (!$request->tahun_ajaran){
+                $mutasikeluars = Mutasikeluar::with(['pesertadidik'])->latest()->get();   
+            } else {
+                $siswa = Pesertadidik::where('tahun_ajaran', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
+                $mtskeluar = Mutasikeluar::with(['pesertadidik'])->whereIn('id_siswa', collect($siswa))->get();
             }
-            return response()->json(['siswa'=>$siswa,'level'=>$role]);
+            $role = Auth::user()->level;
+            return response()->json(['mtskeluar'=>$mtskeluar,'level'=>$role]);
         }
       
         return view('mutasi_peserta_didik/ctk_mutasikeluar', compact('mutasikeluars','tahun_ajaran'));

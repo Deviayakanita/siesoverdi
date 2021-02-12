@@ -94,9 +94,10 @@
                                     <td>{{ $orangtua->nm_ibu }}</td>
                                     <td>{{ $orangtua->penghasilan_ibu }}</td>
                                     <td style="text-align: center;">
-                                        <a href="/orangtua/edit/{{ $orangtua->id_orang_tua }}"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
-                                        @if(Auth::user() && Auth::user()->level == 1)
-                                        <a href="/orangtua/edit/{{ $orangtua->id_orang_tua }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                        @if(Auth::user() && Auth::user()->level == 0)
+                                        <a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
+                                        @elseif(Auth::user() && Auth::user()->level == 1)
+                                        <a href="/pesertadidik/showkepsek/{{ $orangtua ->id_orang_tua }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -149,7 +150,9 @@
                    html += '<td>'+ data.orangtua[i].penghasilan_ibu+'</td>'
                    html += '<td style="text-align: center;">'
                    if (data.level==0) {
-                   html += '<a href="/orangtua/edit/'+data.orangtua[i].id_orang_tua+'"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
+                   html += '<a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
+                   if (data.level==1){
+                   html += ' <a href="/pesertadidik/showkepsek/'+data.orangtua[i].id_orang_tua+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
                    html += '</td>'
                     html += '</tr>'
                 }

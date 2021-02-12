@@ -81,10 +81,11 @@
 				                                <td>{{ $mutasikeluar->tgl_pindah->isoFormat('D MMMM Y') }}</td>
 				                                <td>{{ $mutasikeluar->sekolah_tujuan }}</td>
 				                                <td style="text-align: center;">
+                                                @if(Auth::user() && Auth::user()->level == 0)
                                                 <a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
-				                                  @if(Auth::user() && Auth::user()->level == 1)
-				                                  <a href="#"><i class="fa fa-eye btn-info btn-sm"></i></a>
-				                                  @endif
+                                                @elseif(Auth::user() && Auth::user()->level == 1)
+                                                <a href="/pesertadidik/showkepsek/{{ $mutasikeluar ->id_mut_msk}}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                                @endif
 				                                </td>
                                             </tr>
                                             @php
@@ -114,7 +115,6 @@
         let data = {
             'tahun_ajaran': tahun_ajaran
         }
-        console.log(tahun_ajaran)
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -127,10 +127,10 @@
                 $('#tbody').html('')              
                 let html = ''
 
-                for (var i = 0; i < data.siswa.length; i++) {
-                    let tanggal = new Date(data.siswa[i].tgl_pindah).getDate()
-                    let bulan = new Date(data.siswa[i].tgl_pindah).getMonth()
-                    let tahun = new Date(data.siswa[i].tgl_pindah).getFullYear()
+                for (var i = 0; i < data.mtskeluar.length; i++) {
+                    let tanggal = new Date(data.mtskeluar[i].tgl_pindah).getDate()
+                    let bulan = new Date(data.mtskeluar[i].tgl_pindah).getMonth()
+                    let tahun = new Date(data.mtskeluar[i].tgl_pindah).getFullYear()
 
                     let status = ''
                     switch (bulan) {
@@ -174,15 +174,17 @@
 
                    html += '<tr>'
                    html += '<td>'+ (i + 1) +'</td>'
-                   html += '<td>'+ data.siswa[i].no_srt_pindah+'</td>'
-                   html += '<td>'+ data.siswa[i].nis+'</td>'
-                   html += '<td>'+ data.siswa[i].nm_siswa+'</td>'
-                   html += '<td>'+ data.siswa[i].tahun_ajaran+'</td>'
-                   html += '<td>'+ data.siswa[i].tgl_pindah+', '+tanggal +' '+ bulan + ' ' + tahun+'</td>'
-                   html += '<td>'+ data.siswa[i].sekolah_tujuan+'</td>'
+                   html += '<td>'+ data.mtskeluar[i].no_srt_pindah+'</td>'
+                   html += '<td>'+ data.mtskeluar[i].pesertadidik.nis+'</td>'
+                   html += '<td>'+ data.mtskeluar[i].pesertadidik.nm_siswa+'</td>'
+                   html += '<td>'+ data.mtskeluar[i].pesertadidik.tahun_ajaran+'</td>'
+                   html += '<td>'+ tanggal +' '+ bulan + ' ' + tahun+'</td>'
+                   html += '<td>'+ data.mtskeluar[i].sekolah_tujuan+'</td>'
                    html += '<td style="text-align: center;">'
                    if (data.level==0) {
-                   html += '<a href="/pesertadidik/edit/'+data.siswa[i].id_siswa+'"><i class="fa fa-file-pdf-o btn-success btn-sm"></i>'}
+                   html += '<a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
+                   if (data.level==1){
+                   html += ' <a href="/pesertadidik/showkepsek/'+data.mtskeluar[i].id_mut_msk+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
                    html += '</td>'
                     html += '</tr>'
                 }
