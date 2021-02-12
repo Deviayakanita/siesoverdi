@@ -26,6 +26,25 @@ class MutasikeluarController extends Controller
 
     }
 
+    public function filter(Request $request)
+    {
+        $mutasikeluars = Mutasikeluar::latest()->get();
+        $pesertadidik = Mutasikeluar::orderBy('id_siswa')->get();
+        $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        if ($request->ajax()) {
+            if (!$request->tahun_ajaran->pesertadidik) {
+                $role = Auth::user()->level;
+                $siswa = Mutasikeluar::orderBy('nm_siswa', 'ASC')->get();
+            }else {
+                $role = Auth::user()->level;
+                $siswa = Mutasikeluar::where('tahun_ajaran',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+            }
+            return response()->json(['siswa'=>$siswa,'level'=>$role]);
+        }
+      
+        return view('mutasi_peserta_didik/ctk_mutasikeluar', compact('mutasikeluars','tahun_ajaran'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

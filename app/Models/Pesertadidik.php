@@ -9,6 +9,7 @@ class Pesertadidik extends Model
 {
 	protected $table = 'peserta_didik';
     protected $primaryKey = 'id_siswa';
+    protected $dates = ['tgl_lahir'];
 
     public $fillable = [
     	'nm_siswa',

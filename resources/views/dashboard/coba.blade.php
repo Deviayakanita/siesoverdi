@@ -26,62 +26,59 @@
 @if(Auth::user() && Auth::user()->level == 0)
     <section class="content" style="overflow-x: auto;">
       <!-- Small boxes (Stat box) -->
+      <!-- Info boxes -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>{{$pesertadidik = App\Models\Pesertadidik::count()}}</h3>
-              <p>Data Peserta Didik</p>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <a href="/pesertadidik"><span class="info-box-icon bg-aqua"><i class="fa fa-user"></i></span></a>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Data Peserta Didik</span>
+              <span class="info-box-number">{{$pesertadidik = App\Models\Pesertadidik::count()}}</span>
             </div>
-            <div class="icon">
-              <i class="fa fa-user"></i>
-            </div>
-            <a href="/pesertadidik" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>{{$mutasimasuk = App\Models\Mutasimasuk::count()}}</h3>
-              <p>Data Mutasi Masuk</p>
+
+        <!-- Info boxes -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <a href="/mutasimasuk"><span class="info-box-icon bg-green"><i class="fa fa-sign-in"></i></span></a>
+            <div class="info-box-content">
+              <span class="info-box-text">Data  Mutasi Masuk</span>
+              <span class="info-box-number">{{$mutasimasuk = App\Models\Mutasimasuk::count()}}</span>
             </div>
-            <div class="icon">
-              <i class="fa fa-sign-in"></i>
-            </div>
-            <a href="/mutasimasuk" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>{{$mutasikeluar = App\Models\Mutasikeluar::count()}}</h3>
-              <p>Data Mutasi Keluar</p>
+        
+        <!-- Info boxes -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <a href="/mutasikeluar"><span class="info-box-icon bg-yellow"><i class="fa fa-sign-out"></i></span></a>
+            <div class="info-box-content">
+              <span class="info-box-text">Data  Mutasi Keluar</span>
+              <span class="info-box-number">{{$mutasikeluar = App\Models\Mutasikeluar::count()}}</span>
             </div>
-            <div class="icon">
-              <i class="fa fa-sign-out"></i>
-            </div>
-            <a href="/muatsikeluar" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
 
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>{{$alumni = App\Models\Alumni::count()}}</h3>
-              <p>Data Alumni</p>
+        <!-- Info boxes -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <a href="/alumni"><span class="info-box-icon bg-red"><i class="fa fa-mortar-board"></i></span></a>
+            <div class="info-box-content">
+             <span class="info-box-text">Data  Alumni</span>
+              <span class="info-box-number">{{$alumni = App\Models\Alumni::count()}}</span>
             </div>
-            <div class="icon">
-              <i class="fa fa-files-o"></i>
-            </div>
-            <a href="/alumni" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.info-box-content -->
           </div>
+          <!-- /.info-box -->
         </div>
       </div>
 
@@ -98,7 +95,7 @@
             
             <!-- timeline item -->
             <li>
-              <i class="fa fa-bell bg-blue"></i>
+              <i class="fa fa-bell bg-aqua"></i>
               <div class="timeline-item">
                 <div class="timeline-body">
                 <table id="#" class="table table-hover table-striped dataTable" role="grid" aria-describedby="example1_info">
@@ -115,15 +112,15 @@
                   </thead>
                   <tbody>
                     <?php $no = 0;?>
+                    @foreach($pesertadidik_terakhir as $pt)
                     <?php $no++ ;?>
                     <?php $pesertadidik_terakhir = App\Models\Pesertadidik::latest()->limit(3)->get();?>
-                    @foreach($pesertadidik_terakhir as $pt)
                     <tr>
                       <td>{{ $no }}</td>
                       <td>{{ $pt->nis }}</td>
                       <td>{{ $pt->nm_siswa }}</td>
                       <td>{{ $pt->jns_kelamin }}</td>
-                      <td>{{ $pt->tmp_lahir }}, {{Carbon\Carbon::parse($pt->tgl_lahir)->format('d F Y')}}</td>
+                      <td>{{ $pt->tmp_lahir }}, {{$pt->tgl_lahir->isoFormat('D MMMM Y') }}</td>
                       <td>{{ $pt->tahun_ajaran }}</td>
                       <td>
                         <?php
@@ -171,21 +168,23 @@
                       <th>No. Surat Pindah</th>
                       <th>NIS</th>
                       <th>Nama Lengkap Siswa</th>
-                      <th>Tanggak Masuk</th>
+                      <th>Tahun Ajaran</th>
+                      <th>Tanggal Masuk</th>
                       <th>Asal Sekolah</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $no = 0;?>
+                    @foreach($mtsmasuk_terakhir as $mtm)
                     <?php $no++ ;?>
                     <?php $mtsmasuk_terakhir = App\Models\Mutasimasuk::latest()->limit(3)->get();?>
-                    @foreach($mtsmasuk_terakhir as $mtm)
                     <tr>
                       <td>{{ $no }}</td>
                       <td>{{ $mtm->no_srt_pindah }}</td>
                       <td>{{ $mtm->pesertadidik->nis }}</td>
                       <td>{{ $mtm->pesertadidik->nm_siswa }}</td>
-                      <td>{{ Carbon\Carbon::parse($mtm->tgl_masuk)->format('d F Y')}}</td>
+                      <td>{{ $mtm->pesertadidik->tahun_ajaran }}</td>
+                      <td>{{ $mtm->tgl_masuk->isoFormat('D MMMM Y')}}</td>
                       <td>{{ $mtm->asal_sekolah }}</td>
                     </tr>
                   @endforeach
@@ -216,21 +215,23 @@
                       <th>No. Surat Pindah</th>
                       <th>NIS</th>
                       <th>Nama Lengkap Siswa</th>
+                      <th>Tahun Ajaran</th>
                       <th>Tanggal Pindah</th>
                       <th>Sekolah Tujuan</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $no = 0;?>
+                    @foreach($mtskeluar_terakhir as $mtk)
                     <?php $no++ ;?>
                     <?php $mtskeluar_terakhir = App\Models\Mutasikeluar::latest()->limit(3)->get();?>
-                    @foreach($mtskeluar_terakhir as $mtk)
                     <tr>
                       <td>{{ $no }}</td>
                       <td>{{ $mtk->no_srt_pindah }}</td>
                       <td>{{ $mtk->pesertadidik->nis }}</td>
                       <td>{{ $mtk->pesertadidik->nm_siswa }}</td>
-                      <td>{{ $mtk->tgl_pindah }}</td>
+                      <td>{{ $mtk->pesertadidik->tahun_ajaran }}</td>
+                      <td>{{ $mtk->tgl_pindah->isoFormat('D MMMM Y')}}</td>
                       <td>{{ $mtk->sekolah_tujuan }}</td>
                     </tr>
                   @endforeach
@@ -260,6 +261,7 @@
                       <th>No</th>
                       <th>NIS</th>
                       <th>Nama Lengkap Siswa</th>
+                      <th>Tahun Ajaran</th>
                       <th>Jenis Perguruan Tinggi</th>
                       <th>Nama Perguruan Tinggi</th>
                       <th>Nama Fakultas</th>
@@ -267,13 +269,14 @@
                   </thead>
                   <tbody>
                     <?php $no = 0;?>
+                    @foreach($alumni_terakhir as $al)
                     <?php $no++ ;?>
                     <?php $alumni_terakhir = App\Models\Alumni::latest()->limit(3)->get();?>
-                    @foreach($alumni_terakhir as $al)
                     <tr>
                       <td>{{ $no }}</td>
                       <td>{{ $al->pesertadidik->nis }}</td>
                       <td>{{ $al->pesertadidik->nm_siswa }}</td>
+                      <td>{{ $al->pesertadidik->tahun_ajaran }}</td>
                       <td>{{ $al->jns_pt }}</td>
                       <td>{{ $al->nm_pt }}</td>
                       <td>{{ $al->nm_fak }}</td>
@@ -314,7 +317,7 @@
             <div class="inner">
               <h3>Statistik<sup style="font-size: 20px"></sup></h3>
 
-              <p>Mutasi Masuk Peserta Didik</p>
+              <p>Mutasi Masuk</p>
             </div>
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>
@@ -329,7 +332,7 @@
             <div class="inner">
               <h3>Statistik<sup style="font-size: 20px"></sup></h3>
 
-              <p>Mutasi Keluar Peserta Didik</p>
+              <p>Mutasi Keluar</p>
             </div>
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>
@@ -344,7 +347,7 @@
             <div class="inner">
               <h3>Statistik</h3>
 
-              <p>Alumni Peseta Didik</p>
+              <p>Alumni</p>
             </div>
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>

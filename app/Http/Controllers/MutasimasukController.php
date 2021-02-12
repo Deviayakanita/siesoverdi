@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 use App\Models\Mutasimasuk;
 use App\Models\Pesertadidik;
@@ -25,6 +26,26 @@ class MutasimasukController extends Controller
         return view('mutasi_peserta_didik/index_mutasimasuk', compact('mutasimasuks','pesertadidik'));
 
     }
+
+      public function filter(Request $request)
+    {
+        $mutasimasuks = Mutasimasuk::latest()->get();
+        $pesertadidik = Mutasimasuk::orderBy('id_siswa')->get();
+        $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        if ($request->ajax()) {
+            if (!$request->tahun_ajaran->pesertadidik) {
+                $role = Auth::user()->level;
+                $siswa = Mutasimasuk::orderBy('nm_siswa', 'ASC')->get();
+            }else {
+                $role = Auth::user()->level;
+                $siswa = Mutasimasuk::where('tahun_ajaran',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+            }
+            return response()->json(['siswa'=>$siswa,'level'=>$role]);
+        }
+      
+        return view('mutasi_peserta_didik/ctk_mutasimasuk', compact('mutasimasuks','tahun_ajaran'));
+    }
+
 
     /**
      * Store a newly created resource in storage.

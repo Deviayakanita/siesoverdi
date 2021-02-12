@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Sistem Informasi Eksekutif SMAK Soverdi</title>
   <!-- Tell the browser to be responsive to screen width -->
+  <meta name="csrf-token" content="{{ csrf_token() }}"/>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="{{url('adminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -30,7 +31,6 @@
   <link rel="stylesheet" href="{{url('adminLTE/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{url('adminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
  <link rel="icon" href="../asets/images/Logo Soverdi Warna.png">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -121,22 +121,6 @@
 <script src="{{url('adminLTE/dist/js/demo.js')}}"></script>
 <!-- Toast js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
-<!-- js data peserta didik -->
-<script type="text/javascript">
-  $('.select2').select2();
-  $('#inputNIS').change(function() {
-    var nm_siswa = $('option:selected', this).data('nama');
-    var tahun_ajaran = $('option:selected', this).data('tahun');
-    var provinsi = $('option:selected', this).data('provinsi');
-    var kabupaten = $('option:selected', this).data('kabupaten');
-    var alamat_siswa = $('option:selected', this).data('alamat');
-    $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahun').val(tahun_ajaran);
-    $('#inputprovinsi').val(provinsi);
-    $('#inputkabupaten').val(kabupaten);
-    $('#inputalamat').val(alamat_siswa);
-  });
-</script>
 
 <script>
   $(document).ready(function () {
@@ -150,7 +134,7 @@
     toastr.error('{{ session()->get('error') }}');
   @endif
 </script>
-
+@yield('script')
 
 </body>
 </html>

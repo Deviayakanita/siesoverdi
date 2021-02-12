@@ -7,7 +7,7 @@
       Data Orang Tua
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li class="active"><a href="/orangtua"></i>Daftar Orangtua</a></li>
       <li> Edit Data Orang Tua</li>
     </ol>
@@ -120,4 +120,15 @@
           </div>
         </div>
         </section>  
+@endsection
+@section('script')
+<script type="text/javascript">
+  $('.select2').select2();
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).attr('data-nama');
+    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahun').val(tahun_ajaran);
+  });
+</script>
 @endsection

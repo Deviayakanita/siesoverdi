@@ -7,7 +7,7 @@
       Data Mutasi Masuk
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li class="active"><a href="/alumni"></i>Daftar Alumni</a></li>
       <li> Detail Data Alumni</li>
     </ol>
@@ -17,7 +17,7 @@
 <section class="content">
   <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Detail Alumni</h3> 
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-mortar-board"></i> Detail Alumni</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
@@ -90,11 +90,7 @@
         </div>
 
         <!-- /.box-body -->
-        <div class="box-footer">
-              <a href="#" class="btn btn-info btn-primary">
-                  <i class="fa fa-print"></i> Cetak
-              </a>
-          </div>
+        <div class="box-footer"></div>
       </div>
 			</div>
  

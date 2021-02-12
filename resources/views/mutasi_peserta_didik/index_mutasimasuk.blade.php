@@ -7,7 +7,7 @@
       Data Mutasi Masuk
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li> Daftar Mutasi Masuk</li>
     </ol>
   </section>
@@ -16,18 +16,15 @@
 <div class="row">
   <div class="col-xs-12">
     <div class="box box-primary">
-        <div class="box-header">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-in"></i> Daftar Mutasi Masuk</h3>  <div style="float: right;">
-          <div style="clear: both;"></div>
+      <div class="box-header">
+      <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-in"></i> Daftar Mutasi Masuk</h3>  <div style="float: right;">
+        <div style="clear: both;"></div>
           <div>
           @if(Auth::user() && Auth::user()->level == 0)
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
               <i class="fa fa-pencil"></i> Tambah Data
               </button>
-          @endif
-              <button type="button" class="btn btn-success" align="right">
-              <i class="fa fa-print"></i> Cetak
-              </button>       
+          @endif    
         </div>
         </div>
         </div>
@@ -46,6 +43,7 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">No Surat Pindah</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NIS</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tahun Ajaran</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tanggal Masuk</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Asal Sekolah</th>
                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
@@ -61,7 +59,8 @@
                                 <td>{{ $mutasimasuk->no_srt_pindah }}</td>
                                 <td>{{ $mutasimasuk->pesertadidik->nis }}</td>
                                 <td>{{ $mutasimasuk->pesertadidik->nm_siswa }}</td>
-                                <td>{{ Carbon\Carbon::parse($mutasimasuk->tgl_masuk)->format('d F Y')}}</td>
+                                <td>{{ $mutasimasuk->pesertadidik->tahun_ajaran }}</td>
+                                <td>{{ $mutasimasuk->tgl_masuk->isoFormat('D MMMM Y') }}</td>
                                 <td>{{ $mutasimasuk->asal_sekolah }}</td>
                                 <td style="text-align: center;">
                                   @if(Auth::user() && Auth::user()->level == 0)
@@ -92,7 +91,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-sign-in"></i> Masukan Data Mutasi Masuk</h4>
+                  <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> Masukan Data Mutasi Masuk</h4>
                 </div>
                   <div class="box box-primary">
                   <div class="modal-body">
@@ -178,4 +177,21 @@
     </div> 
   </div>  
 </section> 
+@endsection
+@section('script')
+<script type="text/javascript">
+  $('.select2').select2();
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).attr('data-nama');
+    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    var provinsi = $('option:selected', this).attr('data-provinsi');
+    var kabupaten = $('option:selected', this).attr('data-kabupaten');
+    var alamat_siswa = $('option:selected', this).attr('data-alamat');
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahun').val(tahun_ajaran);
+    $('#inputprovinsi').val(provinsi);
+    $('#inputkabupaten').val(kabupaten);
+    $('#inputalamat').val(alamat_siswa);
+  });
+</script>
 @endsection

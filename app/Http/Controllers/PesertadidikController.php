@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
-
+use PDF;
 use App\Models\Pesertadidik;
 use App\Models\User;
 
@@ -20,8 +20,26 @@ class PesertadidikController extends Controller
      */
     public function index()
     {
-        $pesertadidiks = Pesertadidik::orderBy('nm_siswa', 'ASC')->get();
+        $pesertadidiks = Pesertadidik::latest()->get();
         return view('peserta_didik/index', compact('pesertadidiks'));
+    }
+
+    public function filter(Request $request)
+    {
+        $pesertadidiks = Pesertadidik::latest()->get();
+        $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        if ($request->ajax()) {
+            if (!$request->tahun_ajaran) {
+                $role = Auth::user()->level;
+               $siswa = Pesertadidik::orderBy('nm_siswa', 'ASC')->get();
+            }else {
+                $role = Auth::user()->level;
+                $siswa = Pesertadidik::where('tahun_ajaran',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+            }
+            return response()->json(['siswa'=>$siswa,'level'=>$role]);
+        }
+      
+        return view('peserta_didik/ctk_pesertadidik', compact('pesertadidiks','tahun_ajaran'));
     }
 
 
@@ -108,6 +126,14 @@ class PesertadidikController extends Controller
         $pesertadidiks->save();
 
         return redirect('/pesertadidik')->with('success', 'Data berhasil diupdate!');
+    }
+
+    public function pdf(Request $request)
+    {
+        $siswa = Pesertadidik::all();
+        $pdf = PDF::loadview('peserta_didik.export', ['siswa'=>$siswa]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
     }
 
 

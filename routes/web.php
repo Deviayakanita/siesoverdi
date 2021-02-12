@@ -34,6 +34,8 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/pesertadidik/edit/{id}','App\Http\Controllers\PesertadidikController@edit');
 		Route::patch('/pesertadidik/update/{id}','App\Http\Controllers\PesertadidikController@update');
 		Route::get('/pesertadidik/show/{id}','App\Http\Controllers\PesertadidikController@show');
+		Route::get('/ctk_pesertadidik','App\Http\Controllers\PesertadidikController@filter');
+		Route::get('/pesertadidik/pdf','App\Http\Controllers\PesertadidikController@pdf');
 	
 	// // 	Route Orangtua
 		Route::get('/orangtua', 'App\Http\Controllers\OrangtuaController@index');
@@ -41,6 +43,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/orangtua/edit/{id}','App\Http\Controllers\OrangtuaController@edit');
 		Route::patch('/orangtua/update/{id}','App\Http\Controllers\OrangtuaController@update');
 		Route::get('/orangtua/show/{id}','App\Http\Controllers\OrangtuaController@show');
+		Route::get('/ctk_orangtua','App\Http\Controllers\OrangtuaController@filter');
 	
 	// 	Route Mutasimasuk
 		Route::get('/mutasimasuk', 'App\Http\Controllers\MutasimasukController@index');
@@ -48,6 +51,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/mutasimasuk/edit/{id}','App\Http\Controllers\MutasimasukController@edit');
 		Route::patch('/mutasimasuk/update/{id}','App\Http\Controllers\MutasimasukController@update');
 		Route::get('/mutasimasuk/show/{id}','App\Http\Controllers\MutasimasukController@show');
+		Route::get('/ctk_mutasimasuk','App\Http\Controllers\MutasiMasukController@filter');
 
 	// 	Route Mutasikeluar
 		Route::get('/mutasikeluar', 'App\Http\Controllers\MutasikeluarController@index');
@@ -55,6 +59,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/mutasikeluar/edit/{id}','App\Http\Controllers\MutasikeluarController@edit');
 		Route::patch('/mutasikeluar/update/{id}','App\Http\Controllers\MutasikeluarController@update');
 		Route::get('/mutasikeluar/show/{id}','App\Http\Controllers\MutasikeluarController@show');
+		Route::get('/ctk_mutasikeluar','App\Http\Controllers\MutasiKeluarController@filter');
 
 	// 	Route Alumni
 		Route::get('/alumni', 'App\Http\Controllers\AlumniController@index');
@@ -62,6 +67,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/alumni/edit/{id}','App\Http\Controllers\AlumniController@edit');
 		Route::patch('/alumni/update/{id}','App\Http\Controllers\AlumniController@update');
 		Route::get('/alumni/show/{id}','App\Http\Controllers\AlumniController@show');
+		Route::get('/ctk_alumni','App\Http\Controllers\AlumniController@filter');
 
 	});
 

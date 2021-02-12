@@ -7,7 +7,7 @@
       Data Peserta Didik
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li> Daftar Peserta Didik</li>
     </ol>
   </section>
@@ -17,21 +17,19 @@
   <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Daftar Peserta Didik</h3>  <div style="float: right;">
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Daftar Peserta Didik</h3>
+          <div style="float: right;">
           <div style="clear: both;"></div>
           <div>
           @if(Auth::user() && Auth::user()->level == 0)
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
               <i class="fa fa-pencil"></i> Tambah Data
               </button>
-          @endif
-              <button type="button" class="btn btn-success" align="right">
-              <i class="fa fa-print"></i> Cetak
-              </button>       
+          @endif      
         </div>
         </div>
         </div>
-              
+        
               <div class="box-body">
               <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                 <div class="row"></div>
@@ -48,7 +46,7 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Kelamin</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tempat Tanggal Lahir</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tahun Ajaran</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Peserta Didik</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Siswa</th>
                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                     </tr>
                     </thead>
@@ -62,7 +60,7 @@
                                 <td>{{ $pesertadidik->nis }}</td>
                                 <td>{{ $pesertadidik->nm_siswa }}</td>
                                 <td>{{ $pesertadidik->jns_kelamin }}</td>
-                                <td>{{ $pesertadidik->tmp_lahir }}, {{Carbon\Carbon::parse($pesertadidik->tgl_lahir)->format('d F Y')}}</td>
+                                <td>{{ $pesertadidik->tmp_lahir }}, {{$pesertadidik->tgl_lahir->isoFormat('D MMMM Y') }}</td>
                                 <td>{{ $pesertadidik->tahun_ajaran }}</td>
                                 <td>
                                 <?php if($pesertadidik->sts_siswa == 0)

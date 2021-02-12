@@ -7,7 +7,7 @@
       Data Mutasi Masuk
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li class="active"><a href="/mutasimasuk"></i>Daftar Mutasi Masuk</a></li>
       <li> Detail Data Mutasi Masuk</li>
     </ol>
@@ -94,7 +94,7 @@
             <tr>
               <td>Tanggal Masuk</td>
               <td>:</td>
-              <td>{{$mutasimasuks->tgl_masuk}}</td>
+              <td>{{$mutasimasuks->tgl_masuk->isoFormat('D MMMM Y')}}</td>
             </tr>
             <tr>
               <td>Alasan Pindah</td>
@@ -104,22 +104,18 @@
             <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
-              <td>{{$mutasimasuks->created_at}}</td>
+              <td>{{$mutasimasuks->created_at->isoFormat('D MMMM Y')}}</td>
             </tr>
             <tr>
               <td>Tanggal Diupdate</td>
               <td>:</td> 
-              <td>{{$mutasimasuks->updated_at}}</td>
+              <td>{{$mutasimasuks->updated_at->isoFormat('D MMMM Y')}}</td>
             </tr>
            </table>   
         </div>
 
         <!-- /.box-body -->
-        <div class="box-footer">
-              <a href="#" class="btn btn-info btn-primary">
-                  <i class="fa fa-print"></i> Cetak
-              </a>
-          </div>
+        <div class="box-footer"></div>
       </div>
     </div>
 				

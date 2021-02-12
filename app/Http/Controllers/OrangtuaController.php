@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 use App\Models\Orangtua;
 use App\Models\Pesertadidik;
@@ -24,6 +25,27 @@ class OrangtuaController extends Controller
         $pesertadidik = Pesertadidik::all();
 
         return view('orang_tua/index', compact('orangtuas','pesertadidik'));
+    }
+
+    public function filter(Request $request)
+    {
+        $orangtuas = Orangtua::latest()->get();
+        if ($request->ajax()) {
+            if (!$request->penghasilan_ayah && !$request->penghasilan_ibu) {
+               $orangtua = Orangtua::with(['pesertadidik'])->all();
+            }elseif (!empty($request->penghasilan_ayah) && !empty($request->penghasilan_ibu )){
+                $orangtua = Orangtua::with(['pesertadidik'])->where('penghasilan_ayah',$request->penghasilan_ayah)->where('penghasilan_ibu',$request->penghasilan_ibu)->get();
+            }elseif (empty($request->penghasilan_ayah) && !empty($request->penghasilan_ibu)) {
+               $orangtua = Orangtua::with(['pesertadidik'])->where('penghasilan_ibu',$request->penghasilan_ibu)->get();
+            }else{
+                $orangtua = Orangtua::with(['pesertadidik'])->where('penghasilan_ayah',$request->penghasilan_ayah)->get();
+            }
+             $role = Auth::user()->level;
+            return response()->json(['orangtua'=>$orangtua,'level'=>$role]);
+
+        }
+
+        return view('orang_tua/ctk_orangtua', compact('orangtuas'));
     }
     /**
      * Store a newly created resource in storage.

@@ -9,6 +9,7 @@ class Mutasikeluar extends Model
 {
 	protected $table = 'mutasi_keluar';
     protected $primaryKey = 'id_mut_klr';
+    protected $dates = ['tgl_pindah'];
 
     public $fillable = [
     	'no_srt_pindah',

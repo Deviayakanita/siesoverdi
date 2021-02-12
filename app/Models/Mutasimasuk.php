@@ -9,11 +9,12 @@ class Mutasimasuk extends Model
 {
 	protected $table = 'mutasi_masuk';
     protected $primaryKey = 'id_mut_msk';
+    protected $dates = ['tgl_masuk'];
 
     public $fillable = [
     	'no_srt_pindah',
     	'id_siswa',
-    	'asal_sekolah',
+    	'asal_sekolah', 
         'tingkat_kelas',
         'tgl_masuk',
         'alasan_pindah',

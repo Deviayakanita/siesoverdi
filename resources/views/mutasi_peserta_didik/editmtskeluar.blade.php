@@ -7,7 +7,7 @@
       Data Mutasi Keluar
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li class="active"><a href="/mutasikeluar"></i>Daftar Mutasi Keluar</a></li>
       <li> Edit Data Mutasi Keluar</li>
     </ol>
@@ -21,7 +21,7 @@
     <div class="box box-primary">
     <form role="form">
     <div class="box-header">
-    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-out"></i> Edit Data Mutasi Keluar</h3> 
+    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Edit Data Mutasi Keluar</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
@@ -92,4 +92,15 @@
 </form>
 </div>
 </section>  
+@endsection
+@section('script')
+<script type="text/javascript">
+  $('.select2').select2();
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).attr('data-nama');
+    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahun').val(tahun_ajaran);
+  });
+</script>
 @endsection

@@ -7,7 +7,7 @@
       Data Peserta Didik
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li class="active"><a href="/pesertadidik"></i>Daftar Peserta Didik</a></li>
       <li> Edit Data Peserta Didik</li>
     </ol>

@@ -7,7 +7,7 @@
       Data Orang Tua
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li class="active"><a href="/orangtua"></i>Daftar Orangtua</a></li>
       <li> Detail Data Orang Tua</li>
     </ol>
@@ -116,11 +116,7 @@
         </div>
 
         <!-- /.box-body -->
-        <div class="box-footer">
-              <a href="#" class="btn btn-info btn-primary">
-                  <i class="fa fa-print"></i> Cetak
-              </a>
-          </div>
+        <div class="box-footer"></div>
       </div>
 				
  </div>

@@ -7,7 +7,7 @@
       Data Mutasi Masuk
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li class="active"><a href="/mutasimasuk"></i>Daftar Mutasi Masuk</a></li>
       <li> Edit Data Mutasi Masuk</li>
     </ol>
@@ -21,7 +21,7 @@
     <div class="box box-primary">
     <form role="form">
     <div class="box-header">
-    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-in"></i> Edit Data Mutasi Masuk</h3> 
+    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Edit Data Mutasi Masuk</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
@@ -42,7 +42,7 @@
       <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
         @foreach ($pesertadidik as $item)
-        <option @if ($item->id_siswa == $mutasimasuks->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+        <option @if ($item->id_siswa == $mutasimasuks->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" data-provinsi="{{ $item->provinsi }}" data-kabupaten="{{ $item->kabupaten }}" data-alamat="{{ $item->alamat_siswa }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
       </select>
     </div>
@@ -109,4 +109,21 @@
 </form>
 </div>
 </section>  
+@endsection
+@section('script')
+<script type="text/javascript">
+  $('.select2').select2();
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).attr('data-nama');
+    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    var provinsi = $('option:selected', this).attr('data-provinsi');
+    var kabupaten = $('option:selected', this).attr('data-kabupaten');
+    var alamat_siswa = $('option:selected', this).attr('data-alamat');
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahun').val(tahun_ajaran);
+    $('#inputprovinsi').val(provinsi);
+    $('#inputkabupaten').val(kabupaten);
+    $('#inputalamat').val(alamat_siswa);
+  });
+</script>
 @endsection

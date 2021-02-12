@@ -7,7 +7,7 @@
       Data Peserta Didik
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li class="active"><a href="/pesertadidik"></i>Daftar Peserta Didik</a></li>
       <li> Detail Data Peserta Didik</li>
     </ol>
@@ -51,7 +51,7 @@
             <tr>
               <td>Tanggal lahir</td>
               <td>:</td>
-              <td>{{$pesertadidiks->tgl_lahir}}</td>
+              <td>{{$pesertadidiks->tgl_lahir->isoFormat('D MMMM Y')}}</td>
             </tr>
             <tr>
               <td>Agama</td>
@@ -94,7 +94,7 @@
               <td>{{$pesertadidiks->jurusan}}</td>
             </tr>
             <tr>
-              <td>Status Peserta Didik</td>
+              <td>Status Siswa</td>
               <td>:</td>
               <td>
                 <?php if($pesertadidiks->sts_siswa == 0)
@@ -115,23 +115,19 @@
             <tr>
               <td>Tanggal Dibuat</td>
               <td>:</td> 
-              <td>{{ Carbon\Carbon::parse($pesertadidiks->created_ad)->format('d F Y')}}</td>
+              <td>{{$pesertadidiks->created_at->isoFormat('D MMMM Y')}}</td>
             </tr>
             <tr>
               <td>Tanggal Diupdate</td>
               <td>:</td> 
-              <td>{{ Carbon\Carbon::parse($pesertadidiks->updated_at)->format('d F Y')}}</td>
+              <td>{{$pesertadidiks->updated_at->isoFormat('D MMMM Y')}}</td>
             </tr>
            </table> 
            
         </div>
 
         <!-- /.box-body -->
-        <div class="box-footer">
-              <a href="#" class="btn btn-info btn-primary">
-                  <i class="fa fa-print"></i> Cetak
-              </a>
-          </div>
+        <div class="box-footer"></div>
       </div>
 </div>
 </section>	

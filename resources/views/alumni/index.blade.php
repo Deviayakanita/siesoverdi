@@ -7,7 +7,7 @@
       Data Alumni
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/dashboard3"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
       <li> Daftar Alumni</li>
     </ol>
   </section>
@@ -17,7 +17,7 @@
   <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Daftar Alumni</h3>  
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-mortar-board"></i> Daftar Alumni</h3>  
         <div style="float: right;">
           <div style="clear: both;"></div>
           <div>
@@ -25,10 +25,7 @@
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" align="right">
               <i class="fa fa-pencil"></i> Tambah Data
               </button>
-          @endif
-              <button type="button" class="btn btn-success" align="right">
-              <i class="fa fa-print"></i> Cetak
-              </button>       
+          @endif    
         </div>
         </div>
         </div>
@@ -46,6 +43,7 @@
                     <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NIS</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tahun Ajaran</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Perguruan Tinggi</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Perguruan Tinggi</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Fakultas</th>
@@ -61,6 +59,7 @@
                                 <td>{{ $i }}</td>
                                 <td>{{ $alumni->pesertadidik->nis }}</td>
                                 <td>{{ $alumni->pesertadidik->nm_siswa }}</td>
+                                <td>{{ $alumni->pesertadidik->tahun_ajaran }}</td>
                                 <td>{{ $alumni->jns_pt }}</td>
                                 <td>{{ $alumni->nm_pt }}</td>
                                 <td>{{ $alumni->nm_fak }}</td>
@@ -158,4 +157,15 @@
     </div> 
 </div>
 </section>  
+@endsection
+@section('script')
+<script type="text/javascript">
+  $('.select2').select2();
+  $('#inputNIS').change(function() {
+    var nm_siswa = $('option:selected', this).attr('data-nama');
+    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    $('#inputnamasiswa').val(nm_siswa);
+    $('#inputtahun').val(tahun_ajaran);
+  });
+</script>
 @endsection

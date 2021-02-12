@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Auth;
 
 use App\Models\Pesertadidik;
 use App\Models\Alumni;
@@ -20,6 +24,24 @@ class AlumniController extends Controller
         $pesertadidik = Pesertadidik::all();
        
         return view('alumni/index', compact('alumnis','pesertadidik'));
+    }
+
+    public function filter(Request $request)
+    {
+        $alumnis = Alumni::latest()->get();
+        $tahun_ajaran = Alumni::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        if ($request->ajax()) {
+            if (!$request->tahun_ajaran) {
+                $role = Auth::user()->level;
+               $siswa = Alumni::orderBy('nm_siswa', 'ASC')->get();
+            }else {
+                $role = Auth::user()->level;
+                $siswa = Alumni::where('tahun_ajaran',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+            }
+            return response()->json(['siswa'=>$siswa,'level'=>$role]);
+        }
+      
+        return view('alumni/ctk_alumni', compact('alumnis','tahun_ajaran'));
     }
 
     /**

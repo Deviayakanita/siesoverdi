@@ -20,13 +20,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{url('adminLTE/dist/img/userr.png')}}" class="user-image" alt="User Image">
+              <img src="{{url('adminLTE/dist/img/user.png')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">Gabriel</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{url('adminLTE/dist/img/userr.png')}}" class="img-circle" alt="User Image">
+                <img src="{{url('adminLTE/dist/img/user.png')}}" class="img-circle" alt="User Image">
 
                 <p>
                   Administartor SMAK Soverdi  
@@ -38,7 +38,7 @@
                 <div class="pull-right">
                   <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-default btn-flat">Sign out</button>
+                    <button type="submit" class="btn btn-primary btn-flat">Logout</button>
                   </form>
                 </div>
               </li>
@@ -47,13 +47,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{url('adminLTE/dist/img/userr.png')}}" class="user-image" alt="User Image">
+              <img src="{{url('adminLTE/dist/img/user.png')}}" class="user-image" alt="User Image">
               <span class="hidden-xs">Dra. Magdalena Tin</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{url('adminLTE/dist/img/userr.png')}}" class="img-circle" alt="User Image">
+                <img src="{{url('adminLTE/dist/img/user.png')}}" class="img-circle" alt="User Image">
 
                 <p>
                   Kepala Sekolah SMAK Soverdi  
@@ -65,7 +65,7 @@
                 <div class="pull-right">
                   <form action="{{ route('logout') }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-default btn-flat">Sign out</button>
+                    <button type="submit" class="btn btn-primary btn-flat">Logout</button>
                   </form>
                 </div>
               </li>
