@@ -36,8 +36,8 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/pesertadidik/show/{id}','App\Http\Controllers\PesertadidikController@show');
 		Route::get('/pesertadidik/showkepsek/{id}','App\Http\Controllers\PesertadidikController@detail');
 		Route::get('/ctk_pesertadidik','App\Http\Controllers\PesertadidikController@filter');
-		Route::get('/pesertadidik/pdf','App\Http\Controllers\PesertadidikController@pdf');
-		Route::get('/pesertadidik/export/{id}','App\Http\Controllers\PesertadidikController@export');
+		Route::get('/pesertadidik/export','App\Http\Controllers\PesertadidikController@export');
+		Route::get('/pesertadidik/pdf/{id}','App\Http\Controllers\PesertadidikController@pdf');
 		Route::get('/cetaksiswa/{tahun_ajaran}','App\Http\Controllers\PesertadidikController@cetakfilter');
 	
 	// // 	Route Orangtua
@@ -46,7 +46,11 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/orangtua/edit/{id}','App\Http\Controllers\OrangtuaController@edit');
 		Route::patch('/orangtua/update/{id}','App\Http\Controllers\OrangtuaController@update');
 		Route::get('/orangtua/show/{id}','App\Http\Controllers\OrangtuaController@show');
+		Route::get('/orangtua/showkepsek/{id}','App\Http\Controllers\OrangtuaController@detail');
 		Route::get('/ctk_orangtua','App\Http\Controllers\OrangtuaController@filter');
+		Route::get('/orangtua/export','App\Http\Controllers\OrangtuaController@export');
+		Route::get('/orangtua/pdf/{id}','App\Http\Controllers\OrangtuaController@pdf');
+		Route::get('penghasilan/{ids}','App\Http\Controllers\OrangtuaController@cetakfilter');
 	
 	// 	Route Mutasimasuk
 		Route::get('/mutasimasuk', 'App\Http\Controllers\MutasimasukController@index');
@@ -54,7 +58,11 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/mutasimasuk/edit/{id}','App\Http\Controllers\MutasimasukController@edit');
 		Route::patch('/mutasimasuk/update/{id}','App\Http\Controllers\MutasimasukController@update');
 		Route::get('/mutasimasuk/show/{id}','App\Http\Controllers\MutasimasukController@show');
+		Route::get('/mutasimasuk/showkepsek/{id}','App\Http\Controllers\MutasimasukController@detail');
 		Route::get('/ctk_mutasimasuk','App\Http\Controllers\MutasiMasukController@filter');
+		Route::get('/mutasimasuk/export','App\Http\Controllers\MutasimasukController@export');
+		Route::get('/mutasimasuk/pdf/{id}','App\Http\Controllers\MutasimasukController@pdf');
+		Route::get('/cetakmutasimsk/{tahun_ajaran}','App\Http\Controllers\MutasimasukController@cetakfilter');
 
 	// 	Route Mutasikeluar
 		Route::get('/mutasikeluar', 'App\Http\Controllers\MutasikeluarController@index');
@@ -62,7 +70,11 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/mutasikeluar/edit/{id}','App\Http\Controllers\MutasikeluarController@edit');
 		Route::patch('/mutasikeluar/update/{id}','App\Http\Controllers\MutasikeluarController@update');
 		Route::get('/mutasikeluar/show/{id}','App\Http\Controllers\MutasikeluarController@show');
+		Route::get('/mutasikeluar/showkepsek/{id}','App\Http\Controllers\MutasikeluarController@detail');
 		Route::get('/ctk_mutasikeluar','App\Http\Controllers\MutasiKeluarController@filter');
+		Route::get('/mutasikeluar/export','App\Http\Controllers\MutasikeluarController@export');
+		Route::get('/mutasikeluar/pdf/{id}','App\Http\Controllers\MutasikeluarController@pdf');
+		Route::get('/cetakmutasiklr/{tahun_ajaran}','App\Http\Controllers\MutasikeluarController@cetakfilter');
 
 	// 	Route Alumni
 		Route::get('/alumni', 'App\Http\Controllers\AlumniController@index');
@@ -70,7 +82,11 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/alumni/edit/{id}','App\Http\Controllers\AlumniController@edit');
 		Route::patch('/alumni/update/{id}','App\Http\Controllers\AlumniController@update');
 		Route::get('/alumni/show/{id}','App\Http\Controllers\AlumniController@show');
+		Route::get('/alumni/showkepsek/{id}','App\Http\Controllers\AlumniController@detail');
 		Route::get('/ctk_alumni','App\Http\Controllers\AlumniController@filter');
+		Route::get('/alumni/export','App\Http\Controllers\AlumniController@export');
+		Route::get('/alumni/pdf/{id}','App\Http\Controllers\AlumniController@pdf');
+		Route::get('/cetakalumni/{tahun_ajaran}','App\Http\Controllers\AlumniController@cetakfilter');
 
 	});
 

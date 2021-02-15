@@ -33,21 +33,21 @@ class Pesertadidik extends Model
     
     public function orangtua()
     {
-        return $this -> hasMany(Orangtua::class);
+        return $this -> hasOne(Orangtua::class, 'id_siswa', 'id_siswa');
     }
 
      public function mutasimasuk()
     {
-        return $this -> hasMany(Mutasimasuk::class);
+        return $this -> hasOne(Mutasimasuk::class,'id_siswa', 'id_siswa');
     }
 
     public function mutasikeluar()
     {
-        return $this -> hasOne(MutasiKeluar::class);
+        return $this -> hasOne(MutasiKeluar::class, 'id_siswa', 'id_siswa');
     }
 
       public function alumni()
     {
-        return $this -> hasOne(Alumni::class);
+        return $this -> hasOne(Alumni::class, 'id_siswa', 'id_siswa');
     }
 }

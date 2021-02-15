@@ -8,20 +8,20 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-      <li class="active"><a href="/orangtua"></i>Daftar Orangtua</a></li>
+      <li class="active"><a href="/ctk_orangtua"></i>Daftar Orang Tua</a></li>
       <li> Detail Data Orang Tua</li>
     </ol>
   </section>
 
 
 <section class="content">
-  <div class="box box-primary">
+	<div class="box box-primary">
       <div class="box-header with-border">
-      <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Detail Data Orang Tua</h3> 
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Detail Data Orang Tua</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
-        <a href="/orangtua" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
+        <a href="/ctk_orangtua" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
       </div>
       </div>
     </div>
@@ -100,16 +100,15 @@
             <tr>
               <td>Penghasilan Ibu</td>
               <td>:</td>
-              <td>{{$orangtuas->penghasilan_ibu}}
-            </td>
+              <td>{{$orangtuas->penghasilan_ibu}}</td>
             </tr>
            </table>   
         </div>
 
+
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-				
- </div>
+</div>
 </section>	
 @endsection

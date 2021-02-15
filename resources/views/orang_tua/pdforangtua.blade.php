@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DATA PESERTA DIDIK SMAK SOVERDI</title>
-  <link rel="icon" href="../asets/images/logo svd.png">
+	<title>DATA ORANG TUA PESERTA DIDIK SMAK SOVERDI</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="icon" href="../asets/images/logo svd.png">
 	<style type="text/css">
 		.line-title{
 			border:0;
@@ -26,84 +26,34 @@
 		</tr>
 	</table>
 	<hr class="line-title">
-		<p align="center"><b>DATA PESERTA DIDIK</b></p>
+		<p align="center"><b>DATA ORANG TUA PESERTA DIDIK</b></p>
 		<div class="box-body">
          <table class="table table-bordered">
-         ($pesertadidiks as $pesertadidiks)
+         ($orangtuas as $orangtuas)
 		<tr>
               <td>No Induk Siswa</td>
-              <td width="4px">:</td>
-              <td>{{$pesertadidiks->nis}}</td>
+              <td width="5px">:</td>
+              <td>{{$orangtuas->pesertadidik->nis}}</td>
             </tr>
             <tr> 
               <td>Nama Lengkap Siswa</td>
               <td>:</td>
-              <td>{{$pesertadidiks->nm_siswa}}</td>
+              <td>{{$orangtuas->pesertadidik->nm_siswa}}</td>
             </tr>
             <tr>
-              <td>Jenis Kelamin</td>
+              <td>Tahun Ajaran Siswa</td>
               <td>:</td>
-              <td>{{$pesertadidiks->jns_kelamin}}</td>
+              <td>{{$orangtuas->pesertadidik->tahun_ajaran}}</td>
             </tr>
             <tr>
-              <td>Tempat lahir</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->tmp_lahir}}</td>
-            </tr>
-            <tr>
-              <td>Tanggal lahir</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->tgl_lahir->isoFormat('D MMMM Y')}}</td>
-            </tr>
-            <tr>
-              <td>Agama</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->agama}}</td>
-            </tr>
-            <tr>
-              <td>Alamat Siswa</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->alamat_siswa}}</td>
-            </tr>
-            <tr>
-              <td>Provinsi</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->provinsi}}</td>
-            </tr>
-            <tr>
-              <td>Kabupaten</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->kabupaten}}</td>
-            </tr>
-            <tr>
-              <td>No Telepon</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->no_tlpn}}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->email}}</td>
-            </tr>
-            <tr>
-              <td>Tahun Ajaran</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->tahun_ajaran}}</td>
-            </tr>
-            <tr>
-              <td>Jurusan</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->jurusan}}</td>
-            </tr>
-            <tr>
-              <td>Status Siswa</td>
+              <td>Status Peserta Didik</td>
               <td>:</td>
               <td>
-                <?php if($pesertadidiks->sts_siswa == 0)
+                <?php if($orangtuas->pesertadidik->sts_siswa == 0)
                      {
                         echo "Non Aktif";
                      }
-                      elseif($pesertadidiks->sts_siswa == 1)
+                      elseif($orangtuas->pesertadidik->sts_siswa == 1)
                     {
                         echo "Aktif";
                     }
@@ -114,6 +64,46 @@
                     ?>            
               </td>    
             </tr>
+            <tr>
+              <td>Nama Ayah</td>
+              <td>:</td>
+              <td>{{$orangtuas->nm_ayah}}</td>
+            </tr>
+            <tr>
+              <td>Pendidikan Ayah</td>
+              <td>:</td>
+              <td>{{$orangtuas->pddk_ayah}}</td>
+            </tr>
+            <tr>
+              <td>Pekerjaan Ayah</td>
+              <td>:</td>
+              <td>{{$orangtuas->job_ayah}}</td>
+            </tr>
+            <tr>
+              <td>Penghasilan Ayah</td>
+              <td>:</td>
+              <td>{{$orangtuas->penghasilan_ayah}}</td>
+            </tr>
+            <tr>
+              <td>Nama Ibu</td>
+              <td>:</td>
+              <td>{{$orangtuas->nm_ibu}}</td>
+            </tr>
+            <tr>
+              <td>Pendidikan Ibu</td>
+              <td>:</td>
+              <td>{{$orangtuas->pddk_ibu}}</td>
+            </tr>
+            <tr>
+              <td>Pekerjaan Ibu</td>
+              <td>:</td>
+              <td>{{$orangtuas->job_ibu}}</td>
+            </tr>
+            <tr>
+              <td>Penghasilan Ibu</td>
+              <td>:</td>
+              <td>{{$orangtuas->penghasilan_ibu}}</td>
+            </tr>
            </table> 
         <!-- /.box-body -->
         <div class="box-footer"></div>
@@ -123,9 +113,7 @@
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-				Tuban,
-        <br>Kepala Sekolah
-        <br>
+				Mengetahui,<br>Kepala Sekolah
 				<br>
 				<br>
 				<br>

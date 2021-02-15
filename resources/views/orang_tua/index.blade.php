@@ -103,35 +103,50 @@
                       <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off" >
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
-                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                         @endforeach
                       </select>
+                      @error('nis')
+                        <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ "Nis Sudah Tersedia" }}</strong>
+                        </span>
+                      @enderror
                     </div>
                 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Lengkap Siswa</label>
-                      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
+                      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly value="{{ old('nm_siswa') }}">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Tahun Ajaran Siswa</label>
-                      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
+                      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly value="{{ old('tahun_ajaran') }}">
                     </div>
                   </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ayah</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_ayah" required="required" autocomplete="off" placeholder="Masukan Nama">
+                      <input type="text" class="form-control" id="inputnama" name="nm_ayah" required="required" autocomplete="off" placeholder="Masukan Nama" value="{{ old('nm_ayah') }}">
+                      @error('nm_ayah')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpekerjaan">Pekerjaan Ayah</label>
-                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah" required="required" autocomplete="off" placeholder="Masukan Pekerjaan">
+                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah" required="required" autocomplete="off" placeholder="Masukan Pekerjaan" value="{{ old('job_ayah') }}">
+                      @error('job_ayah')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpendidikan">Pendidikan Terakhir</label>
-                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ayah" required="required" autocomplete="off" placeholder="Masukan Pendidikan Terakhir">
+                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ayah" required="required" autocomplete="off" placeholder="Masukan Pendidikan Terakhir" value="{{ old('pddk_ayah') }}">
                     </div>
                     </div>
 
@@ -139,43 +154,53 @@
                       <label for="inputState">Penghasilan Ayah</label>
                       <select style="width: 100%;" id="inputState" class="form-control select2" name="penghasilan_ayah" required="required" autocomplete="off">
                         <option selected="selected" disabled>-- Pilih Penghasilan --</option>
-                        <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
-                        <option value="Rp.500,000 - Rp.1,000,000">Rp.500,000 - Rp.1,000,000</option>
-                        <option value="Rp.1,000,000 - Rp.2,000,000">Rp.1,000,000 - Rp.2,000,000</option>
-                        <option value="Rp.2,000,000 - Rp.5,000,000">Rp.2,000,000 - Rp.5,000,000</option>
-                        <option value="Rp.5,000,000 - Rp.20,000,000">Rp.5,000,000 - Rp.20,000,000</option>
-                        <option value="Lebih dari Rp.20,000,000">Lebih dari Rp.20,000,000</option>
-                        <option value="Tidak Penghasilan">Tidak Berpenghasilan</option>
+                        <option value="Kurang dari Rp.500,000" {{ old('penghasilan_ayah')=='Kurang dari Rp.500,000'? 'selected':''}}>Kurang dari Rp.500,000</option>
+                        <option value="Rp.500,000 - Rp.1,000,000" {{ old('penghasilan_ayah')=='Rp.500,000 - Rp.1,000,000'? 'selected':''}}>Rp.500,000 - Rp.1,000,000</option>
+                        <option value="Rp.1,000,000 - Rp.2,000,000" {{ old('penghasilan_ayah')=='Rp.1,000,000 - Rp.2,000,000'? 'selected':''}}>Rp.1,000,000 - Rp.2,000,000</option>
+                        <option value="Rp.2,000,000 - Rp.5,000,000" {{ old('penghasilan_ayah')=='Rp.2,000,000 - Rp.5,000,000'? 'selected':''}}>Rp.2,000,000 - Rp.5,000,000</option>
+                        <option value="Rp.5,000,000 - Rp.20,000,000" {{ old('penghasilan_ayah')=='Rp.5,000,000 - Rp.20,000,000'? 'selected':''}}>Rp.5,000,000 - Rp.20,000,000</option>
+                        <option value="Lebih dari Rp.20,000,000" {{ old('penghasilan_ayah')=='Lebih dari Rp.20,000,000'? 'selected':''}}>Lebih dari Rp.20,000,000</option>
+                        <option value="Tidak Penghasilan" {{ old('penghasilan_ayah')=='Tidak Penghasilan'? 'selected':''}}>Tidak Berpenghasilan</option>
                       </select>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ibu</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_ibu" required="required" autocomplete="off" placeholder="Masukan Nama">
+                      <input type="text" class="form-control" id="inputnama" name="nm_ibu" required="required" autocomplete="off" placeholder="Masukan Nama" value="{{ old('nm_ibu') }}">
+                      @error('nm_ibu')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpekerjaan">Pekerjaan Ibu</label>
-                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu" required="required" autocomplete="off" placeholder="Masukan Pekerjaan">
+                      <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu" required="required" autocomplete="off" placeholder="Masukan Pekerjaan" value="{{ old('job_ibu') }}">
+                      @error('job_ibu')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpendidikan">Pendidikan Terakhir</label>
-                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ibu" required="required" autocomplete="off" placeholder="Masukan Pendidikan Terakhir">
+                      <input type="text" class="form-control" id="inputpendidikan" name="pddk_ibu" required="required" autocomplete="off" placeholder="Masukan Pendidikan Terakhir" value="{{ old('pddk_ibu') }}">
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputState">Penghasilan Ibu</label>
                       <select style="width: 100%;" id="inputState" class="form-control select2" name="penghasilan_ibu" required="required" autocomplete="off">
-                        <option selected ="selected" disabled>-- Pilih Penghasilan --</option>
-                        <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
-                        <option value="Rp.500,000 - Rp.1,000,000">Rp.500,000 - Rp.1,000,000</option>
-                        <option value="Rp.1,000,000 - Rp.2,000,000">Rp.1,000,000 - Rp.2,000,000</option>
-                        <option value="Rp.2,000,000 - Rp.5,000,000">Rp.2,000,000 - Rp.5,000,000</option>
-                        <option value="Rp.5,000,000 - Rp.20,000,000">Rp.5,000,000 - Rp.20,000,000</option>
-                        <option value="Lebih dari Rp.20,000,000">Lebih dari Rp.20,000,000</option>
-                        <option value="Tidak Penghasilan">Tidak Berpenghasilan</option>
+                        <option selected="selected" disabled>-- Pilih Penghasilan --</option>
+                        <option value="Kurang dari Rp.500,000" {{ old('penghasilan_ibu')=='Kurang dari Rp.500,000'? 'selected':''}}>Kurang dari Rp.500,000</option>
+                        <option value="Rp.500,000 - Rp.1,000,000" {{ old('penghasilan_ibu')=='Rp.500,000 - Rp.1,000,000'? 'selected':''}}>Rp.500,000 - Rp.1,000,000</option>
+                        <option value="Rp.1,000,000 - Rp.2,000,000" {{ old('penghasilan_ibu')=='Rp.1,000,000 - Rp.2,000,000'? 'selected':''}}>Rp.1,000,000 - Rp.2,000,000</option>
+                        <option value="Rp.2,000,000 - Rp.5,000,000" {{ old('penghasilan_ibu')=='Rp.2,000,000 - Rp.5,000,000'? 'selected':''}}>Rp.2,000,000 - Rp.5,000,000</option>
+                        <option value="Rp.5,000,000 - Rp.20,000,000" {{ old('penghasilan_ibu')=='Rp.5,000,000 - Rp.20,000,000'? 'selected':''}}>Rp.5,000,000 - Rp.20,000,000</option>
+                        <option value="Lebih dari Rp.20,000,000" {{ old('penghasilan_ibu')=='Lebih dari Rp.20,000,000'? 'selected':''}}>Lebih dari Rp.20,000,000</option>
+                        <option value="Tidak Penghasilan" {{ old('penghasilan_ibu')=='Tidak Penghasilan'? 'selected':''}}>Tidak Berpenghasilan</option>
                       </select>
                     </div>
                     
@@ -194,6 +219,9 @@
 @section('script')
 <script type="text/javascript">
   $('.select2').select2();
+  @if($errors->any())
+      $('#exampleModal').modal();
+    @endif
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
     var tahun_ajaran = $('option:selected', this).attr('data-tahun');

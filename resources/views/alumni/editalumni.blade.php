@@ -40,6 +40,11 @@
             <option @if ($item->id_siswa == $alumnis->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
             @endforeach
           </select>
+          @error('nis')
+            <span class="invalid-feedback text-danger" role="alert">
+                <strong>{{ "Nis Sudah Tersedia" }}</strong>
+            </span>
+          @enderror
         </div>
 
         <div class="form-row">
@@ -56,7 +61,7 @@
           <label for="inputState">Jenis Perguruan Tinggi</label>
           <select id="inputState" class="form-control" name="jns_pt" value="{{$alumnis->jns_pt}}" required="required" autocomplete="off">
             <option selected>-- Pilih Perguruan Tinggi --</option>
-            <option value="Negeri" @if($alumnis->jns_pt=='Negeri') selected @endif>Negeri</option>
+            <option value="Negri" @if($alumnis->jns_pt=='Negri') selected @endif>Negeri</option>
             <option value="Swasta" @if($alumnis->jns_pt=='Swasta') selected @endif>Swasta</option>
           </select>
         </div>
@@ -94,6 +99,9 @@
 @section('script')
 <script type="text/javascript">
   $('.select2').select2();
+   @if($errors->any())
+      $('#exampleModal').modal();
+    @endif
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
     var tahun_ajaran = $('option:selected', this).attr('data-tahun');

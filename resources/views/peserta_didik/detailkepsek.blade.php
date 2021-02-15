@@ -112,16 +112,6 @@
                     ?>            
               </td>    
             </tr>
-            <tr>
-              <td>Tanggal Dibuat</td>
-              <td>:</td> 
-              <td>{{$pesertadidiks->created_at->isoFormat('D MMMM Y')}}</td>
-            </tr>
-            <tr>
-              <td>Tanggal Diupdate</td>
-              <td>:</td> 
-              <td>{{$pesertadidiks->updated_at->isoFormat('D MMMM Y')}}</td>
-            </tr>
            </table> 
            
         </div>

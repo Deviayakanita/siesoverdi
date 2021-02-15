@@ -51,10 +51,12 @@ class PesertadidikController extends Controller
      */
     public function store(Request $request)
     { 
-        
+        $this->validate($request, [
+            'nis' => 'required|unique:peserta_didik'
+        ]);
+
         Pesertadidik::create([
             'nm_siswa' => request('nm_siswa'),
-            'id_user' => Auth::user()->id,
             'jns_kelamin' => request('jns_kelamin'),
             'nis' => request('nis'),
             'tmp_lahir' => request('tmp_lahir'),
@@ -113,9 +115,12 @@ class PesertadidikController extends Controller
 
     public function update(Request $request, $id)
     {
-        $pesertadidiks = Pesertadidik::find($id);
+        $this->validate($request, [
+            'nis' => 'required|unique:peserta_didik,nis,'.$id.',id_siswa'
+        ]);
+
+        $pesertadidiks = Pesertadidik::where('id_siswa', $id)->first();
         $pesertadidiks->nm_siswa = $request->nm_siswa;
-        $pesertadidiks->id_user = Auth::user()->id;
         $pesertadidiks->nis = $request->nis;
         $pesertadidiks->tmp_lahir = $request->tmp_lahir;
         $pesertadidiks->tgl_lahir = $request->tgl_lahir;
@@ -134,15 +139,15 @@ class PesertadidikController extends Controller
         return redirect('/pesertadidik')->with('success', 'Data berhasil diupdate!');
     }
 
-    public function pdf(Request $request)
+    public function export(Request $request)
     {
         $siswa = Pesertadidik::all();
         $pdf = PDF::loadview('peserta_didik.export', ['siswa'=>$siswa]);
-        $pdf->setPaper('A4', 'landscape');
+        $pdf->setPaper('A4','landscape');
         return $pdf->stream();
     }
 
-    public function export($id)
+    public function pdf($id)
     {
         $pesertadidiks = Pesertadidik::find($id);
         $pdf = PDF::loadview('peserta_didik.pdfpesertadidik', ['pesertadidiks'=>$pesertadidiks]);

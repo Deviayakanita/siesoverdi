@@ -43,7 +43,7 @@
                     <div>
                         <button type="button" class="btn btn-primary" id="filter"><i class=""></i> Filter</button>
                         <button type="button" class="btn btn-warning" id="refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                        <a href="/pesertadidik/pdf" id="cetak" class="btn btn-danger" style="margin-left:518px; margin-right: 0px;"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+                        <a href="/alumni/export" id="cetak" class="btn btn-danger" style="margin-left:518px; margin-right: 0px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
                     </div>
                 </div>
 
@@ -82,9 +82,9 @@
                                                 <td>{{ $alumni->nm_fak }}</td>
                                                 <td style="text-align: center;">
                                                 @if(Auth::user() && Auth::user()->level == 0)
-                                                <a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
+                                                <a href="/alumni/pdf/{{ $alumni->id_alumni}}" target="_blank"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
                                                 @elseif(Auth::user() && Auth::user()->level == 1)
-                                                <a href="/pesertadidik/showkepsek/{{ $alumni->id_alumni}}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                                <a href="/alumni/showkepsek/{{ $alumni->id_alumni}}"><i class="fa fa-eye btn-info btn-sm"></i></a>
                                                 @endif
                                                 </td>
                                             </tr>
@@ -115,7 +115,7 @@
         let data = {
             'tahun_ajaran': tahun_ajaran
         }
-        console.log(tahun_ajaran)
+        $('#cetak').attr('href','/cetakalumni/'+ tahun_ajaran+'')
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -139,9 +139,9 @@
                    html += '<td>'+ data.alumni[i].nm_fak+'</td>'
                    html += '<td style="text-align: center;">'
                    if (data.level==0) {
-                   html += '<a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
+                   html += '<a href="/alumni/pdf/'+data.alumni[i].id_alumni+'"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
                    if (data.level==1){
-                   html += ' <a href="/pesertadidik/showkepsek/'+data.alumni[i].id_alumni+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
+                   html += ' <a href="/alumni/showkepsek/'+data.alumni[i].id_alumni+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
                    html += '</td>'
                     html += '</tr>'
                 }

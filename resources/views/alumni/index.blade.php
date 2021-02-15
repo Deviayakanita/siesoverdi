@@ -103,19 +103,24 @@
                       <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
-                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                         @endforeach
                       </select>
+                       @error('nis')
+                        <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ "Nis Sudah Tersedia" }}</strong>
+                        </span>
+                        @enderror
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Lengkap Siswa</label>
-                      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly>
+                      <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly value="{{ old('nm_siswa') }}">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputtahun">Tahun Ajaran Siswa</label>
-                      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly>
+                      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly value="{{ old('tahun_ajaran') }}">
                     </div>
                     </div>
 
@@ -124,24 +129,24 @@
                       <label for="inputState">Jenis Perguruan Tinggi</label>
                       <select id="inputState" class="form-control" name="jns_pt" required="required" autocomplete="off">
                         <option selected disabled>-- Pilih Jenis Perguruan Tinggi --</option>
-                        <option value="Negri">Negeri</option>
-                        <option value="Swasta">Swasta</option>
+                        <option value="Negri" {{ old('jns_pt')=='Negeri'? 'selected':''}}>Negeri</option>
+                        <option value="Swasta"{{ old('jns_pt')=='Swasta'? 'selected':''}}>Swasta</option>
                       </select>
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Perguruan Tinggi</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_pt" required="required" autocomplete="off" placeholder="Masukan Nama Perguruan Tinggi">
+                      <input type="text" class="form-control" id="inputnama" name="nm_pt" required="required" autocomplete="off" placeholder="Masukan Nama Perguruan Tinggi" value="{{ old('nm_pt') }}">
                     </div>
                     </div>
 
                     <div class="form-row">
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnamafk">Nama Fakultas</label>
-                      <input type="text" class="form-control" id="inputnamafk" name="nm_fak" required="required" autocomplete="off" placeholder="Masukan Nama Fakultas">
+                      <input type="text" class="form-control" id="inputnamafk" name="nm_fak" required="required" autocomplete="off" placeholder="Masukan Nama Fakultas" value="{{ old('nm_fak') }}">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnamajurus">Nama Jurusan</label>
-                      <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" required="required" autocomplete="off" placeholder="Masukan Nama Jurusan">
+                      <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" required="required" autocomplete="off" placeholder="Masukan Nama Jurusan" value="{{ old('nm_jurusan') }}">
                     </div>
                     </div>
 
@@ -158,9 +163,13 @@
 </div>
 </section>  
 @endsection
+
 @section('script')
 <script type="text/javascript">
   $('.select2').select2();
+  @if($errors->any())
+      $('#exampleModal').modal();
+    @endif
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
     var tahun_ajaran = $('option:selected', this).attr('data-tahun');

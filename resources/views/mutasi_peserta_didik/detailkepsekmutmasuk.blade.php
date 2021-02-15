@@ -8,23 +8,24 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-      <li class="active"><a href="/mutasimasuk"></i>Daftar Mutasi Masuk</a></li>
+      <li class="active"><a href="/ctk_mutasimasuk"></i>Daftar Mutasi Masuk</a></li>
       <li> Detail Data Mutasi Masuk</li>
     </ol>
   </section>
 
 
 <section class="content">
-  <div class="box box-primary">
+	<div class="box box-primary">
       <div class="box-header with-border">
-      <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-in"></i> Detail Mutasi Masuk</h3> 
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-in"></i> Detail Data Mutasi Masuk</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
-        <a href="/mutasimasuk" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
+        <a href="/ctk_mutasimasuk" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
       </div>
       </div>
     </div>
+
         <div class="box-body">
           <table class="table">
             <tr>
@@ -101,14 +102,13 @@
               <td>:</td>
               <td>{{$mutasimasuks->alasan_pindah}}</td>
             </tr>
-           </table>   
+           </table> 
+           
         </div>
 
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-    </div>
-				
- 
+</div>
 </section>	
 @endsection

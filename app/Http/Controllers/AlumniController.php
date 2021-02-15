@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
+use PDF;
 
 use App\Models\Pesertadidik;
 use App\Models\Alumni;
@@ -52,7 +53,11 @@ class AlumniController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $this->validate($request, [
+            'nis' => 'required|unique:alumni_siswa,id_siswa',
+        ]);
+
          Alumni::create([
             'nm_pt' => request('nm_pt'),
             'id_siswa' => request('nis'),
@@ -104,7 +109,12 @@ class AlumniController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $alumnis = Alumni::find($id);
+        $this->validate($request, [
+            'nis' => 'required|unique:alumni_siswa,id_siswa,'.$request->nis.',id_siswa',
+
+        ]);
+
+        $alumnis = Alumni::where('id_alumni', $id)->first();
         $pesertadidik = Pesertadidik::find($alumnis->id_siswa);
         $pesertadidik_baru = Pesertadidik::find($request->nis);
         if($request->nis != $pesertadidik){
@@ -126,6 +136,35 @@ class AlumniController extends Controller
         }
         return redirect('/alumni')->with('success', 'Data berhasil diupdate!');
     }
+
+    public function export(Request $request)
+    {   
+        $alumni = DB::table('alumni_siswa')
+                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','alumni_siswa.id_siswa')->get();
+        $pdf = PDF::loadview('alumni.export', ['alumni'=>$alumni]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    }
+
+    public function pdf($id)
+    {
+        $alumnis = Alumni::find($id);
+        $pesertadidik = Pesertadidik::all();
+        $pdf = PDF::loadview('alumni.pdfalumni', ['alumnis'=>$alumnis, 'pesertadidik'=>$pesertadidik]);
+        return $pdf->stream();
+    }
+
+    
+        public function cetakfilter($tahun_ajaran)
+    {   
+        $alumni = DB::table('alumni_siswa')
+                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','alumni_siswa.id_siswa')
+                    ->where('peserta_didik.tahun_ajaran','=', $tahun_ajaran)->get();
+        $pdf = PDF::loadview('alumni.export', ['alumni'=>$alumni]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    }
+    
 
 
     /**

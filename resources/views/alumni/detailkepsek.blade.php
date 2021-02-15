@@ -4,27 +4,28 @@
 
   <section class="content-header">
     <h1>
-      Data Mutasi Masuk
+      Data Alumni
     </h1>
     <ol class="breadcrumb">
       <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-      <li class="active"><a href="/alumni"></i>Daftar Alumni</a></li>
+      <li class="active"><a href="/ctk_alumni"></i>Daftar Alumni</a></li>
       <li> Detail Data Alumni</li>
     </ol>
   </section>
 
 
 <section class="content">
-  <div class="box box-primary">
+	<div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-mortar-board"></i> Detail Alumni</h3> 
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-mortar-board"></i> Detail Data Alumni</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
-        <a href="/alumni" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
+        <a href="/ctk_alumni" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
       </div>
       </div>
     </div>
+
         <div class="box-body">
           <table class="table">
             <tr>
@@ -76,13 +77,13 @@
               <td>:</td>
               <td>{{$alumnis->nm_jurusan}}</td>
             </tr>
-           </table>   
+           </table> 
+           
         </div>
 
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-			</div>
- 
+</div>
 </section>	
 @endsection

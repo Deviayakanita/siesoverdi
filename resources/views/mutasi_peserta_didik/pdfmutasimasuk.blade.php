@@ -1,34 +1,37 @@
-@extends('layouts.master')
-
-@section('content')
-
-  <section class="content-header">
-    <h1>
-      Data Mutasi Masuk
-    </h1>
-    <ol class="breadcrumb">
-      <li><a href="/dashboard"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-      <li class="active"><a href="/mutasimasuk"></i>Daftar Mutasi Masuk</a></li>
-      <li> Detail Data Mutasi Masuk</li>
-    </ol>
-  </section>
-
-
-<section class="content">
-  <div class="box box-primary">
-      <div class="box-header with-border">
-      <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-sign-in"></i> Detail Mutasi Masuk</h3> 
-      <div style="float: right;">
-      <div style="clear: both;"></div>
-      <div align="right">
-        <a href="/mutasimasuk" class="btn btn-default btn-sm"><i class="fa fa-long-arrow-left"></i></a>
-      </div>
-      </div>
-    </div>
-        <div class="box-body">
-          <table class="table">
-            <tr>
-              <td width="200px">No Surat Pindah</td>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DATA  MUTASI MASUK PESERTA DIDIK SMAK SOVERDI</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="icon" href="../asets/images/logo svd.png">
+	<style type="text/css">
+		.line-title{
+			border:0;
+			border-style: inset;
+			border-top: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<img src="asets/images/Logo Soverdi Warna.png" style="position: absolute; width: 140px; height: auto;">
+	<table style="width: 100%;">
+		<tr>
+			<td align="center">
+				<span style="line-height: 1.4;">
+					YAYASAN SOVERDI<br> <b>SMA KATOLIK SOVERDI</b><br> Status: Swasta Akreditasi A <br> NSS/NPSN:302220405003/50101682
+					<br><small>Jl. Komplek Burung No.46 Tuban, Kuta, Badung, Bali  Tlp.(0361)9354379</small>
+					<br><small>website : http://smakatoliksoverdi.com e-mail:@smakatoliksoverdi.com ext. smaksoverdi87@gmail.com</small>
+				</span>
+			</td>
+		</tr>
+	</table>
+	<hr class="line-title">
+		<p align="center"><b>DATA MUTASI MASUK PESERTA DIDIK</b></p>
+		<div class="box-body">
+         <table class="table table-bordered">
+         ($mutasimasuks as $mutasimasuks)
+		<tr>
+              <td>No Surat Pindah</td>
               <td width="5px">:</td>
               <td>{{$mutasimasuks->no_srt_pindah}}</td>
             </tr>
@@ -101,14 +104,24 @@
               <td>:</td>
               <td>{{$mutasimasuks->alasan_pindah}}</td>
             </tr>
-           </table>   
-        </div>
-
+           </table> 
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-    </div>
-				
- 
-</section>	
-@endsection
+	<br>
+	<br>
+	<table border="0" width="100%">
+		<tr>
+			<td align="right" width="50%">
+				Mengetahui,<br>Kepala Sekolah
+				<br>
+				<br>
+				<br>
+				<br>
+				<b><u>Dra. Magdelena Tin</u></b>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>

@@ -15,8 +15,6 @@ class CreatePesertaDidikTable extends Migration
     {
         Schema::create('peserta_didik', function (Blueprint $table) {
             $table->bigIncrements('id_siswa');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
             $table->string('nm_siswa', 50);
             $table->enum('jns_kelamin', ["Laki - Laki", "Perempuan"]);
             $table->integer('nis')->unique();

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>EXPORT PDF PESERTA DIDIK SMAK SOVERDI</title>
+	<title>EXPORT PDF MUTASI KELUAR PESERTA DIDIK SMAK SOVERDI</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="icon" href="../asets/images/logo svd.png">
 	<style type="text/css">
@@ -18,7 +18,7 @@
 		<tr>
 			<td align="center">
 				<span style="line-height: 1.4;">
-					YAYASAN SOVERDI<br> <b>SMA KATOLIK SOVERDI</b><br>Status: Swasta Akreditasi A<br> NSS/NPSN:302220405003/50101682
+					YAYASAN SOVERDI<br> <b>SMA KATOLIK SOVERDI</b><br> Status: Swasta Akreditasi A <br> NSS/NPSN:302220405003/50101682
 					<br><small>Jl. Komplek Burung No.46 Tuban, Kuta, Badung, Bali  Tlp.(0361)9354379</small>
 					<br><small>website : http://smakatoliksoverdi.com e-mail:@smakatoliksoverdi.com ext. smaksoverdi87@gmail.com</small>
 				</span>
@@ -26,43 +26,29 @@
 		</tr>
 	</table>
 	<hr class="line-title">
-		<p align="center"><b>DAFTAR PESERTA DIDIK</b></p>
+		<p align="center"><b>DAFTAR MUTASI KELUAR PESERTA DIDIK</b></p>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
 				<th align="center">No</th>
+				<th align="center">No Surat Pindah</th>
 				<th align="center">NIS</th>
 				<th align="center">Nama Lengkap Siswa</th>
-				<th align="center">Jenis Kelamin</th>
-				<th align="center">Tempat Tanggal Lahir</th>
 				<th align="center">Tahun Ajaran</th>
-				<th align="center">Status Siswa</th>
+				<th align="center">Tanggal Pindah</th>
+				<th align="center">Sekolah Tujuan</th>
 			</tr>
 		</thead>
 		<tbody>
-			@php $i=1; @endphp @foreach($siswa as $s)
-			<tr>	
+			@php $i=1; @endphp @foreach($mutasikeluar as $mts)
+			<tr>
 				<td>{{ $i }}</td>
-				<td>{{$s->nis}}</td>
-				<td>{{$s->nm_siswa}}</td>
-				<td>{{$s->jns_kelamin}}</td>
-				<td>{{$s->tmp_lahir }}, {{$s->tgl_lahir->isoFormat('D MMMM Y') }}</td>
-				<td>{{$s->tahun_ajaran}}</td>
-				<td>
-                  <?php if($s->sts_siswa == 0)
-                     {
-                       echo "Non Aktif";
-                     }
-                       elseif($s->sts_siswa == 1)
-                     {  
-                       echo "Aktif";
-                     }
-                     else
-                     {
-                       echo "Non Aktif";
-                     }
-                     ?>
-                     </td>
+				<td>{{$mts->no_srt_pindah}}</td>
+				<td>{{$mts->nis}}</td>
+				<td>{{$mts->nm_siswa}}</td>
+				<td>{{$mts->tahun_ajaran}}</td>
+				<td>{{$mts->tgl_pindah}}</td>
+				<td>{{$mts->sekolah_tujuan}}</td>
 			</tr>
 			@php $i++; @endphp @endforeach
 		</tbody>

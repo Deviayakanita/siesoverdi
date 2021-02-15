@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../asets/css/login.css">
     <link rel="stylesheet" href="../asets/css/bootstrap.min.css">
     <title>SISTEM INFORMASI EKSEKUTIF</title>
-    <link rel="icon" href="../asets/images/Logo Soverdi Warna.png">
+    <link rel="icon" href="../asets/images/logo svd.png">
 </head>
     <body>
         <div class="limiter">
@@ -14,7 +14,7 @@
             <div class="wrap-login100">
                 <form action="/postlogin" method="POST" class="login100-form validate-form">
                     @csrf
-                    <span class="login100-form-logo" style="background-image: url('../asets/images/Logo Soverdi.jpg'); background-size: 105px; background-position: center;">
+                    <span class="login100-form-logo" style="background-image: url('../asets/images/Logo Soverdi Warna.png'); background-size: 120px; background-position: center;">
                         <i class="zmdi zmdi-landscape"></i>
                     </span>
 
@@ -49,8 +49,8 @@
                     @enderror
 
                     <div class="wrap-input100">
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log In</button>
-                </div>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" style="background-color: ##1d2f88; border-color: ##1d2f88;"type="submit">Log In</button>
+                    </div>
                 </form>
             </div>
         </div>

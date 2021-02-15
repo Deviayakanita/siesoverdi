@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
+use PDF;
 
 use App\Models\Mutasikeluar;
 use App\Models\Pesertadidik;
@@ -54,6 +55,10 @@ class MutasikeluarController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nis' => 'required|unique:mutasi_keluar,id_siswa',
+        ]);
+
         Mutasikeluar::create([
             'no_srt_pindah' => request('no_srt_pindah'),
             'id_siswa' => request('nis'),
@@ -84,6 +89,12 @@ class MutasikeluarController extends Controller
         return view ('mutasi_peserta_didik/detailmutasikeluar', compact('mutasikeluars'));
     }
 
+    public function detail($id)
+    {
+        $mutasikeluars = Mutasikeluar::find($id);
+        return view ('mutasi_peserta_didik/detailkepsekmutkeluar', compact('mutasikeluars'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -106,8 +117,12 @@ class MutasikeluarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mutasikeluars = Mutasikeluar::find($id);
+        $this->validate($request, [
+            'nis' => 'required|unique:mutasi_keluar,id_siswa,'.$request->nis.',id_siswa',
 
+        ]);
+
+        $mutasikeluars = Mutasikeluar::where('id_mut_klr', $id)->first();
         $pesertadidik = Pesertadidik::find($mutasikeluars->id_siswa);
         $pesertadidik_baru = Pesertadidik::find($request->nis);
         if($request->nis != $pesertadidik){
@@ -129,6 +144,34 @@ class MutasikeluarController extends Controller
         }
 
         return redirect('/mutasikeluar')->with('success', 'Data berhasil diupdate!');
+    }
+
+    public function export(Request $request)
+    {   
+        $mutasikeluar = DB::table('mutasi_keluar')
+                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_keluar.id_siswa')->get();
+        $pdf = PDF::loadview('mutasi_peserta_didik.exportmutasikeluar', ['mutasikeluar'=>$mutasikeluar]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
+    }
+
+    public function pdf($id)
+    {
+        $mutasikeluars = Mutasikeluar::find($id);
+        $pesertadidik = Pesertadidik::all();
+        $pdf = PDF::loadview('mutasi_peserta_didik.pdfmutasikeluar', ['mutasikeluars'=>$mutasikeluars, 'pesertadidik'=>$pesertadidik]);
+        return $pdf->stream();
+    }
+
+    
+        public function cetakfilter($tahun_ajaran)
+    {   
+        $mutasikeluar = DB::table('mutasi_keluar')
+                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_keluar.id_siswa')
+                    ->where('peserta_didik.tahun_ajaran','=', $tahun_ajaran)->get();
+        $pdf = PDF::loadview('mutasi_peserta_didik.exportmutasikeluar', ['mutasikeluar'=>$mutasikeluar]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
     }
 
     /**

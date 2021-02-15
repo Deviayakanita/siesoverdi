@@ -45,6 +45,11 @@
         <option @if ($item->id_siswa == $mutasikeluars->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
       </select>
+      @error('nis')
+      <span class="invalid-feedback text-danger" role="alert">
+          <strong>{{ "Nis Sudah Tersedia" }}</strong>
+      </span>
+      @enderror
     </div>
 
     <div class="form-row">
@@ -74,7 +79,7 @@
         
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="input_tglmasuk">Tanggal pindah</label>
-      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah" value="{{$mutasikeluars->tgl_pindah}}" required="required" autocomplete="off">
+      <input type="date" class="form-control" id="input_tglmasuk" name="tgl_pindah" value="{{$mutasikeluars->tgl_pindah->format('Y-m-d')}}" required="required" autocomplete="off">
     </div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -96,6 +101,9 @@
 @section('script')
 <script type="text/javascript">
   $('.select2').select2();
+    @if($errors->any())
+      $('#exampleModal').modal();
+    @endif
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
     var tahun_ajaran = $('option:selected', this).attr('data-tahun');

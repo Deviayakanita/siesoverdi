@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Auth;
+use PDF;
 
 use App\Models\Orangtua;
 use App\Models\Pesertadidik;
@@ -55,6 +56,12 @@ class OrangtuaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nis' => 'required|unique:orang_tua,id_siswa',
+            'nm_ayah' => 'required|min:5|max:50',
+            'nm_ibu' => 'required|min:5|max:50',
+        ]);
+
         Orangtua::create([
             'nm_ayah' => request('nm_ayah'),
             'id_siswa' => request('nis'),
@@ -81,6 +88,13 @@ class OrangtuaController extends Controller
         return view ('orang_tua/detailorangtua', compact('orangtuas'));
     }
 
+    public function detail($id)
+    {
+        $orangtuas = Orangtua::find($id);
+        return view ('orang_tua/detailkepsek', compact('orangtuas'));
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -96,7 +110,13 @@ class OrangtuaController extends Controller
 
     public function update(Request $request, $id)
     {
-        $orangtuas = Orangtua::find($id);
+        $this->validate($request, [
+            'nis' => 'required|unique:orang_tua,id_siswa,'.$request->nis.',id_siswa',
+            'nm_ayah' => 'required|min:5|max:50',
+            'nm_ibu' => 'required|min:5|max:50',
+        ]);
+
+        $orangtuas = Orangtua::where('id_orang_tua', $id)->first();
         $orangtuas->id_siswa = $request->nis;
         $orangtuas->nm_ayah = $request->nm_ayah;
         $orangtuas->job_ayah = $request->job_ayah;
@@ -109,6 +129,32 @@ class OrangtuaController extends Controller
         $orangtuas->save(); 
 
         return redirect('/orangtua')->with('success', 'Data berhasil diupdate!');
+    }
+
+    public function export(Request $request)
+    {
+        $ortu = Orangtua::all();
+        $pesertadidik = Pesertadidik::all();
+        $pdf = PDF::loadview('orang_tua.export', ['ortu'=>$ortu, 'pesertadidik'=>$pesertadidik]);
+        $pdf->setPaper('A4','landscape');
+        return $pdf->stream();
+    }
+
+    public function pdf($id)
+    {
+        $orangtuas = Orangtua::find($id);
+        $pesertadidik = Pesertadidik::all();
+        $pdf = PDF::loadview('orang_tua.pdforangtua', ['orangtuas'=>$orangtuas, 'pesertadidik'=>$pesertadidik]);
+        return $pdf->stream();
+    }
+
+    public function cetakfilter($ids)
+    {   
+        $id = explode(',' ,$ids);
+        $ortu = Orangtua::whereIn('id_orang_tua',collect($id))->get();
+        $pdf = PDF::loadview('orang_tua.export', ['ortu'=>$ortu]);
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->stream();
     }
 
     /**

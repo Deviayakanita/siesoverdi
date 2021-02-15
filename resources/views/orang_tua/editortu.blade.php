@@ -38,6 +38,11 @@
                       <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                       @endforeach
                     </select>
+                    @error('nis')
+                        <span class="invalid-feedback text-danger" role="alert">
+                            <strong>{{ "Nis Sudah Tersedia" }}</strong>
+                        </span>
+                      @enderror
                   </div>
 
                   <div class="form-row">
@@ -54,6 +59,11 @@
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputnama">Nama Ayah</label>
                     <input type="text" class="form-control" id="inputnama" name="nm_ayah" value="{{$orangtuas->nm_ayah}}" required="required" autocomplete="off">
+                    @error('nm_ayah')
+                    <span class="invalid-feedback text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
 
                   <div class="form-row">
@@ -84,6 +94,11 @@
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputnama">Nama Ibu</label>
                     <input type="text" class="form-control" id="inputnama" name="nm_ibu" value="{{$orangtuas->nm_ibu}}" required="required" autocomplete="off">
+                    @error('nm_ibu')
+                    <span class="invalid-feedback text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                   </div>
 
                   <div class="form-row">
@@ -124,6 +139,10 @@
 @section('script')
 <script type="text/javascript">
   $('.select2').select2();
+    @if($errors->any())
+      $('#exampleModal').modal();
+    @endif
+
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
     var tahun_ajaran = $('option:selected', this).attr('data-tahun');

@@ -115,12 +115,17 @@
 
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="inputnis">No Induk Siswa</label>
-                        <input type="nama" class="form-control" id="inputnis" name="nis" required="required" autocomplete="off" placeholder="Masukan No Induk Siswa">
+                        <input type="nama" class="form-control" id="inputnis" name="nis" required="required" autocomplete="off" placeholder="Masukan No Induk Siswa" value="{{ old('nis') }}" />
+                          @error('nis')
+                            <span class="invalid-feedback text-danger" role="alert">
+                                <strong>{{ "Nis Sudah Tersedia" }}</strong>
+                            </span>
+                          @enderror
                       </div>
 
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="inputnama">Nama Lengkap Siswa</label>
-                        <input type="nama" class="form-control" id="inputnama" name="nm_siswa" required="required" autocomplete="off" placeholder="Masukan Nama Lengkap">
+                        <input type="nama" class="form-control" id="inputnama" name="nm_siswa" required="required" autocomplete="off" placeholder="Masukan Nama Lengkap" value="{{ old('nm_siswa') }}">
                       </div>
   
                       <div class="form-row">
@@ -128,16 +133,16 @@
                           <label for="inputState">Jenis Kelamin</label>
                           <select id="inputState" class="form-control" name="jns_kelamin" required="required" autocomplete="off">
                             <option disabled selected>-- Pilih Jenis Kelamin --</option>
-                            <option value="Laki - Laki">Laki - Laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            <option value="Laki - Laki" {{ old('jns_kelamin')=='Laki - Laki'? 'selected':''}}>Laki - Laki</option>
+                            <option value="Perempuan" {{ old('jns_kelamin')=='Perempuan'? 'selected':''}}>Perempuan</option>
                           </select>
                         </div>
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputState">Jurusan</label>
                           <select id="inputState" class="form-control" name="jurusan" required="required" autocomplete="off">
                             <option disabled selected>-- Pilih Jurusan --</option>
-                            <option value="IPA">IPA</option>
-                            <option value="IPS">IPS</option>
+                            <option value="IPA" {{ old('jurusan')=='IPA'? 'selected':''}}>IPA</option>
+                            <option value="IPS" {{ old('jurusan')=='IPS'? 'selected':''}}>IPS</option>
                           </select>
                         </div>
                       </div>
@@ -145,64 +150,64 @@
                       <div class="form-row">
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="input_tmplahir">Tempat Lahir</label>
-                          <input type="text" class="form-control" id="input_tmplahir" name="tmp_lahir" required="required" autocomplete="off" placeholder="Masukan Tempat Lahir">
+                          <input type="text" class="form-control" id="input_tmplahir" name="tmp_lahir" required="required" autocomplete="off" placeholder="Masukan Tempat Lahir" value="{{ old('tmp_lahir') }}">
                         </div>
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="input_tgllahir">Tanggal Lahir</label>
-                          <input type="date" class="form-control" id="input_tgllahir" name="tgl_lahir" required="required" autocomplete="off" placeholder="Masukan Tanggal Lahir">
+                          <input type="date" class="form-control" id="input_tgllahir" name="tgl_lahir" required="required" autocomplete="off" placeholder="Masukan Tanggal Lahir" value="{{ old('tgl_lahir') }}">
                         </div>
                       </div>
 
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="inputagama">Agama</label>
-                        <input type="agama" class="form-control" id="inputagama" name="agama" required="required" autocomplete="off" placeholder="Masukan Agama">
+                        <input type="agama" class="form-control" id="inputagama" name="agama" required="required" autocomplete="off" placeholder="Masukan Agama" value="{{ old('agama') }}">
                       </div>
 
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="alamatsiswa">Alamat Siswa</label>
-                        <textarea class="form-control" id="alamatsiswa" rows="3" name="alamat_siswa" required="required" autocomplete="off" placeholder="Masukan Alamat"></textarea>
+                        <textarea class="form-control" id="alamatsiswa" rows="3" name="alamat_siswa" required="required" autocomplete="off" placeholder="Masukan Alamat">{{ old('alamat_siswa')}}</textarea>
                       </div>
 
                       <div class="form-row">
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputprovinsi">Provinsi</label>
-                          <input type="provinsi" class="form-control" id="inputprovinsi" name="provinsi"required="required" autocomplete="off" placeholder="Masukan Provinsi">
+                          <input type="provinsi" class="form-control" id="inputprovinsi" name="provinsi"required="required" autocomplete="off" placeholder="Masukan Provinsi" value="{{ old('provinsi') }}">
                         </div>
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputkabupaten">Kabupaten</label>
-                          <input type="kabupaten" class="form-control" id="inputkabupaten" name="kabupaten" required="required" autocomplete="off" placeholder="Masukan Kabupaten">
+                          <input type="kabupaten" class="form-control" id="inputkabupaten" name="kabupaten" required="required" autocomplete="off" placeholder="Masukan Kabupaten" value="{{ old('kabupaten') }}">
                         </div>
                       </div>
 
                       <div class="form-row">
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputnotlpn">No Telepon</label>
-                          <input type="notelpon" class="form-control" id="inputnotlpn" name="no_tlpn" required="required" autocomplete="off" placeholder="Masukan No Telepon">
+                          <input type="notelpon" class="form-control" id="inputnotlpn" name="no_tlpn" required="required" autocomplete="off" placeholder="Masukan No Telepon" value="{{ old('no_tlpn') }}">
                         </div>
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputemail">Email</label>
-                          <input type="email" class="form-control" id="inputemail" name="email" required="required" autocomplete="off" placeholder="Masukan Email">
+                          <input type="email" class="form-control" id="inputemail" name="email" required="required" autocomplete="off" placeholder="Masukan Email" value="{{ old('email') }}">
                         </div>
                       </div>
 
                       <div class="form-row">
                          <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                            <label for="input_tahunajaran">Tahun Ajaran</label>
-                           <input type="text" class="form-control" id="input_tahunajaran" name="tahun_ajaran" required="required" autocomplete="off" placeholder="Masukan Tahun Ajaran">
+                           <input type="text" class="form-control" id="input_tahunajaran" name="tahun_ajaran" required="required" autocomplete="off" placeholder="Masukan Tahun Ajaran" value="{{ old('tahun_ajaran') }}">
                          </div>
                          <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                            <label for="inputState">Status Siswa</label>
                            <select id="inputState" class="form-control" name="sts_siswa" required="required" autocomplete="off">
-                             <option disabled selected>-- Pilih Status --</option>
-                             <option value="1">Aktif</option>
-                             <option value="0">Non Aktif</option>
+                             <option disabled selected>-- Pilih Status -- {{ old('sts_siswa') }}</option>
+                             <option value="1" {{ old('sts_siswa')=='1'? 'selected':''}}>Aktif</option>
+                             <option value="0" {{ old('sts_siswa')=='0'? 'selected':''}}>Non Aktif</option>
                            </select>
                          </div>
                       </div>
             
                       <div class="form-group" style="padding: 0; padding-right: 10px">
                         <label for="keterangan">Keterangan Siswa</label>
-                        <textarea class="form-control" id="keterangan" rows="3" name="keterangan" required="required" autocomplete="off" placeholder="Masukan Keterangan"></textarea>
+                        <textarea class="form-control" id="keterangan" rows="3" name="keterangan" required="required" autocomplete="off" placeholder="Masukan Keterangan">{{ old('alamat_siswa')}}</textarea>
                       </div>
                 
                       <div>
@@ -217,4 +222,12 @@
           </div> 
           </div>  
 </section>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    @if($errors->any())
+      $('#exampleModal').modal();
+    @endif
+</script>
 @endsection

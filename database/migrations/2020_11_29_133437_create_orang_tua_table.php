@@ -19,12 +19,12 @@ class CreateOrangTuaTable extends Migration
             $table->foreign('id_siswa')->references('id_siswa')->on('peserta_didik');
             $table->string('nm_ayah', 50);
             $table->string('job_ayah', 50);
-            $table->string('pddk_ayah', 10);
+            $table->string('pddk_ayah', 20);
             $table->enum('penghasilan_ayah',["Kurang dari Rp.500,000", "Rp.500,000 - Rp.1,000,000",
             "Rp.1,000,000 - Rp.2,000,000", "Rp.2,000,000 - Rp.5,000,000", "Rp.5,000,000 - Rp.20,000,000","Lebih dari Rp.20,000,000","Tidak Penghasilan"]);
             $table->string('nm_ibu', 50);
             $table->string('job_ibu', 50);
-            $table->string('pddk_ibu', 10);
+            $table->string('pddk_ibu', 20);
             $table->enum('penghasilan_ibu',["Kurang dari Rp.500,000", "Rp.500,000 - Rp.1,000,000",
             "Rp.1,000,000 - Rp.2,000,000", "Rp.2,000,000 - Rp.5,000,000", "Rp.5,000,000 - Rp.20,000,000","Lebih dari Rp.20,000,000","Tidak Penghasilan"]);
             $table->timestamps();

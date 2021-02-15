@@ -58,7 +58,7 @@
                 <div>
                         <button type="button" class="btn btn-primary" id="filter"><i class=""></i> Filter</button>
                         <button type="button" class="btn btn-warning" id="refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                        <a href="/pesertadidik/pdf" id="cetak" class="btn btn-danger" style="margin-left:133px; margin-right: 0px;"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+                        <a href="/orangtua/export" id="cetak" class="btn btn-danger" style="margin-left:133px; margin-right: 0px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
                 </div>
             </div>
         
@@ -95,9 +95,9 @@
                                     <td>{{ $orangtua->penghasilan_ibu }}</td>
                                     <td style="text-align: center;">
                                         @if(Auth::user() && Auth::user()->level == 0)
-                                        <a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
+                                        <a href="/orangtua/pdf/{{ $orangtua->id_orang_tua}}" target="_blank"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
                                         @elseif(Auth::user() && Auth::user()->level == 1)
-                                        <a href="/pesertadidik/showkepsek/{{ $orangtua ->id_orang_tua }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
+                                        <a href="/orangtua/showkepsek/{{ $orangtua->id_orang_tua }}"><i class="fa fa-eye btn-info btn-sm"></i></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -125,7 +125,7 @@
             'penghasilan_ayah': penghasilan_ayah,
             'penghasilan_ibu': penghasilan_ibu,
         }
-
+        
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -134,11 +134,13 @@
             url: url,
             data: data,
             dataType: "JSON",
-            success: function (data) {  
+            success: function (data) { 
                 $('#tbody').html('')              
                 let html = ''
 
-                for (var i = 0; i < data.orangtua.length; i++) {
+                let ids=[]
+                for (var i = 0; i < data.orangtua.length; i++) { 
+                    ids.push(data.orangtua[i].id_orang_tua)
 
                    html += '<tr>'
                    html += '<td>'+ (i + 1) +'</td>'
@@ -150,14 +152,15 @@
                    html += '<td>'+ data.orangtua[i].penghasilan_ibu+'</td>'
                    html += '<td style="text-align: center;">'
                    if (data.level==0) {
-                   html += '<a href="#"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
+                   html += '<a href="/orangtua/pdf/'+data.orangtua[i].id_orang_tua+'"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>'}
                    if (data.level==1){
-                   html += ' <a href="/pesertadidik/showkepsek/'+data.orangtua[i].id_orang_tua+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
+                   html += ' <a href="/orangtua/showkepsek/'+data.orangtua[i].id_orang_tua+'"><i class="fa fa-eye btn-info btn-sm"></i></a>'}
                    html += '</td>'
                     html += '</tr>'
                 }
 
                 $('#tbody').html(html)
+                $('#cetak').attr('href','/penghasilan/'+ids)
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log('error')

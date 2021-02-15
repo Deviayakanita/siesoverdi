@@ -34,6 +34,11 @@
           <div class="form-group" style="padding: 0; padding-right: 10px">
             <label for="inputnisn">No Induk Siswa</label>
             <input type="nisn" class="form-control" id="inputnisn" name="nis" required="required" autocomplete="off" value="{{$pesertadidiks->nis}}">
+            @error('nis')
+              <span class="invalid-feedback text-danger" role="alert">
+                  <strong>{{ "Nis Sudah Tersedia" }}</strong>
+              </span>
+            @enderror
           </div>
 
           <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -134,4 +139,11 @@
 </form>
 </div>
 </section>	
+@endsection
+@section('script')
+<script type="text/javascript">
+    @if($errors->any())
+      $('#exampleModal').modal();
+    @endif
+</script>
 @endsection
