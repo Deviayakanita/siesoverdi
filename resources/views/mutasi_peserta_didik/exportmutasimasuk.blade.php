@@ -13,7 +13,7 @@
 	</style>
 </head>
 <body>
-	<img src="asets/images/Logo Soverdi Warna.png" style="position: absolute; width: 140px; height: auto;">
+	<img src="asets/images/Logo Soverdi Warna.png" style="position: absolute; width: 150px; height: auto;">
 	<table style="width: 100%;">
 		<tr>
 			<td align="center">
@@ -47,7 +47,7 @@
 				<td>{{$mts->nis}}</td>
 				<td>{{$mts->nm_siswa}}</td>
 				<td>{{$mts->tahun_ajaran}}</td>
-				<td>{{$mts->tgl_masuk}}</td>
+				<td>{{ Carbon\Carbon::parse($mts->tgl_masuk)->isoFormat('D MMMM Y') }}</td>
 				<td>{{$mts->asal_sekolah}}</td>
 			</tr>
 			@php $i++; @endphp @endforeach
@@ -58,7 +58,9 @@
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-				Mengetahui,<br>Kepala Sekolah
+				Tuban,{{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+		        <br>Kepala Sekolah
+		        <br>
 				<br>
 				<br>
 				<br>

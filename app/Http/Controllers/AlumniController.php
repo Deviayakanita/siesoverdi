@@ -166,6 +166,14 @@ class AlumniController extends Controller
     }
     
 
+    public function statistik()
+    {
+        $alumnis = Alumni::latest()->get();
+        $pesertadidik = Pesertadidik::all();
+       
+        return view('statistik/alumni', compact('alumnis','pesertadidik'));
+    }
+
 
     /**
      * Remove the specified resource from storage.

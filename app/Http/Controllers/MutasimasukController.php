@@ -158,6 +158,15 @@ class MutasimasukController extends Controller
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
     }
+
+    public function statistik()
+    {
+        $mutasimasuks = Mutasimasuk::latest()->get();
+        $pesertadidik = Pesertadidik::all();
+       
+        return view('statistik/mutasimasuk', compact('mutasimasuks','pesertadidik'));
+
+    }
     
 
 

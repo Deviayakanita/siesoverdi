@@ -98,13 +98,15 @@
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-				Mengetahui,<br>Kepala Sekolah
-				<br>
-				<br>
-				<br>
-				<br>
-				<b><u>Dra. Magdelena Tin</u></b>
-			</td>
+        Tuban,{{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+        <br>Kepala Sekolah
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <b><u>Dra. Magdelena Tin</u></b>
+      </td>
 		</tr>
 	</table>
 

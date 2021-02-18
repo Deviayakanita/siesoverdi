@@ -163,6 +163,11 @@ class PesertadidikController extends Controller
     }
 
 
+    public function statistik()
+    {
+        $pesertadidiks = Pesertadidik::latest()->get();
+        return view('statistik/pesertadidik', compact('pesertadidiks'));
+    }
 
     /**
      * Remove the specified resource from storage.

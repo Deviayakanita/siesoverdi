@@ -174,6 +174,15 @@ class MutasikeluarController extends Controller
         return $pdf->stream();
     }
 
+    public function statistik()
+    {
+        $mutasikeluars = Mutasikeluar::latest()->get();
+        $pesertadidik = Pesertadidik::all();
+       
+        return view('statistik/mutasikeluar', compact('mutasikeluars','pesertadidik'));
+
+    }
+
     /**
      * Remove the specified resource from storage.
      *

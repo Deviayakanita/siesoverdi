@@ -39,6 +39,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/pesertadidik/export','App\Http\Controllers\PesertadidikController@export');
 		Route::get('/pesertadidik/pdf/{id}','App\Http\Controllers\PesertadidikController@pdf');
 		Route::get('/cetaksiswa/{tahun_ajaran}','App\Http\Controllers\PesertadidikController@cetakfilter');
+		Route::get('/statistikpesertadidik', 'App\Http\Controllers\PesertadidikController@statistik');
 	
 	// // 	Route Orangtua
 		Route::get('/orangtua', 'App\Http\Controllers\OrangtuaController@index');
@@ -63,6 +64,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/mutasimasuk/export','App\Http\Controllers\MutasimasukController@export');
 		Route::get('/mutasimasuk/pdf/{id}','App\Http\Controllers\MutasimasukController@pdf');
 		Route::get('/cetakmutasimsk/{tahun_ajaran}','App\Http\Controllers\MutasimasukController@cetakfilter');
+		Route::get('/statistikmtsmasuk', 'App\Http\Controllers\MutasimasukController@statistik');
 
 	// 	Route Mutasikeluar
 		Route::get('/mutasikeluar', 'App\Http\Controllers\MutasikeluarController@index');
@@ -75,6 +77,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/mutasikeluar/export','App\Http\Controllers\MutasikeluarController@export');
 		Route::get('/mutasikeluar/pdf/{id}','App\Http\Controllers\MutasikeluarController@pdf');
 		Route::get('/cetakmutasiklr/{tahun_ajaran}','App\Http\Controllers\MutasikeluarController@cetakfilter');
+		Route::get('/statistikmtskeluar', 'App\Http\Controllers\MutasikeluarController@statistik');
 
 	// 	Route Alumni
 		Route::get('/alumni', 'App\Http\Controllers\AlumniController@index');
@@ -87,6 +90,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/alumni/export','App\Http\Controllers\AlumniController@export');
 		Route::get('/alumni/pdf/{id}','App\Http\Controllers\AlumniController@pdf');
 		Route::get('/cetakalumni/{tahun_ajaran}','App\Http\Controllers\AlumniController@cetakfilter');
+		Route::get('/statistikalumni', 'App\Http\Controllers\AlumniController@statistik');
 
 	});
 

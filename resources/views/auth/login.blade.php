@@ -10,7 +10,7 @@
 </head>
     <body>
         <div class="limiter">
-        <div class="container-login100" style="background-image: url('../asets/images/soverdi.jpeg');">
+        <div  style="background-color:#F5F5F5" class="container-login100">
             <div class="wrap-login100">
                 <form action="/postlogin" method="POST" class="login100-form validate-form">
                     @csrf
@@ -18,7 +18,7 @@
                         <i class="zmdi zmdi-landscape"></i>
                     </span>
 
-                    <span class="login100-form-title p-b-34 p-t-27">
+                    <span class="login100-form-title p-b-34 p-t-27" style="color: black">
                         Sistem Informasi Eksekutif Peserta Didik SMAK Soverdi
                     </span>
 

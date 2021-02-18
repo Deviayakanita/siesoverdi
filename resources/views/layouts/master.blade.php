@@ -55,6 +55,7 @@
 
 <div class="content-wrapper">
    @yield('content')
+</div>
 
 
 <footer class="main-footer">
