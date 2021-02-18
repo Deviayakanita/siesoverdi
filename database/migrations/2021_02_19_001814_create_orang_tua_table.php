@@ -17,6 +17,7 @@ class CreateOrangTuaTable extends Migration
             $table->bigIncrements('id_orang_tua');
             $table->unsignedBigInteger('id_siswa');
             $table->foreign('id_siswa')->references('id_siswa')->on('peserta_didik');
+            $table->unsignedBigInteger('id_ta');
             $table->string('nm_ayah', 50);
             $table->string('job_ayah', 50);
             $table->string('pddk_ayah', 20);

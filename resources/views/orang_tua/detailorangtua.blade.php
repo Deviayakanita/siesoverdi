@@ -41,7 +41,7 @@
             <tr>
               <td>Tahun Ajaran Siswa</td>
               <td>:</td>
-              <td>{{$orangtuas->pesertadidik->tahun_ajaran}}</td>
+              <td>{{$orangtuas->pesertadidik->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>
@@ -109,7 +109,5 @@
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-				
- </div>
 </section>	
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAlumniSiswaTable extends Migration
+class CreateMutasiKeluarTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,19 @@ class CreateAlumniSiswaTable extends Migration
      */
     public function up()
     {
-        Schema::create('alumni_siswa', function (Blueprint $table) {
-            $table->bigIncrements('id_alumni');
+        Schema::create('mutasi_keluar', function (Blueprint $table) {
+            $table->bigIncrements('id_mut_klr');
             $table->unsignedBigInteger('id_siswa');
             $table->foreign('id_siswa')->references('id_siswa')->on('peserta_didik');
-            $table->string('nm_pt', 50);
-            $table->enum('jns_pt', ["Negri", "Swasta"]);
-            $table->string('nm_fak', 50);
-            $table->string('nm_jurusan', 50);
+            $table->unsignedBigInteger('id_ta');
+            $table->string('no_srt_pindah', 30);
+            $table->string('sekolah_tujuan', 50);
+            $table->enum('tingkat_kelas', ["X", "XI", "XII"]);
+            $table->date('tgl_pindah');
+            $table->text('alasan_pindah');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -32,6 +35,6 @@ class CreateAlumniSiswaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alumni_siswa');
+        Schema::dropIfExists('mutasi_keluar');
     }
 }

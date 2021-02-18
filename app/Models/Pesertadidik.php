@@ -13,14 +13,13 @@ class Pesertadidik extends Model
 
     public $fillable = [
     	'nm_siswa',
-    	'id_user',
+    	'id_ta',
         'jns_kelamin',
         'nis',
         'tmp_lahir',
         'tgl_lahir',
         'agama',
         'alamat_siswa',
-        'provinsi',
         'kabupaten',
         'no_tlpn',
         'email',
@@ -31,6 +30,12 @@ class Pesertadidik extends Model
     ];
 
     
+    public function tahun()
+    {
+        return $this -> belongsTo(Tahun::class, 'id_ta', 'id_ta');
+    }
+
+
     public function orangtua()
     {
         return $this -> hasOne(Orangtua::class, 'id_siswa', 'id_siswa');

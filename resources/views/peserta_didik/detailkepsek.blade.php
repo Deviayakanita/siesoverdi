@@ -64,11 +64,6 @@
               <td>{{$pesertadidiks->alamat_siswa}}</td>
             </tr>
             <tr>
-              <td>Provinsi</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->provinsi}}</td>
-            </tr>
-            <tr>
               <td>Kabupaten</td>
               <td>:</td>
               <td>{{$pesertadidiks->kabupaten}}</td>
@@ -86,7 +81,7 @@
             <tr>
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$pesertadidiks->tahun_ajaran}}</td>
+              <td>{{$pesertadidiks->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Jurusan</td>

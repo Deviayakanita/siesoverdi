@@ -103,7 +103,7 @@
                       <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off" >
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
-                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                         @endforeach
                       </select>
                       @error('nis')
@@ -213,7 +213,6 @@
         </div>
       </div>
     </div> 
-  </div>  
 </section>
 @endsection
 @section('script')

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use PDF;
 use App\Models\Pesertadidik;
-use App\Models\User;
+use App\Models\Tahun;
 
 class PesertadidikController extends Controller
 {
@@ -20,21 +20,22 @@ class PesertadidikController extends Controller
      */
     public function index()
     {
+        $tahunajarans = Tahun::all();
         $pesertadidiks = Pesertadidik::latest()->get();
-        return view('peserta_didik/index', compact('pesertadidiks'));
+        return view('peserta_didik/index', compact('pesertadidiks', 'tahunajarans'));
     }
 
     public function filter(Request $request)
     {
         $pesertadidiks = Pesertadidik::latest()->get();
-        $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        $tahun_ajaran = Tahun::all();
         if ($request->ajax()) {
             if (!$request->tahun_ajaran) {
                 $role = Auth::user()->level;
-               $siswa = Pesertadidik::orderBy('nm_siswa', 'ASC')->get();
+               $siswa = Pesertadidik::with(['tahun'])->orderBy('nm_siswa', 'ASC')->get();
             }else {
                 $role = Auth::user()->level;
-                $siswa = Pesertadidik::where('tahun_ajaran',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+                $siswa = Pesertadidik::with(['tahun'])->where('id_ta',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
             }
             return response()->json(['siswa'=>$siswa,'level'=>$role]);
         }
@@ -55,6 +56,8 @@ class PesertadidikController extends Controller
             'nis' => 'required|unique:peserta_didik'
         ]);
 
+        // dd($request->tahun_ajaran);
+
         Pesertadidik::create([
             'nm_siswa' => request('nm_siswa'),
             'jns_kelamin' => request('jns_kelamin'),
@@ -63,15 +66,15 @@ class PesertadidikController extends Controller
             'tgl_lahir' => request('tgl_lahir'),
             'agama' => request('agama'),
             'alamat_siswa' => request('alamat_siswa'),
-            'provinsi' => request('provinsi'),
             'kabupaten' => request('kabupaten'),
             'no_tlpn' => request('no_tlpn'),
             'email' => request('email'),
-            'tahun_ajaran' => request('tahun_ajaran'),
+            'id_ta' => request('tahun_ajaran'),
             'jurusan' => request('jurusan'),
             'sts_siswa' => request('sts_siswa'),
             'keterangan' => request('keterangan'),
         ]);
+
         return redirect('/pesertadidik')->with('success', 'Data berhasil ditambahkan!');
     }
 
@@ -101,8 +104,9 @@ class PesertadidikController extends Controller
      */
     public function edit($id)
     {
+        $tahunajarans = Tahun::all();
         $pesertadidiks = Pesertadidik::find($id);
-        return view('peserta_didik/editpesertadidik', compact('pesertadidiks'));
+        return view('peserta_didik/editpesertadidik', compact('pesertadidiks', 'tahunajarans'));
     }
 
     /**
@@ -126,11 +130,10 @@ class PesertadidikController extends Controller
         $pesertadidiks->tgl_lahir = $request->tgl_lahir;
         $pesertadidiks->agama = $request->agama;
         $pesertadidiks->alamat_siswa = $request->alamat_siswa;
-        $pesertadidiks->provinsi = $request->provinsi;
         $pesertadidiks->kabupaten = $request->kabupaten;
         $pesertadidiks->no_tlpn = $request->no_tlpn;
         $pesertadidiks->email = $request->email;
-        $pesertadidiks->tahun_ajaran = $request->tahun_ajaran;
+        $pesertadidiks->id_ta = $request->tahun_ajaran;
         $pesertadidiks->jurusan = $request->jurusan;
         $pesertadidiks->sts_siswa = $request->sts_siswa;
         $pesertadidiks->keterangan = $request->keterangan;
@@ -156,7 +159,7 @@ class PesertadidikController extends Controller
 
     public function cetakfilter($tahun_ajaran)
     {   
-        $siswa = Pesertadidik::where('tahun_ajaran',$tahun_ajaran)->get();
+        $siswa = Pesertadidik::where('id_ta',$tahun_ajaran)->get();
         $pdf = PDF::loadview('peserta_didik.export', ['siswa'=>$siswa]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();

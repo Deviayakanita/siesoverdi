@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->integer('level')-> unsigned();
             $table->timestamps();
          });
+
     }
 
     /**

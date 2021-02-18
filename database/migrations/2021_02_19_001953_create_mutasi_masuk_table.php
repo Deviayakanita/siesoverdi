@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMutasiKeluarTable extends Migration
+class CreateMutasiMasukTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,20 @@ class CreateMutasiKeluarTable extends Migration
      */
     public function up()
     {
-        Schema::create('mutasi_keluar', function (Blueprint $table) {
-            $table->bigIncrements('id_mut_klr');
+        Schema::create('mutasi_masuk', function (Blueprint $table) {
+            $table->bigIncrements('id_mut_msk');
             $table->unsignedBigInteger('id_siswa');
             $table->foreign('id_siswa')->references('id_siswa')->on('peserta_didik');
+            $table->unsignedBigInteger('id_ta');
             $table->string('no_srt_pindah', 30);
-            $table->string('sekolah_tujuan', 50);
+            $table->string('asal_sekolah', 50);
             $table->enum('tingkat_kelas', ["X", "XI", "XII"]);
-            $table->date('tgl_pindah');
+            $table->date('tgl_masuk');
             $table->text('alasan_pindah');
             $table->timestamps();
+
         });
+
     }
 
     /**
@@ -33,6 +36,6 @@ class CreateMutasiKeluarTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mutasi_keluar');
+        Schema::dropIfExists('mutasi_masuk');
     }
 }

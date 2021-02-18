@@ -11,7 +11,7 @@ use PDF;
 
 use App\Models\Orangtua;
 use App\Models\Pesertadidik;
-
+use App\Models\Tahun;
 
 class OrangtuaController extends Controller
 {
@@ -103,9 +103,10 @@ class OrangtuaController extends Controller
      */
     public function edit($id)
     {
+        $tahunajarans = Tahun::all();
         $pesertadidik = Pesertadidik::all();
         $orangtuas = Orangtua::find($id);
-        return view('orang_tua/editortu', compact('orangtuas','pesertadidik'));
+        return view('orang_tua/editortu', compact('orangtuas','pesertadidik', 'tahunajarans'));
     }
 
     public function update(Request $request, $id)

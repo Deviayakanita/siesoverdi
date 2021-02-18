@@ -61,7 +61,7 @@
                                 <td>{{ $pesertadidik->nm_siswa }}</td>
                                 <td>{{ $pesertadidik->jns_kelamin }}</td>
                                 <td>{{ $pesertadidik->tmp_lahir }}, {{$pesertadidik->tgl_lahir->isoFormat('D MMMM Y') }}</td>
-                                <td>{{ $pesertadidik->tahun_ajaran }}</td>
+                                <td>{{ $pesertadidik->tahun->tahun_ajaran }}</td>
                                 <td>
                                 <?php if($pesertadidik->sts_siswa == 0)
                                 {
@@ -168,16 +168,22 @@
                         <textarea class="form-control" id="alamatsiswa" rows="3" name="alamat_siswa" required="required" autocomplete="off" placeholder="Masukan Alamat">{{ old('alamat_siswa')}}</textarea>
                       </div>
 
-                      <div class="form-row">
-                        <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                          <label for="inputprovinsi">Provinsi</label>
-                          <input type="provinsi" class="form-control" id="inputprovinsi" name="provinsi"required="required" autocomplete="off" placeholder="Masukan Provinsi" value="{{ old('provinsi') }}">
-                        </div>
-                        <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                          <label for="inputkabupaten">Kabupaten</label>
-                          <input type="kabupaten" class="form-control" id="inputkabupaten" name="kabupaten" required="required" autocomplete="off" placeholder="Masukan Kabupaten" value="{{ old('kabupaten') }}">
-                        </div>
-                      </div>
+                      <div class="form-group" style="padding: 0; padding-right: 10px;">
+                        <label for="form_kabupaten">Kabupaten/Kota</label>
+                        <select style="width: 100%;" name="kabupaten" class="form-control select2" id="input_kabupaten" required autocomplete="off">
+                            <option selected disabled>-- Pilih Kabupaten/Kota --</option>
+                            <option value="Kota Denpasar"{{ old('kabupaten') == 'Kota Denpasar' ? 'selected' : '' }}>Kota Denpasar</option>
+                            <option value="Badung"{{ old('kabupaten') == 'Badung' ? 'selected' : '' }}>Badung</option>
+                            <option value="Gianyar"{{ old('kabupaten') == 'Badung' ? 'selected' : '' }}>Gianyar</option>
+                            <option value="Bangli"{{ old('kabupaten') == 'Bangli' ? 'selected' : '' }}>Bangli</option>
+                            <option value="Tabanan"{{ old('kabupaten') == 'Tabanan' ? 'selected' : '' }}>Tabanan</option>
+                            <option value="Jembrana"{{ old('kabupaten') == 'Jembrana' ? 'selected' : '' }}>Jembrana</option>
+                            <option value="Buleleng"{{ old('kabupaten') == 'Buleleng' ? 'selected' : '' }}>Buleleng</option>
+                            <option value="Klungkung"{{ old('kabupaten') == 'Klungkung' ? 'selected' : '' }}>Klungkung</option>
+                            <option value="Karangasem"{{ old('kabupaten') == 'Karangasem' ? 'selected' : '' }}>Karangasem</option>
+                        </select>
+                    </div>
+                     
 
                       <div class="form-row">
                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
@@ -191,10 +197,16 @@
                       </div>
 
                       <div class="form-row">
-                         <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                           <label for="input_tahunajaran">Tahun Ajaran</label>
-                           <input type="text" class="form-control" id="input_tahunajaran" name="tahun_ajaran" required="required" autocomplete="off" placeholder="Masukan Tahun Ajaran" value="{{ old('tahun_ajaran') }}">
-                         </div>
+                      <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+                      <label for="inputState">Tahun Ajaran</label>
+                      <select style="width: 100%;" id="inputTahun" class="form-control select2" name="tahun_ajaran" required="required" autocomplete="off" >
+                        <option selected="selected" disabled="" value="">-- Pilih Tahun Ajaran --</option>
+                        @foreach ($tahunajarans as $item)
+                        <option data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_ta }}"{{ old('tahun_ajaran')==$item->id_ta ? 'selected':''}}>{{ $item->tahun_ajaran }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+
                          <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                            <label for="inputState">Status Siswa</label>
                            <select id="inputState" class="form-control" name="sts_siswa" required="required" autocomplete="off">
@@ -204,10 +216,11 @@
                            </select>
                          </div>
                       </div>
+
             
-                      <div class="form-group" style="padding: 0; padding-right: 10px">
+                      <div class="form-group">
                         <label for="keterangan">Keterangan Siswa</label>
-                        <textarea class="form-control" id="keterangan" rows="3" name="keterangan" required="required" autocomplete="off" placeholder="Masukan Keterangan">{{ old('alamat_siswa')}}</textarea>
+                        <textarea class="form-control" id="keterangan" rows="3" name="keterangan" autocomplete="off" placeholder="Masukan Keterangan">{{ old('alamat_siswa')}}</textarea>
                       </div>
                 
                       <div>
@@ -219,8 +232,6 @@
               </div>
             </div>
           </div>
-          </div> 
-          </div>  
 </section>
 @endsection
 
@@ -229,5 +240,11 @@
     @if($errors->any())
       $('#exampleModal').modal();
     @endif
+
+    $('.select2').select2();
+    $('#inputTahun').change(function() {
+      var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+      $('#inputtahun').val(tahun_ajaran);
+    });
 </script>
 @endsection

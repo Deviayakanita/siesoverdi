@@ -36,7 +36,7 @@
                         <select id="thn_ajaran" class="form-control select2" name="sts_siswa" required="required" autocomplete="off">
                             <option disabled selected>-- Pilih Tahun Ajaran --</option>
                             @foreach ($tahun_ajaran as $tahunajaran)
-                            <option id="tahun_ajaran" value="{{$tahunajaran->tahun_ajaran}}">{{$tahunajaran->tahun_ajaran}}</option>
+                            <option id="tahun_ajaran" value="{{$tahunajaran->id_ta}}">{{$tahunajaran->tahun_ajaran}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -75,7 +75,7 @@
                                         <td>{{ $pesertadidik->nm_siswa }}</td>
                                         <td>{{ $pesertadidik->jns_kelamin }}</td>
                                         <td>{{ $pesertadidik->tmp_lahir }}, {{$pesertadidik->tgl_lahir->isoFormat('D MMMM Y')}}</td>
-                                        <td>{{ $pesertadidik->tahun_ajaran }}</td>
+                                        <td>{{ $pesertadidik->tahun->tahun_ajaran }}</td>
                                         <td><?php if($pesertadidik->sts_siswa == 0) { echo "Non Aktif"; } elseif($pesertadidik->sts_siswa == 1) { echo "Aktif"; } else { echo "Non Aktif"; } ?></td>
                                         <td style="text-align: center;">
                                             @if(Auth::user() && Auth::user()->level == 0)
@@ -96,7 +96,6 @@
             </div>
         </div>
     </form>
-    </div>
 </section>
 @endsection
 @section('script')
@@ -182,7 +181,7 @@
                    html += '<td>'+ data.siswa[i].nm_siswa+'</td>'
                    html += '<td>'+ data.siswa[i].jns_kelamin+'</td>'
                    html += '<td>'+ data.siswa[i].tmp_lahir+', '+tanggal +' '+ bulan + ' ' + tahun+'</td>'
-                   html += '<td>'+ data.siswa[i].tahun_ajaran+'</td>'
+                   html += '<td>'+ data.siswa[i].tahun.tahun_ajaran+'</td>'
                    html += '<td>'+ status+'</td>'
                    html += '<td style="text-align: center;">'
                    if (data.level==0) {

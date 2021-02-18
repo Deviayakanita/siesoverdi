@@ -32,7 +32,7 @@
 
     @if(Auth::user() && Auth::user()->level == 0)
     <li class="header" style="font-size: 12px" >DATA PESERTA DIDIK</li>
-    <li class="treeview {{ (Request()->segment(1) == 'pesertadidik') ? 'active' : ''}} || {{ (Request()->segment(1) == 'orangtua') ? 'active' : ''}}">
+    <li class="treeview {{ (Request()->segment(1) == 'pesertadidik') ? 'active' : ''}} || {{ (Request()->segment(1) == 'orangtua') ? 'active' : ''}} || {{ (Request()->segment(1) == 'tahunajaran') ? 'active' : ''}}">
         <a href="#">
         <i class="fa fa-user"></i><span> Kelola Peserta Didik</span>
             <span class="pull-right-container">
@@ -40,6 +40,7 @@
             </span>
         </a>
         <ul class="treeview-menu">
+            <li class="{{ (Request()->segment(1) == 'tahunajaran') ? 'active' : ''}}"><a href="{{url('tahunajaran')}}"><i class="fa fa-circle-o text-aqua"></i> Data Tahun Ajaran</a></li>
             <li class="{{ (Request()->segment(1) == 'pesertadidik') ? 'active' : ''}}"><a href="{{url('pesertadidik')}}"><i class="fa fa-circle-o text-aqua"></i> Data Peserta Didik</a></li>
             <li class="{{ (Request()->segment(1) == 'orangtua') ? 'active' : ''}}"><a href="{{url('orangtua')}}"><i class="fa fa-circle-o text-aqua"></i> Data Orang Tua</a></li>
         </ul>

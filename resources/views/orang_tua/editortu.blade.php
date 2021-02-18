@@ -35,7 +35,7 @@
                     <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                       <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                       @foreach ($pesertadidik as $item)
-                      <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                      <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                       @endforeach
                     </select>
                     @error('nis')
@@ -52,7 +52,7 @@
                   </div>
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                     <label for="inputnama">Tahun Ajaran Siswa</label>
-                    <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" value="{{$orangtuas->pesertadidik->tahun_ajaran}}" readonly>
+                    <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" value="{{$orangtuas->pesertadidik->tahun->tahun_ajaran}}" readonly>
                   </div>
                 </div>
 
@@ -133,7 +133,6 @@
               </div>
             </form>
           </div>
-        </div>
         </section>  
 @endsection
 @section('script')

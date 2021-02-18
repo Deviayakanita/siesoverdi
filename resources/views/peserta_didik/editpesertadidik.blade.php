@@ -86,16 +86,10 @@
             <textarea class="form-control" id="alamatsiswa" rows="3" name="alamat_siswa" required="required" autocomplete="off">{{$pesertadidiks->alamat_siswa}}</textarea>
           </div>
 
-        <div class="form-row">
-          <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-            <label for="inputprovinsi">Provinsi</label>
-            <input type="provinsi" class="form-control" id="inputprovinsi" name="provinsi" required="required" autocomplete="off" value="{{$pesertadidiks->provinsi}}">
-          </div>
-          <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+          <div class="form-group" style="padding: 0; padding-right: 10px">
             <label for="inputkabupaten">Kabupaten</label>
             <input type="kabupaten" class="form-control" id="inputkabupaten" name="kabupaten" required="required" autocomplete="off" value="{{$pesertadidiks->kabupaten}}">
           </div>
-        </div>
 
         <div class="form-row">
           <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
@@ -111,8 +105,13 @@
         <div>
           <div class="form-row">
           <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-            <label for="input_tahunajaran">Tahun Ajaran</label>
-            <input type="text" class="form-control" id="input_tahunajaran" name="tahun_ajaran" required="required" autocomplete="off" value="{{$pesertadidiks->tahun_ajaran}}">
+            <label for="inputState">Tahun Ajaran</label>
+            <select style="width: 100%;" id="inputTahun" class="form-control select2" name="tahun_ajaran" required="required" autocomplete="off" >
+              <option selected="selected" disabled="" value="">-- Pilih Tahun Ajaran --</option>
+              @foreach ($tahunajarans as $item)
+              <option @if ($item->id_ta == $pesertadidiks->id_ta) selected @endif data-tahun="{{ $item->tahun_ajaran }}" value="{{$item->id_ta}}">{{ $item->tahun_ajaran }}</option>
+              @endforeach
+            </select>
           </div>
           <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
             <label for="inputState">Status Siswa</label>
@@ -127,7 +126,7 @@
          	
           <div class="form-group" style="padding: 0; padding-right: 10px">
             <label for="keterangan">Keterangan Siswa</label>
-            <textarea class="form-control" id="keterangan" rows="3" name="keterangan" required="required" autocomplete="off">{{$pesertadidiks->keterangan}}</textarea>
+            <textarea class="form-control" id="keterangan" rows="3" name="keterangan" autocomplete="off">{{$pesertadidiks->keterangan}}</textarea>
           </div>
 
           <div>
@@ -137,7 +136,6 @@
 </div>
 </div>
 </form>
-</div>
 </section>	
 @endsection
 @section('script')
@@ -145,5 +143,11 @@
     @if($errors->any())
       $('#exampleModal').modal();
     @endif
+
+    $('.select2').select2();
+    $('#inputTahun').change(function() {
+      var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+      $('#inputtahun').val(tahun_ajaran);
+    });
 </script>
 @endsection

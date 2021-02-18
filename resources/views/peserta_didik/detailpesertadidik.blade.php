@@ -64,11 +64,6 @@
               <td>{{$pesertadidiks->alamat_siswa}}</td>
             </tr>
             <tr>
-              <td>Provinsi</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->provinsi}}</td>
-            </tr>
-            <tr>
               <td>Kabupaten</td>
               <td>:</td>
               <td>{{$pesertadidiks->kabupaten}}</td>
@@ -86,7 +81,7 @@
             <tr>
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$pesertadidiks->tahun_ajaran}}</td>
+              <td>{{$pesertadidiks->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Jurusan</td>
@@ -112,16 +107,6 @@
                     ?>            
               </td>    
             </tr>
-            <tr>
-              <td>Tanggal Dibuat</td>
-              <td>:</td> 
-              <td>{{$pesertadidiks->created_at->isoFormat('D MMMM Y')}}</td>
-            </tr>
-            <tr>
-              <td>Tanggal Diupdate</td>
-              <td>:</td> 
-              <td>{{$pesertadidiks->updated_at->isoFormat('D MMMM Y')}}</td>
-            </tr>
            </table> 
            
         </div>
@@ -129,6 +114,5 @@
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-</div>
 </section>	
 @endsection

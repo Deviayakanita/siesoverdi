@@ -20,6 +20,11 @@ class Mutasikeluar extends Model
         'alasan_pindah',
     ];
 
+    public function tahun()
+    {
+        return $this -> belongsTo(Tahun::class, 'id_ta', 'id_ta');
+    }
+
     public function pesertadidik()
     {
         return $this -> belongsTo(Pesertadidik::class, 'id_siswa', 'id_siswa');

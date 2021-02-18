@@ -47,7 +47,7 @@
 				<td>{{$s->nm_siswa}}</td>
 				<td>{{$s->jns_kelamin}}</td>
 				<td>{{$s->tmp_lahir }}, {{$s->tgl_lahir->isoFormat('D MMMM Y') }}</td>
-				<td>{{$s->tahun_ajaran}}</td>
+				<td>{{$s->tahun->tahun_ajaran}}</td>
 				<td>
                   <?php if($s->sts_siswa == 0)
                      {

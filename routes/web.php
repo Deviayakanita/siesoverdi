@@ -92,6 +92,11 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/cetakalumni/{tahun_ajaran}','App\Http\Controllers\AlumniController@cetakfilter');
 		Route::get('/statistikalumni', 'App\Http\Controllers\AlumniController@statistik');
 
+	// Route Tahun Ajaran
+		Route::get('/tahunajaran', 'App\Http\Controllers\TahunController@index');
+		Route::post('/tahunajaran/store', 'App\Http\Controllers\TahunController@store');
+		Route::get('/tahunajaran/edit/{id}','App\Http\Controllers\TahunController@edit');
+
 	});
 
 
