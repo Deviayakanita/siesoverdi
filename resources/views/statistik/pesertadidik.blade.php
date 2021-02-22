@@ -81,63 +81,40 @@
 
 // Grafik 1 
 Highcharts.chart('grafik1', {
-
+    chart: {
+        type: 'line'
+    },
     title: {
         text: 'Jumlah Peserta Didik Berdasarkan Tahun Ajaran'
     },
-
-    yAxis: {
-        title: {
-            text: 'Jumlah (orang)'
-        }
-    },
-
     xAxis: {
-        accessibility: {
-            rangeDescription: 'Tahun Ajaran'
+        categories: {!! json_encode($categories) !!},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Jumlah Peserta Didik (Orang)'
         }
     },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
     },
-
     plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false,
-                        color: 'black'
-            },
-            pointStart: 2016
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
         }
     },
     credits: {
     enabled: false
     },
-
-    series: [{
-        name: 'Peserta Didik',
-        data: [100, 200, 300, 150, 600],
-        color: 'black'
-    }],
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
-    }
-
+    series: {!! json_encode($series) !!}
 });
 
 //Grafik 2
@@ -252,12 +229,12 @@ Highcharts.chart('grafik4', {
     },
     xAxis: {
         categories: [
-            'Kurang dari Rp.500,000',
-            'Rp.500,000 - Rp.1,000,000',
-            'Rp.1,000,000 - Rp.2,000,000',
-            'Rp.2,000,000 - Rp.5,000,000',
-            'Rp.5,000,000 - Rp.20,000,000',
-            'Lebih dari Rp.20,000,000',
+            '< 500k',
+            '500k - 1000k',
+            '1000k - 2000k',
+            '2000k - 5000k',
+            '5000k - 20000k',
+            '>20000k',
             'Tidak Penghasilan'
         ],
         crosshair: true
@@ -287,11 +264,11 @@ Highcharts.chart('grafik4', {
     },
     series: [{
         name: 'Ayah',
-        data: [100, 200, 150, 200, 100, 50]
+        data: [100, 200, 150, 200, 100, 50,10]
 
     }, {
         name: 'Ibu',
-        data: [50, 60, 80, 20, 80, 100],
+        data: [50, 60, 80, 20, 80, 100,50],
         color: 'pink'
 
     }]

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use PDF;
 use App\Models\Pesertadidik;
 use App\Models\Tahun;
+use Carbon\Carbon;
 
 class PesertadidikController extends Controller
 {
@@ -53,11 +54,17 @@ class PesertadidikController extends Controller
     public function store(Request $request)
     { 
         $this->validate($request, [
-            'nis' => 'required|unique:peserta_didik'
+            'nis' => 'required|unique:peserta_didik',
+            'nm_siswa' => 'required|min:8|max:50',
+            'jns_kelamin' => 'required',
+            'kabupaten' => 'required',
+            'jurusan' => 'required',
+            'sts_siswa' => 'required',
+            'tmp_lahir' => 'required|min:3|max:20',
+            'agama' => 'required|min:5|max:20',
+            'no_tlpn' => 'required|min:7|max:13',
+            
         ]);
-
-        // dd($request->tahun_ajaran);
-
         Pesertadidik::create([
             'nm_siswa' => request('nm_siswa'),
             'jns_kelamin' => request('jns_kelamin'),
@@ -72,8 +79,9 @@ class PesertadidikController extends Controller
             'id_ta' => request('tahun_ajaran'),
             'jurusan' => request('jurusan'),
             'sts_siswa' => request('sts_siswa'),
-            'keterangan' => request('keterangan'),
+            'keterangan' => request('keterangan')
         ]);
+
 
         return redirect('/pesertadidik')->with('success', 'Data berhasil ditambahkan!');
     }
@@ -120,7 +128,11 @@ class PesertadidikController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nis' => 'required|unique:peserta_didik,nis,'.$id.',id_siswa'
+            'nis' => 'required|unique:peserta_didik,nis,'.$id.',id_siswa',
+            'nm_siswa' => 'required|min:8|max:50',
+            'tmp_lahir' => 'required|min:3|max:20',
+            'agama' => 'required|min:5|max:20',
+            'no_tlpn' => 'required|min:7|max:13',
         ]);
 
         $pesertadidiks = Pesertadidik::where('id_siswa', $id)->first();
@@ -168,8 +180,35 @@ class PesertadidikController extends Controller
 
     public function statistik()
     {
-        $pesertadidiks = Pesertadidik::latest()->get();
-        return view('statistik/pesertadidik', compact('pesertadidiks'));
+        $id_ta = [];
+
+        $tahun_ajaran = Tahun::orderBy('tahun_ajaran', 'DESC')->limit(5)->get();
+        foreach ($tahun_ajaran as $value) {
+            $id_ta[] = $value->id_ta;
+        }
+        
+        $categories = [];
+        $tahun_ajaran = Tahun::whereIn('id_ta', collect($id_ta))->orderBy('tahun_ajaran', 'ASC')->get();
+        foreach($tahun_ajaran as $th){
+            $categories[] = $th->tahun_ajaran;
+        }
+
+        $series = [
+            (object)[
+                'name'=>'Jumlah Peserta Didik',
+                'data'=>[]
+            ]
+        ];
+        
+        foreach ($tahun_ajaran as $key => $th) {
+            $siswa = DB::table('peserta_didik')
+                ->join('tahun_ajaran','tahun_ajaran.id_ta','=','peserta_didik.id_ta')
+                ->where('peserta_didik.id_ta', $th->id_ta)->count();
+
+            $series[0]->data[$key] = $siswa;
+        }
+
+        return view('statistik/pesertadidik', compact('categories','series'));
     }
 
     /**

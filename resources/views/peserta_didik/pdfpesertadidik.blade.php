@@ -13,15 +13,15 @@
 	</style>
 </head>
 <body>
-	<img src="asets/images/Logo Soverdi Warna.png" style="position: absolute; width: 140px; height: auto;">
+	<img src="asets/images/Logo Soverdi Warna.png" style="position: absolute; width: 115px; height: auto;">
 	<table style="width: 100%;">
 		<tr>
-			<td align="center">
-				<span style="line-height: 1.4;">
-					YAYASAN SOVERDI<br> <b>SMA KATOLIK SOVERDI</b><br> Status: Swasta Akreditasi A <br> NSS/NPSN:302220405003/50101682
-					<br><small>Jl. Komplek Burung No.46 Tuban, Kuta, Badung, Bali  Tlp.(0361)9354379</small>
-					<br><small>website : http://smakatoliksoverdi.com e-mail:@smakatoliksoverdi.com ext. smaksoverdi87@gmail.com</small>
-				</span>
+			<td align="center" style="line-height: 1.2; font-size: 15px;">YAYASAN SOVERDI<br>
+          <span style="font-size: 20px; font-style: bold; letter-spacing: 2;"><b>SMA KATOLIK SOVERDI</b></span>
+          <br>Status: Swasta Akreditasi A
+          <br>NSS/NPSN:302220405003/50101682
+          <br><small>Jl. Komplek Burung No.46 Tuban, Kuta, Badung, Bali  Tlp.(0361)9354379</small>
+          <br><small>website : http://smakatoliksoverdi.com e-mail:@smakatoliksoverdi.com ext. smaksoverdi87@gmail.com</small>
 			</td>
 		</tr>
 	</table>
@@ -31,8 +31,8 @@
          <table class="table table-bordered">
          ($pesertadidiks as $pesertadidiks)
 		<tr>
-              <td>No Induk Siswa</td>
-              <td width="4px">:</td>
+              <td width="200px">No Induk Siswa</td>
+              <td width="20px">:</td>
               <td>{{$pesertadidiks->nis}}</td>
             </tr>
             <tr> 
@@ -113,14 +113,12 @@
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-	<br>
-	<br>
+      <br>
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-        Tuban,{{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+        Tuban, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
         <br>Kepala Sekolah
-        <br>
         <br>
         <br>
         <br>

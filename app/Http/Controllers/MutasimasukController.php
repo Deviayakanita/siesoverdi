@@ -11,6 +11,7 @@ use PDF;
 
 use App\Models\Mutasimasuk;
 use App\Models\Pesertadidik;
+use App\Models\Tahun;
 
 class MutasimasukController extends Controller
 {
@@ -32,19 +33,19 @@ class MutasimasukController extends Controller
     {
         $mutasimasuks = Mutasimasuk::latest()->get();
         $pesertadidik = Mutasimasuk::orderBy('id_siswa')->get();
-        $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        $tahun_ajaran = Tahun::orderBy('id_ta')->get();
         if ($request->ajax()) {
             if (!$request->tahun_ajaran){
-                $mutasimasuks = Mutasimasuk::with(['pesertadidik'])->latest()->get();   
+                $mtsmasuk = Mutasimasuk::with(['pesertadidik'])->latest()->get();   
             } else {
-                $siswa = Pesertadidik::where('tahun_ajaran', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
-                $mtsmasuk = Mutasimasuk::with(['pesertadidik'])->whereIn('id_siswa', collect($siswa))->get();
+                $siswa = Pesertadidik::where('id_ta', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
+                $mtsmasuk = Mutasimasuk::with(['pesertadidik','tahun'])->whereIn('id_siswa',collect($siswa))->get();
             }
             $role = Auth::user()->level;
             return response()->json(['mtsmasuk'=>$mtsmasuk,'level'=>$role]);
         }
       
-        return view('mutasi_peserta_didik/ctk_mutasimasuk', compact('mutasimasuks','tahun_ajaran'));
+        return view('mutasi_peserta_didik/ctk_mutasimasuk', compact('mutasimasuks','pesertadidik','tahun_ajaran'));
     }
 
 
@@ -59,11 +60,16 @@ class MutasimasukController extends Controller
     {   
         $this->validate($request, [
             'nis' => 'required|unique:mutasi_masuk,id_siswa',
+            'no_srt_pindah' => 'required|min:4|max:20',
+            'asal_sekolah' => 'required|min:8|max:30',
+            'alasan_pindah' => 'required|min:5|max:50', 
+            'tingkat_kelas' => 'required', 
         ]);
-        
+
         Mutasimasuk::create([
             'no_srt_pindah' => request('no_srt_pindah'),
             'id_siswa' => request('nis'),
+            'id_ta' => request('id_ta'),
             'asal_sekolah' => request('asal_sekolah'),
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_masuk' => request('tgl_masuk'),
@@ -116,12 +122,16 @@ class MutasimasukController extends Controller
     {
         $this->validate($request, [
             'nis' => 'required|unique:mutasi_masuk,id_siswa,'.$request->nis.',id_siswa',
+            'no_srt_pindah' => 'required|min:4|max:20',
+            'asal_sekolah' => 'required|min:8|max:20',
+            'alasan_pindah' => 'required|min:5|max:50', 
 
         ]);
 
         $mutasimasuks = Mutasimasuk::where('id_mut_msk', $id)->first();
         $mutasimasuks->no_srt_pindah = $request->no_srt_pindah;
         $mutasimasuks->id_siswa = $request->nis;
+        $mutasimasuks->id_ta= $request->id_ta;
         $mutasimasuks->asal_sekolah = $request->asal_sekolah;
         $mutasimasuks->tingkat_kelas = $request->tingkat_kelas;
         $mutasimasuks->tgl_masuk = $request->tgl_masuk;
@@ -134,7 +144,8 @@ class MutasimasukController extends Controller
     public function export(Request $request)
     {   
         $mutasimasuk = DB::table('mutasi_masuk')
-                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_masuk.id_siswa')->get();
+                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_masuk.id_siswa')
+                    ->join('tahun_ajaran','tahun_ajaran.id_ta','=','mutasi_masuk.id_ta')->get();
         $pdf = PDF::loadview('mutasi_peserta_didik.exportmutasimasuk', ['mutasimasuk'=>$mutasimasuk]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
@@ -153,7 +164,8 @@ class MutasimasukController extends Controller
     {   
         $mutasimasuk = DB::table('mutasi_masuk')
                     ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_masuk.id_siswa')
-                    ->where('peserta_didik.tahun_ajaran','=', $tahun_ajaran)->get();
+                    ->join('tahun_ajaran','tahun_ajaran.id_ta','=','mutasi_masuk.id_ta')
+                    ->where('peserta_didik.id_ta','=', $tahun_ajaran)->get();
         $pdf = PDF::loadview('mutasi_peserta_didik.exportmutasimasuk', ['mutasimasuk'=>$mutasimasuk]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();

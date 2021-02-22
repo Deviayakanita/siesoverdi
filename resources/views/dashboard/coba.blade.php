@@ -121,7 +121,7 @@
                       <td>{{ $pt->nm_siswa }}</td>
                       <td>{{ $pt->jns_kelamin }}</td>
                       <td>{{ $pt->tmp_lahir }}, {{$pt->tgl_lahir->isoFormat('D MMMM Y') }}</td>
-                      <td>{{ $pt->tahun_ajaran }}</td>
+                      <td>{{ $pt->tahun->tahun_ajaran }}</td>
                       <td>
                         <?php
                         if($pt->sts_siswa == 0)
@@ -183,7 +183,7 @@
                       <td>{{ $mtm->no_srt_pindah }}</td>
                       <td>{{ $mtm->pesertadidik->nis }}</td>
                       <td>{{ $mtm->pesertadidik->nm_siswa }}</td>
-                      <td>{{ $mtm->pesertadidik->tahun_ajaran }}</td>
+                      <td>{{ $mtm->pesertadidik->tahun->tahun_ajaran }}</td>
                       <td>{{ $mtm->tgl_masuk->isoFormat('D MMMM Y')}}</td>
                       <td>{{ $mtm->asal_sekolah }}</td>
                     </tr>
@@ -230,7 +230,7 @@
                       <td>{{ $mtk->no_srt_pindah }}</td>
                       <td>{{ $mtk->pesertadidik->nis }}</td>
                       <td>{{ $mtk->pesertadidik->nm_siswa }}</td>
-                      <td>{{ $mtk->pesertadidik->tahun_ajaran }}</td>
+                      <td>{{ $mtk->pesertadidik->tahun->tahun_ajaran }}</td>
                       <td>{{ $mtk->tgl_pindah->isoFormat('D MMMM Y')}}</td>
                       <td>{{ $mtk->sekolah_tujuan }}</td>
                     </tr>
@@ -276,7 +276,7 @@
                       <td>{{ $no }}</td>
                       <td>{{ $al->pesertadidik->nis }}</td>
                       <td>{{ $al->pesertadidik->nm_siswa }}</td>
-                      <td>{{ $al->pesertadidik->tahun_ajaran }}</td>
+                      <td>{{ $al->pesertadidik->tahun->tahun_ajaran }}</td>
                       <td>{{ $al->jns_pt }}</td>
                       <td>{{ $al->nm_pt }}</td>
                       <td>{{ $al->nm_fak }}</td>
@@ -289,7 +289,7 @@
             </li>
             <!-- END timeline item -->
           </ul>
-      </div>
+        </div>
      </section>
 
  @elseif(Auth::user() && Auth::user()->level == 1)
@@ -354,9 +354,7 @@
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
-        </div>
     </section>
     @endif
 
-</div>
 @endsection

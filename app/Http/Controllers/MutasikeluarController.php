@@ -11,6 +11,7 @@ use PDF;
 
 use App\Models\Mutasikeluar;
 use App\Models\Pesertadidik;
+use App\Models\Tahun;
 
 class MutasikeluarController extends Controller
 {
@@ -32,13 +33,13 @@ class MutasikeluarController extends Controller
     {
         $mutasikeluars = Mutasikeluar::latest()->get();
         $pesertadidik = Mutasikeluar::orderBy('id_siswa')->get();
-        $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        $tahun_ajaran = Tahun::orderBy('id_ta')->get();
         if ($request->ajax()) {
             if (!$request->tahun_ajaran){
                 $mutasikeluars = Mutasikeluar::with(['pesertadidik'])->latest()->get();   
             } else {
-                $siswa = Pesertadidik::where('tahun_ajaran', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
-                $mtskeluar = Mutasikeluar::with(['pesertadidik'])->whereIn('id_siswa', collect($siswa))->get();
+                $siswa = Pesertadidik::where('id_ta', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
+                $mtskeluar = Mutasikeluar::with(['pesertadidik','tahun'])->whereIn('id_siswa', collect($siswa))->get();
             }
             $role = Auth::user()->level;
             return response()->json(['mtskeluar'=>$mtskeluar,'level'=>$role]);
@@ -57,11 +58,16 @@ class MutasikeluarController extends Controller
     {
         $this->validate($request, [
             'nis' => 'required|unique:mutasi_keluar,id_siswa',
+            'no_srt_pindah' => 'required|min:4|max:20',
+            'sekolah_tujuan' => 'required|min:8|max:30',
+            'tingkat_kelas' => 'required',
+            'alasan_pindah' => 'required|min:5|max:50', 
         ]);
 
         Mutasikeluar::create([
             'no_srt_pindah' => request('no_srt_pindah'),
             'id_siswa' => request('nis'),
+            'id_ta' => request('id_ta'),
             'sekolah_tujuan' => request('sekolah_tujuan'),
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_pindah' => request('tgl_pindah'),
@@ -119,6 +125,9 @@ class MutasikeluarController extends Controller
     {
         $this->validate($request, [
             'nis' => 'required|unique:mutasi_keluar,id_siswa,'.$request->nis.',id_siswa',
+            'no_srt_pindah' => 'required|min:4|max:20',
+            'sekolah_tujuan' => 'required|min:8|max:30',
+            'alasan_pindah' => 'required|min:5|max:50', 
 
         ]);
 
@@ -131,6 +140,7 @@ class MutasikeluarController extends Controller
         }
         $mutasikeluars->no_srt_pindah = $request->no_srt_pindah;
         $mutasikeluars->id_siswa = $request->nis;
+        $mutasikeluars->id_ta = $request->id_ta;
         $mutasikeluars->sekolah_tujuan = $request->sekolah_tujuan;
         $mutasikeluars->tingkat_kelas = $request->tingkat_kelas;
         $mutasikeluars->tgl_pindah = $request->tgl_pindah;
@@ -149,7 +159,8 @@ class MutasikeluarController extends Controller
     public function export(Request $request)
     {   
         $mutasikeluar = DB::table('mutasi_keluar')
-                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_keluar.id_siswa')->get();
+                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_keluar.id_siswa')
+                    ->join('tahun_ajaran','tahun_ajaran.id_ta','=','mutasi_keluar.id_ta')->get();
         $pdf = PDF::loadview('mutasi_peserta_didik.exportmutasikeluar', ['mutasikeluar'=>$mutasikeluar]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
@@ -168,7 +179,8 @@ class MutasikeluarController extends Controller
     {   
         $mutasikeluar = DB::table('mutasi_keluar')
                     ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_keluar.id_siswa')
-                    ->where('peserta_didik.tahun_ajaran','=', $tahun_ajaran)->get();
+                     ->join('tahun_ajaran','tahun_ajaran.id_ta','=','mutasi_keluar.id_ta')
+                    ->where('peserta_didik.id_ta','=', $tahun_ajaran)->get();
         $pdf = PDF::loadview('mutasi_peserta_didik.exportmutasikeluar', ['mutasikeluar'=>$mutasikeluar]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();

@@ -36,7 +36,7 @@
                         <select id="thn_ajaran" class="form-control select2" name="sts_siswa" required="required" autocomplete="off">
                             <option disabled selected>-- Pilih Tahun Ajaran --</option>
                             @foreach ($tahun_ajaran as $tahunajaran)
-                            <option id="tahun_ajaran" value="{{$tahunajaran->tahun_ajaran}}">{{$tahunajaran->tahun_ajaran}}</option>
+                            <option id="tahun_ajaran" value="{{$tahunajaran->id_ta}}">{{$tahunajaran->tahun_ajaran}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -77,7 +77,7 @@
 				                                <td>{{ $mutasikeluar->no_srt_pindah }}</td>
 				                                <td>{{ $mutasikeluar->pesertadidik->nis }}</td>
 				                                <td>{{ $mutasikeluar->pesertadidik->nm_siswa }}</td>
-				                                <td>{{ $mutasikeluar->pesertadidik->tahun_ajaran }}</td>
+				                                <td>{{ $mutasikeluar->pesertadidik->tahun->tahun_ajaran }}</td>
 				                                <td>{{ $mutasikeluar->tgl_pindah->isoFormat('D MMMM Y') }}</td>
 				                                <td>{{ $mutasikeluar->sekolah_tujuan }}</td>
 				                                <td style="text-align: center;">
@@ -102,7 +102,6 @@
             </div>
         </div>
     </form>
-    </div>
 </section>
 @endsection
 @section('script')
@@ -178,7 +177,7 @@
                    html += '<td>'+ data.mtskeluar[i].no_srt_pindah+'</td>'
                    html += '<td>'+ data.mtskeluar[i].pesertadidik.nis+'</td>'
                    html += '<td>'+ data.mtskeluar[i].pesertadidik.nm_siswa+'</td>'
-                   html += '<td>'+ data.mtskeluar[i].pesertadidik.tahun_ajaran+'</td>'
+                   html += '<td>'+ data.mtskeluar[i].tahun.tahun_ajaran+'</td>'
                    html += '<td>'+ tanggal +' '+ bulan + ' ' + tahun+'</td>'
                    html += '<td>'+ data.mtskeluar[i].sekolah_tujuan+'</td>'
                    html += '<td style="text-align: center;">'

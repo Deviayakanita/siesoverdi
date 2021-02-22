@@ -12,6 +12,7 @@ class Orangtua extends Model
 
     public $fillable = [
         'id_siswa',
+        'id_ta',
     	'nm_ayah',
     	'id_siswa',
     	'job_ayah',

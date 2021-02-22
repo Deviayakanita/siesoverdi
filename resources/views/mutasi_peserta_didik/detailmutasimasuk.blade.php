@@ -45,17 +45,12 @@
             <tr>
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$mutasimasuks->pesertadidik->tahun_ajaran}}</td>
+              <td>{{$mutasimasuks->pesertadidik->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Alamat Siswa</td>
               <td>:</td>
               <td>{{$mutasimasuks->pesertadidik->alamat_siswa}}</td>
-            </tr>
-            <tr>
-              <td>Provinsi</td>
-              <td>:</td>
-              <td>{{$mutasimasuks->pesertadidik->provinsi}}</td>
             </tr>
             <tr>
               <td>Kabupaten</td>
@@ -107,7 +102,7 @@
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-    </div>
+ 
 				
  
 </section>	

@@ -14,6 +14,7 @@ class Mutasimasuk extends Model
     public $fillable = [
     	'no_srt_pindah',
     	'id_siswa',
+        'id_ta',
     	'asal_sekolah', 
         'tingkat_kelas',
         'tgl_masuk',

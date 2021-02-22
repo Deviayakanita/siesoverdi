@@ -103,7 +103,7 @@
                       <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off" >
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
-                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" data-id="{{ $item->id_ta }}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                         @endforeach
                       </select>
                       @error('nis')
@@ -121,15 +121,16 @@
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Tahun Ajaran Siswa</label>
                       <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly value="{{ old('tahun_ajaran') }}">
+                      <input type="hidden" id="inputid_ta" name="id_ta" value="{{ old('id_ta') }}">
                     </div>
                   </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ayah</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_ayah" required="required" autocomplete="off" placeholder="Masukan Nama" value="{{ old('nm_ayah') }}">
+                      <input type="text" class="form-control" id="inputnama" name="nm_ayah" required="required" autocomplete="off" placeholder="Masukan Nama" value="{{ old('nm_ayah') }}"  onkeypress="return hanyaHuruf(event)">
                       @error('nm_ayah')
                       <span class="invalid-feedback text-danger" role="alert">
-                          <strong>{{ $message }}</strong>
+                          <strong>{{ "Terdiri Dari 5 Samapai 50 Karakter" }}</strong>
                       </span>
                       @enderror
                     </div>
@@ -138,11 +139,6 @@
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpekerjaan">Pekerjaan Ayah</label>
                       <input type="text" class="form-control" id="inputpekerjaan" name="job_ayah" required="required" autocomplete="off" placeholder="Masukan Pekerjaan" value="{{ old('job_ayah') }}">
-                      @error('job_ayah')
-                      <span class="invalid-feedback text-danger" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpendidikan">Pendidikan Terakhir</label>
@@ -162,14 +158,19 @@
                         <option value="Lebih dari Rp.20,000,000" {{ old('penghasilan_ayah')=='Lebih dari Rp.20,000,000'? 'selected':''}}>Lebih dari Rp.20,000,000</option>
                         <option value="Tidak Penghasilan" {{ old('penghasilan_ayah')=='Tidak Penghasilan'? 'selected':''}}>Tidak Berpenghasilan</option>
                       </select>
+                      @error('penghasilan_ayah')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ "Tidak Boleh Kosong" }}</strong>
+                      </span>
+                      @enderror
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ibu</label>
-                      <input type="text" class="form-control" id="inputnama" name="nm_ibu" required="required" autocomplete="off" placeholder="Masukan Nama" value="{{ old('nm_ibu') }}">
+                      <input type="text" class="form-control" id="inputnama" name="nm_ibu" required="required" autocomplete="off" placeholder="Masukan Nama" value="{{ old('nm_ibu') }}"  onkeypress="return hanyaHuruf(event)">
                       @error('nm_ibu')
                       <span class="invalid-feedback text-danger" role="alert">
-                          <strong>{{ $message }}</strong>
+                          <strong>{{ "Terdiri Dari 5 Sampai 50 Karakter" }}</strong>
                       </span>
                       @enderror
                     </div>
@@ -178,11 +179,6 @@
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpekerjaan">Pekerjaan Ibu</label>
                       <input type="text" class="form-control" id="inputpekerjaan" name="job_ibu" required="required" autocomplete="off" placeholder="Masukan Pekerjaan" value="{{ old('job_ibu') }}">
-                      @error('job_ibu')
-                      <span class="invalid-feedback text-danger" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                      @enderror
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputpendidikan">Pendidikan Terakhir</label>
@@ -202,6 +198,11 @@
                         <option value="Lebih dari Rp.20,000,000" {{ old('penghasilan_ibu')=='Lebih dari Rp.20,000,000'? 'selected':''}}>Lebih dari Rp.20,000,000</option>
                         <option value="Tidak Penghasilan" {{ old('penghasilan_ibu')=='Tidak Penghasilan'? 'selected':''}}>Tidak Berpenghasilan</option>
                       </select>
+                      @error('penghasilan_ibu')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ "Tidak Boleh Kosong" }}</strong>
+                      </span>
+                      @enderror
                     </div>
                     
                     <div>
@@ -224,8 +225,18 @@
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
     var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    var id_ta = $('option:selected', this).attr('data-id');
     $('#inputnamasiswa').val(nm_siswa);
     $('#inputtahun').val(tahun_ajaran);
+    $('#inputid_ta').val(id_ta);
   });
+
+  function hanyaHuruf(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+      return true;
+    return false;
+    }
+    
 </script>
 @endsection

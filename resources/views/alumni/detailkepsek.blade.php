@@ -38,6 +38,11 @@
               <td>:</td>
               <td>{{$alumnis->pesertadidik->nm_siswa}}</td>
             </tr>
+            <tr> 
+              <td>Tahun Ajaran</td>
+              <td>:</td>
+              <td>{{$alumnis->pesertadidik->tahun->tahun_ajaran}}</td>
+            </tr>
             <tr>
               <td>Status Peserta Didik</td>
               <td>:</td>
@@ -82,8 +87,10 @@
         </div>
 
         <!-- /.box-body -->
-        <div class="box-footer"></div>
+       <div class="box-footer">
+          <a href="/alumni/pdf/{{ $alumnis->id_alumni}}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+        </div>
       </div>
-</div>
+
 </section>	
 @endsection

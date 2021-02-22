@@ -37,6 +37,11 @@
               <td>:</td>
               <td>{{$alumnis->pesertadidik->nm_siswa}}</td>
             </tr>
+            <tr> 
+              <td>Tahun Ajaran</td>
+              <td>:</td>
+              <td>{{$alumnis->pesertadidik->tahun->tahun_ajaran}}</td>
+            </tr>
             <tr>
               <td>Status Peserta Didik</td>
               <td>:</td>
@@ -82,7 +87,6 @@
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-			</div>
  
 </section>	
 @endsection

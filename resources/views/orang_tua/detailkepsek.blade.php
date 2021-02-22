@@ -41,7 +41,7 @@
             <tr>
               <td>Tahun Ajaran Siswa</td>
               <td>:</td>
-              <td>{{$orangtuas->pesertadidik->tahun_ajaran}}</td>
+              <td>{{$orangtuas->pesertadidik->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>
@@ -107,8 +107,9 @@
 
 
         <!-- /.box-body -->
-        <div class="box-footer"></div>
+        <div class="box-footer">
+          <a href="/orangtua/pdf/{{ $orangtuas->id_orang_tua}}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+        </div>
       </div>
-</div>
 </section>	
 @endsection

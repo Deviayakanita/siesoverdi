@@ -11,6 +11,7 @@ use PDF;
 
 use App\Models\Pesertadidik;
 use App\Models\Alumni;
+use App\Models\Tahun;
 
 class AlumniController extends Controller
 {
@@ -31,13 +32,13 @@ class AlumniController extends Controller
     {
         $alumnis = Alumni::latest()->get();
         $pesertadidik = Alumni::orderBy('id_siswa')->get();
-        $tahun_ajaran = Pesertadidik::orderBy('tahun_ajaran', 'ASC')->select('tahun_ajaran')->groupBy('tahun_ajaran')->get();
+        $tahun_ajaran = Tahun::orderBy('id_ta')->get();
         if ($request->ajax()) {
             if (!$request->tahun_ajaran){
                 $alumnis = Alumni::with(['pesertadidik'])->latest()->get();   
             } else {
-                $siswa = Pesertadidik::where('tahun_ajaran', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
-                $alumni = Alumni::with(['pesertadidik'])->whereIn('id_siswa', collect($siswa))->get();
+                $siswa = Pesertadidik::where('id_ta', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
+                $alumni = Alumni::with(['pesertadidik','tahun'])->whereIn('id_siswa', collect($siswa))->get();
             }
             $role = Auth::user()->level;
             return response()->json(['alumni'=>$alumni,'level'=>$role]);
@@ -56,11 +57,16 @@ class AlumniController extends Controller
     {   
         $this->validate($request, [
             'nis' => 'required|unique:alumni_siswa,id_siswa',
+            'nm_pt' => 'required|min:5|max:50',
+            'nm_fak' => 'required|min:10|max:50',
+            'nm_jurusan' => 'required|min:10|max:50',
+            'jns_pt' => 'required', 
         ]);
 
          Alumni::create([
             'nm_pt' => request('nm_pt'),
             'id_siswa' => request('nis'),
+            'id_ta' => request('id_ta'),
             'jns_pt' => request('jns_pt'),
             'nm_fak' => request('nm_fak'),
             'nm_jurusan' => request('nm_jurusan'),
@@ -87,6 +93,12 @@ class AlumniController extends Controller
         return view ('alumni/detailalumni', compact('alumnis'));
     }
 
+    public function detail($id)
+    {
+        $alumnis = Alumni::find($id);
+        return view ('alumni/detailkepsek', compact('alumnis'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -111,6 +123,9 @@ class AlumniController extends Controller
     {
         $this->validate($request, [
             'nis' => 'required|unique:alumni_siswa,id_siswa,'.$request->nis.',id_siswa',
+            'nm_pt' => 'required|min:5|max:50',
+            'nm_fak' => 'required|min:10|max:50',
+            'nm_jurusan' => 'required|min:10|max:50', 
 
         ]);
 
@@ -124,6 +139,7 @@ class AlumniController extends Controller
 
         $alumnis->nm_pt = $request->nm_pt;
         $alumnis->id_siswa = $request->nis;
+        $alumnis->id_ta = $request->id_ta;
         $alumnis->jns_pt = $request->jns_pt;
         $alumnis->nm_fak = $request->nm_fak;
         $alumnis->nm_jurusan = $request->nm_jurusan;
@@ -140,7 +156,8 @@ class AlumniController extends Controller
     public function export(Request $request)
     {   
         $alumni = DB::table('alumni_siswa')
-                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','alumni_siswa.id_siswa')->get();
+                    ->join('peserta_didik', 'peserta_didik.id_siswa','=','alumni_siswa.id_siswa')
+                    ->join('tahun_ajaran','tahun_ajaran.id_ta','=','alumni_siswa.id_ta')->get();
         $pdf = PDF::loadview('alumni.export', ['alumni'=>$alumni]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
@@ -159,7 +176,8 @@ class AlumniController extends Controller
     {   
         $alumni = DB::table('alumni_siswa')
                     ->join('peserta_didik', 'peserta_didik.id_siswa','=','alumni_siswa.id_siswa')
-                    ->where('peserta_didik.tahun_ajaran','=', $tahun_ajaran)->get();
+                    ->join('tahun_ajaran','tahun_ajaran.id_ta','=','alumni_siswa.id_ta')
+                    ->where('peserta_didik.id_ta','=', $tahun_ajaran)->get();
         $pdf = PDF::loadview('alumni.export', ['alumni'=>$alumni]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();

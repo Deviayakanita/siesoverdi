@@ -12,6 +12,7 @@ class Alumni extends Model
 
     public $fillable = [
         'id_siswa',
+        'id_ta',
     	'nm_pt',
     	'id_siswa',
     	'jns_pt',

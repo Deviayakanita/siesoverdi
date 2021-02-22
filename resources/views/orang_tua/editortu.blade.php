@@ -35,7 +35,7 @@
                     <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                       <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                       @foreach ($pesertadidik as $item)
-                      <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                      <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" data-id="{{ $item->id_ta }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                       @endforeach
                     </select>
                     @error('nis')
@@ -53,6 +53,7 @@
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                     <label for="inputnama">Tahun Ajaran Siswa</label>
                     <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" value="{{$orangtuas->pesertadidik->tahun->tahun_ajaran}}" readonly>
+                    <input type="hidden" id="inputid_ta" name="id_ta" value="{{$orangtuas->tahun->id_ta}}"readonly>
                   </div>
                 </div>
 
@@ -61,7 +62,7 @@
                     <input type="text" class="form-control" id="inputnama" name="nm_ayah" value="{{$orangtuas->nm_ayah}}" required="required" autocomplete="off">
                     @error('nm_ayah')
                     <span class="invalid-feedback text-danger" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong>{{ "Terdiri Dari 5 Sampai 50 Karakter" }}</strong>
                     </span>
                     @enderror
                   </div>
@@ -79,8 +80,8 @@
 
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputState">Penghasilan Ayah</label>
-                    <select id="inputState" class="form-control" name="penghasilan_ayah" value="{{$orangtuas->penghasilan_ayah}}" required="required" autocomplete="off">
-                      <option selected>-- Pilih Penghasilan --</option>
+                    <select id="inputState" class="form-control select2" name="penghasilan_ayah" value="{{$orangtuas->penghasilan_ayah}}" required="required" autocomplete="off">
+                      <option selected="selected" disabled="">-- Pilih Penghasilan --</option>
                       <option value="Kurang dari Rp.500,000" @if($orangtuas->penghasilan_ayah=='Kurang dari Rp.500,000')selected @endif>Kurang dari Rp.500,000</option>
                       <option value="Rp.500,000 - Rp.1,000,000" @if($orangtuas->penghasilan_ayah=='Rp.500,000 - Rp.1,000,000')selected @endif>Rp.500,000 - Rp.1,000,000</option>
                       <option value="Rp.1,000,000 - Rp.2,000,000" @if($orangtuas->penghasilan_ayah=='Rp.1,000,000 - Rp.2,000,000')selected @endif>Rp.1,000,000 - Rp.2,000,000</option>
@@ -96,7 +97,7 @@
                     <input type="text" class="form-control" id="inputnama" name="nm_ibu" value="{{$orangtuas->nm_ibu}}" required="required" autocomplete="off">
                     @error('nm_ibu')
                     <span class="invalid-feedback text-danger" role="alert">
-                        <strong>{{ $message }}</strong>
+                        <strong>{{ "Terdiri Dari 5 Samapi 50 Karakter" }}</strong>
                     </span>
                     @enderror
                   </div>
@@ -114,8 +115,8 @@
 
                   <div class="form-group" style="padding: 0; padding-right: 10px">
                     <label for="inputState">Penghasilan Ibu</label>
-                    <select id="inputState" class="form-control" name="penghasilan_ibu" value="{{$orangtuas->penghasilan_ibu}}" required="required" autocomplete="off">
-                      <option selected>-- Pilih Penghasilan --</option>
+                    <select id="inputState" class="form-control select2" name="penghasilan_ibu" value="{{$orangtuas->penghasilan_ibu}}" required="required" autocomplete="off">
+                      <option selected="selected" disabled="">-- Pilih Penghasilan --</option>
                       <option value="Kurang dari Rp.500,000" @if($orangtuas->penghasilan_ibu=='Kurang dari Rp.500,000')selected @endif>Kurang dari Rp.500,000</option>
                       <option value="Rp.500,000 - Rp.1,000,000" @if($orangtuas->penghasilan_ibu=='Rp.500,000 - Rp.1,000,000')selected @endif>Rp.500,000 - Rp.1,000,000</option>
                       <option value="Rp.1,000,000 - Rp.2,000,000" @if($orangtuas->penghasilan_ibu=='Rp.1,000,000 - Rp.2,000,000')selected @endif>Rp.1,000,000 - Rp.2,000,000</option>
@@ -142,11 +143,13 @@
       $('#exampleModal').modal();
     @endif
 
-  $('#inputNIS').change(function() {
+   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
     var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    var id_ta = $('option:selected', this).attr('data-id');
     $('#inputnamasiswa').val(nm_siswa);
     $('#inputtahun').val(tahun_ajaran);
+    $('#inputid_ta').val(id_ta);
   });
 </script>
 @endsection

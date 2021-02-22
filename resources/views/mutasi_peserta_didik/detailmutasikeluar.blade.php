@@ -45,7 +45,7 @@
             <tr> 
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$mutasikeluars->pesertadidik->tahun_ajaran}}</td>
+              <td>{{$mutasikeluars->pesertadidik->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>
@@ -92,7 +92,7 @@
         <!-- /.box-body -->
         <div class="box-footer"></div>
       </div>
-			</div>
+		
  
 </section>	
 @endsection

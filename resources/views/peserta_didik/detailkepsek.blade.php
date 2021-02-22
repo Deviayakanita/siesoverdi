@@ -44,6 +44,11 @@
               <td>{{$pesertadidiks->jns_kelamin}}</td>
             </tr>
             <tr>
+              <td>Jurusan</td>
+              <td>:</td>
+              <td>{{$pesertadidiks->jurusan}}</td>
+            </tr>
+            <tr>
               <td>Tempat lahir</td>
               <td>:</td>
               <td>{{$pesertadidiks->tmp_lahir}}</td>
@@ -69,9 +74,9 @@
               <td>{{$pesertadidiks->kabupaten}}</td>
             </tr>
             <tr>
-              <td>No Telepon</td>
+              <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$pesertadidiks->no_tlpn}}</td>
+              <td>{{$pesertadidiks->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Email</td>
@@ -79,14 +84,9 @@
               <td>{{$pesertadidiks->email}}</td>
             </tr>
             <tr>
-              <td>Tahun Ajaran</td>
+              <td>No Telepon</td>
               <td>:</td>
-              <td>{{$pesertadidiks->tahun->tahun_ajaran}}</td>
-            </tr>
-            <tr>
-              <td>Jurusan</td>
-              <td>:</td>
-              <td>{{$pesertadidiks->jurusan}}</td>
+              <td>{{$pesertadidiks->no_tlpn}}</td>
             </tr>
             <tr>
               <td>Status Siswa</td>
@@ -112,8 +112,9 @@
         </div>
 
         <!-- /.box-body -->
-        <div class="box-footer"></div>
+        <div class="box-footer">
+          <a href="/pesertadidik/pdf/{{ $pesertadidiks->id_siswa}}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+        </div>
       </div>
-</div>
 </section>	
 @endsection

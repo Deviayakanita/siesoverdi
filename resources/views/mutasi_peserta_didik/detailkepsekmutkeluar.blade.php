@@ -46,7 +46,7 @@
             <tr> 
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$mutasikeluars->pesertadidik->tahun_ajaran}}</td>
+              <td>{{$mutasikeluars->pesertadidik->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>
@@ -92,8 +92,9 @@
         </div>
 
         <!-- /.box-body -->
-        <div class="box-footer"></div>
+        <div class="box-footer">
+          <a href="/mutasikeluar/pdf/{{ $mutasikeluars->id_mut_klr}}" target="_blank" class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+        </div>
       </div>
-</div>
 </section>	
 @endsection

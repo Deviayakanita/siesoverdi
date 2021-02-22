@@ -14,6 +14,7 @@ class Mutasikeluar extends Model
     public $fillable = [
     	'no_srt_pindah',
     	'id_siswa',
+        'id_ta',
     	'sekolah_tujuan',
         'tingkat_kelas',
         'tgl_pindah',

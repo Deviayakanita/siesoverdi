@@ -60,11 +60,14 @@ class OrangtuaController extends Controller
             'nis' => 'required|unique:orang_tua,id_siswa',
             'nm_ayah' => 'required|min:5|max:50',
             'nm_ibu' => 'required|min:5|max:50',
+            'penghasilan_ayah' => 'required',
+            'penghasilan_ibu' => 'required',
         ]);
 
         Orangtua::create([
             'nm_ayah' => request('nm_ayah'),
             'id_siswa' => request('nis'),
+            'id_ta' => request('id_ta'),
             'job_ayah' => request('job_ayah'),
             'pddk_ayah' => request('pddk_ayah'),
             'penghasilan_ayah' => request('penghasilan_ayah'),
@@ -119,6 +122,7 @@ class OrangtuaController extends Controller
 
         $orangtuas = Orangtua::where('id_orang_tua', $id)->first();
         $orangtuas->id_siswa = $request->nis;
+        $orangtuas->id_ta = $request->id_ta;
         $orangtuas->nm_ayah = $request->nm_ayah;
         $orangtuas->job_ayah = $request->job_ayah;
         $orangtuas->pddk_ayah = $request->pddk_ayah;

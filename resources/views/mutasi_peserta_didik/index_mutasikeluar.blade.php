@@ -59,7 +59,7 @@
                                 <td>{{ $mutasikeluar->no_srt_pindah }}</td>
                                 <td>{{ $mutasikeluar->pesertadidik->nis }}</td>
                                 <td>{{ $mutasikeluar->pesertadidik->nm_siswa }}</td>
-                                <td>{{ $mutasikeluar->pesertadidik->tahun_ajaran }}</td>
+                                <td>{{ $mutasikeluar->pesertadidik->tahun->tahun_ajaran }}</td>
                                 <td>{{ $mutasikeluar->tgl_pindah->isoFormat('D MMMM Y') }}</td>
                                 <td>{{ $mutasikeluar->sekolah_tujuan }}</td>
                                 <td style="text-align: center;">
@@ -101,6 +101,11 @@
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputsurat">No Surat Pindah</label>
                       <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" required="required" autocomplete="off" placeholder="Masukan No Surat" value="{{ old('no_srt_pindah') }}">
+                      @error('no_srt_pindah')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ "Terdiri Dari 4 Sampai 20 Karakter" }}</strong>
+                      </span>
+                      @enderror
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -108,7 +113,7 @@
                       <select style="width: 100%;"id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
-                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" data-id="{{ $item->id_ta}}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                         @endforeach
                       </select>
                       @error('nis')
@@ -126,12 +131,18 @@
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Tahun Ajaran Siswa</label>
                       <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly value="{{ old('tahun_ajaran') }}">
+                       <input type="hidden" id="inputid_ta" name="id_ta" value="{{ old('id_ta') }}"> 
                     </div>
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputasalsekolah">Sekolah Tujuan</label>
                       <input type="text" class="form-control" id="inputsekolahtujuan" name="sekolah_tujuan" required="required" autocomplete="off" placeholder="Masukan Sekolah Tujuan" value="{{ old('sekolah_tujuan') }}">
+                      @error('sekolah_tujuan')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ "Terdiri Dari 8 Sampai 30 Karakter" }}</strong>
+                      </span>
+                      @enderror
                     </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -142,6 +153,11 @@
                         <option value="XI" {{ old('tingkat_kelas')=='XI'? 'selected':''}}>XI</option>
                         <option value="XII" {{ old('tingkat_kelas')=='XII'? 'selected':''}}>XII</option>
                       </select>
+                      @error('tingkat_kelas')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ "Tidak Boleh Kosong" }}</strong>
+                      </span>
+                      @enderror
                     </div>
                         
                     <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -152,6 +168,11 @@
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputalasan">Alasan Pindah</label>
                       <textarea class="form-control" id="inputalasan" rows="3" name="alasan_pindah" required="required" autocomplete="off" placeholder="Masukan Alasan">{{ old('alasan_pindah') }}</textarea>
+                      @error('alasan_pindah')
+                      <span class="invalid-feedback text-danger" role="alert">
+                          <strong>{{ "Terdiri Dari 5 Sampai 50 Karakter" }}</strong>
+                      </span>
+                      @enderror
                     </div>
 
                    <div>
@@ -165,7 +186,6 @@
         </div>
       </div>
     </div> 
-  </div>
 </section>  
 @endsection
 @section('script')
@@ -177,8 +197,10 @@
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
     var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    var id_ta = $('option:selected', this).attr('data-id');
     $('#inputnamasiswa').val(nm_siswa);
     $('#inputtahun').val(tahun_ajaran);
+    $('#inputid_ta').val(id_ta);
   });
 </script>
 @endsection
