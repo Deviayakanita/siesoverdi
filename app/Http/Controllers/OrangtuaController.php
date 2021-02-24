@@ -115,10 +115,10 @@ class OrangtuaController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nis' => 'required|unique:orang_tua,id_siswa,'.$request->nis.',id_siswa',
+            'nis' => 'required|unique:orang_tua,id_siswa,'.$id.',id_orang_tua',
             'nm_ayah' => 'required|min:5|max:50',
             'nm_ibu' => 'required|min:5|max:50',
-        ]);
+        ]); 
 
         $orangtuas = Orangtua::where('id_orang_tua', $id)->first();
         $orangtuas->id_siswa = $request->nis;

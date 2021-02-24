@@ -156,7 +156,7 @@
                       <input type="text" class="form-control" id="inputnamafk" name="nm_fak" required="required" autocomplete="off" placeholder="Masukan Nama Fakultas" value="{{ old('nm_fak') }}">
                       @error('nm_fak')
                         <span class="invalid-feedback text-danger" role="alert">
-                            <strong>{{ "Terdiri Dari 10 Sampai 50 Karakter" }}</strong>
+                            <strong>{{ "Terdiri Dari 5 Sampai 50 Karakter" }}</strong>
                         </span>
                       @enderror
                     </div>
@@ -165,7 +165,7 @@
                       <input type="text" class="form-control" id="inputnamajurus" name="nm_jurusan" required="required" autocomplete="off" placeholder="Masukan Nama Jurusan" value="{{ old('nm_jurusan') }}">
                       @error('nm_jurusan')
                         <span class="invalid-feedback text-danger" role="alert">
-                            <strong>{{ "Terdiri Dari 10 Sampai 50 Karakter" }}</strong>
+                            <strong>{{ "Terdiri Dari 5 Sampai 50 Karakter" }}</strong>
                         </span>
                       @enderror
                     </div>

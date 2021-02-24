@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use PDF;
 use App\Models\Pesertadidik;
+use App\Models\Orangtua;
 use App\Models\Tahun;
 use Carbon\Carbon;
 
@@ -22,13 +23,13 @@ class PesertadidikController extends Controller
     public function index()
     {
         $tahunajarans = Tahun::all();
-        $pesertadidiks = Pesertadidik::latest()->get();
+        $pesertadidiks = Pesertadidik::orderBy('nis', 'DESC')->get();
         return view('peserta_didik/index', compact('pesertadidiks', 'tahunajarans'));
     }
 
     public function filter(Request $request)
     {
-        $pesertadidiks = Pesertadidik::latest()->get();
+        $pesertadidiks = Pesertadidik::orderBy('nis', 'DESC')->get();
         $tahun_ajaran = Tahun::all();
         if ($request->ajax()) {
             if (!$request->tahun_ajaran) {
@@ -180,6 +181,9 @@ class PesertadidikController extends Controller
 
     public function statistik()
     {
+        $tahun = Carbon::now()->isoFormat('Y');
+        
+        // Grafik Peserta Didik Berdasarkan Tahun Ajaran
         $id_ta = [];
 
         $tahun_ajaran = Tahun::orderBy('tahun_ajaran', 'DESC')->limit(5)->get();
@@ -208,7 +212,96 @@ class PesertadidikController extends Controller
             $series[0]->data[$key] = $siswa;
         }
 
-        return view('statistik/pesertadidik', compact('categories','series'));
+
+        // Grafik Persentase Peserta Didik (Jenis Kelamin)
+        $laki = Pesertadidik::where('jns_kelamin', 'Laki-laki' && 'sts_siswa', 1)->count();
+        $perempuan = Pesertadidik::where('jns_kelamin', 'Perempuan')
+                    ->where('sts_siswa', 1)->count();
+        $total = Pesertadidik::where('sts_siswa', 1)
+                ->count();
+
+        $persen_laki = $laki/$total*100;
+        $persen_perempuan = $perempuan/$total*100;
+
+
+        // Grafik Persentase Peserta Didik (Jurusan)
+        $ipa = Pesertadidik::where('jurusan', 'ipa' && 'sts_siswa', 1)->count();
+        $ips = Pesertadidik::where('jurusan', 'ips')
+                    ->where('sts_siswa', 1)->count();
+        $totaljurusan = Pesertadidik::where('sts_siswa', 1)
+                    ->count();
+
+        $persen_ipa = $ipa/$total*100;
+        $persen_ips = $ips/$total*100;
+
+        
+
+        // Grafik Golongan Gaji
+        $categories4 = [
+            '< 500k',
+            '500k - 1000k',
+            '1000k - 2000k',
+            '2000k - 5000k',
+            '5000k - 20.000k',
+            '>20.000k',
+            'Tidak Penghasilan'
+        ];
+
+        $series4 = [
+            (object)[
+                'name'=>'Ayah',
+                'data'=>[]
+            ],
+            (object)[
+                'name'=>'Ibu',
+                'data'=>[]
+            ]
+        ];
+
+        $ayah_gol1 = Orangtua::where('penghasilan_ayah','Kurang dari Rp.500,000')->count();
+        $series4[0]->data[0] = $ayah_gol1;
+
+        $ayah_gol2 = Orangtua::where('penghasilan_ayah','Rp.500,000 - Rp.1,000,000')->count();
+        $series4[0]->data[1] = $ayah_gol2;
+
+        $ayah_gol3 = Orangtua::where('penghasilan_ayah','Rp.1,000,000 - Rp.2,000,000')->count();
+        $series4[0]->data[2] = $ayah_gol1;
+
+        $ayah_gol4 = Orangtua::where('penghasilan_ayah','Rp.2,000,000 - Rp.5,000,000')->count();
+        $series4[0]->data[3] = $ayah_gol4;
+
+        $ayah_gol5 = Orangtua::where('penghasilan_ayah','Rp.5,000,000 - Rp.20,000,000')->count();
+        $series4[0]->data[4] = $ayah_gol5;
+
+        $ayah_gol6 = Orangtua::where('penghasilan_ayah','Lebih dari Rp.20,000,000')->count();
+        $series4[0]->data[5] = $ayah_gol6;
+
+        $ayah_gol7 = Orangtua::where('penghasilan_ayah','Tidak Penghasilan')->count();
+        $series4[0]->data[6] = $ayah_gol7;
+
+
+        $ibu_gol1 = Orangtua::where('penghasilan_ibu','Kurang dari Rp.500,000')->count();
+        $series4[1]->data[0] = $ibu_gol1;
+
+        $ibu_gol2 = Orangtua::where('penghasilan_ibu','Rp.500,000 - Rp.1,000,000')->count();
+        $series4[1]->data[1] = $ibu_gol2;
+
+        $ibu_gol3 = Orangtua::where('penghasilan_ibu','Rp.1,000,000 - Rp.2,000,000')->count();
+        $series4[1]->data[2] = $ibu_gol1;
+
+        $ibu_gol4 = Orangtua::where('penghasilan_ibu','Rp.2,000,000 - Rp.5,000,000')->count();
+        $series4[1]->data[3] = $ibu_gol4;
+
+        $ibu_gol5 = Orangtua::where('penghasilan_ibu','Rp.5,000,000 - Rp.20,000,000')->count();
+        $series4[1]->data[4] = $ibu_gol5;
+
+        $ibu_gol6 = Orangtua::where('penghasilan_ibu','Lebih dari Rp.20,000,000')->count();
+        $series4[1]->data[5] = $ibu_gol6;
+
+        $ibu_gol7 = Orangtua::where('penghasilan_ibu','Tidak Penghasilan')->count();
+        $series4[1]->data[6] = $ibu_gol7;
+
+        return view('statistik/pesertadidik', compact('tahun', 'categories','series','persen_laki','persen_perempuan','persen_ipa','persen_ips','categories4','series4'));
     }
 
     /**

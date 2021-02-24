@@ -58,7 +58,7 @@ class MutasikeluarController extends Controller
     {
         $this->validate($request, [
             'nis' => 'required|unique:mutasi_keluar,id_siswa',
-            'no_srt_pindah' => 'required|min:4|max:20',
+            'no_srt_pindah' => 'required|min:4|max:30',
             'sekolah_tujuan' => 'required|min:8|max:30',
             'tingkat_kelas' => 'required',
             'alasan_pindah' => 'required|min:5|max:50', 
@@ -124,8 +124,8 @@ class MutasikeluarController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nis' => 'required|unique:mutasi_keluar,id_siswa,'.$request->nis.',id_siswa',
-            'no_srt_pindah' => 'required|min:4|max:20',
+            'nis' => 'required|unique:mutasi_keluar,id_siswa,'.$id.',id_mut_klr',
+            'no_srt_pindah' => 'required|min:4|max:30',
             'sekolah_tujuan' => 'required|min:8|max:30',
             'alasan_pindah' => 'required|min:5|max:50', 
 
@@ -188,10 +188,39 @@ class MutasikeluarController extends Controller
 
     public function statistik()
     {
-        $mutasikeluars = Mutasikeluar::latest()->get();
-        $pesertadidik = Pesertadidik::all();
-       
-        return view('statistik/mutasikeluar', compact('mutasikeluars','pesertadidik'));
+        $categories = [];
+        $ta = Mutasikeluar::groupBy('id_ta')->get();
+
+        $series = [
+            (object)[
+                'name'=>'Jumlah Peserta Didik',
+                'data'=>[]
+            ]
+        ];
+        foreach ($ta as $tahun_ajaran) {
+          $categories[]= $tahun_ajaran->tahun->tahun_ajaran;
+          $siswa = Mutasikeluar::where('id_ta', $tahun_ajaran->id_ta)->count();
+          $series[0]->data[]= $siswa;
+
+        }
+
+        $sekolah_tujuan = DB::table('mutasi_keluar')
+                      ->select('sekolah_tujuan', DB::raw('count(*) as total'))
+                      ->groupBy('sekolah_tujuan')->orderBy('total','desc')->limit(3)->get();
+        $categories1= [];
+        $series1 = [
+            (object)[
+                'name'=>'Jumlah Peserta Didik',
+                'data'=>[]
+            ]
+        ];
+   
+        for ($i=0; $i < count($sekolah_tujuan); $i++) { 
+          $categories1[] = $sekolah_tujuan[$i]->sekolah_tujuan;
+          $series1[0]->data[] = $sekolah_tujuan[$i]->total;
+        }
+ 
+        return view('statistik/mutasikeluar', compact('categories','series','categories1','series1'));
 
     }
 

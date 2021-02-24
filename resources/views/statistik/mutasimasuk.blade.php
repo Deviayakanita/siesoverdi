@@ -57,78 +57,14 @@
 // Grafik 1
   Highcharts.chart('grafik1', {
 
+    chart: {
+        type: 'line'
+    },
     title: {
         text: 'Jumlah Mutasi Masuk Berdasarkan Tahun Ajaran'
     },
-
-    yAxis: {
-        title: {
-            text: 'Jumlah (orang)'
-        }
-    },
-
     xAxis: {
-        accessibility: {
-            rangeDescription: 'Tahun Ajaran'
-        }
-    },
-
-    legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-    },
-
-    plotOptions: {
-        series: {
-            label: {
-                connectorAllowed: false,
-                        color: 'black'
-            },
-            pointStart: 2016
-        }
-    },
-    credits: {
-    enabled: false
-    },
-    series: [{
-        name: 'Peserta Didik',
-        data: [100, 200, 300, 150, 600],
-        color: 'black'
-    }],
-
-    responsive: {
-        rules: [{
-            condition: {
-                maxWidth: 500
-            },
-            chartOptions: {
-                legend: {
-                    layout: 'horizontal',
-                    align: 'center',
-                    verticalAlign: 'bottom'
-                }
-            }
-        }]
-    }
-
-});
-
-
-// Grafik 2
-Highcharts.chart('grafik2', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Mutasi Masuk Berdasarkan Asal Sekolah Terbanyak'
-    },
-    xAxis: {
-        categories: [
-            'SMA Negeri 90 Jakarta',
-            'SMA Santo Yoseph',
-            'SMAK Harapan',
-        ],
+        categories: {!!json_encode($categories)!!},
         crosshair: true
     },
     yAxis: {
@@ -146,6 +82,9 @@ Highcharts.chart('grafik2', {
         useHTML: true
     },
     plotOptions: {
+        series: {
+            color: '#1D79F2'
+        },
         column: {
             pointPadding: 0.2,
             borderWidth: 0
@@ -154,11 +93,49 @@ Highcharts.chart('grafik2', {
     credits: {
     enabled: false
     },
-    series: [{
-        name: 'Jumlah Peserta Didik',
-        data: [30, 20, 15]
+    series: {!! json_encode($series)!!}
+});
 
-    }]
+
+// Grafik 2
+Highcharts.chart('grafik2', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Mutasi Masuk Berdasarkan Asal Sekolah Terbanyak'
+    },
+    xAxis: {
+        categories: {!!json_encode($categories1)!!},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Jumlah (orang)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y} orang</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        series: {
+            color: '#48D1CC'
+        },
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    credits: {
+    enabled: false
+    },
+    series: {!!json_encode($series1)!!}
 });
 
 </script>

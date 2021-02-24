@@ -307,7 +307,7 @@
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/statistikpesertadidik" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
          <!-- ./col -->
@@ -322,7 +322,7 @@
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/statistikmtsmasuk" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -337,7 +337,7 @@
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/statistikmtskeluar" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -352,7 +352,7 @@
             <div class="icon">
               <i class="fa fa-bar-chart-o"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="/statistikalumni" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
     </section>
     @endif

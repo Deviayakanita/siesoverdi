@@ -37,7 +37,7 @@
       <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" value="{{$mutasikeluars->no_srt_pindah}}" required="required" autocomplete="off">
       @error('no_srt_pindah')
       <span class="invalid-feedback text-danger" role="alert">
-          <strong>{{ "Terdiri Dari 4 Sampai 20 Karakter" }}</strong>
+          <strong>{{ "Terdiri Dari 4 Sampai 30 Karakter" }}</strong>
       </span>
       @enderror
     </div>

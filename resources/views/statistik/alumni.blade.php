@@ -63,11 +63,7 @@ Highcharts.chart('grafik1', {
         text: 'Jumlah Peserta Didik Berdasarkan Perguruan Tinggi Terbanyak'
     },
     xAxis: {
-        categories: [
-            'SMA Negeri 90 Jakarta',
-            'SMA Santo Yoseph',
-            'SMAK Harapan',
-        ],
+        categories: {!!json_encode($categories)!!},
         crosshair: true
     },
     yAxis: {
@@ -85,6 +81,9 @@ Highcharts.chart('grafik1', {
         useHTML: true
     },
     plotOptions: {
+        series: {
+            color: '#F9AF1F'
+        },
         column: {
             pointPadding: 0.2,
             borderWidth: 0
@@ -93,12 +92,7 @@ Highcharts.chart('grafik1', {
     credits: {
     enabled: false
     },
-    series: [{
-        name: 'Jumlah Alumni',
-        data: [30, 20, 15],
-        color: '#F9AF1F'
-
-    }]
+    series: {!! json_encode($series)!!}
 });
 
 
@@ -139,13 +133,13 @@ Highcharts.chart('grafik2', {
         colorByPoint: true,
         data: [{
             name: 'Negeri',
-            y: 61.41,
+            y: {!! json_encode($persen_negeri) !!},
             sliced: true,
             selected: true,
             color: '#9AA544'
         }, {
             name: 'Swasta',
-            y: 11.84,
+            y: {!! json_encode($persen_swasta) !!},
             selected: true,
             color: '#408247'
         }]

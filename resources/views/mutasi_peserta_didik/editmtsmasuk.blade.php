@@ -37,7 +37,7 @@
       <input type="text" class="form-control" id="inputsurat" name="no_srt_pindah" value="{{$mutasimasuks->no_srt_pindah}}" required="required" autocomplete="off">
       @error('no_srt_pindah')
       <span class="invalid-feedback text-danger" role="alert">
-          <strong>{{ " Terdiri Dari 4 Samapai 5 Karakter  " }}</strong>
+          <strong>{{ " Terdiri Dari 4 Samapai 30 Karakter  " }}</strong>
       </span>
       @enderror
     </div>
@@ -85,7 +85,7 @@
       <input type="text" class="form-control" id="inputasalsekolah" name="asal_sekolah" value="{{$mutasimasuks->asal_sekolah}}" required="required" autocomplete="off">
       @error('asal_sekolah')
       <span class="invalid-feedback text-danger" role="alert">
-          <strong>{{" Terdiri Dari 8 Sampai 20 "}}</strong>
+          <strong>{{" Terdiri Dari 8 Sampai 30 "}}</strong>
       </span>
       @enderror
     </div>

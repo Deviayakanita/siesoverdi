@@ -23,7 +23,7 @@ class AlumniController extends Controller
     public function index()
     {
         $alumnis = Alumni::latest()->get();
-        $pesertadidik = Pesertadidik::all();
+       $pesertadidik = Pesertadidik::all();
        
         return view('alumni/index', compact('alumnis','pesertadidik'));
     }
@@ -58,8 +58,8 @@ class AlumniController extends Controller
         $this->validate($request, [
             'nis' => 'required|unique:alumni_siswa,id_siswa',
             'nm_pt' => 'required|min:5|max:50',
-            'nm_fak' => 'required|min:10|max:50',
-            'nm_jurusan' => 'required|min:10|max:50',
+            'nm_fak' => 'required|min:5|max:50',
+            'nm_jurusan' => 'required|min:5|max:50',
             'jns_pt' => 'required', 
         ]);
 
@@ -122,10 +122,10 @@ class AlumniController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nis' => 'required|unique:alumni_siswa,id_siswa,'.$request->nis.',id_siswa',
+            'nis' => 'required|unique:alumni_siswa,id_siswa,'.$id.',id_alumni',
             'nm_pt' => 'required|min:5|max:50',
-            'nm_fak' => 'required|min:10|max:50',
-            'nm_jurusan' => 'required|min:10|max:50', 
+            'nm_fak' => 'required|min:5|max:50',
+            'nm_jurusan' => 'required|min:5|max:50', 
 
         ]);
 
@@ -186,10 +186,31 @@ class AlumniController extends Controller
 
     public function statistik()
     {
-        $alumnis = Alumni::latest()->get();
-        $pesertadidik = Pesertadidik::all();
+        $perguruan_tinggi = DB::table('alumni_siswa')
+                      ->select('nm_pt', DB::raw('count(*) as total'))
+                      ->groupBy('nm_pt')->orderBy('total','desc')->limit(3)->get();
+        $categories= [];
+        $series = [
+            (object)[
+                'name'=>'Jumlah Peserta Didik',
+                'data'=>[]
+            ]
+        ];
+   
+        for ($i=0; $i < count($perguruan_tinggi); $i++) { 
+          $categories[] = $perguruan_tinggi[$i]->nm_pt;
+          $series[0]->data[] = $perguruan_tinggi[$i]->total;
+        }
+
+        $negeri = Alumni::where('jns_pt', 'negeri')->count();
+        $swasta = Alumni::where('jns_pt', 'swasta')->count();
+        $total = Alumni::all()->count();
+
+        $persen_negeri = $negeri/$total*100;
+        $persen_swasta = $swasta/$total*100;
+
        
-        return view('statistik/alumni', compact('alumnis','pesertadidik'));
+        return view('statistik/alumni', compact('categories','series','persen_swasta','persen_negeri'));
     }
 
 

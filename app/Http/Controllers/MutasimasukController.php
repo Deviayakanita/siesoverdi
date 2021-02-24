@@ -23,7 +23,7 @@ class MutasimasukController extends Controller
     public function index()
     {
         $mutasimasuks = Mutasimasuk::latest()->get();
-        $pesertadidik = Pesertadidik::all();
+        $pesertadidik = Pesertadidik::where('sts_siswa', 1)->get();
        
         return view('mutasi_peserta_didik/index_mutasimasuk', compact('mutasimasuks','pesertadidik'));
 
@@ -60,7 +60,7 @@ class MutasimasukController extends Controller
     {   
         $this->validate($request, [
             'nis' => 'required|unique:mutasi_masuk,id_siswa',
-            'no_srt_pindah' => 'required|min:4|max:20',
+            'no_srt_pindah' => 'required|min:4|max:30',
             'asal_sekolah' => 'required|min:8|max:30',
             'alasan_pindah' => 'required|min:5|max:50', 
             'tingkat_kelas' => 'required', 
@@ -121,9 +121,9 @@ class MutasimasukController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nis' => 'required|unique:mutasi_masuk,id_siswa,'.$request->nis.',id_siswa',
-            'no_srt_pindah' => 'required|min:4|max:20',
-            'asal_sekolah' => 'required|min:8|max:20',
+            'nis' => 'required|unique:mutasi_masuk,id_siswa,'.$id.',id_mut_msk',
+            'no_srt_pindah' => 'required|min:4|max:30',
+            'asal_sekolah' => 'required|min:8|max:30',
             'alasan_pindah' => 'required|min:5|max:50', 
 
         ]);
@@ -173,10 +173,39 @@ class MutasimasukController extends Controller
 
     public function statistik()
     {
-        $mutasimasuks = Mutasimasuk::latest()->get();
-        $pesertadidik = Pesertadidik::all();
-       
-        return view('statistik/mutasimasuk', compact('mutasimasuks','pesertadidik'));
+        $categories = [];
+        $ta = Mutasimasuk::groupBy('id_ta')->get();
+
+        $series = [
+            (object)[
+                'name'=>'Jumlah Peserta Didik',
+                'data'=>[]
+            ]
+        ];
+        foreach ($ta as $tahun_ajaran) {
+          $categories[]= $tahun_ajaran->tahun->tahun_ajaran;
+          $siswa = Mutasimasuk::where('id_ta', $tahun_ajaran->id_ta)->count();
+          $series[0]->data[]= $siswa;
+
+        }
+
+        $asal_sekolah = DB::table('mutasi_masuk')
+                      ->select('asal_sekolah', DB::raw('count(*) as total'))
+                      ->groupBy('asal_sekolah')->orderBy('total','desc')->limit(3)->get();
+        $categories1= [];
+        $series1 = [
+            (object)[
+                'name'=>'Jumlah Peserta Didik',
+                'data'=>[]
+            ]
+        ];
+   
+        for ($i=0; $i < count($asal_sekolah); $i++) { 
+          $categories1[] = $asal_sekolah[$i]->asal_sekolah;
+          $series1[0]->data[] = $asal_sekolah[$i]->total;
+        }
+ 
+        return view('statistik/mutasimasuk', compact('categories','series','categories1','series1'));
 
     }
     

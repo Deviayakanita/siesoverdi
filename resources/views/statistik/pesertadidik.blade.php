@@ -106,18 +106,23 @@ Highcharts.chart('grafik1', {
         useHTML: true
     },
     plotOptions: {
+        series: {
+            color: '#1D79F2'
+        },
         column: {
             pointPadding: 0.2,
             borderWidth: 0
+
         }
     },
     credits: {
     enabled: false
     },
+
     series: {!! json_encode($series) !!}
 });
 
-//Grafik 2
+//Grafik2
 Highcharts.chart('grafik2', {
     chart: {
         plotBackgroundColor: null,
@@ -126,7 +131,7 @@ Highcharts.chart('grafik2', {
         type: 'pie'
     },
     title: {
-        text: 'Persentase Peserta Didik Berdasarkan Gender'
+        text: 'Persentase Peserta Didik Berdasarkan Gender Pada Tahun '+{!! json_encode($tahun) !!}
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -150,17 +155,17 @@ Highcharts.chart('grafik2', {
     enabled: false
     },
     series: [{
-        name: 'Gender',
+        name: 'Jurusan',
         colorByPoint: true,
         data: [{
             name: 'Laki-laki',
-            y: 61.41,
+            y: {!! json_encode($persen_laki) !!},
             sliced: true,
             selected: true,
             color: '#B8C068'
         }, {
             name: 'Perempuan',
-            y: 11.84,
+            y: {!! json_encode($persen_perempuan) !!},
             selected: true,
             color: '#9FC5AA'
         }]
@@ -177,7 +182,7 @@ Highcharts.chart('grafik3', {
         type: 'pie'
     },
     title: {
-        text: 'Persentase Peserta Didik Berdasarkan Jurusan'
+        text: 'Persentase Peserta Didik Berdasarkan Jurusan Pada Tahun '+{!! json_encode($tahun) !!}
     },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -205,19 +210,18 @@ Highcharts.chart('grafik3', {
         colorByPoint: true,
         data: [{
             name: 'IPA',
-            y: 61.41,
+            y: {!! json_encode($persen_ipa) !!},
             sliced: true,
             selected: true,
             color: '#00AB9E'
         }, {
             name: 'IPS',
-            y: 11.84,
+            y: {!! json_encode($persen_ips) !!},
             selected: true,
             color: '#0075B5'
         }]
     }]
 });
-
 
 // Grafik 4
 Highcharts.chart('grafik4', {
@@ -228,21 +232,13 @@ Highcharts.chart('grafik4', {
         text: 'Jumlah Orang Tua Berdasarkan Golongan Gaji'
     },
     xAxis: {
-        categories: [
-            '< 500k',
-            '500k - 1000k',
-            '1000k - 2000k',
-            '2000k - 5000k',
-            '5000k - 20000k',
-            '>20000k',
-            'Tidak Penghasilan'
-        ],
+        categories: {!! json_encode($categories4) !!},
         crosshair: true
     },
     yAxis: {
         min: 0,
         title: {
-            text: 'Jumlah (orang)'
+            text: 'Jumlah Orang Tua (orang)'
         }
     },
     tooltip: {
@@ -255,6 +251,9 @@ Highcharts.chart('grafik4', {
     },
     plotOptions: {
         column: {
+            series: {
+            colorByPoint:true
+        },
             pointPadding: 0.2,
             borderWidth: 0
         }
@@ -262,16 +261,7 @@ Highcharts.chart('grafik4', {
     credits: {
     enabled: false
     },
-    series: [{
-        name: 'Ayah',
-        data: [100, 200, 150, 200, 100, 50,10]
-
-    }, {
-        name: 'Ibu',
-        data: [50, 60, 80, 20, 80, 100,50],
-        color: 'pink'
-
-    }]
+    series: {!! json_encode($series4) !!}
 });
 </script>
 @endsection
