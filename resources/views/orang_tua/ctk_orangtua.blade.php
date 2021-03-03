@@ -31,7 +31,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <div style="clear: both;"></div>
-                    <div class="form-group col-md-4" style="padding: 0; padding-right: 10px;">
+                    <div class="form-group col-sm-3" style="padding: 0; padding-right: 10px;">
                         <select id="penghasilan_ayah" class="form-control select2" name="penghasilan_ayah" required="required" autocomplete="off">
                         <option disabled selected>-- Pilih Penghasilan Ayah --</option>
                         <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
@@ -43,7 +43,7 @@
                         <option value="Tidak Penghasilan">Tidak Berpenghasilan</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-4" style=" padding: 0; padding-right: 10px;">
+                    <div class="form-group col-sm-3" style="padding: 0; padding-right: 10px;">
                         <select id="penghasilan_ibu" class="form-control select2" name="penghasilan_ibu" required="required" autocomplete="off">
                         <option disabled selected>-- Pilih Penghasilan Ibu --</option>
                         <option value="Kurang dari Rp.500,000">Kurang dari Rp.500,000</option>
@@ -58,7 +58,7 @@
                 <div>
                         <button type="button" class="btn btn-primary" id="filter"><i class=""></i> Filter</button>
                         <button type="button" class="btn btn-warning" id="refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                        <a href="/orangtua/export" id="cetak" class="btn btn-danger" style="margin-left:133px; margin-right: 0px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+                        <a href="/orangtua/export" id="cetak" class="btn btn-danger" style="margin-left:313px; margin-right: 0;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
                 </div>
             </div>
         
@@ -75,10 +75,10 @@
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NIS</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Ayah</th>
+                                    <th width="150px; class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
+                                    <th width="150px; class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Ayah</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Penghasilan Ayah</th>
-                                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Ibu</th>
+                                    <th width="150px; class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Ibu</th>
                                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Penghasilan Ibu</th>
                                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                                 </tr>
@@ -87,12 +87,34 @@
                                 @php $i=1; @endphp @foreach ($orangtuas as $orangtua)
                                 <tr>
                                     <td>{{ $i }}</td>
-                                    <td>{{ $orangtua->pesertadidik->nis }}</td>
-                                    <td>{{ $orangtua->pesertadidik->nm_siswa }}</td>
+                                    <td>{{ $orangtua->nis }}</td>
+                                    <td>{{ $orangtua->nm_siswa }}</td>
                                     <td>{{ $orangtua->nm_ayah }}</td>
-                                    <td>{{ $orangtua->penghasilan_ayah }}</td>
+                                    <td>
+                                         <?php
+                                          if($orangtua->penghasilan_ayah == 'Tidak Penghasilan')
+                                          {
+                                          echo "Tidak Berpenghasilan";
+                                          }
+                                          else
+                                          {
+                                          echo $orangtua->penghasilan_ayah;
+                                          }
+                                          ?>
+                                    </td>
                                     <td>{{ $orangtua->nm_ibu }}</td>
-                                    <td>{{ $orangtua->penghasilan_ibu }}</td>
+                                    <td>
+                                         <?php
+                                          if($orangtua->penghasilan_ibu == 'Tidak Penghasilan')
+                                          {
+                                          echo "Tidak Berpenghasilan";
+                                          }
+                                          else
+                                          {
+                                          echo $orangtua->penghasilan_ibu;
+                                          }
+                                          ?>
+                                    </td>
                                     <td style="text-align: center;">
                                         @if(Auth::user() && Auth::user()->level == 0)
                                         <a href="/orangtua/pdf/{{ $orangtua->id_orang_tua}}" target="_blank"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
@@ -111,7 +133,6 @@
         </div>
     </div>
 </div>
-  </div>
 </section>
 @endsection
 @section('script')

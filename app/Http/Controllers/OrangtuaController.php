@@ -22,15 +22,18 @@ class OrangtuaController extends Controller
      */
     public function index()
     {
-        $orangtuas = Orangtua::latest()->get();
+        $orangtuas = DB::table('orang_tua')
+                    -> join('peserta_didik','peserta_didik.id_siswa','=','orang_tua.id_siswa')->orderBy('peserta_didik.nis','DESC')->get();
         $pesertadidik = Pesertadidik::all();
+        $tahunajarans = Tahun::all();
 
-        return view('orang_tua/index', compact('orangtuas','pesertadidik'));
+        return view('orang_tua/index', compact('orangtuas','pesertadidik','tahunajarans'));
     }
 
     public function filter(Request $request)
     {
-        $orangtuas = Orangtua::latest()->get();
+        $orangtuas = DB::table('orang_tua')
+                    -> join('peserta_didik','peserta_didik.id_siswa','=','orang_tua.id_siswa')->orderBy('peserta_didik.nis','DESC')->get();
         if ($request->ajax()) {
             if (!$request->penghasilan_ayah && !$request->penghasilan_ibu) {
                $orangtua = Orangtua::with(['pesertadidik'])->all();

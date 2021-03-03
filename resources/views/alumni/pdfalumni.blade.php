@@ -41,9 +41,14 @@
               <td>{{$alumnis->pesertadidik->nm_siswa}}</td>
             </tr>
             <tr> 
+              <td>Tahun Masuk Siswa</td>
+              <td>:</td>
+              <td>{{$alumnis->pesertadidik->tahun_masuk}}</td>
+            </tr>
+            <tr> 
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$alumnis->pesertadidik->tahun->tahun_ajaran}}</td>
+              <td>{{$alumnis->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>
@@ -59,7 +64,7 @@
                     }
                       else
                     {
-                        echo "Non Aktif";
+                        echo "Lulus";
                     }                          
                     ?>            
               </td>    

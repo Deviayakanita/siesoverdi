@@ -24,8 +24,9 @@ class MutasimasukController extends Controller
     {
         $mutasimasuks = Mutasimasuk::latest()->get();
         $pesertadidik = Pesertadidik::where('sts_siswa', 1)->get();
+        $tahunajarans = Tahun::all();
        
-        return view('mutasi_peserta_didik/index_mutasimasuk', compact('mutasimasuks','pesertadidik'));
+        return view('mutasi_peserta_didik/index_mutasimasuk', compact('mutasimasuks','pesertadidik','tahunajarans'));
 
     }
 
@@ -38,8 +39,8 @@ class MutasimasukController extends Controller
             if (!$request->tahun_ajaran){
                 $mtsmasuk = Mutasimasuk::with(['pesertadidik'])->latest()->get();   
             } else {
-                $siswa = Pesertadidik::where('id_ta', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
-                $mtsmasuk = Mutasimasuk::with(['pesertadidik','tahun'])->whereIn('id_siswa',collect($siswa))->get();
+                $siswa = Pesertadidik::where('id_ta', $request->tahun_ajaran)->pluck('id_ta')->toArray();
+                $mtsmasuk = Mutasimasuk::with(['pesertadidik','tahun'])->whereIn('id_ta',collect($siswa))->get();
             }
             $role = Auth::user()->level;
             return response()->json(['mtsmasuk'=>$mtsmasuk,'level'=>$role]);
@@ -69,7 +70,7 @@ class MutasimasukController extends Controller
         Mutasimasuk::create([
             'no_srt_pindah' => request('no_srt_pindah'),
             'id_siswa' => request('nis'),
-            'id_ta' => request('id_ta'),
+            'id_ta' => request('tahun_ajaran'),
             'asal_sekolah' => request('asal_sekolah'),
             'tingkat_kelas' => request('tingkat_kelas'),
             'tgl_masuk' => request('tgl_masuk'),
@@ -107,8 +108,9 @@ class MutasimasukController extends Controller
     public function edit($id)
     {
         $pesertadidik = Pesertadidik::all();
+        $tahunajarans = Tahun::all();
         $mutasimasuks = Mutasimasuk::find($id);
-        return view('mutasi_peserta_didik/editmtsmasuk', compact('mutasimasuks','pesertadidik'));
+        return view('mutasi_peserta_didik/editmtsmasuk', compact('mutasimasuks','pesertadidik','tahunajarans'));
     }
 
     /**
@@ -131,7 +133,7 @@ class MutasimasukController extends Controller
         $mutasimasuks = Mutasimasuk::where('id_mut_msk', $id)->first();
         $mutasimasuks->no_srt_pindah = $request->no_srt_pindah;
         $mutasimasuks->id_siswa = $request->nis;
-        $mutasimasuks->id_ta= $request->id_ta;
+        $mutasimasuks->id_ta= $request->tahun_ajaran;
         $mutasimasuks->asal_sekolah = $request->asal_sekolah;
         $mutasimasuks->tingkat_kelas = $request->tingkat_kelas;
         $mutasimasuks->tgl_masuk = $request->tgl_masuk;
@@ -165,7 +167,7 @@ class MutasimasukController extends Controller
         $mutasimasuk = DB::table('mutasi_masuk')
                     ->join('peserta_didik', 'peserta_didik.id_siswa','=','mutasi_masuk.id_siswa')
                     ->join('tahun_ajaran','tahun_ajaran.id_ta','=','mutasi_masuk.id_ta')
-                    ->where('peserta_didik.id_ta','=', $tahun_ajaran)->get();
+                    ->where('tahun_ajaran.id_ta','=', $tahun_ajaran)->get();
         $pdf = PDF::loadview('mutasi_peserta_didik.exportmutasimasuk', ['mutasimasuk'=>$mutasimasuk]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
@@ -191,7 +193,7 @@ class MutasimasukController extends Controller
 
         $asal_sekolah = DB::table('mutasi_masuk')
                       ->select('asal_sekolah', DB::raw('count(*) as total'))
-                      ->groupBy('asal_sekolah')->orderBy('total','desc')->limit(3)->get();
+                      ->groupBy('asal_sekolah')->orderBy('total','desc')->limit(5)->get();
         $categories1= [];
         $series1 = [
             (object)[

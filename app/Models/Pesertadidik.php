@@ -20,6 +20,8 @@ class Pesertadidik extends Model
         'tgl_lahir',
         'agama',
         'alamat_siswa',
+        'tahun_masuk',
+        'asal_smp',
         'kabupaten',
         'no_tlpn',
         'email',

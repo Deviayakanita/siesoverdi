@@ -71,6 +71,11 @@
               <td>{{$pesertadidiks->kabupaten}}</td>
             </tr>
             <tr>
+              <td>Asal Sekolah SMP</td>
+              <td>:</td>
+              <td>{{$pesertadidiks->asal_smp}}</td>
+            </tr>
+            <tr>
               <td>No Telepon</td>
               <td>:</td>
               <td>{{$pesertadidiks->no_tlpn}}</td>
@@ -79,6 +84,11 @@
               <td>Email</td>
               <td>:</td>
               <td>{{$pesertadidiks->email}}</td>
+            </tr>
+            <tr>
+              <td>Tahun Masuk Siswa</td>
+              <td>:</td>
+              <td>{{$pesertadidiks->tahun_masuk}}</td>
             </tr>
             <tr>
               <td>Tahun Ajaran</td>
@@ -104,7 +114,7 @@
                     }
                       else
                     {
-                        echo "Non Aktif";
+                        echo "Lulus";
                     }                          
                     ?>            
               </td>    
@@ -117,8 +127,8 @@
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-        Tuban, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
-        <br>Kepala Sekolah
+        Kuta, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+        <br>Kepala Sekolah SMA Katolik Soverdi
         <br>
         <br>
         <br>

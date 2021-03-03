@@ -36,7 +36,7 @@
 				<th align="center">Nama Lengkap Siswa</th>
 				<th align="center">Jenis Kelamin</th>
 				<th align="center">Tempat Tanggal Lahir</th>
-				<th align="center">Tahun Ajaran</th>
+				<th align="center">Tahun Masuk</th>
 				<th align="center">Status Siswa</th>
 			</tr>
 		</thead>
@@ -48,7 +48,7 @@
 				<td>{{$s->nm_siswa}}</td>
 				<td>{{$s->jns_kelamin}}</td>
 				<td>{{$s->tmp_lahir }}, {{$s->tgl_lahir->isoFormat('D MMMM Y') }}</td>
-				<td>{{$s->tahun->tahun_ajaran}}</td>
+				<td>{{$s->tahun_masuk}}</td>
 				<td>
                   <?php if($s->sts_siswa == 0)
                      {
@@ -60,7 +60,7 @@
                      }
                      else
                      {
-                       echo "Non Aktif";
+                       echo "Lulus";
                      }
                      ?>
                      </td>
@@ -68,12 +68,11 @@
 			@php $i++; @endphp @endforeach
 		</tbody>
 	</table>
-	<br>
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-				Tuban, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
-		        <br>Kepala Sekolah
+				Kuta, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+		        <br>Kepala Sekolah SMA Katolik Soverdi
 		        <br>
 				<br>
 				<br>

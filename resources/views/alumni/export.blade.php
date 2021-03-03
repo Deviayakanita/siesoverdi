@@ -57,8 +57,8 @@
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-				Tuban, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
-		        <br>Kepala Sekolah
+				Kuta, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+		        <br>Kepala Sekolah SMA Katolik Soverdi
 		        <br>
 				<br>
 				<br>

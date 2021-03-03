@@ -42,20 +42,21 @@
       @enderror
     </div>
 
-    <div class="form-group" style="padding: 0; padding-right: 10px">
-      <label for="inputState">No Induk Siswa</label>
-      <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
-        <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
-        @foreach ($pesertadidik as $item)
-        <option @if ($item->id_siswa == $mutasimasuks->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" data-id="{{$item->id_ta }}" data-kabupaten="{{ $item->kabupaten }}" data-alamat="{{ $item->alamat_siswa }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
-        @endforeach
-      </select>
-      @error('nis')
-      <span class="invalid-feedback text-danger" role="alert">
-          <strong>{{ " Nis Sudah Tersedia " }}</strong>
-      </span>
-      @enderror
-    </div>
+     <div class="form-group" style="padding: 0; padding-right: 10px">
+        <label for="inputState">No Induk Siswa</label>
+        <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
+          <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
+          @foreach ($pesertadidik as $item)
+          <option @if ($item->id_siswa == $mutasimasuks->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_masuk }}"
+          value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+          @endforeach
+        </select>
+          @error('nis')
+          <span class="invalid-feedback text-danger" role="alert">
+              <strong>{{ " Nis Sudah Tersedia " }}</strong>
+          </span>
+          @enderror
+      </div>
 
     <div class="form-row">
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
@@ -63,22 +64,20 @@
       <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" value="{{$mutasimasuks->pesertadidik->nm_siswa}}" readonly>
     </div>
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-      <label for="inputnama">Tahun Ajaran Siswa</label>
-      <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" value="{{$mutasimasuks->pesertadidik->tahun->tahun_ajaran}}" readonly>
-      <input type="hidden" id="inputid_ta" name="id_ta" value="{{$mutasimasuks->tahun->id_ta}}" readonly>
+      <label for="inputnama">Tahun Masuk Siswa</label>
+      <input type="text" class="form-control" id="inputthn" name="tahun_masuk" value="{{$mutasimasuks->pesertadidik->tahun_masuk}}" readonly>
     </div>
     </div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
-      <label for="inputalamat">Alamat Siswa</label>
-      <textarea type="text" class="form-control" id="inputalamat" rows="3" name="alamat_siswa"readonly>{{$mutasimasuks->pesertadidik->alamat_siswa}}</textarea>
+      <label for="inputState">Tahun Ajaran</label>
+      <select style="width: 100%;" id="inputTahun" class="form-control select2" name="tahun_ajaran" required="required" autocomplete="off" >
+        <option selected="selected" disabled="" value="">-- Pilih Tahun Ajaran --</option>
+        @foreach ($tahunajarans as $item)
+        <option @if ($item->id_ta == $mutasimasuks->id_ta) selected @endif data-tahunajaran="{{ $item->tahun_ajaran }}" value="{{$item->id_ta}}">{{ $item->tahun_ajaran }}</option>
+        @endforeach
+      </select>
     </div>
-
-    <div class="form-group" style="padding: 0; padding-right: 10px">
-      <label for="inputkabupaten">Kabupaten</label>
-      <input type="text" class="form-control" id="inputkabupaten" name="kabupaten" value="{{$mutasimasuks->pesertadidik->kabupaten}}" readonly>
-    </div>
-  
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
       <label for="inputasalsekolah">Asal Sekolah</label>
@@ -132,15 +131,14 @@
     @endif
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
-    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
-    var id_ta = $('option:selected', this).attr('data-id');
-    var kabupaten = $('option:selected', this).attr('data-kabupaten');
-    var alamat_siswa = $('option:selected', this).attr('data-alamat');
+    var tahun_masuk = $('option:selected', this).attr('data-tahun');
     $('#inputnamasiswa').val(nm_siswa);
-    $('#inputtahun').val(tahun_ajaran);
-    $('#inputid_ta').val(id_ta);
-    $('#inputkabupaten').val(kabupaten);
-    $('#inputalamat').val(alamat_siswa);
+    $('#inputthn').val(tahun_masuk);
+  });
+
+  $('#inputTahun').change(function() {
+      var tahun_ajaran = $('option:selected', this).attr('data-tahunajaran');
+      $('#inputtahun').val(tahun_ajaran);
   });
 </script>
 @endsection

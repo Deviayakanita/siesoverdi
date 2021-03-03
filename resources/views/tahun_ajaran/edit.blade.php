@@ -21,7 +21,7 @@
 		<div class="box box-primary">
     <form role="form">
     <div class="box-header">
-    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-user"></i> Edit Data Tahun Ajaran</h3> 
+    <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-calendar"></i> Edit Data Tahun Ajaran</h3> 
       <div style="float: right;">
       <div style="clear: both;"></div>
       <div align="right">
@@ -34,6 +34,11 @@
           <div class="form-group" style="padding: 0; padding-right: 10px">
             <label for="input_tahunajaran">Tahun Ajaran</label>
             <input type="text" class="form-control" id="input_tahunajaran" name="tahun_ajaran" required="required" autocomplete="off" value="{{$tahunajarans->tahun_ajaran}}">
+            @error('tahun_ajaran')
+              <span class="invalid-feedback text-danger" role="alert">
+                  <strong>{{ " Minimal 9 Sampai 12 Karakter Dan Tahun Ajaran Tidak Boleh Sama " }}</strong>
+              </span>
+            @enderror
           </div>
 
           <div>
@@ -42,14 +47,6 @@
 
 </div>
 </div>
-</div>
 </form>
 </section>	
-@endsection
-@section('script')
-<script type="text/javascript">
-    @if($errors->any())
-      $('#exampleModal').modal();
-    @endif
-</script>
 @endsection

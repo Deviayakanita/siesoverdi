@@ -32,7 +32,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <div style="clear: both;"></div>
-                    <div class="form-group col-md-4" style="padding: 0; padding-right: 10px;">
+                    <div class="form-group col-sm-3" style="padding: 0; padding-right: 10px;">
                         <select id="thn_ajaran" class="form-control select2" name="sts_siswa" required="required" autocomplete="off">
                             <option disabled selected>-- Pilih Tahun Ajaran --</option>
                             @foreach ($tahun_ajaran as $tahunajaran)
@@ -43,7 +43,7 @@
                     <div>
                         <button type="button" class="btn btn-primary" id="filter"><i class=""></i> Filter</button>
                         <button type="button" class="btn btn-warning" id="refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                        <a href="/alumni/export" id="cetak" class="btn btn-danger" style="margin-left:518px; margin-right: 0px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+                        <a href="/alumni/export" id="cetak" class="btn btn-danger" style="margin-left:605px; margin-right: 0px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
                     </div>
                 </div>
 
@@ -76,7 +76,7 @@
                                                 <td>{{ $i }}</td>
                                                 <td>{{ $alumni->pesertadidik->nis }}</td>
                                                 <td>{{ $alumni->pesertadidik->nm_siswa }}</td>
-                                                <td>{{ $alumni->pesertadidik->tahun->tahun_ajaran }}</td>
+                                                <td>{{ $alumni->tahun->tahun_ajaran }}</td>
                                                 <td>{{ $alumni->jns_pt }}</td>
                                                 <td>{{ $alumni->nm_pt }}</td>
                                                 <td>{{ $alumni->nm_fak }}</td>

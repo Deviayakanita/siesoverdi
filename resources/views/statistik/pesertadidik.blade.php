@@ -13,24 +13,12 @@
   </section>
 
 <section class="content">
-  <div class="row">
-    <div class="col-xs-6">
+<div class="row">
+    <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header">
           
           <div id="grafik1" class="box-body">
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xs-6">
-      <div class="box box-primary">
-        <div class="box-header">
-          
-          <div id="grafik2" class="box-body">
 
 
           </div>
@@ -45,6 +33,16 @@
       <div class="box box-primary">
         <div class="box-header">
           
+          <div id="grafik2" class="box-body"></div>
+
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-xs-6">
+      <div class="box box-primary">
+        <div class="box-header">
+          
           <div id="grafik3" class="box-body">
 
 
@@ -53,19 +51,28 @@
         </div>
       </div>
     </div>
+</div>
 
+<div class="row">
     <div class="col-xs-6">
       <div class="box box-primary">
         <div class="box-header">
           
-          <div id="grafik4" class="box-body">
-
-
-          </div>
+          <div id="grafik4" class="box-body"></div>
 
         </div>
       </div>
     </div>
+    <div class="col-xs-6">
+      <div class="box box-primary">
+        <div class="box-header">
+          
+          <div id="grafik5" class="box-body"></div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </section>
@@ -81,45 +88,47 @@
 
 // Grafik 1 
 Highcharts.chart('grafik1', {
+
     chart: {
         type: 'line'
     },
     title: {
-        text: 'Jumlah Peserta Didik Berdasarkan Tahun Ajaran'
+        text: 'Jumlah Peserta Didik Berdasarkan Tahun'
     },
     xAxis: {
-        categories: {!! json_encode($categories) !!},
+        categories: {!!json_encode($categories)!!},
         crosshair: true
     },
     yAxis: {
         min: 0,
         title: {
-            text: 'Jumlah Peserta Didik (Orang)'
+            text: 'Jumlah Peserta Didik (orang)'
         }
     },
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"></td></tr>',
+            '<td style="padding:0"><b>{point.y} orang</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
     },
     plotOptions: {
         series: {
+            label:{
+                connectorAllowed: false
+        },
             color: '#1D79F2'
         },
         column: {
             pointPadding: 0.2,
             borderWidth: 0
-
         }
     },
     credits: {
     enabled: false
     },
-
-    series: {!! json_encode($series) !!}
+    series: {!! json_encode($series)!!}
 });
 
 //Grafik2
@@ -155,23 +164,22 @@ Highcharts.chart('grafik2', {
     enabled: false
     },
     series: [{
-        name: 'Jurusan',
+        name: 'Jumlah',
         colorByPoint: true,
         data: [{
-            name: 'Laki-laki',
-            y: {!! json_encode($persen_laki) !!},
-            sliced: true,
-            selected: true,
-            color: '#B8C068'
-        }, {
             name: 'Perempuan',
             y: {!! json_encode($persen_perempuan) !!},
             selected: true,
-            color: '#9FC5AA'
-        }]
+            color: '#F1C40F'
+        }, {
+            name: 'Laki-Laki',
+            y: {!! json_encode($persen_laki) !!},
+            color: '#27AE60'
+        
+       }]    
+    
     }]
 });
-
 
 // Grafik 3
 Highcharts.chart('grafik3', {
@@ -206,25 +214,66 @@ Highcharts.chart('grafik3', {
     enabled: false
     },
     series: [{
-        name: 'Jurusan',
+        name: 'Jumlah',
         colorByPoint: true,
         data: [{
             name: 'IPA',
             y: {!! json_encode($persen_ipa) !!},
-            sliced: true,
             selected: true,
             color: '#00AB9E'
         }, {
             name: 'IPS',
             y: {!! json_encode($persen_ips) !!},
-            selected: true,
             color: '#0075B5'
-        }]
+        
+       }]    
+    
     }]
 });
 
-// Grafik 4
+//Grafik 4
 Highcharts.chart('grafik4', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Peserta Didik Berdasarkan Asal Sekolah'
+    },
+    xAxis: {
+        categories: {!!json_encode($categories1)!!},
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Jumlah (orang)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y} orang</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        series: {
+            color: '#EB8C80'
+        },
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    credits: {
+    enabled: false
+    },
+    series: {!!json_encode($series1)!!}
+});
+
+// Grafik 5
+Highcharts.chart('grafik5', {
     chart: {
         type: 'column'
     },
@@ -263,5 +312,6 @@ Highcharts.chart('grafik4', {
     },
     series: {!! json_encode($series4) !!}
 });
+
 </script>
 @endsection

@@ -134,14 +134,18 @@ Highcharts.chart('grafik2', {
         data: [{
             name: 'Negeri',
             y: {!! json_encode($persen_negeri) !!},
-            sliced: true,
             selected: true,
-            color: '#9AA544'
+            color: '#ACE7FF'
         }, {
             name: 'Swasta',
             y: {!! json_encode($persen_swasta) !!},
             selected: true,
             color: '#408247'
+        }, {
+            name: 'Tidak Kuliah',
+            y: {!! json_encode($persen_tdk_kuliah) !!},
+            selected: true,
+            color: '#FFF5BA'
         }]
     }]
 });

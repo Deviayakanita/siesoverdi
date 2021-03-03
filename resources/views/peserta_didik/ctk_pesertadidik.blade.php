@@ -32,18 +32,18 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <div style="clear: both;"></div>
-                    <div class="form-group col-md-4" style="padding: 0; padding-right: 10px;">
-                        <select id="thn_ajaran" class="form-control select2" name="sts_siswa" required="required" autocomplete="off">
-                            <option disabled selected>-- Pilih Tahun Ajaran --</option>
-                            @foreach ($tahun_ajaran as $tahunajaran)
-                            <option id="tahun_ajaran" value="{{$tahunajaran->id_ta}}">{{$tahunajaran->tahun_ajaran}}</option>
+                    <div class="form-group col-sm-3" style="padding: 0; padding-right: 10px;">
+                        <select id="thn_masuk" class="form-control select2" name="tahun_masuk" required="required" autocomplete="off">
+                            <option disabled selected>-- Pilih Tahun Masuk Siswa --</option>
+                            @foreach ($pesertadidik as $tahunmasuk)
+                            <option id="tahun_masuk" value="{{$tahunmasuk}}">{{$tahunmasuk}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div>
                         <button type="button" class="btn btn-primary" id="filter"><i class=""></i> Filter</button>
                         <button type="button" class="btn btn-warning" id="refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                        <a href="/pesertadidik/export" id="cetak" class="btn btn-danger" style="margin-left:518px; margin-right: 0px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+                        <a href="/pesertadidik/export" id="cetak" class="btn btn-danger" style="margin-left:605px; margin-right: 0px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Kelamin</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tempat Tanggal Lahir</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tahun Ajaran</th>
+                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tahun Masuk</th>
                                         <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Siswa</th>
                                         <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                                     </tr>
@@ -75,8 +75,8 @@
                                         <td>{{ $pesertadidik->nm_siswa }}</td>
                                         <td>{{ $pesertadidik->jns_kelamin }}</td>
                                         <td>{{ $pesertadidik->tmp_lahir }}, {{$pesertadidik->tgl_lahir->isoFormat('D MMMM Y')}}</td>
-                                        <td>{{ $pesertadidik->tahun->tahun_ajaran }}</td>
-                                        <td><?php if($pesertadidik->sts_siswa == 0) { echo "Non Aktif"; } elseif($pesertadidik->sts_siswa == 1) { echo "Aktif"; } else { echo "Non Aktif"; } ?></td>
+                                        <td>{{ $pesertadidik->tahun_masuk}}</td>
+                                        <td><?php if($pesertadidik->sts_siswa == 0) { echo "Non Aktif"; } elseif($pesertadidik->sts_siswa == 1) { echo "Aktif"; } else { echo "Lulus"; } ?></td>
                                         <td style="text-align: center;">
                                             @if(Auth::user() && Auth::user()->level == 0)
                                             <a href="/pesertadidik/pdf/{{ $pesertadidik->id_siswa}}"  target="_blank"><i class="fa fa-file-pdf-o btn-success btn-sm"></i></a>
@@ -103,12 +103,12 @@
     $('.select2').select2();
     $('#filter').click(function(){
 
-        let tahun_ajaran = $('#thn_ajaran').val()
+        let tahun_masuk = $('#thn_masuk').val()
         let url = "{{url('/ctk_pesertadidik')}}"
         let data = {
-            'tahun_ajaran': tahun_ajaran
+            'tahun_masuk': tahun_masuk
         }
-        $('#cetak').attr('href','/cetaksiswa/'+ tahun_ajaran+'')
+        $('#cetak').attr('href','/cetaksiswa/'+ tahun_masuk+'')
         $.ajax({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -173,6 +173,9 @@
                             case 1:
                                 status = "Aktif";
                                 break;
+                            case 2:
+                                status = "Lulus";
+                                break;
                         }
 
                    html += '<tr>'
@@ -181,7 +184,7 @@
                    html += '<td>'+ data.siswa[i].nm_siswa+'</td>'
                    html += '<td>'+ data.siswa[i].jns_kelamin+'</td>'
                    html += '<td>'+ data.siswa[i].tmp_lahir+', '+tanggal +' '+ bulan + ' ' + tahun+'</td>'
-                   html += '<td>'+ data.siswa[i].tahun.tahun_ajaran+'</td>'
+                   html += '<td>'+ data.siswa[i].tahun_masuk+'</td>'
                    html += '<td>'+ status+'</td>'
                    html += '<td style="text-align: center;">'
                    if (data.level==0) {

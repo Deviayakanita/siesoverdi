@@ -74,6 +74,16 @@
               <td>{{$pesertadidiks->kabupaten}}</td>
             </tr>
             <tr>
+              <td>Asal Sekolah SMP</td>
+              <td>:</td>
+              <td>{{$pesertadidiks->asal_smp}}</td>
+            </tr>
+            <tr>
+              <td>Tahun Masuk Siswa</td>
+              <td>:</td>
+              <td>{{$pesertadidiks->tahun_masuk}}</td>
+            </tr>
+            <tr>
               <td>Tahun Ajaran</td>
               <td>:</td>
               <td>{{$pesertadidiks->tahun->tahun_ajaran}}</td>
@@ -102,7 +112,7 @@
                     }
                       else
                     {
-                        echo "Non Aktif";
+                        echo "Lulus";
                     }                          
                     ?>            
               </td>    

@@ -24,7 +24,9 @@ class CreatePesertaDidikTable extends Migration
             $table->date('tgl_lahir');
             $table->string('agama', 20);
             $table->text('alamat_siswa', 50);
-             $table->enum('kabupaten', ["Kota Denpasar", "Badung", "Gianyar", "Bangli", "Tabanan", "Jembrana", "Buleleng", "Klungkung", "Karangasem"]);
+            $table->enum('kabupaten', ["Kota Denpasar", "Badung", "Gianyar", "Bangli", "Tabanan", "Jembrana", "Buleleng", "Klungkung", "Karangasem"]);
+            $table->string('tahun_masuk', 10);
+            $table->string('asal_smp', 50);
             $table->string('no_tlpn', 15);
             $table->string('email', 30);
             $table->enum('jurusan', ["IPA", "IPS"]);

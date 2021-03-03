@@ -43,10 +43,15 @@
               <td>:</td>
               <td>{{$mutasikeluars->pesertadidik->nm_siswa}}</td>
             </tr>
-            <tr> 
+            <tr>
+              <td>Tahun Masuk Siswa</td>
+              <td>:</td>
+              <td>{{$mutasikeluars->pesertadidik->tahun_masuk}}</td>
+            </tr>
+            <tr>
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$mutasikeluars->pesertadidik->tahun->tahun_ajaran}}</td>
+              <td>{{$mutasikeluars->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>

@@ -49,7 +49,9 @@
                     @enderror
 
                     <div class="wrap-input100">
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" style="background-color: ##1d2f88; border-color: ##1d2f88;"type="submit">Log In</button>
+                        <div class="btn-block">
+                    <button class="btn btn-gradient btn-block text-uppercase" style= "border-radius: 25px; color: #ffffff; font-size: 20px; width: 100%;" type="submit">Login</button>
+                </div>
                     </div>
                 </form>
             </div>

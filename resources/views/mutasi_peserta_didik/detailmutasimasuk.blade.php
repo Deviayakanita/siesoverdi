@@ -43,9 +43,14 @@
               <td>{{$mutasimasuks->pesertadidik->nm_siswa}}</td>
             </tr>
             <tr>
+              <td>Tahun Masuk Siswa</td>
+              <td>:</td>
+              <td>{{$mutasimasuks->pesertadidik->tahun_masuk}}</td>
+            </tr>
+            <tr>
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$mutasimasuks->pesertadidik->tahun->tahun_ajaran}}</td>
+              <td>{{$mutasimasuks->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Alamat Siswa</td>

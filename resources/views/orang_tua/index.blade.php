@@ -56,12 +56,34 @@
                         @foreach ($orangtuas as $orangtua)
                             <tr>
                                 <td>{{ $i }}</td>
-                                <td>{{ $orangtua->pesertadidik->nis }}</td>
-                                <td>{{ $orangtua->pesertadidik->nm_siswa }}</td>
+                                <td>{{ $orangtua->nis }}</td>
+                                <td>{{ $orangtua->nm_siswa }}</td>
                                 <td>{{ $orangtua->nm_ayah }}</td>
-                                <td>{{ $orangtua->penghasilan_ayah }}</td> 
+                                <td>
+                                 <?php
+                                  if($orangtua->penghasilan_ayah == 'Tidak Penghasilan')
+                                  {
+                                  echo "Tidak Berpenghasilan";
+                                  }
+                                  else
+                                  {
+                                  echo $orangtua->penghasilan_ayah;
+                                  }
+                                  ?>
+                                </td>
                                 <td>{{ $orangtua->nm_ibu }}</td>
-                                <td>{{ $orangtua->penghasilan_ibu }}</td>
+                                <td>
+                                 <?php
+                                  if($orangtua->penghasilan_ibu == 'Tidak Penghasilan')
+                                  {
+                                  echo "Tidak Berpenghasilan";
+                                  }
+                                  else
+                                  {
+                                  echo $orangtua->penghasilan_ibu;
+                                  }
+                                  ?>
+                                </td>
                                 <td style="text-align: center;">
                                     @if(Auth::user() && Auth::user()->level == 0)
                                     <a href="/orangtua/edit/{{ $orangtua->id_orang_tua }}"><i class="fa fa-edit btn-warning btn-sm"></i></a>
@@ -103,7 +125,7 @@
                       <select style="width: 100%;" id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off" >
                         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                         @foreach ($pesertadidik as $item)
-                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" data-id="{{ $item->id_ta }}" value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                        <option data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_masuk }}" data-tahunajaran="{{ $item->tahun->tahun_ajaran }}" data-id="{{ $item->id_ta }}"value="{{ $item->id_siswa }}"{{ old('nis')==$item->id_siswa ? 'selected':''}}>{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                         @endforeach
                       </select>
                       @error('nis')
@@ -119,11 +141,16 @@
                       <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly value="{{ old('nm_siswa') }}">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+                      <label for="inputnama">Tahun Masuk Siswa</label>
+                      <input type="text" class="form-control" id="inputthn" name="tahun_masuk" readonly value="{{ old('tahun_masuk') }}">
+                    </div>
+                  </div>
+
+                    <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Tahun Ajaran Siswa</label>
                       <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" readonly value="{{ old('tahun_ajaran') }}">
                       <input type="hidden" id="inputid_ta" name="id_ta" value="{{ old('id_ta') }}">
                     </div>
-                  </div>
 
                     <div class="form-group" style="padding: 0; padding-right: 10px">
                       <label for="inputnama">Nama Ayah</label>
@@ -224,13 +251,15 @@
     @endif
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
-    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    var tahun_masuk = $('option:selected', this).attr('data-tahun');
+    var tahun_ajaran = $('option:selected', this).attr('data-tahunajaran');
     var id_ta = $('option:selected', this).attr('data-id');
     $('#inputnamasiswa').val(nm_siswa);
+    $('#inputthn').val(tahun_masuk);
     $('#inputtahun').val(tahun_ajaran);
     $('#inputid_ta').val(id_ta);
   });
-
+  
   function hanyaHuruf(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57))

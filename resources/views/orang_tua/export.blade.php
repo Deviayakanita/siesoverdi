@@ -47,9 +47,31 @@
 				<td>{{$o->pesertadidik->nis}}</td>
 				<td>{{$o->pesertadidik->nm_siswa}}</td>
 				<td>{{$o->nm_ayah}}</td>
-				<td>{{$o->penghasilan_ayah}}</td>
+				<td>
+	                 <?php
+	                  if($o->penghasilan_ayah == 'Tidak Penghasilan')
+	                  {
+	                  echo "Tidak Berpenghasilan";
+	                  }
+	                  else
+	                  {
+	                  echo $o->penghasilan_ayah;
+	                  }
+	                  ?>
+	             </td>
 				<td>{{$o->nm_ibu}}</td>
-				<td>{{$o->penghasilan_ibu}}</td>
+				<td>
+	                 <?php
+	                  if($o->penghasilan_ibu == 'Tidak Penghasilan')
+	                  {
+	                  echo "Tidak Berpenghasilan";
+	                  }
+	                  else
+	                  {
+	                  echo $o->penghasilan_ibu;
+	                  }
+	                  ?>
+	             </td>
 			</tr>
 			@php $i++; @endphp @endforeach
 		</tbody>
@@ -58,10 +80,9 @@
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-				Tuban, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
-		        <br>Kepala Sekolah
+				Kuta, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+		        <br>Kepala Sekolah SMA Katolik Soverdi
 		        <br>
-				<br>
 				<br>
 				<br>
 				<br>

@@ -30,7 +30,7 @@
 		<div class="box-body">
          <table class="table table-bordered">
          ($mutasikeluars as $mutasikeluars)
-		<tr>
+		        <tr>
              <td>No Surat Pindah</td>
               <td width="5px">:</td>
               <td>{{$mutasikeluars->no_srt_pindah}}</td>
@@ -46,9 +46,14 @@
               <td>{{$mutasikeluars->pesertadidik->nm_siswa}}</td>
             </tr>
             <tr> 
+              <td>Tahun Masuk Siswa</td>
+              <td>:</td>
+              <td>{{$mutasikeluars->pesertadidik->tahun_masuk}}</td>
+            </tr>
+            <tr> 
               <td>Tahun Ajaran</td>
               <td>:</td>
-              <td>{{$mutasikeluars->pesertadidik->tahun->tahun_ajaran}}</td>
+              <td>{{$mutasikeluars->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>
@@ -97,13 +102,13 @@
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-        Tuban,{{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
-        <br>Kepala Sekolah
-        <br>
-        <br>
-        <br>
-        <br>
-        <b><u>Dra. Magdelena Tin</u></b>
+        Kuta, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+            <br>Kepala Sekolah SMA Katolik Soverdi
+            <br>
+            <br>
+            <br>
+            <br>
+            <b><u>Dra. Magdelena Tin</u></b>
       </td>
 		</tr>
 	</table>

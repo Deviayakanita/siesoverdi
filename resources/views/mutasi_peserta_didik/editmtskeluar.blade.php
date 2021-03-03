@@ -47,7 +47,8 @@
       <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
         <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
         @foreach ($pesertadidik as $item)
-        <option @if ($item->id_siswa == $mutasikeluars->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" data-id="{{ $item->id_ta }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+        <option @if ($item->id_siswa == $mutasikeluars->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_masuk }}" 
+        value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
         @endforeach
       </select>
       @error('nis')
@@ -63,9 +64,19 @@
       <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" value="{{$mutasikeluars->pesertadidik->nm_siswa}}" readonly>
     </div>
     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-      <label for="inputtahun">Tahun Ajaran</label>
-      <input type="text" class="form-control" id="inputtahunajaran" name="tahun_ajaran" value="{{$mutasikeluars->pesertadidik->tahun->tahun_ajaran}}" readonly>
-      <input type="hidden" id="inputid_ta" name="id_ta" value="{{$mutasikeluars->tahun->id_ta}}" readonly>
+      <label for="inputtahun">Tahun Masuk Siswa</label>
+      <input type="text" class="form-control" id="inputthn" name="tahun_masuk" value="{{$mutasikeluars->pesertadidik->tahun_masuk}}" readonly>
+    </div>
+
+
+    <div class="form-group" style="padding: 0; padding-right: 10px">
+      <label for="inputState">Tahun Ajaran</label>
+      <select style="width: 100%;" id="inputTahun" class="form-control select2" name="tahun_ajaran" required="required" autocomplete="off" >
+        <option selected="selected" disabled="" value="">-- Pilih Tahun Ajaran --</option>
+        @foreach ($tahunajarans as $item)
+        <option @if ($item->id_ta == $mutasikeluars->id_ta) selected @endif data-tahunajaran="{{ $item->tahun_ajaran }}" value="{{$item->id_ta}}">{{ $item->tahun_ajaran }}</option>
+        @endforeach
+      </select>
     </div>
 
     <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -121,11 +132,15 @@
     @endif
   $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
-    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    var tahun_masuk = $('option:selected', this).attr('data-tahun');
     var id_ta = $('option:selected', this).attr('data-id');
     $('#inputnamasiswa').val(nm_siswa);
+    $('#inputthn').val(tahun_masuk);
+  });
+
+  $('#inputTahun').change(function() {
+    var tahun_ajaran = $('option:selected', this).attr('data-tahunajaran');
     $('#inputtahun').val(tahun_ajaran);
-    $('#inputid_ta').val(id_ta);
   });
 </script>
 @endsection

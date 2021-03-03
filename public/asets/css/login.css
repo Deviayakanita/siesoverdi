@@ -217,7 +217,7 @@ iframe {
 
 .form-signin .btn {
   font-size: 80%;
-  border-radius: 5rem;
+  border-radius: 25rem;
   letter-spacing: .1rem;
   font-weight: bold;
   padding: 1rem;
@@ -355,7 +355,7 @@ iframe {
 .wrap-input100 {
   width: 100%;
   position: relative;
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 .input100 {
@@ -514,15 +514,41 @@ iframe {
 }
 
 .btn-primary {
-    color: #fff;
+    color: #ffffff;
     background-color: ##1d2f88;
     border-color: ##1d2f88;
 }
 
+.btn-block {
+    position: center;
+    border-radius: 25px;
+    display: block;
+    width: 100%;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #ffffff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 .login100-form-btn {
   font-family: Poppins-Medium;
-  font-size: 16px;
-  line-height: 1.2;
+  font-size: 25px;
+  line-height: 1.5;
 
   display: -webkit-box;
   display: -webkit-flex;
@@ -534,7 +560,7 @@ iframe {
   padding: 0 20px;
   min-width: 120px;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 50px;
 
   background: #111a8b;
   background: -webkit-linear-gradient(bottom, #111a8b);
@@ -570,13 +596,22 @@ iframe {
 }
 
 .login100-form-btn:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .login100-form-btn:hover:before {
   opacity: 0;
 }
-
+.btn-gradient {
+    border-radius: 20px;
+    background-color: transparent;
+    background-image: linear-gradient(
+45deg
+,#5489ff,#8e60ff);
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    color: #ffffff;
+    text-align: center;
 
 /*------------------------------------------------------------------
 [ Responsive ]*/

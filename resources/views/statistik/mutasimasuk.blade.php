@@ -83,6 +83,9 @@
     },
     plotOptions: {
         series: {
+            label:{
+                connectorAllowed: false
+        },
             color: '#1D79F2'
         },
         column: {

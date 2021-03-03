@@ -45,7 +45,7 @@
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Lengkap Siswa</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Kelamin</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tempat Tanggal Lahir</th>
-                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tahun Ajaran</th>
+                    <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tahun Masuk</th>
                     <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Status Siswa</th>
                     <th style="text-align: center;" class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Aksi</th>
                     </tr>
@@ -61,7 +61,7 @@
                                 <td>{{ $pesertadidik->nm_siswa }}</td>
                                 <td>{{ $pesertadidik->jns_kelamin }}</td>
                                 <td>{{ $pesertadidik->tmp_lahir }}, {{$pesertadidik->tgl_lahir->isoFormat('D MMMM Y') }}</td>
-                                <td>{{ $pesertadidik->tahun->tahun_ajaran }}</td>
+                                <td>{{ $pesertadidik->tahun_masuk }}</td>
                                 <td>
                                 <?php if($pesertadidik->sts_siswa == 0)
                                 {
@@ -73,7 +73,7 @@
                                 }
                                 else
                                 {
-                                  echo "Non Aktif";
+                                  echo "Lulus";
                                 }
                                 ?>
                                 </td>
@@ -100,7 +100,7 @@
 
 
 <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="5" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -118,14 +118,14 @@
                         <input type="nama" class="form-control" id="inputnis" name="nis" required="required" autocomplete="off" placeholder="Masukan No Induk Siswa" onkeypress="return hanyaAngka(event)" value="{{ old('nis') }}">
                           @error('nis')
                             <span class="invalid-feedback text-danger" role="alert">
-                                <strong>{{ "Nis Sudah Tersedia" }}</strong>
+                                <strong>{{ "Nis Harus Terdiri Dari 4 Karakter Dan Nis Tidak Boleh Sama" }}</strong>
                             </span>
                           @enderror
                       </div>
 
                       <div class="form-group" style="padding: 0; padding-right: 10px;">
                         <label for="inputnama">Nama Lengkap Siswa</label>
-                        <input type="nama" class="form-control" id="inputnama" name="nm_siswa" required="required" autocomplete="off" placeholder="Masukan Nama Lengkap" value="{{ old('nm_siswa') }}" onkeypress="return hanyaHuruf(event)">
+                        <input type="text" class="form-control" id="inputnama" name="nm_siswa" required="required" autocomplete="off" placeholder="Masukan Nama Lengkap" value="{{ old('nm_siswa') }}" onkeypress="return hanyaHuruf(event)">
                          @error('nm_siswa')
                             <span class="invalid-feedback text-danger" role="alert">
                                 <strong>{{ "Terdidri Dari 8 Sampai 50 Karakter" }}</strong>
@@ -192,7 +192,8 @@
                         <textarea type = "text" class="form-control" id="alamat_siswa" rows="3" name="alamat_siswa" autocomplete="off" placeholder="Masukan Alamat Siswa">{{ old('alamat_siswa')}}</textarea>
                       </div>
 
-                      <div class="form-group" style="padding: 0; padding-right: 10px;">
+                      <div class="form-row">
+                      <div class="form-group col-md-6" style="padding: 0; padding-right: 10px;">
                         <label for="form_kabupaten">Kabupaten/Kota</label>
                         <select style="width: 100%;" name="kabupaten" class="form-control select2" id="input_kabupaten" required autocomplete="off">
                             <option selected disabled>-- Pilih Kabupaten/Kota --</option>
@@ -212,30 +213,47 @@
                             </span>
                         @enderror
                       </div>
-                     
-                    <div class="form-row">
-                       <div class="form-group col-md-6" style="padding: 0; padding-right: 10px;">
-                        <label for="inputemail">Email</label>
-                        <input type="email" class="form-control" id="inputemail" name="email" required="required" autocomplete="off" placeholder="Masukan Email" value="{{ old('email') }}">
+                       <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+                        <label for="inputsmp">Asal Sekolah (SMP)</label>
+                        <input type="text" class="form-control" id="inputsmp" name="asal_smp" required="required" autocomplete="off" placeholder="Masukan Asal Sekolah" value="{{ old('asal_smp') }}">
+                         @error('asal_smp')
+                            <span class="invalid-feedback text-danger" role="alert">
+                                <strong>{{ " Terdidri Dari 5 Sampai 20 Karakter " }}</strong>
+                            </span>
+                          @enderror
                         </div>
-                      <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                      <label for="inputState">Tahun Ajaran</label>
-                      <select style="width: 100%;" id="inputTahun" class="form-control select2" name="tahun_ajaran" required="required" autocomplete="off" >
-                        <option selected="selected" disabled="" value="">-- Pilih Tahun Ajaran --</option>
-                        @foreach ($tahunajarans as $item)
-                        <option data-tahun="{{ $item->tahun_ajaran }}" value="{{ $item->id_ta }}"{{ old('tahun_ajaran')==$item->id_ta ? 'selected':''}}>{{ $item->tahun_ajaran }}</option>
-                        @endforeach
-                        </select>
-                        @error('tahun_ajaran')
-                              <span class="invalid-feedback text-danger" role="alert">
-                                  <strong>{{ "Tidak Boleh Kosong" }}</strong>
-                              </span>
-                        @enderror
-                      </div>
                       </div>
 
+
                       <div class="form-row">
-                      <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+                        <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+                          <label for="inputtahunmasuk">Tahun Masuk</label>
+                          <input type="input" class="form-control" id="inputtahunmasuk" name="tahun_masuk"required="required" autocomplete="off" placeholder="Masukan Tahun Masuk" onkeypress="return hanyaAngka(event)" value="{{ old('tahun_masuk') }}">
+                           @error('tahun_masuk')
+                            <span class="invalid-feedback text-danger" role="alert">
+                                <strong>{{ " Terdidri Dari 4 Sampai 5 Karakter " }}</strong>
+                            </span>
+                          @enderror
+                        </div>
+
+                        <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
+                          <label for="inputState">Tahun Ajaran</label>
+                          <select style="width: 100%;" id="inputTahun" class="form-control select2" name="tahun_ajaran" required="required" autocomplete="off" >
+                            <option selected="selected" disabled="" value="">-- Pilih Tahun Ajaran --</option>
+                              @foreach ($tahunajarans as $item)
+                              <option data-tahunajaran="{{ $item->tahun_ajaran }}" value="{{ $item->id_ta }}"{{ old('tahun_ajaran')==$item->id_ta ? 'selected':''}}>{{ $item->tahun_ajaran }}</option>
+                              @endforeach
+                          </select>
+                          </div>
+                      </div>
+
+                       <div class="form-group" style="padding: 0; padding-right: 10px;">
+                          <label for="inputemail">Email</label>
+                          <input type="email" class="form-control" id="inputemail" name="email" required="required" autocomplete="off" placeholder="Masukan Email" value="{{ old('email') }}">
+                        </div>
+
+                      <div class="form-row">
+                        <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
                           <label for="inputnotlpn">No Telepon</label>
                           <input type="notelpon" class="form-control" id="inputnotlpn" name="no_tlpn" required="required" autocomplete="off" placeholder="Masukan No Telepon" onkeypress="return hanyaAngka(event)" value="{{ old('no_tlpn') }}">
                            @error('no_tlpn')
@@ -244,29 +262,30 @@
                             </span>
                           @enderror
                         </div>
-                      <div class="form-group col-md-6" style="padding: 0; padding-right: 10px;" >
-                        <label for="inputState">Status Siswa</label>
+
+                        <div class="form-group col-md-6" style="padding: 0; padding-right: 10px;" >
+                          <label for="inputState">Status Siswa</label>
                            <select id="inputstatus" class="form-control" name="sts_siswa" required="required" autocomplete="off">
                              <option disabled selected>-- Pilih Status -- {{ old('sts_siswa') }}</option>
                              <option value="1" {{ old('sts_siswa')=='1'? 'selected':''}}>Aktif</option>
                              <option value="0" {{ old('sts_siswa')=='0'? 'selected':''}}>Non Aktif</option>
                            </select>
-                           @error('sts_siswa')
-                            <span class="invalid-feedback text-danger" role="alert">
-                                <strong>{{ "Tidak Boleh Kosong" }}</strong>
-                            </span>
-                          @enderror
-                         </div>
+                             @error('sts_siswa')
+                              <span class="invalid-feedback text-danger" role="alert">
+                                  <strong>{{ "Tidak Boleh Kosong" }}</strong>
+                              </span>
+                              @enderror
+                        </div>
                       </div>
 
-                      <div class="form-group" style="padding: 0; padding-right: 10px;">
-                        <label for="keterangan">Keterangan Siswa</label>
-                        <textarea type = "text" class="form-control" id="keterangan" rows="3" name="keterangan" autocomplete="off" placeholder="Masukan Keterangan">{{ old('keterangan')}}</textarea>
-                      </div>
+                        <div class="form-group" style="padding: 0; padding-right: 10px;">
+                          <label for="keterangan">Keterangan Siswa</label>
+                          <textarea type = "text" class="form-control" id="keterangan" rows="3" name="keterangan" autocomplete="off" placeholder="Masukan Keterangan">{{ old('keterangan')}}</textarea>
+                        </div>
                 
-                      <div>
-                        <button type="submit" class=" btn btn-primary">Simpan Data</button>
-                      </div>
+                        <div>
+                          <button type="submit" class=" btn btn-primary">Simpan Data</button>
+                        </div>
 
                 </form>
                 </div>
@@ -282,6 +301,12 @@
       $('#exampleModal').modal();
     @endif
 
+    $('.select2').select2();
+    $('#inputTahun').change(function() {
+      var tahun_ajaran = $('option:selected', this).attr('data-tahunajaran');
+      $('#inputtahun').val(tahun_ajaran);
+    });
+
     function hanyaAngka(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57))
@@ -295,12 +320,6 @@
       return true;
     return false;
     }
-
-    $('.select2').select2();
-    $('#inputTahun').change(function() {
-      var tahun_ajaran = $('option:selected', this).attr('data-tahun');
-      $('#inputtahun').val(tahun_ajaran);
-    });
 
 </script>
 @endsection

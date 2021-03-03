@@ -19,7 +19,7 @@ class CreateAlumniSiswaTable extends Migration
             $table->foreign('id_siswa')->references('id_siswa')->on('peserta_didik');
             $table->unsignedBigInteger('id_ta');
             $table->string('nm_pt', 50);
-            $table->enum('jns_pt', ["Negeri", "Swasta"]);
+            $table->enum('jns_pt', ["Negeri", "Swasta", "Tidak Kuliah"]);
             $table->string('nm_fak', 50);
             $table->string('nm_jurusan', 50);
             $table->timestamps();

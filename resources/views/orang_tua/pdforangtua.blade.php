@@ -40,10 +40,15 @@
               <td>:</td>
               <td>{{$orangtuas->pesertadidik->nm_siswa}}</td>
             </tr>
-            <tr>
-              <td>Tahun Ajaran Siswa</td>
+            <tr> 
+              <td>Tahun Masuk Siswa</td>
               <td>:</td>
-              <td>{{$orangtuas->pesertadidik->tahun->tahun_ajaran}}</td>
+              <td>{{$orangtuas->pesertadidik->tahun_masuk}}</td>
+            </tr>
+            <tr>
+              <td>Tahun Ajaran</td>
+              <td>:</td>
+              <td>{{$orangtuas->tahun->tahun_ajaran}}</td>
             </tr>
             <tr>
               <td>Status Peserta Didik</td>
@@ -82,7 +87,18 @@
             <tr>
               <td>Penghasilan Ayah</td>
               <td>:</td>
-              <td>{{$orangtuas->penghasilan_ayah}}</td>
+              <td>
+                 <?php
+                  if($orangtuas->penghasilan_ayah == 'Tidak Penghasilan')
+                  {
+                  echo "Tidak Berpenghasilan";
+                  }
+                  else
+                  {
+                  echo $orangtuas->penghasilan_ayah;
+                  }
+                  ?>
+              </td>
             </tr>
             <tr>
               <td>Nama Ibu</td>
@@ -102,7 +118,18 @@
             <tr>
               <td>Penghasilan Ibu</td>
               <td>:</td>
-              <td>{{$orangtuas->penghasilan_ibu}}</td>
+              <td>
+                 <?php
+                  if($orangtuas->penghasilan_ibu == 'Tidak Penghasilan')
+                  {
+                  echo "Tidak Berpenghasilan";
+                  }
+                  else
+                  {
+                  echo $orangtuas->penghasilan_ibu;
+                  }
+                  ?>
+              </td>
             </tr>
            </table> 
         <!-- /.box-body -->
@@ -112,14 +139,13 @@
 	<table border="0" width="100%">
 		<tr>
 			<td align="right" width="50%">
-        Tuban, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
-        <br>Kepala Sekolah
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <b><u>Dra. Magdelena Tin</u></b>
+            Kuta, {{Carbon\Carbon::now()->isoFormat('D MMMM Y')}}
+            <br>Kepala Sekolah SMA Katolik Soverdi
+            <br>
+            <br>
+            <br>
+            <br>
+            <b><u>Dra. Magdelena Tin</u></b>
       </td>
 		</tr>
 	</table>

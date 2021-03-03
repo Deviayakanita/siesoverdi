@@ -60,7 +60,7 @@
         type: 'line'
     },
     title: {
-        text: 'Jumlah Mutasi Masuk Berdasarkan Tahun Ajaran'
+        text: 'Jumlah Mutasi Keluar Berdasarkan Tahun Ajaran'
     },
     xAxis: {
         categories: {!!json_encode($categories)!!},

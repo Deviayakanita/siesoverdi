@@ -37,7 +37,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/ctk_pesertadidik','App\Http\Controllers\PesertadidikController@filter');
 		Route::get('/pesertadidik/export','App\Http\Controllers\PesertadidikController@export');
 		Route::get('/pesertadidik/pdf/{id}','App\Http\Controllers\PesertadidikController@pdf');
-		Route::get('/cetaksiswa/{tahun_ajaran}','App\Http\Controllers\PesertadidikController@cetakfilter');
+		Route::get('/cetaksiswa/{tahun_masuk}','App\Http\Controllers\PesertadidikController@cetakfilter');
 	
 	// // 	Route Orangtua
 		Route::get('/orangtua', 'App\Http\Controllers\OrangtuaController@index');
@@ -122,6 +122,7 @@ Route::get('/regis', 'App\Http\Controllers\InsertRegister@insert');
 		Route::get('/tahunajaran', 'App\Http\Controllers\TahunController@index');
 		Route::post('/tahunajaran/store', 'App\Http\Controllers\TahunController@store');
 		Route::get('/tahunajaran/edit/{id}','App\Http\Controllers\TahunController@edit');
+		Route::patch('/tahunajaran/update/{id}','App\Http\Controllers\TahunController@update');
 
 	});
 

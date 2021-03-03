@@ -30,19 +30,18 @@ class PesertadidikController extends Controller
     public function filter(Request $request)
     {
         $pesertadidiks = Pesertadidik::orderBy('nis', 'DESC')->get();
-        $tahun_ajaran = Tahun::all();
-        if ($request->ajax()) {
-            if (!$request->tahun_ajaran) {
+        $pesertadidik = Pesertadidik::orderBy('tahun_masuk', 'ASC')->groupBy('tahun_masuk')->pluck('tahun_masuk');
+        if($request->ajax()) {
+            if(!$request->pesertadidik) {
                 $role = Auth::user()->level;
-               $siswa = Pesertadidik::with(['tahun'])->orderBy('nm_siswa', 'ASC')->get();
-            }else {
-                $role = Auth::user()->level;
-                $siswa = Pesertadidik::with(['tahun'])->where('id_ta',$request->tahun_ajaran)->orderBy('nm_siswa', 'ASC')->get();
+                $siswa = Pesertadidik::where('tahun_masuk',$request->tahun_masuk)->orderBy('nis', 'DESC')->get();
             }
             return response()->json(['siswa'=>$siswa,'level'=>$role]);
+
         }
+
       
-        return view('peserta_didik/ctk_pesertadidik', compact('pesertadidiks','tahun_ajaran'));
+        return view('peserta_didik/ctk_pesertadidik', compact('pesertadidiks','pesertadidik'));
     }
 
 
@@ -55,7 +54,7 @@ class PesertadidikController extends Controller
     public function store(Request $request)
     { 
         $this->validate($request, [
-            'nis' => 'required|unique:peserta_didik',
+            'nis' => 'required|unique:peserta_didik|min:4|max:4',
             'nm_siswa' => 'required|min:8|max:50',
             'jns_kelamin' => 'required',
             'kabupaten' => 'required',
@@ -63,7 +62,9 @@ class PesertadidikController extends Controller
             'sts_siswa' => 'required',
             'tmp_lahir' => 'required|min:3|max:20',
             'agama' => 'required|min:5|max:20',
+            'asal_smp' => 'required|min:5|max:50',
             'no_tlpn' => 'required|min:7|max:13',
+            'tahun_masuk' => 'required|min:4|max:5',
             
         ]);
         Pesertadidik::create([
@@ -75,8 +76,10 @@ class PesertadidikController extends Controller
             'agama' => request('agama'),
             'alamat_siswa' => request('alamat_siswa'),
             'kabupaten' => request('kabupaten'),
+            'asal_smp' => request('asal_smp'),
             'no_tlpn' => request('no_tlpn'),
             'email' => request('email'),
+            'tahun_masuk' => request('tahun_masuk'),
             'id_ta' => request('tahun_ajaran'),
             'jurusan' => request('jurusan'),
             'sts_siswa' => request('sts_siswa'),
@@ -133,7 +136,9 @@ class PesertadidikController extends Controller
             'nm_siswa' => 'required|min:8|max:50',
             'tmp_lahir' => 'required|min:3|max:20',
             'agama' => 'required|min:5|max:20',
+            'asal_smp' => 'required|min:5|max:50',
             'no_tlpn' => 'required|min:7|max:13',
+            'tahun_masuk' => 'required|min:4|max:5',
         ]);
 
         $pesertadidiks = Pesertadidik::where('id_siswa', $id)->first();
@@ -144,8 +149,10 @@ class PesertadidikController extends Controller
         $pesertadidiks->agama = $request->agama;
         $pesertadidiks->alamat_siswa = $request->alamat_siswa;
         $pesertadidiks->kabupaten = $request->kabupaten;
+        $pesertadidiks->asal_smp = $request->asal_smp;
         $pesertadidiks->no_tlpn = $request->no_tlpn;
         $pesertadidiks->email = $request->email;
+        $pesertadidiks->tahun_masuk = $request->tahun_masuk;
         $pesertadidiks->id_ta = $request->tahun_ajaran;
         $pesertadidiks->jurusan = $request->jurusan;
         $pesertadidiks->sts_siswa = $request->sts_siswa;
@@ -170,9 +177,9 @@ class PesertadidikController extends Controller
         return $pdf->stream();
     }
 
-    public function cetakfilter($tahun_ajaran)
+    public function cetakfilter($tahun_masuk)
     {   
-        $siswa = Pesertadidik::where('id_ta',$tahun_ajaran)->get();
+        $siswa = Pesertadidik::where('tahun_masuk',$tahun_masuk)->get();
         $pdf = PDF::loadview('peserta_didik.export', ['siswa'=>$siswa]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
@@ -184,18 +191,8 @@ class PesertadidikController extends Controller
         $tahun = Carbon::now()->isoFormat('Y');
         
         // Grafik Peserta Didik Berdasarkan Tahun Ajaran
-        $id_ta = [];
-
-        $tahun_ajaran = Tahun::orderBy('tahun_ajaran', 'DESC')->limit(5)->get();
-        foreach ($tahun_ajaran as $value) {
-            $id_ta[] = $value->id_ta;
-        }
-        
         $categories = [];
-        $tahun_ajaran = Tahun::whereIn('id_ta', collect($id_ta))->orderBy('tahun_ajaran', 'ASC')->get();
-        foreach($tahun_ajaran as $th){
-            $categories[] = $th->tahun_ajaran;
-        }
+        $tm = Pesertadidik::groupBy('tahun_masuk')->get();
 
         $series = [
             (object)[
@@ -203,34 +200,28 @@ class PesertadidikController extends Controller
                 'data'=>[]
             ]
         ];
-        
-        foreach ($tahun_ajaran as $key => $th) {
-            $siswa = DB::table('peserta_didik')
-                ->join('tahun_ajaran','tahun_ajaran.id_ta','=','peserta_didik.id_ta')
-                ->where('peserta_didik.id_ta', $th->id_ta)->count();
+        foreach ($tm as $pesertadidik) {
+          $categories[]= $pesertadidik->tahun_masuk;
+          $siswa = Pesertadidik::where('tahun_masuk', $pesertadidik->tahun_masuk)->count();
+          $series[0]->data[]= $siswa;
 
-            $series[0]->data[$key] = $siswa;
         }
-
-
+        
         // Grafik Persentase Peserta Didik (Jenis Kelamin)
-        $laki = Pesertadidik::where('jns_kelamin', 'Laki-laki' && 'sts_siswa', 1)->count();
+        $laki = Pesertadidik::where('jns_kelamin', 'Laki-Laki' && 'sts_siswa', 1)->count();
         $perempuan = Pesertadidik::where('jns_kelamin', 'Perempuan')
                     ->where('sts_siswa', 1)->count();
-        $total = Pesertadidik::where('sts_siswa', 1)
-                ->count();
+        $total = Pesertadidik::where('sts_siswa', 1)->count();
 
         $persen_laki = $laki/$total*100;
         $persen_perempuan = $perempuan/$total*100;
 
 
         // Grafik Persentase Peserta Didik (Jurusan)
-        $ipa = Pesertadidik::where('jurusan', 'ipa' && 'sts_siswa', 1)->count();
-        $ips = Pesertadidik::where('jurusan', 'ips')
+        $ipa = Pesertadidik::where('jurusan', 'IPA' && 'sts_siswa', 1)->count();
+        $ips = Pesertadidik::where('jurusan', 'IPS')
                     ->where('sts_siswa', 1)->count();
-        $totaljurusan = Pesertadidik::where('sts_siswa', 1)
-                    ->count();
-
+        $totaljurusan = Pesertadidik::where('sts_siswa', 1)->count();
         $persen_ipa = $ipa/$total*100;
         $persen_ips = $ips/$total*100;
 
@@ -265,7 +256,7 @@ class PesertadidikController extends Controller
         $series4[0]->data[1] = $ayah_gol2;
 
         $ayah_gol3 = Orangtua::where('penghasilan_ayah','Rp.1,000,000 - Rp.2,000,000')->count();
-        $series4[0]->data[2] = $ayah_gol1;
+        $series4[0]->data[2] = $ayah_gol3;
 
         $ayah_gol4 = Orangtua::where('penghasilan_ayah','Rp.2,000,000 - Rp.5,000,000')->count();
         $series4[0]->data[3] = $ayah_gol4;
@@ -287,7 +278,7 @@ class PesertadidikController extends Controller
         $series4[1]->data[1] = $ibu_gol2;
 
         $ibu_gol3 = Orangtua::where('penghasilan_ibu','Rp.1,000,000 - Rp.2,000,000')->count();
-        $series4[1]->data[2] = $ibu_gol1;
+        $series4[1]->data[2] = $ibu_gol3;
 
         $ibu_gol4 = Orangtua::where('penghasilan_ibu','Rp.2,000,000 - Rp.5,000,000')->count();
         $series4[1]->data[3] = $ibu_gol4;
@@ -301,7 +292,24 @@ class PesertadidikController extends Controller
         $ibu_gol7 = Orangtua::where('penghasilan_ibu','Tidak Penghasilan')->count();
         $series4[1]->data[6] = $ibu_gol7;
 
-        return view('statistik/pesertadidik', compact('tahun', 'categories','series','persen_laki','persen_perempuan','persen_ipa','persen_ips','categories4','series4'));
+        // Grafik Asal sekolah SMP
+        $asal_smp = DB::table('peserta_didik')
+                      ->select('asal_smp', DB::raw('count(*) as total'))
+                      ->groupBy('asal_smp')->orderBy('total','desc')->limit(5)->get();
+        $categories1= [];
+        $series1 = [
+            (object)[
+                'name'=>'Jumlah Peserta Didik',
+                'data'=>[]
+            ]
+        ];
+   
+        for ($i=0; $i < count($asal_smp); $i++) { 
+          $categories1[] = $asal_smp[$i]->asal_smp;
+          $series1[0]->data[] = $asal_smp[$i]->total;
+        }
+
+        return view('statistik/pesertadidik', compact('tahun', 'categories','series','persen_laki','persen_perempuan','persen_ipa','persen_ips','categories4','series4','categories1','series1'));
     }
 
     /**

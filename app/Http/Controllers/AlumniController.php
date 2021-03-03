@@ -23,9 +23,10 @@ class AlumniController extends Controller
     public function index()
     {
         $alumnis = Alumni::latest()->get();
-       $pesertadidik = Pesertadidik::all();
+        $pesertadidik = Pesertadidik::where('sts_siswa', 1)->get();
+        $tahunajarans = Tahun::all();
        
-        return view('alumni/index', compact('alumnis','pesertadidik'));
+        return view('alumni/index', compact('alumnis','pesertadidik','tahunajarans'));
     }
 
     public function filter(Request $request)
@@ -37,8 +38,8 @@ class AlumniController extends Controller
             if (!$request->tahun_ajaran){
                 $alumnis = Alumni::with(['pesertadidik'])->latest()->get();   
             } else {
-                $siswa = Pesertadidik::where('id_ta', $request->tahun_ajaran)->pluck('id_siswa')->toArray();
-                $alumni = Alumni::with(['pesertadidik','tahun'])->whereIn('id_siswa', collect($siswa))->get();
+                $siswa = Pesertadidik::where('id_ta', $request->tahun_ajaran)->pluck('id_ta')->toArray();
+                $alumni = Alumni::with(['pesertadidik','tahun'])->whereIn('id_ta', collect($siswa))->get();
             }
             $role = Auth::user()->level;
             return response()->json(['alumni'=>$alumni,'level'=>$role]);
@@ -57,16 +58,16 @@ class AlumniController extends Controller
     {   
         $this->validate($request, [
             'nis' => 'required|unique:alumni_siswa,id_siswa',
-            'nm_pt' => 'required|min:5|max:50',
-            'nm_fak' => 'required|min:5|max:50',
-            'nm_jurusan' => 'required|min:5|max:50',
+            'nm_pt' => 'max:50',
+            'nm_fak' => 'max:50',
+            'nm_jurusan' => 'max:50',
             'jns_pt' => 'required', 
         ]);
 
          Alumni::create([
             'nm_pt' => request('nm_pt'),
             'id_siswa' => request('nis'),
-            'id_ta' => request('id_ta'),
+            'id_ta' => request('tahun_ajaran'),
             'jns_pt' => request('jns_pt'),
             'nm_fak' => request('nm_fak'),
             'nm_jurusan' => request('nm_jurusan'),
@@ -74,7 +75,7 @@ class AlumniController extends Controller
 
         $pesertadidik = Pesertadidik::find($request->nis);
         if($request->nis){
-            $pesertadidik->sts_siswa = 0;
+            $pesertadidik->sts_siswa = 2;
             $pesertadidik->save();
         }
 
@@ -108,8 +109,9 @@ class AlumniController extends Controller
     public function edit($id)
     {
         $pesertadidik = Pesertadidik::all();
+        $tahunajarans = Tahun::all();
         $alumnis = Alumni::find($id);
-        return view('alumni/editalumni', compact('alumnis','pesertadidik'));
+        return view('alumni/editalumni', compact('alumnis','pesertadidik','tahunajarans'));
     }
 
     /**
@@ -123,9 +125,9 @@ class AlumniController extends Controller
     {
         $this->validate($request, [
             'nis' => 'required|unique:alumni_siswa,id_siswa,'.$id.',id_alumni',
-            'nm_pt' => 'required|min:5|max:50',
-            'nm_fak' => 'required|min:5|max:50',
-            'nm_jurusan' => 'required|min:5|max:50', 
+            'nm_pt' => 'max:50',
+            'nm_fak' => 'max:50',
+            'nm_jurusan' => 'max:50', 
 
         ]);
 
@@ -139,7 +141,7 @@ class AlumniController extends Controller
 
         $alumnis->nm_pt = $request->nm_pt;
         $alumnis->id_siswa = $request->nis;
-        $alumnis->id_ta = $request->id_ta;
+        $alumnis->id_ta = $request->tahun_ajaran;
         $alumnis->jns_pt = $request->jns_pt;
         $alumnis->nm_fak = $request->nm_fak;
         $alumnis->nm_jurusan = $request->nm_jurusan;
@@ -147,7 +149,7 @@ class AlumniController extends Controller
 
         $pesertadidik = Pesertadidik::find($request->nis);
         if($request->nis){
-            $pesertadidik->sts_siswa = 0;
+            $pesertadidik->sts_siswa = 2;
             $pesertadidik->save();
         }
         return redirect('/alumni')->with('success', 'Data berhasil diupdate!');
@@ -177,7 +179,7 @@ class AlumniController extends Controller
         $alumni = DB::table('alumni_siswa')
                     ->join('peserta_didik', 'peserta_didik.id_siswa','=','alumni_siswa.id_siswa')
                     ->join('tahun_ajaran','tahun_ajaran.id_ta','=','alumni_siswa.id_ta')
-                    ->where('peserta_didik.id_ta','=', $tahun_ajaran)->get();
+                    ->where('tahun_ajaran.id_ta','=', $tahun_ajaran)->get();
         $pdf = PDF::loadview('alumni.export', ['alumni'=>$alumni]);
         $pdf->setPaper('A4', 'landscape');
         return $pdf->stream();
@@ -188,7 +190,7 @@ class AlumniController extends Controller
     {
         $perguruan_tinggi = DB::table('alumni_siswa')
                       ->select('nm_pt', DB::raw('count(*) as total'))
-                      ->groupBy('nm_pt')->orderBy('total','desc')->limit(3)->get();
+                      ->groupBy('nm_pt')->orderBy('total','desc')->limit(5)->get();
         $categories= [];
         $series = [
             (object)[
@@ -204,13 +206,15 @@ class AlumniController extends Controller
 
         $negeri = Alumni::where('jns_pt', 'negeri')->count();
         $swasta = Alumni::where('jns_pt', 'swasta')->count();
+        $tdk_kuliah = Alumni::where('jns_pt', 'tidak kuliah')->count();
         $total = Alumni::all()->count();
 
         $persen_negeri = $negeri/$total*100;
         $persen_swasta = $swasta/$total*100;
+        $persen_tdk_kuliah = $tdk_kuliah/$total*100;
 
        
-        return view('statistik/alumni', compact('categories','series','persen_swasta','persen_negeri'));
+        return view('statistik/alumni', compact('categories','series','persen_swasta','persen_negeri','persen_tdk_kuliah'));
     }
 
 

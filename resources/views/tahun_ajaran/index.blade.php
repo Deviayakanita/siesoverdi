@@ -17,7 +17,7 @@
   <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
-        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-users"></i> Daftar Tahun Ajaran</h3>
+        <h3 class="box-title" style="font-size: 20px;"><i class="fa fa-calendar"></i> Daftar Tahun Ajaran</h3>
           <div style="float: right;">
           <div style="clear: both;"></div>
           <div>
@@ -80,7 +80,7 @@
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-user"></i> Masukan Data Tahun Ajaran</h4>
+                  <h4 class="modal-title" id="exampleModalLabel"><i class="fa fa-calendar"></i> Masukan Data Tahun Ajaran</h4>
                 </div>
                   <div class="box box-primary">
                   <div class="modal-body">
@@ -89,6 +89,11 @@
                          <div class="form-group">
                            <label for="input_tahunajaran">Tahun Ajaran</label>
                            <input type="text" class="form-control" id="input_tahunajaran" name="tahun_ajaran" required="required" autocomplete="off" placeholder="Masukan Tahun Ajaran" value="{{ old('tahun_ajaran') }}">
+                           @error('tahun_ajaran')
+                            <span class="invalid-feedback text-danger" role="alert">
+                                <strong>{{ " Minimal 9 Sampai 12 Karakter Dan Tahun Ajaran Tidak Boleh Sama" }}</strong>
+                            </span>
+                          @enderror
                          </div>
 
                       <div>

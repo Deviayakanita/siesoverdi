@@ -35,7 +35,7 @@
                     <select id="inputNIS" class="form-control select2" name="nis" required="required" autocomplete="off">
                       <option selected="selected" disabled="" value="">-- No Induk Siswa --</option>
                       @foreach ($pesertadidik as $item)
-                      <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun->tahun_ajaran }}" data-id="{{ $item->id_ta }}" value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
+                      <option @if ($item->id_siswa == $orangtuas->id_siswa) selected @endif data-nama="{{ $item->nm_siswa }}" data-tahun="{{ $item->tahun_masuk }}" data-tahunajaran="{{ $item->tahun->tahun_ajaran }}" data-id="{{ $item->id_ta }}"value="{{$item->id_siswa}}">{{ $item->nis }} - {{ $item->nm_siswa }}</option>
                       @endforeach
                     </select>
                     @error('nis')
@@ -51,10 +51,15 @@
                     <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" value="{{$orangtuas->pesertadidik->nm_siswa}}"readonly>
                   </div>
                   <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                    <label for="inputnama">Tahun Ajaran Siswa</label>
+                    <label for="inputnama">Tahun Masuk</label>
+                    <input type="text" class="form-control" id="inputthn" name="tahun_masuk" value="{{$orangtuas->pesertadidik->tahun_masuk}}" readonly>
+                  </div>
+                </div>
+
+                <div class="form-group" style="padding: 0; padding-right: 10px">
+                  <label for="inputnama">Tahun Ajaran Siswa</label>
                     <input type="text" class="form-control" id="inputtahun" name="tahun_ajaran" value="{{$orangtuas->pesertadidik->tahun->tahun_ajaran}}" readonly>
                     <input type="hidden" id="inputid_ta" name="id_ta" value="{{$orangtuas->tahun->id_ta}}"readonly>
-                  </div>
                 </div>
 
                   <div class="form-group" style="padding: 0; padding-right: 10px">
@@ -88,7 +93,7 @@
                       <option value="Rp.2,000,000 - Rp.5,000,000" @if($orangtuas->penghasilan_ayah=='Rp.2,000,000 - Rp.5,000,000')selected @endif>Rp.2,000,000 - Rp.5,000,000</option>
                       <option value="Rp.5,000,000 - Rp.20,000,000" @if($orangtuas->penghasilan_ayah=='Rp.5,000,000 - Rp.20,000,000')selected @endif>Rp.5,000,000 - Rp.20,000,000</option>
                       <option value="Lebih dari Rp.20,000,000" @if($orangtuas->penghasilan_ayah=='Lebih dari Rp.20,000,000')selected @endif>Lebih dari Rp.20,000,000</option>
-                      <option value="Tidak Penghasilan" @if($orangtuas->penghasilan_ayah=='Tidak Berpenghasilan')selected @endif>Tidak Berpenghasilan</option>
+                      <option value="Tidak Penghasilan" @if($orangtuas->penghasilan_ayah=='Tidak Penghasilan')selected @endif>Tidak Berpenghasilan</option>
                     </select>
                   </div>
 
@@ -145,11 +150,14 @@
 
    $('#inputNIS').change(function() {
     var nm_siswa = $('option:selected', this).attr('data-nama');
-    var tahun_ajaran = $('option:selected', this).attr('data-tahun');
+    var tahun_masuk = $('option:selected', this).attr('data-tahun');
+    var tahun_ajaran = $('option:selected', this).attr('data-tahunajaran');
     var id_ta = $('option:selected', this).attr('data-id');
     $('#inputnamasiswa').val(nm_siswa);
+    $('#inputthn').val(tahun_masuk);
     $('#inputtahun').val(tahun_ajaran);
     $('#inputid_ta').val(id_ta);
   });
+
 </script>
 @endsection

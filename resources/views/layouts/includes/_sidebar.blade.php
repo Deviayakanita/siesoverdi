@@ -54,7 +54,7 @@
         </a>
         <ul class="treeview-menu">
             <li class="{{ (Request()->segment(1) == 'mutasimasuk') ? 'active' : ''}}"><a href="{{url('mutasimasuk')}}"><i class="fa fa-circle-o text-aqua"></i> Data Mutasi Masuk</a></li>
-            <li class="{{ (Request()->segment(1) == 'mutasikeluar') ? 'active' : ''}}"><a href="{{url('mutasikeluar')}}"><i class="fa fa-circle-o text-aqua"></i> Data Mutasi Keluar</a></li>     
+            <li class="{{ (Request()->segment(1) == 'mutasikeluar') ? 'active' : ''}}"><a href="{{url('mutasikeluar')}}"><i class="fa fa-circle-o text-aqua"></i> Data Mutasi Keluar</a></li>  
         </ul>
     </li>
     <li class="{{ (Request()->segment(1) == 'alumni') ? 'active' : ''}}">
