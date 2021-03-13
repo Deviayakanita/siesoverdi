@@ -43,7 +43,7 @@
                     <div>
                         <button type="button" class="btn btn-primary" id="filter"><i class=""></i> Filter</button>
                         <button type="button" class="btn btn-warning" id="refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                        <a href="/mutasimasuk/export" id="cetak" class="btn btn-danger" style="margin-left:605px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+                        <a href="/mutasimasuk/export" id="cetak" class="btn btn-danger" style="margin-left:617px;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
                     </div>
                 </div>
 

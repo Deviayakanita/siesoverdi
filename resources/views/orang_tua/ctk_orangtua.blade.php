@@ -58,7 +58,7 @@
                 <div>
                         <button type="button" class="btn btn-primary" id="filter"><i class=""></i> Filter</button>
                         <button type="button" class="btn btn-warning" id="refresh"><i class="fa fa-refresh"></i> Refresh</button>
-                        <a href="/orangtua/export" id="cetak" class="btn btn-danger" style="margin-left:313px; margin-right: 0;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
+                        <a href="/orangtua/export" id="cetak" class="btn btn-danger" style="margin-left:327px; margin-right: 0;" target="_blank"><i class="fa fa-file-pdf-o"></i> Export PDF</a>
                 </div>
             </div>
         

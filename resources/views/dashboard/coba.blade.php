@@ -245,7 +245,7 @@
             <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-red">
-                    Data Alumni Peserta Didik
+                    Data Alumni Terakhir
                   </span>
             </li>
             <!-- /.timeline-label -->
