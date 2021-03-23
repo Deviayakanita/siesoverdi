@@ -119,7 +119,7 @@
                       <input type="text" class="form-control" id="inputnamasiswa" name="nm_siswa" readonly value="{{ old('nm_siswa') }}">
                     </div>
                     <div class="form-group col-md-6" style="padding: 0; padding-right: 10px">
-                      <label for="inputtahun">Tahun Ajaran Siswa</label>
+                      <label for="inputtahun">Tahun Masuk Siswa</label>
                       <input type="text" class="form-control" id="inputthn" name="tahun_masuk" readonly value="{{ old('tahun_ajaran') }}">
                       <input type="hidden" id="inputid_ta" name="id_ta" readonly value="{{ old('id_ta') }}">
                     </div>

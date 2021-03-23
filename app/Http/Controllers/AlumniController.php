@@ -36,10 +36,9 @@ class AlumniController extends Controller
         $tahun_ajaran = Tahun::orderBy('id_ta')->get();
         if ($request->ajax()) {
             if (!$request->tahun_ajaran){
-                $alumnis = Alumni::with(['pesertadidik'])->latest()->get();   
+                $alumni = Alumni::with(['pesertadidik'])->latest()->get();   
             } else {
-                $siswa = Pesertadidik::where('id_ta', $request->tahun_ajaran)->pluck('id_ta')->toArray();
-                $alumni = Alumni::with(['pesertadidik','tahun'])->whereIn('id_ta', collect($siswa))->get();
+                $alumni = Alumni::with(['pesertadidik','tahun'])->where('id_ta', $request->tahun_ajaran)->get();
             }
             $role = Auth::user()->level;
             return response()->json(['alumni'=>$alumni,'level'=>$role]);

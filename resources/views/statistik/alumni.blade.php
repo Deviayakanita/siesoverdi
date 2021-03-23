@@ -60,7 +60,7 @@ Highcharts.chart('grafik1', {
         type: 'column'
     },
     title: {
-        text: 'Jumlah Peserta Didik Berdasarkan Perguruan Tinggi Terbanyak'
+        text: 'Alumni Berdasarkan Perguruan Tinggi Terbanyak'
     },
     xAxis: {
         categories: {!!json_encode($categories)!!},
